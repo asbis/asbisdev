@@ -1,0 +1,69 @@
+.cv-page {
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.cv-section {
+  margin-bottom: 22px;
+}
+
+.cv-section h2 {
+  margin-bottom: 8px;
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 10mm 12mm;
+  }
+
+  html,
+  body {
+    background: #fff !important;
+    color: #1a1814 !important;
+  }
+
+  .grain,
+  .cv-print-bar,
+  nav,
+  footer.footer {
+    display: none !important;
+  }
+
+  .cv-page {
+    max-width: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    font-size: 10.5pt;
+    line-height: 1.4;
+  }
+
+  .cv-section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    margin-bottom: 14px;
+  }
+
+  .cv-section h2 {
+    margin-bottom: 6px;
+  }
+
+  .cv-section article,
+  .cv-section > div > div {
+    break-inside: avoid;
+  }
+
+  .cv-header {
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+  }
+
+  a {
+    color: inherit !important;
+    text-decoration: none !important;
+  }
+
+  .cv-footer {
+    display: none !important;
+  }
+}

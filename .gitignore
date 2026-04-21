@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local-only design & CV source material (personal files, not for public repo)
+/.claudedesign/
+/stuff/
+/*.pdf
