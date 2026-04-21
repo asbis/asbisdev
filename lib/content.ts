@@ -128,13 +128,13 @@ export const CONTENT = {
   },
   contact: {
     email: "hello@asbis.dev",
-    github: "github.com/asbjornrorvik",
+    github: "github.com/asbis",
     linkedin: "linkedin.com/in/asbjornrorvik",
     cvPath: "/cv.pdf",
   },
   invoicing: {
     entity: "Eksire AS",
-    orgNr: "000 000 000",
+    orgNr: "821 482 372",
   },
   seniority: {
     en: "8+ years shipping production systems across Norway — Equinor, Kolumbus, Altibox, Easee.",
