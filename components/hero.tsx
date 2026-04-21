@@ -13,17 +13,9 @@ export function Hero({ lang }: { lang: Lang }) {
           transition={{ duration: 0.7 }}
           className="mb-11 flex items-center gap-2.5 text-[12px] uppercase tracking-[0.22em] text-[color:var(--muted)]"
         >
-          <span className="relative inline-block h-2 w-2">
-            <span
-              className="absolute inset-0 rounded-full bg-[#2a8f4f]"
-              style={{ animation: "pulse-dot 2s ease-out infinite" }}
-            />
-          </span>
-          <span>{L(CONTENT.labels.availability, lang)}</span>
-          <span className="opacity-50">·</span>
           <span>{L(CONTENT.role, lang)}</span>
           <span className="opacity-50">·</span>
-          <span>Norway</span>
+          <span>{lang === "en" ? "Stavanger, Norway" : "Stavanger, Norge"}</span>
         </motion.div>
 
         <h1
@@ -75,7 +67,7 @@ export function Hero({ lang }: { lang: Lang }) {
             href="#contact"
             className="inline-flex items-center border-b border-[color:var(--hairline)] px-2 py-4 text-sm text-[color:var(--ink)]"
           >
-            {lang === "en" ? "Or just say hi" : "Eller bare si hei"}
+            {lang === "en" ? "Get in touch" : "Ta kontakt"}
           </a>
         </motion.div>
 

@@ -12,6 +12,17 @@ export type Project = {
   stack: string[];
 };
 
+export type ClientProject = {
+  company: string;
+  title: Bilingual;
+  client: string;
+  period: string;
+  role: Bilingual;
+  pitch: Bilingual;
+  note: Bilingual;
+  stack: string[];
+};
+
 export type Client = { name: string; note: Bilingual };
 
 export const CONTENT = {
@@ -21,8 +32,8 @@ export const CONTENT = {
     no: "Fullstack-utvikler",
   } as Bilingual,
   tagline: {
-    en: "I build products end-to-end — frontend, backend, mobile, infra. Fast, with AI as a force multiplier.",
-    no: "Jeg bygger produkter fra ende til ende — frontend, backend, mobil, infrastruktur. Raskt, med AI som kraftmultiplikator.",
+    en: "I build apps and web products end-to-end — mobile, backend, infra. Shipped for Equinor, Kolumbus, Altibox and Easee.",
+    no: "Jeg bygger apper og webprodukter ende-til-ende — mobil, backend, infra. Levert til Equinor, Kolumbus, Altibox og Easee.",
   } as Bilingual,
   about: {
     en: [
@@ -73,36 +84,6 @@ export const CONTENT = {
         no: "Én innboks for chat, e-post (Gmail/Outlook), Instagram og Messenger, drevet av en AI-agent som håndterer ordresporing, retur, refusjon og produktspørsmål. Bygget hele stacken som CTO — backend, LLM-integrasjoner, semantisk søk, prompt engineering, dashboard og chat-widget. Live hos 100+ Shopify-butikker.",
       },
       stack: ["Next.js", "TypeScript", "Shopify API", "LLMs", "Postgres"],
-    },
-    {
-      id: "flagchase",
-      name: "Flagchase",
-      url: "flagchase.com",
-      category: { en: "Sports · App · NFC", no: "Sport · App · NFC" },
-      pitch: {
-        en: "Digital orienteering — find routes, run them, scan NFC checkpoints.",
-        no: "Digital orientering — finn løyper, løp dem, skann NFC-poster.",
-      },
-      long: {
-        en: "Maps nearby routes you can run. Print the map or follow it on your phone. Tap NFC posts at each checkpoint to log your run. Compete on leaderboards, earn badges, discover new places on foot.",
-        no: "Viser løyper i nærheten. Skriv ut kartet eller følg det på mobilen. Tapp NFC-poster ved hver kontroll for å logge løpet. Konkurrer på tavler, tjen merker, oppdag nye steder til fots.",
-      },
-      stack: ["Flutter", "Go", "Mapbox", "NFC"],
-    },
-    {
-      id: "shapeitup",
-      name: "ShapeItUp",
-      url: "shapeitup.dev",
-      category: { en: "Dev tools · Open source", no: "Utviklerverktøy · Åpen kildekode" },
-      pitch: {
-        en: "Open-source CAD scripting in VS Code — built for AI agents.",
-        no: "Open source CAD-scripting i VS Code — bygget for AI-agenter.",
-      },
-      long: {
-        en: "Write CAD in TypeScript with clear errors, hot-reload, and a live 3D viewer. Designed so agents like Claude Code can iterate on geometry with tight feedback loops. Free and open.",
-        no: "Skriv CAD i TypeScript med tydelige feilmeldinger, hot-reload og 3D-live-visning. Designet for at agenter som Claude Code kan iterere på geometri med tett feedback. Gratis og åpent.",
-      },
-      stack: ["TypeScript", "Three.js", "VS Code API", "OpenCascade"],
     },
   ] as Project[],
   skills: {
@@ -189,66 +170,102 @@ export const CONTENT = {
   ],
   clientProjects: [
     {
-      title: { en: "Aero Norway — Software for an aero-engine MRO", no: "Aero Norway — programvare for flymotorverksted" },
-      client: "Aero Norway / ITP Aero",
-      period: "2025 — now",
-      role: { en: "Developer", no: "Utvikler" },
-      note: {
-        en: "Custom digital tools for Aero Norway, an aero-engine maintenance facility at Sola. Frontend and backend work with focus on integrations and data quality in a safety-critical domain.",
-        no: "Skreddersydde digitale løsninger for Aero Norway, flymotorverksted på Sola. Frontend- og backend-utvikling med fokus på integrasjoner og datakvalitet i et komplekst og samfunnskritisk domene.",
-      },
-    },
-    {
-      title: { en: "TryggDrift (KSL) — HSE app for Norwegian agriculture", no: "TryggDrift (KSL) — HMS-app for norsk landbruk" },
-      client: "Norsk Landbruksrådgiving (NLR)",
-      period: "2025",
-      role: { en: "Fullstack developer", no: "Fullstack-utvikler" },
-      note: {
-        en: "Digital HSE solution for farms — risk assessment, emergency planning and day-to-day HSE tasks. Built core screens in React Native and backend in .NET, from first commit to launch on App Store and Google Play. Replaces KSL Trygg.",
-        no: "Digital HMS-løsning for landbruket. Dokumentasjon av risikovurdering, beredskapsplanlegging og HMS-oppgaver. Utviklet sentrale deler i React Native og backend i .NET, fra første kode til lansering på App Store og Google Play. Erstatter KSL Trygg.",
-      },
-    },
-    {
-      title: { en: "Kolumbus — Real-time travel guide", no: "Kolumbus — sanntidsbasert reiseguide" },
+      company: "Kolumbus",
+      title: { en: "Real-time travel guide", no: "Sanntidsbasert reiseguide" },
       client: "Kolumbus AS / Rogaland fylkeskommune",
       period: "2024 — 2025",
-      role: { en: "Developer", no: "Utvikler" },
-      note: {
-        en: "Transit app serving 142 000+ monthly users — winner of Nordic Public Transport Design Award 2025. Built Flutter features for an explainable routing engine, real-time travel follow-up, contextual notifications and pay-as-you-go payments. Backend integrations against Kolumbus and Entur.",
-        no: "Reiseguide med 142 000+ aktive brukere månedlig — vinner av Nordic Public Transport Design Award 2025. Utviklet Flutter-funksjonalitet for explainable routing, reiseoppfølging i sanntid, kontekstuelle varslinger og pay-as-you-go-betaling. Integrasjoner mot Kolumbus og Entur.",
+      role: { en: "Developer · via Netpower", no: "Utvikler · via Netpower" },
+      pitch: {
+        en: "Transit app for 142 000+ monthly users — winner of Nordic Public Transport Design Award 2025.",
+        no: "Reiseguide for 142 000+ aktive brukere månedlig — vinner av Nordic Public Transport Design Award 2025.",
       },
+      note: {
+        en: "Built Flutter features for an explainable routing engine, real-time travel follow-up, contextual notifications and pay-as-you-go payments. Backend integrations against Kolumbus and Entur. Focus on UX, robustness and precision — especially for first-time users, tourists and commuters.",
+        no: "Utviklet Flutter-funksjonalitet for explainable routing, reiseoppfølging i sanntid, kontekstuelle varslinger og pay-as-you-go-betaling. Integrasjoner mot Kolumbus og Entur. Særlig vekt på brukeropplevelse, robusthet og presisjon — spesielt for nye brukere, turister og pendlere.",
+      },
+      stack: ["Flutter", "Dart", "Go", "Entur", "REST APIs"],
     },
     {
-      title: { en: "Altibox Hjem — Smart home app", no: "Altibox Hjem — smarthustjenester" },
-      client: "Lyse Energi AS",
-      period: "2023 — 2024",
-      role: { en: "Frontend developer", no: "Utvikler (frontend)" },
-      note: {
-        en: "Mobile app giving hundreds of thousands of Altibox customers control over wifi, guest networks, parental controls and home network troubleshooting. Flutter UI work in a cross-functional Scrum team.",
-        no: "Mobilapp som gir hundretusener av Altibox-kunder kontroll over wifi, gjestenett, foreldrekontroll og feilsøking. Flutter-utvikling i tverrfaglig Scrum-team.",
-      },
-    },
-    {
-      title: { en: "Equinor — Offshore-critical operations apps", no: "Equinor — kritiske driftsapplikasjoner offshore" },
+      company: "Equinor",
+      title: { en: "Offshore-critical operations apps", no: "Kritiske driftsapplikasjoner offshore" },
       client: "Equinor ASA",
       period: "2023",
-      role: { en: "Frontend developer", no: "Utvikler (frontend)" },
-      note: {
-        en: "React Native development on Notifications and Workorders — two of Equinor's most business-critical apps for offshore platform operations. Strict uptime, reliability and safety requirements.",
-        no: "React Native-utvikling på Notifications og Workorders — to av Equinors mest forretningskritiske apper for offshore-drift. Strenge krav til oppetid, pålitelighet og sikkerhet.",
+      role: { en: "Frontend developer · via Bouvet", no: "Utvikler (frontend) · via Bouvet" },
+      pitch: {
+        en: "Two of Equinor's most business-critical offshore apps — Notifications and Workorders.",
+        no: "To av Equinors mest forretningskritiske apper offshore — Notifications og Workorders.",
       },
+      note: {
+        en: "Notifications handles deviation alerts and follow-up; Workorders drives work-order creation and handling for maintenance and operations. Daily operations offshore depend on both. React Native development in a strictly regulated environment with high requirements on uptime, reliability and safety.",
+        no: "Notifications håndterer varsling og oppfølging av avvik; Workorders styrer opprettelse og behandling av arbeidsordre for vedlikehold og operasjoner. Offshore-driften er avhengig av begge. React Native-utvikling i et strengt regulert miljø med høye krav til oppetid, pålitelighet og sikkerhet.",
+      },
+      stack: ["React Native", "TypeScript"],
     },
     {
-      title: { en: "Easee — EV charging app + EaseePay", no: "Easee — elbillade-app og EaseePay" },
+      company: "Easee",
+      title: { en: "EV charging app + EaseePay", no: "Elbillade-app og EaseePay" },
       client: "Easee AS",
       period: "2021 — 2022",
-      role: { en: "Frontend developer", no: "Utvikler (frontend)" },
-      note: {
-        en: "Flutter development on the Easee app. Built EaseePay from scratch — a Flutter library integrating with Adyen for fair cost splitting in housing co-ops. Worked directly on encryption, security and PCI DSS compliance. Rolled out to thousands of users.",
-        no: "Flutter-utvikling på Easee-appen. Bygget EaseePay fra bunn — et Flutter-bibliotek med Adyen-integrasjon for rettferdig fordeling av ladekostnader i borettslag. Direkte arbeid med kryptering, sikkerhet og PCI DSS. Rullet ut til tusenvis av brukere.",
+      role: { en: "Frontend developer · via Bouvet", no: "Utvikler (frontend) · via Bouvet" },
+      pitch: {
+        en: "Built EaseePay from scratch — a Flutter–Adyen payment library for housing co-ops. Shipped to thousands of users.",
+        no: "Bygget EaseePay fra bunn — et Flutter-bibliotek med Adyen-integrasjon for borettslag. Rullet ut til tusenvis av brukere.",
       },
+      note: {
+        en: "Flutter development on the core Easee app — usability, stability and new features. EaseePay enables fair cost splitting for EV charging in housing co-ops. Worked directly on encryption, security and PCI DSS compliance for payment data. Gave residents full transparency of usage and cost.",
+        no: "Flutter-utvikling på Easee-appen — brukervennlighet, stabilitet og nye funksjoner. EaseePay gir rettferdig fordeling av ladekostnader i borettslag. Direkte arbeid med kryptering, sikkerhet og PCI DSS for betalingsdata. Ga beboerne full transparens i forbruk og kostnader.",
+      },
+      stack: ["Flutter", "Dart", "Adyen", "PCI DSS"],
     },
-  ],
+    {
+      company: "Altibox",
+      title: { en: "Altibox Hjem — smart home app", no: "Altibox Hjem — smarthustjenester" },
+      client: "Lyse Energi AS",
+      period: "2023 — 2024",
+      role: { en: "Frontend developer · via Bouvet", no: "Utvikler (frontend) · via Bouvet" },
+      pitch: {
+        en: "Smart home app for hundreds of thousands of Altibox customers — wifi, guest networks, parental controls, troubleshooting.",
+        no: "Smarthus-app for hundretusener av Altibox-kunder — wifi, gjestenett, foreldrekontroll, feilsøking.",
+      },
+      note: {
+        en: "Flutter UI development in a cross-functional Scrum team. Built a seamless integration that lets non-technical customers set up wifi, guest networks, parental controls and troubleshoot home network issues — all from the phone.",
+        no: "Flutter-utvikling i tverrfaglig Scrum-team. Implementerte en sømløs integrasjon som lar vanlige forbrukere konfigurere wifi, gjestenett, foreldrekontroll og feilsøke internettproblemer — alt fra mobilen.",
+      },
+      stack: ["Flutter", "Dart"],
+    },
+    {
+      company: "TryggDrift · KSL",
+      title: { en: "HSE app for Norwegian agriculture", no: "HMS-app for norsk landbruk" },
+      client: "Norsk Landbruksrådgiving (NLR)",
+      period: "2025",
+      role: { en: "Fullstack developer · via Netpower", no: "Fullstack-utvikler · via Netpower" },
+      pitch: {
+        en: "Digital HSE solution for Norwegian farms — shipped from first commit to App Store and Google Play. Replaces KSL Trygg.",
+        no: "Digital HMS-løsning for landbruket — levert fra første kode til App Store og Google Play. Erstatter KSL Trygg.",
+      },
+      note: {
+        en: "Risk assessment, emergency planning and day-to-day HSE tasks on the farm. Built core screens in React Native and backend in .NET. Stayed on after launch for bug fixes and improvements based on feedback from farmers and advisors.",
+        no: "Risikovurdering, beredskapsplanlegging og HMS-oppgaver på gården. Utviklet sentrale deler i React Native og backend i .NET. Jobbet med feilretting og forbedringer basert på brukerinnspill fra bønder og rådgivere etter lansering.",
+      },
+      stack: ["React Native", ".NET", "C#"],
+    },
+    {
+      company: "Aero Norway",
+      title: { en: "Software for an aero-engine MRO", no: "Programvare for flymotorverksted" },
+      client: "Aero Norway / ITP Aero",
+      period: "2025 — now",
+      role: { en: "Developer · via Netpower", no: "Utvikler · via Netpower" },
+      pitch: {
+        en: "Custom digital tools for an aero-engine maintenance facility at Sola.",
+        no: "Skreddersydde digitale løsninger for flymotorverksted på Sola.",
+      },
+      note: {
+        en: "Frontend and backend work with focus on integrations and data quality in a complex, safety-critical domain.",
+        no: "Frontend- og backend-utvikling med fokus på integrasjoner og datakvalitet i et komplekst og samfunnskritisk domene.",
+      },
+      stack: ["TypeScript", ".NET"],
+    },
+  ] as ClientProject[],
   education: [
     {
       period: "2013 — 2016",
@@ -283,10 +300,10 @@ export const CONTENT = {
     },
     {
       n: "02",
-      t: { en: "Ship v1 fast", no: "Lever v1 raskt" },
+      t: { en: "Move fast on what matters", no: "Bruk tiden der det teller" },
       d: {
-        en: "A working thing in days, not months. AI-assisted where it saves time, hand-crafted where it matters.",
-        no: "Noe som funker på dager, ikke måneder. AI-assistert der det sparer tid, håndlaget der det teller.",
+        en: "Short path from idea to working code. AI-assisted where it saves time, hand-crafted where quality matters.",
+        no: "Kort vei fra idé til kode som funker. AI-assistert der det sparer tid, håndlaget der kvalitet teller.",
       },
     },
     {

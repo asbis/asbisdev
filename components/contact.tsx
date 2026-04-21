@@ -46,8 +46,8 @@ export function Contact({ lang }: { lang: Lang }) {
           style={{ textWrap: "pretty" }}
         >
           {lang === "en"
-            ? "Hiring for a role, or starting a project? I do both. Pick whichever fits."
-            : "Ansetter du til en stilling, eller starter du et prosjekt? Jeg gjør begge deler. Velg det som passer."}
+            ? "Permanent roles or contract projects. Same inbox."
+            : "Fast stilling eller oppdrag. Samme innboks."}
         </p>
 
         <div className="mt-14 flex flex-col items-stretch gap-3.5 sm:flex-row sm:flex-wrap sm:justify-center">

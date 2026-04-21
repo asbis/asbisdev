@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { CONTENT, L, type Lang, type Project } from "@/lib/content";
+import { CONTENT, L, type Lang, type ClientProject } from "@/lib/content";
 
-export function Projects({ lang }: { lang: Lang }) {
+export function ClientProjects({ lang }: { lang: Lang }) {
   return (
     <section
       id="projects"
@@ -14,7 +14,7 @@ export function Projects({ lang }: { lang: Lang }) {
         <div className="mb-[72px] flex flex-wrap items-baseline justify-between gap-5">
           <div>
             <div className="mb-3.5 text-[12px] uppercase tracking-[0.25em] text-[color:var(--muted)]">
-              {L(CONTENT.labels.selectedWork, lang)}
+              {lang === "en" ? "Selected work" : "Utvalgt arbeid"}
             </div>
             <h2
               className="font-display m-0 font-normal tracking-[-0.025em]"
@@ -22,28 +22,28 @@ export function Projects({ lang }: { lang: Lang }) {
             >
               {lang === "en" ? (
                 <>
-                  Products, <em className="text-[color:var(--accent)]">shipped</em>.
+                  Work for <em className="text-[color:var(--accent)]">real clients</em>.
                 </>
               ) : (
                 <>
-                  Produkter, <em className="text-[color:var(--accent)]">levert</em>.
+                  Arbeid for <em className="text-[color:var(--accent)]">ekte kunder</em>.
                 </>
               )}
             </h2>
           </div>
           <div className="text-[13px] tracking-wide tabular-nums text-[color:var(--muted)]">
-            0{CONTENT.projects.length} {lang === "en" ? "projects" : "prosjekter"}
+            0{CONTENT.clientProjects.length} {lang === "en" ? "engagements" : "oppdrag"}
           </div>
         </div>
 
         <div>
-          {CONTENT.projects.map((p, i) => (
-            <ProjectRow
-              key={p.id}
+          {CONTENT.clientProjects.map((p, i) => (
+            <ClientRow
+              key={p.company}
               p={p}
               i={i}
               lang={lang}
-              last={i === CONTENT.projects.length - 1}
+              last={i === CONTENT.clientProjects.length - 1}
             />
           ))}
         </div>
@@ -52,7 +52,17 @@ export function Projects({ lang }: { lang: Lang }) {
   );
 }
 
-function ProjectRow({ p, i, lang, last }: { p: Project; i: number; lang: Lang; last: boolean }) {
+function ClientRow({
+  p,
+  i,
+  lang,
+  last,
+}: {
+  p: ClientProject;
+  i: number;
+  lang: Lang;
+  last: boolean;
+}) {
   const [open, setOpen] = useState(false);
   const [hover, setHover] = useState(false);
 
@@ -75,8 +85,10 @@ function ProjectRow({ p, i, lang, last }: { p: Project; i: number; lang: Lang; l
           0{i + 1}
         </span>
         <span>
-          <div className="mb-2 text-[11px] uppercase tracking-[0.2em] text-[color:var(--muted)]">
-            {L(p.category, lang)}
+          <div className="mb-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] uppercase tracking-[0.2em] text-[color:var(--muted)]">
+            <span>{p.period}</span>
+            <span className="opacity-40">·</span>
+            <span>{L(p.role, lang)}</span>
           </div>
           <div className="flex flex-wrap items-baseline gap-3.5">
             <span
@@ -87,14 +99,14 @@ function ProjectRow({ p, i, lang, last }: { p: Project; i: number; lang: Lang; l
                 transition: "color .2s",
               }}
             >
-              {p.name}
+              {p.company}
             </span>
             <span className="font-display text-xl italic text-[color:var(--muted)]">
-              — {p.url}
+              — {L(p.title, lang)}
             </span>
           </div>
           <div
-            className="mt-2.5 max-w-[720px] text-[15px] text-[color:var(--ink)] opacity-75"
+            className="mt-2.5 max-w-[760px] text-[15px] text-[color:var(--ink)] opacity-75"
             style={{ textWrap: "pretty" }}
           >
             {L(p.pitch, lang)}
@@ -130,20 +142,15 @@ function ProjectRow({ p, i, lang, last }: { p: Project; i: number; lang: Lang; l
             <div />
             <div className="grid gap-10 md:grid-cols-[1.4fr_1fr]">
               <div>
+                <div className="mb-3 text-[11px] uppercase tracking-[0.2em] text-[color:var(--muted)]">
+                  {lang === "en" ? "Client" : "Kunde"} · {p.client}
+                </div>
                 <p
-                  className="m-0 max-w-[560px] text-base leading-[1.65] text-[color:var(--ink)] opacity-80"
+                  className="m-0 max-w-[580px] text-base leading-[1.65] text-[color:var(--ink)] opacity-80"
                   style={{ textWrap: "pretty" }}
                 >
-                  {L(p.long, lang)}
+                  {L(p.note, lang)}
                 </p>
-                <a
-                  href={`https://${p.url}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mt-6 inline-flex items-center gap-2 border-b border-current pb-0.5 text-sm text-[color:var(--accent)]"
-                >
-                  {L(CONTENT.labels.viewSite, lang)} ↗
-                </a>
               </div>
               <div>
                 <div className="mb-3.5 text-[11px] uppercase tracking-[0.2em] text-[color:var(--muted)]">

@@ -9,7 +9,7 @@ export function HowIWork({ lang }: { lang: Lang }) {
     >
       <div className="mx-auto max-w-[1280px]">
         <div className="mb-3.5 text-[12px] uppercase tracking-[0.25em] text-[color:var(--muted)]">
-          {lang === "en" ? "How I work" : "Slik jobber jeg"}
+          {lang === "en" ? "How I work with teams" : "Slik jobber jeg med team"}
         </div>
         <h2
           className="font-display m-0 mb-[72px] max-w-[820px] font-normal tracking-[-0.025em]"
@@ -17,12 +17,13 @@ export function HowIWork({ lang }: { lang: Lang }) {
         >
           {lang === "en" ? (
             <>
-              Small team energy, at the{" "}
-              <em className="text-[color:var(--accent)]">speed of one</em>.
+              Tight feedback loops.{" "}
+              <em className="text-[color:var(--accent)]">Working code</em>, early.
             </>
           ) : (
             <>
-              Lagspill-energi, med <em className="text-[color:var(--accent)]">hastigheten til én</em>.
+              Tette feedback-loops.{" "}
+              <em className="text-[color:var(--accent)]">Fungerende kode</em>, tidlig.
             </>
           )}
         </h2>
