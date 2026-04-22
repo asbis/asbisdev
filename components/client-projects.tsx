@@ -6,20 +6,15 @@ import { CONTENT, L, type Lang, type ClientProject } from "@/lib/content";
 
 function LogoChip({ src, alt, size = 48 }: { src: string; alt: string; size?: number }) {
   return (
-    <span
-      aria-hidden
-      className="inline-flex shrink-0 items-center justify-center rounded-md border border-[color:var(--hairline)] bg-white"
-      style={{ width: size, height: size, padding: Math.round(size * 0.2) }}
-    >
-      <Image
-        src={src}
-        alt={alt}
-        width={size}
-        height={size}
-        className="h-full w-full object-contain"
-        unoptimized
-      />
-    </span>
+    <Image
+      src={src}
+      alt={alt}
+      width={size}
+      height={size}
+      className="shrink-0 object-contain dark-invert"
+      style={{ width: size, height: size }}
+      unoptimized
+    />
   );
 }
 
