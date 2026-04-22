@@ -123,10 +123,9 @@ export const CONTENT = {
     } as BilingualList,
   },
   contact: {
-    email: "hello@asbis.dev",
+    email: "hey@asbjornrorvik.dev",
     github: "github.com/asbis",
     linkedin: "linkedin.com/in/asbjornrorvik",
-    cvPath: "/cv.pdf",
   },
   invoicing: {
     entity: "Eksire AS",

@@ -1,9 +1,5 @@
-import fs from "node:fs";
-import path from "node:path";
 import Link from "next/link";
 import { CONTENT, L, type Lang } from "@/lib/content";
-
-const hasCv = fs.existsSync(path.join(process.cwd(), "public", "cv.pdf"));
 
 export function Contact({ lang }: { lang: Lang }) {
   const email = CONTENT.contact.email;
@@ -73,14 +69,6 @@ export function Contact({ lang }: { lang: Lang }) {
           >
             {lang === "en" ? "View CV" : "Se CV"} →
           </Link>
-          {hasCv && (
-            <a
-              href={CONTENT.contact.cvPath}
-              className="inline-flex items-center gap-1.5 border-b border-[color:var(--hairline)] pb-0.5 hover:text-[color:var(--accent)]"
-            >
-              {L(CONTENT.labels.downloadCv, lang)} ↓
-            </a>
-          )}
           <a
             href={`https://${CONTENT.contact.linkedin}`}
             target="_blank"
