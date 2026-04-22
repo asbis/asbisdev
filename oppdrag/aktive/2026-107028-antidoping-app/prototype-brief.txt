@@ -1,0 +1,299 @@
+ANTIDOPING-APP — PROTOTYPE BRIEF
+=================================
+
+Oppdragsgiver: Antidoping Norge (ADNO)
+Anbud: Doffin 2026-107028 — Utvikling av antidoping-app
+Tilbudsfrist: 11.05.2026 kl. 12:00
+Fastpris: 1 600 000 NOK inkl. mva (ramme 1 800 000)
+Utviklingstid: 6 måneder (juli–desember 2026), utrulling primo 2027
+Plattform: iOS + Android, lastbar fra App Store og Google Play
+Tildelingskriterier: 100 % kvalitet (pris vektes ikke)
+
+Formålet med denne brief-en: gi Claude Design alt som trengs for å designe
+en prototype vi kan demo til ADNO FØR tildeling. Prototypen skal se
+produksjonsklar ut, følge ADNOs visuelle språk, og dekke alle 9 funksjonene
+fra kravspesifikasjonen.
+
+
+1) PRODUKTIDÉ — HVA DETTE ER
+----------------------------
+
+En samle-app for norske utøvere, trenere, støtteapparat og foreldre med ett
+mål: gjøre det enkelt å ta riktige antidoping-valg i hverdagen — "antidoping
+i lomma".
+
+ADNO har allerede alt innholdet: e-læring (Ren Utøver), legemiddelsøk,
+medisinsk fritak-veileder, astmakalkulator, dopingvarsel, regelverk. Det er
+spredt på nettsider og flere plattformer. Appen samler alt på ett sted, med
+én hovedside og enkle ikoner inn til hver ressurs.
+
+Kjerneprinsipp fra kravspec: MINIMAL TEKST, STORE IKONER, ALT TILGJENGELIG
+FRA HOVEDSIDEN. Appen skal ikke være tekst-tung. Tenk "dashboard + verktøy",
+ikke "nettside i app-format".
+
+
+2) MÅLGRUPPER
+-------------
+
+- Toppidrettsutøvere med og uten meldeplikt (whereabouts)
+- Breddeutøvere over 15 år
+- Trenere / støtteapparat / foreldre
+- Særforbund (som administratorer i e-læring — egen web, ikke app)
+
+Primærmålgruppe for design: 15–35 år, aktive idrettsutøvere, bruker mobil
+primært. Situasjoner: på trening, i bilen, på reise, rett før konkurranse.
+Ofte stresset, ofte må ta en rask beslutning ("kan jeg ta denne medisinen?",
+"er dette kosttilskuddet trygt?").
+
+
+3) APPENS 9 KJERNEFUNKSJONER
+----------------------------
+
+Alle skal være tilgjengelige fra hovedsiden som ikon. Rekkefølge under er
+forslag til prioritering i grid (viktigst først).
+
+3.1  RISIKOSJEKK AV KOSTTILSKUDD  (NYUTVIKLING — VIKTIGST)
+     Hva: Utøver svarer på en serie ja/nei-spørsmål om et kosttilskudd.
+          Hvert svar vektes. Appen regner ut en risikoscore og viser
+          grafisk: LAV (grønn) / MIDDELS (gul) / HØY (rød).
+     Eksempler på spørsmål:
+       - Er produktet kjøpt i utlandet eller på nett?
+       - Er det sertifisert av et anerkjent testprogram (Informed Sport,
+         NSF Certified for Sport)?
+       - Inneholder det urteekstrakter eller "proprietary blends"?
+       - Er ingredienslisten fullstendig og på norsk/engelsk?
+     UX: Steg-for-steg kort (ett spørsmål per skjerm), progress-indikator,
+         tydelig resultatskjerm med forklaring og anbefaling.
+     Resultat: Risikograf + forklarende tekst + knapp "Kontakt ADNO for
+               råd" hvis høy risiko.
+     Referanse: Lignende app finnes i Australia (Sport Integrity Australia).
+
+3.2  LEGEMIDDELSØK
+     Hva: Søk på norske medisiner mot Felleskatalogens database. Viser om
+          preparatet er tillatt / forbudt / forbudt i konkurranse /
+          krever medisinsk fritak.
+     UX: Søkefelt øverst, treff som kort-liste, detaljskjerm per legemiddel
+         med grønn/gul/rød-merking og forklaring.
+     Ekstra: Knapp "Send bekreftelse på e-post" — skal sende samme format
+             som ADNOs nettside gjør i dag:
+             https://www.felleskatalogen.no/medisin/doping-bekreftelse
+     Kilde: Felleskatalogen API (ADNO har eksisterende integrasjon på
+            antidoping.no/medisinsk/legemiddelsok — samme mønster).
+
+3.3  SØK I DOPINGLISTA (WADA)
+     Hva: Søk på substanser direkte i WADAs "Prohibited List" — for
+          medisiner kjøpt i utlandet eller preparater som ikke er norske
+          legemidler.
+     UX: Eget søkegrensesnitt i appen (IKKE nettvisning av WADAs side —
+         den er ikke brukervennlig). Vi henter data, presenterer eget UI.
+     Ingen treff: Knapp "Send spørsmål til ADNOs medisinske rådgiver".
+     Kilde: WADA Prohibited List API / datasett.
+
+3.4  PUSHVARSLING + MELDINGSSENTER
+     Hva: ADNO kan sende viktige meldinger (endringer i dopinglisten,
+          nye regler, hastevarsler) direkte til utøvere.
+     UX: Bell-ikon i toppen av hovedsiden med rød prikk ved nye meldinger.
+         Tap → liste over alle meldinger, nyeste først. Hver melding har
+         tittel, dato, tekst, evt. lenke.
+     Innstillinger: Bruker kan skru av push per kategori (f.eks. "regler",
+                    "hastevarsler", "nyheter").
+     Merknad: Push trigges KUN av ADNO, ikke av brukere.
+
+3.5  E-LÆRING REN UTØVER
+     Hva: Lenke til eksisterende e-læring (ligger hos TASK på egen
+          plattform). Utøver skal oppleve det som sømløst.
+     UX: Ikon på hovedsiden → åpner e-læring i in-app browser eller SSO.
+         Minimal overgang — ingen "du forlater nå appen"-melding.
+
+3.6  MEDISINSK FRITAK
+     Hva: ADNOs fritaksveileder (hvordan søker man om medisinsk fritak,
+          hvilke skjemaer, hvilke frister).
+     UX: Strukturert innhold med seksjoner: Hvem trenger fritak? Hvordan
+         søke? Skjemaer (PDF-nedlasting). Kontakt ved spørsmål.
+     Kilde: https://www.antidoping.no/medisinsk-fritak
+
+3.7  ASTMAKALKULATOR
+     Hva: Samme funksjonalitet som på ADNOs nettside i dag. Hjelper
+          astmapasienter å finne tillatte doser av vanlige astmamedisiner.
+     UX: Bygges inn i appen (ikke webview). Dropdown-valg av medisin →
+         dose-kalkulator → resultat (tillatt / krever fritak).
+     Kilde: https://www.antidoping.no/astmakalkulator
+
+3.8  VARSLINGSKANAL (DOPINGVARSEL)
+     Hva: Utøver kan varsle om brudd eller mistanke om brudd på
+          dopingbestemmelser. Skal kunne gjøres anonymt.
+     UX: Ikon → informasjon om varsling → knapp som åpner eksisterende
+         varslingskanal (whistleblowernetwork) i sikker webview.
+     Kilde: https://dopingvarsel.whistleblowernetwork.net/frontpage
+
+3.9  KONTAKT OSS
+     Hva: Chat i åpningstid, eller kontaktskjema utenfor.
+     UX: Chat-widget (drevet av f.eks. Intercom eller egen løsning) når
+         åpen. Utenfor åpningstid: skjema som sendes til ADNO, svar
+         tilbake som SMS eller i meldingssenter (3.4).
+
+
+4) BRUKERGRENSESNITT — DESIGNPRINSIPPER
+---------------------------------------
+
+ADNOs designmanual er RETNINGSGIVENDE. Vi skal bruke:
+- ADNOs blå som primærfarge (hent fra antidoping.no — mørk blå #002E5D-ish)
+- ADNOs sekundærfarger for risiko (grønn/gul/rød)
+- Sans-serif font i ADNOs stil (sannsynligvis noe som Inter / Source Sans)
+- Logo øverst på splash + innstillinger
+
+Prinsipper fra kravspec (§6 Brukergrensesnitt):
+- "Grafikken skal være enkel"
+- "Minimal bruk av tekst"
+- "All funksjonalitet skal være tilgjengelig fra en hovedside"
+- "Enkle veiledningsvideoer bør kunne inkluderes" (3–9 korte intro-videoer)
+
+Hovedside-layout (forslag):
+- Topp: ADNO-logo + bell-ikon (meldingssenter) + profilikon
+- Midt: 3x3 grid med store ikoner + korte labels for de 9 funksjonene
+- Bunn: Ingen tabbar (alt fra hovedside). Evt. minimal footer med versjon.
+
+Fargekoding på resultater:
+- Grønn: Tillatt / lav risiko / trygt
+- Gul: Forsiktighet / middels risiko / krever fritak
+- Rød: Forbudt / høy risiko / ikke ta
+
+Universell utforming: WCAG 2.2 AA. Screen reader, dynamic type, høy
+kontrast, ingen farge-bare-signaler (alltid ikon + tekst i tillegg til
+farge).
+
+
+5) SKJERMBILDER SOM MÅ DESIGNES TIL PROTOTYPEN
+----------------------------------------------
+
+Minimum for å imponere ADNO:
+
+A) Onboarding (3 skjermer)
+   - Velkommen + logo
+   - Velg rolle (utøver / trener / foreldre)
+   - Tillat pushvarsler + personvernsamtykke (WADA ISPPPI-kompatibelt)
+
+B) Hovedside
+   - 3x3 ikon-grid, bell-ikon øverst med badge
+
+C) Risikosjekk kosttilskudd (5 skjermer)
+   - Intro / "legg inn produkt"
+   - Spørsmål 1 (ja/nei kort med progress)
+   - Spørsmål 3 av 8 (midtveis)
+   - Beregner... (kort animasjon)
+   - Resultat: HØY risiko (rød graf, forklaring, anbefaling)
+   - Resultat: LAV risiko (grønn graf, trygt å bruke)
+
+D) Legemiddelsøk (3 skjermer)
+   - Tom søkeskjerm
+   - Søkeresultater ("paracet" → liste)
+   - Detaljskjerm (Paracet 500mg — TILLATT, grønn badge, knapp "send
+     bekreftelse til e-post")
+
+E) Søk dopinglista (2 skjermer)
+   - Søk ("testosteron" → treff)
+   - Detalj (FORBUDT, rød badge, WADA-kategori, forklaring)
+
+F) Meldingssenter (2 skjermer)
+   - Liste over meldinger (3–4 eksempler: "Ny versjon av dopinglista",
+     "Påminnelse om whereabouts", "Regelendring fra WADA")
+   - Detaljvisning av én melding
+
+G) Astmakalkulator (2 skjermer)
+   - Velg medisin + dose (dropdowns)
+   - Resultat (tillatt/krever fritak)
+
+H) Medisinsk fritak (1 skjerm)
+   - Veileder-oversikt med seksjoner
+
+I) Varsling / dopingvarsel (1 skjerm)
+   - Informasjon + "Gå til anonymt varsel"-knapp
+
+J) Innstillinger (1 skjerm)
+   - Push-preferanser, e-post, personvern, versjon, logg ut
+
+Totalt: ~20 skjermer. Nok til en overbevisende klikkbar prototype.
+
+
+6) TEKNISKE KRAV (for design-konteksts skyld — Claude Design trenger
+   ikke implementere disse, men design må ta høyde)
+-----------------------------------------------------------------
+
+- Native følelse på iOS og Android (vi bygger i Flutter)
+- Offline-tilgang til regelverk/veiledere der det gir mening
+- Lagrer navn, tlf, e-post per bruker (minimal PII)
+- Push-varsler kan slås av/på per kategori
+- Integrasjoner (bak kulissene): Felleskatalogen API, WADA prohibited list,
+  e-post-tjeneste (bekreftelser), push (FCM/APNs), e-læring SSO (TASK),
+  varslingskanal (webview til whistleblowernetwork)
+- WADA ISPPPI (International Standard for Protection of Privacy and
+  Personal Information) — personvern-standard som gjelder
+
+Leverandøren står fritt til å velge native / hybrid / webapp. Vi velger
+FLUTTER (én kodebase iOS+Android+web — web-builden blir demo-kanal til ADNO
+på asbjornrorvik.dev bak basic auth).
+
+
+7) FORVALTNING OG OPPDATERING AV INNHOLD
+----------------------------------------
+
+ADNO spør eksplisitt om hvordan de kan oppdatere innhold selv. Design må
+ta høyde for:
+
+- Dopingliste og substanser: auto-oppdateres fra WADA
+- Legemidler: auto fra Felleskatalogen
+- Kosttilskudd-spørsmål og vekting: redigeres av ADNO i admin-panel
+  (simpel CMS)
+- Meldinger/push: sendes fra ADNO-admin (ikke fra app)
+- Veiledere (medisinsk fritak, astma): redigerbare tekster i admin
+
+Det betyr at designen bør vise en enkel admin-flate også (bonus — ikke
+kritisk for prototypen, men nevnbart).
+
+
+8) HVA PROTOTYPEN SKAL OPPNÅ
+----------------------------
+
+1. Vise ADNO at vi forstår domenet og mandatet
+2. Vise at vi kan designe "enkelt, oversiktlig, minimalt tekst" slik
+   kravspec krever
+3. Gi dem noe konkret å klikke gjennom — ikke 30 sider tekst
+4. Signal: "Vi leverer før vi har vunnet. Andre leverer etter."
+5. Demonstrere forståelse av WADA-konteksten, risikokommunikasjon
+   (grønn/gul/rød), og ADNOs visuelle identitet
+
+Prototypen legges bak basic auth på antidoping.asbjornrorvik.dev og
+QR-kode + lenke inkluderes i Bilag 2.
+
+
+9) HVA CLAUDE DESIGN SKAL LEVERE
+--------------------------------
+
+- Figma-prototype (eller tilsvarende) med alle ~20 skjermene over
+- Klikkbare koblinger mellom skjermene (onboarding → hjem → risikosjekk
+  → resultat → tilbake)
+- iOS og Android-frame (eller generisk mobil-frame)
+- Lys modus som default. Mørk modus som bonus hvis tid.
+- Eksportable skjermbilder (PNG) for innlimelse i Bilag 2
+- Design-system: fargepalett, typografi, komponenter (knapper, kort,
+  input-felt, risikobadges)
+
+Tidsramme: Vi trenger dette ferdig innen 3–4 dager slik at vi kan
+implementere Flutter-versjon og sende inn innen 11. mai.
+
+
+10) REFERANSER OG INSPIRASJON
+-----------------------------
+
+- Sport Integrity Australia-appen (de har kosttilskudd-risikosjekk)
+- UK Anti-Doping "Clean Sport" app
+- Global DRO (drugreference.com) — brukes internasjonalt
+- ADNOs nåværende nettside: https://www.antidoping.no/
+- Dagens legemiddelsøk: https://www.antidoping.no/medisinsk/legemiddelsok
+- Dagens astmakalkulator: https://www.antidoping.no/astmakalkulator
+
+Hent ADNOs designmanual-hint fra antidoping.no — farger, typografi,
+ikonstil, bildebruk.
+
+
+SLUTT
