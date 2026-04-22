@@ -85,6 +85,36 @@ export const CONTENT = {
       },
       stack: ["Next.js", "TypeScript", "Shopify API", "LLMs", "Postgres"],
     },
+    {
+      id: "flagchase",
+      name: "Flagchase",
+      url: "flagchase.com",
+      category: { en: "Sports · App · NFC", no: "Sport · App · NFC" },
+      pitch: {
+        en: "Digital orienteering — find routes, run them, scan NFC checkpoints.",
+        no: "Digital orientering — finn løyper, løp dem, skann NFC-poster.",
+      },
+      long: {
+        en: "Maps nearby routes you can run. Print the map or follow it on your phone. Tap NFC posts at each checkpoint to log your run. Compete on leaderboards, earn badges, discover new places on foot.",
+        no: "Viser løyper i nærheten. Skriv ut kartet eller følg det på mobilen. Tapp NFC-poster ved hver kontroll for å logge løpet. Konkurrer på tavler, tjen merker, oppdag nye steder til fots.",
+      },
+      stack: ["Flutter", "Go", "Mapbox", "NFC"],
+    },
+    {
+      id: "shapeitup",
+      name: "ShapeItUp",
+      url: "shapeitup.dev",
+      category: { en: "Dev tools · Open source", no: "Utviklerverktøy · Åpen kildekode" },
+      pitch: {
+        en: "Open-source CAD scripting in VS Code — built for AI agents.",
+        no: "Open source CAD-scripting i VS Code — bygget for AI-agenter.",
+      },
+      long: {
+        en: "Write CAD in TypeScript with clear errors, hot-reload, and a live 3D viewer. Designed so agents like Claude Code can iterate on geometry with tight feedback loops. Free and open.",
+        no: "Skriv CAD i TypeScript med tydelige feilmeldinger, hot-reload og 3D-live-visning. Designet for at agenter som Claude Code kan iterere på geometri med tett feedback. Gratis og åpent.",
+      },
+      stack: ["TypeScript", "Three.js", "VS Code API", "OpenCascade"],
+    },
   ] as Project[],
   skills: {
     languages: ["Go", ".NET / C#", "TypeScript", "Dart", "Kotlin / Swift", "Python"],
@@ -118,8 +148,8 @@ export const CONTENT = {
     orgNr: "821 482 372",
   },
   seniority: {
-    en: "8+ years shipping production systems across Norway — Equinor, Kolumbus, Altibox, Easee.",
-    no: "8+ år med produksjonssystemer i Norge — Equinor, Kolumbus, Altibox, Easee.",
+    en: "8+ years shipping production systems — mobile, backend and infra.",
+    no: "8+ år med produksjonssystemer — mobil, backend og infrastruktur.",
   } as Bilingual,
   experience: [
     {
@@ -170,6 +200,38 @@ export const CONTENT = {
   ],
   clientProjects: [
     {
+      company: "Aero Norway",
+      title: { en: "Software for an aero-engine MRO", no: "Programvare for flymotorverksted" },
+      client: "Aero Norway / ITP Aero",
+      period: "2025 — now",
+      role: { en: "Developer · via Netpower", no: "Utvikler · via Netpower" },
+      pitch: {
+        en: "Custom digital tools for an aero-engine maintenance facility at Sola.",
+        no: "Skreddersydde digitale løsninger for flymotorverksted på Sola.",
+      },
+      note: {
+        en: "Frontend and backend work with focus on integrations and data quality in a complex, safety-critical domain.",
+        no: "Frontend- og backend-utvikling med fokus på integrasjoner og datakvalitet i et komplekst og samfunnskritisk domene.",
+      },
+      stack: ["TypeScript", ".NET"],
+    },
+    {
+      company: "TryggDrift · KSL",
+      title: { en: "HSE app for Norwegian agriculture", no: "HMS-app for norsk landbruk" },
+      client: "Norsk Landbruksrådgiving (NLR)",
+      period: "2025",
+      role: { en: "Fullstack developer · via Netpower", no: "Fullstack-utvikler · via Netpower" },
+      pitch: {
+        en: "Digital HSE solution for Norwegian farms — shipped from first commit to App Store and Google Play. Replaces KSL Trygg.",
+        no: "Digital HMS-løsning for landbruket — levert fra første kode til App Store og Google Play. Erstatter KSL Trygg.",
+      },
+      note: {
+        en: "Risk assessment, emergency planning and day-to-day HSE tasks on the farm. Built core screens in React Native and backend in .NET. Stayed on after launch for bug fixes and improvements based on feedback from farmers and advisors.",
+        no: "Risikovurdering, beredskapsplanlegging og HMS-oppgaver på gården. Utviklet sentrale deler i React Native og backend i .NET. Jobbet med feilretting og forbedringer basert på brukerinnspill fra bønder og rådgivere etter lansering.",
+      },
+      stack: ["React Native", ".NET", "C#"],
+    },
+    {
       company: "Kolumbus",
       title: { en: "Real-time travel guide", no: "Sanntidsbasert reiseguide" },
       client: "Kolumbus AS / Rogaland fylkeskommune",
@@ -184,6 +246,22 @@ export const CONTENT = {
         no: "Utviklet Flutter-funksjonalitet for explainable routing, reiseoppfølging i sanntid, kontekstuelle varslinger og pay-as-you-go-betaling. Integrasjoner mot Kolumbus og Entur. Særlig vekt på brukeropplevelse, robusthet og presisjon — spesielt for nye brukere, turister og pendlere.",
       },
       stack: ["Flutter", "Dart", "Go", "Entur", "REST APIs"],
+    },
+    {
+      company: "Altibox",
+      title: { en: "Altibox Hjem — smart home app", no: "Altibox Hjem — smarthustjenester" },
+      client: "Lyse Energi AS",
+      period: "2023 — 2024",
+      role: { en: "Frontend developer · via Bouvet", no: "Utvikler (frontend) · via Bouvet" },
+      pitch: {
+        en: "Smart home app for hundreds of thousands of Altibox customers — wifi, guest networks, parental controls, troubleshooting.",
+        no: "Smarthus-app for hundretusener av Altibox-kunder — wifi, gjestenett, foreldrekontroll, feilsøking.",
+      },
+      note: {
+        en: "Flutter UI development in a cross-functional Scrum team. Built a seamless integration that lets non-technical customers set up wifi, guest networks, parental controls and troubleshoot home network issues — all from the phone.",
+        no: "Flutter-utvikling i tverrfaglig Scrum-team. Implementerte en sømløs integrasjon som lar vanlige forbrukere konfigurere wifi, gjestenett, foreldrekontroll og feilsøke internettproblemer — alt fra mobilen.",
+      },
+      stack: ["Flutter", "Dart"],
     },
     {
       company: "Equinor",
@@ -217,54 +295,6 @@ export const CONTENT = {
       },
       stack: ["Flutter", "Dart", "Adyen", "PCI DSS"],
     },
-    {
-      company: "Altibox",
-      title: { en: "Altibox Hjem — smart home app", no: "Altibox Hjem — smarthustjenester" },
-      client: "Lyse Energi AS",
-      period: "2023 — 2024",
-      role: { en: "Frontend developer · via Bouvet", no: "Utvikler (frontend) · via Bouvet" },
-      pitch: {
-        en: "Smart home app for hundreds of thousands of Altibox customers — wifi, guest networks, parental controls, troubleshooting.",
-        no: "Smarthus-app for hundretusener av Altibox-kunder — wifi, gjestenett, foreldrekontroll, feilsøking.",
-      },
-      note: {
-        en: "Flutter UI development in a cross-functional Scrum team. Built a seamless integration that lets non-technical customers set up wifi, guest networks, parental controls and troubleshoot home network issues — all from the phone.",
-        no: "Flutter-utvikling i tverrfaglig Scrum-team. Implementerte en sømløs integrasjon som lar vanlige forbrukere konfigurere wifi, gjestenett, foreldrekontroll og feilsøke internettproblemer — alt fra mobilen.",
-      },
-      stack: ["Flutter", "Dart"],
-    },
-    {
-      company: "TryggDrift · KSL",
-      title: { en: "HSE app for Norwegian agriculture", no: "HMS-app for norsk landbruk" },
-      client: "Norsk Landbruksrådgiving (NLR)",
-      period: "2025",
-      role: { en: "Fullstack developer · via Netpower", no: "Fullstack-utvikler · via Netpower" },
-      pitch: {
-        en: "Digital HSE solution for Norwegian farms — shipped from first commit to App Store and Google Play. Replaces KSL Trygg.",
-        no: "Digital HMS-løsning for landbruket — levert fra første kode til App Store og Google Play. Erstatter KSL Trygg.",
-      },
-      note: {
-        en: "Risk assessment, emergency planning and day-to-day HSE tasks on the farm. Built core screens in React Native and backend in .NET. Stayed on after launch for bug fixes and improvements based on feedback from farmers and advisors.",
-        no: "Risikovurdering, beredskapsplanlegging og HMS-oppgaver på gården. Utviklet sentrale deler i React Native og backend i .NET. Jobbet med feilretting og forbedringer basert på brukerinnspill fra bønder og rådgivere etter lansering.",
-      },
-      stack: ["React Native", ".NET", "C#"],
-    },
-    {
-      company: "Aero Norway",
-      title: { en: "Software for an aero-engine MRO", no: "Programvare for flymotorverksted" },
-      client: "Aero Norway / ITP Aero",
-      period: "2025 — now",
-      role: { en: "Developer · via Netpower", no: "Utvikler · via Netpower" },
-      pitch: {
-        en: "Custom digital tools for an aero-engine maintenance facility at Sola.",
-        no: "Skreddersydde digitale løsninger for flymotorverksted på Sola.",
-      },
-      note: {
-        en: "Frontend and backend work with focus on integrations and data quality in a complex, safety-critical domain.",
-        no: "Frontend- og backend-utvikling med fokus på integrasjoner og datakvalitet i et komplekst og samfunnskritisk domene.",
-      },
-      stack: ["TypeScript", ".NET"],
-    },
   ] as ClientProject[],
   education: [
     {
@@ -287,6 +317,7 @@ export const CONTENT = {
     areas: { en: "Areas", no: "Områder" },
     viewSite: { en: "Visit site", no: "Besøk" },
     experience: { en: "Experience", no: "Erfaring" },
+    education: { en: "Education", no: "Utdannelse" },
     downloadCv: { en: "Download CV", no: "Last ned CV" },
   } as Record<string, Bilingual>,
   how: [

@@ -30,7 +30,9 @@ export function Experience({ lang }: { lang: Lang }) {
           {CONTENT.experience.map((e, i) => (
             <div
               key={`${e.company}-${e.period}`}
-              className="grid gap-4 border-t border-[color:var(--hairline)] py-9 sm:gap-10"
+              className={`grid gap-4 border-t border-[color:var(--hairline)] py-9 sm:gap-10 ${
+                i === CONTENT.experience.length - 1 ? "border-b" : ""
+              }`}
               style={{ gridTemplateColumns: "minmax(140px, 180px) 1fr" }}
             >
               <div className="text-[13px] tracking-wide tabular-nums text-[color:var(--muted)]">
@@ -50,23 +52,6 @@ export function Experience({ lang }: { lang: Lang }) {
               </div>
             </div>
           ))}
-        </div>
-
-        <div
-          className="grid gap-4 border-t border-b border-[color:var(--hairline)] py-9 sm:gap-10"
-          style={{ gridTemplateColumns: "minmax(140px, 180px) 1fr" }}
-        >
-          <div className="text-[13px] tracking-wide tabular-nums text-[color:var(--muted)]">
-            {CONTENT.education[0].period}
-          </div>
-          <div>
-            <div className="font-display text-[clamp(24px,3vw,36px)] leading-tight tracking-[-0.02em]">
-              {L(CONTENT.education[0].degree, lang)}{" "}
-              <span className="italic text-[color:var(--muted)]">
-                · {CONTENT.education[0].school}
-              </span>
-            </div>
-          </div>
         </div>
       </div>
     </section>
