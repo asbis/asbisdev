@@ -90,7 +90,20 @@ function ClientRow({
             <span className="opacity-40">·</span>
             <span>{L(p.role, lang)}</span>
           </div>
-          <div className="flex flex-wrap items-baseline gap-3.5">
+          <div className="flex flex-wrap items-center gap-3.5">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={`https://www.google.com/s2/favicons?domain=${p.logoDomain}&sz=128`}
+              alt=""
+              aria-hidden
+              width={36}
+              height={36}
+              className="rounded-md border border-[color:var(--hairline)] bg-white object-contain p-1"
+              style={{
+                filter: hover ? "none" : "grayscale(0.6)",
+                transition: "filter .25s",
+              }}
+            />
             <span
               className="font-display font-normal leading-none tracking-[-0.02em]"
               style={{

@@ -92,11 +92,22 @@ export default async function CvPage({ params }: { params: Promise<{ lang: strin
                 <div className="mt-0.5 italic">{L(p.role, l)}</div>
               </div>
               <div>
-                <div className="font-display text-[16px] leading-tight tracking-[-0.01em]">
-                  {L(p.title, l)}
-                  <span className="text-[11px] not-italic tracking-[0.15em] text-[color:var(--muted)] sm:ml-2">
-                    · {p.client.toUpperCase()}
-                  </span>
+                <div className="flex items-center gap-2">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={`https://www.google.com/s2/favicons?domain=${p.logoDomain}&sz=128`}
+                    alt=""
+                    aria-hidden
+                    width={18}
+                    height={18}
+                    className="rounded-sm border border-[color:var(--hairline)] bg-white object-contain p-[2px]"
+                  />
+                  <div className="font-display text-[16px] leading-tight tracking-[-0.01em]">
+                    {L(p.title, l)}
+                    <span className="text-[11px] not-italic tracking-[0.15em] text-[color:var(--muted)] sm:ml-2">
+                      · {p.client.toUpperCase()}
+                    </span>
+                  </div>
                 </div>
                 <p
                   className="mt-1 text-[12px] leading-[1.5] text-[color:var(--ink)] opacity-85"
