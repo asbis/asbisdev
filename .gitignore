@@ -48,6 +48,7 @@ next-env.d.ts
 # tender source material — local only, may contain copyrighted PDFs
 oppdrag/aktive/*/files/
 oppdrag/aktive/*/vedlegg/
+oppdrag/aktive/*/hap-src/
 oppdrag/aktive/*/portal.html
 oppdrag/aktive/*/portal.url
 oppdrag/aktive/*/tender.xml
