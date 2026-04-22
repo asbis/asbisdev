@@ -3,6 +3,44 @@
 import { useState } from "react";
 import { CONTENT, L, type Lang, type ClientProject } from "@/lib/content";
 
+function monogramChar(company: string) {
+  const clean = company.replace(/[·].*$/, "").trim();
+  return clean.charAt(0).toUpperCase();
+}
+
+function Monogram({
+  company,
+  hover = false,
+  size = 40,
+}: {
+  company: string;
+  hover?: boolean;
+  size?: number;
+}) {
+  const ch = monogramChar(company);
+  return (
+    <span
+      aria-hidden
+      className="inline-flex shrink-0 items-center justify-center rounded-md"
+      style={{
+        width: size,
+        height: size,
+        background: hover ? "var(--ink)" : "var(--accent)",
+        color: "var(--bg)",
+        fontFamily: "var(--font-display), 'Times New Roman', Georgia, serif",
+        fontStyle: "italic",
+        fontWeight: 500,
+        fontSize: Math.round(size * 0.58),
+        lineHeight: 1,
+        letterSpacing: "-0.02em",
+        transition: "background .25s",
+      }}
+    >
+      {ch}
+    </span>
+  );
+}
+
 export function ClientProjects({ lang }: { lang: Lang }) {
   return (
     <section
@@ -91,19 +129,7 @@ function ClientRow({
             <span>{L(p.role, lang)}</span>
           </div>
           <div className="flex flex-wrap items-center gap-3.5">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={`https://www.google.com/s2/favicons?domain=${p.logoDomain}&sz=128`}
-              alt=""
-              aria-hidden
-              width={36}
-              height={36}
-              className="rounded-md border border-[color:var(--hairline)] bg-white object-contain p-1"
-              style={{
-                filter: hover ? "none" : "grayscale(0.6)",
-                transition: "filter .25s",
-              }}
-            />
+            <Monogram company={p.company} hover={hover} size={40} />
             <span
               className="font-display font-normal leading-none tracking-[-0.02em]"
               style={{

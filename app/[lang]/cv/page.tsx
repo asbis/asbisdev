@@ -93,17 +93,25 @@ export default async function CvPage({ params }: { params: Promise<{ lang: strin
               </div>
               <div>
                 <div className="flex items-center gap-2">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={`https://www.google.com/s2/favicons?domain=${p.logoDomain}&sz=128`}
-                    alt=""
+                  <span
                     aria-hidden
-                    width={18}
-                    height={18}
-                    className="rounded-sm border border-[color:var(--hairline)] bg-white object-contain p-[2px]"
-                  />
+                    className="inline-flex h-[22px] w-[22px] shrink-0 items-center justify-center rounded-[4px]"
+                    style={{
+                      background: "var(--accent)",
+                      color: "var(--bg)",
+                      fontFamily: "var(--font-display), serif",
+                      fontStyle: "italic",
+                      fontSize: 13,
+                      fontWeight: 500,
+                      lineHeight: 1,
+                      letterSpacing: "-0.02em",
+                    }}
+                  >
+                    {p.company.replace(/[·].*$/, "").trim().charAt(0).toUpperCase()}
+                  </span>
                   <div className="font-display text-[16px] leading-tight tracking-[-0.01em]">
-                    {L(p.title, l)}
+                    {p.company}
+                    <span className="italic text-[color:var(--muted)]"> — {L(p.title, l)}</span>
                     <span className="text-[11px] not-italic tracking-[0.15em] text-[color:var(--muted)] sm:ml-2">
                       · {p.client.toUpperCase()}
                     </span>
