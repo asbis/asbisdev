@@ -194,8 +194,8 @@ export const CONTENT = {
         no: "AI-kundesupport for Shopify — løser opptil 85 % av henvendelsene automatisk. Live hos 100+ butikker.",
       },
       note: {
-        en: "One inbox for chat, email (Gmail/Outlook), Instagram and Messenger, backed by an AI agent that handles order tracking, returns, refunds and product questions. Built the full stack as CTO — backend architecture, LLM integrations, semantic search, prompt engineering, dashboard and chat widget. Started as a side project at Netpower for AI capability-building.",
-        no: "Én innboks for chat, e-post (Gmail/Outlook), Instagram og Messenger, drevet av en AI-agent som håndterer ordresporing, retur, refusjon og produktspørsmål. Bygget hele stacken som CTO — backend-arkitektur, LLM-integrasjoner, semantisk søk, prompt engineering, dashboard og chat-widget. Startet som et sideprosjekt hos Netpower for kompetansebygging innen AI.",
+        en: "One inbox for chat, email (Gmail/Outlook), Instagram and Messenger, backed by an AI agent that handles order tracking, returns, refunds and product questions. Built the full stack as CTO — backend architecture, LLM integrations, semantic search, prompt engineering, dashboard and chat widget.",
+        no: "Én innboks for chat, e-post (Gmail/Outlook), Instagram og Messenger, drevet av en AI-agent som håndterer ordresporing, retur, refusjon og produktspørsmål. Bygget hele stacken som CTO — backend-arkitektur, LLM-integrasjoner, semantisk søk, prompt engineering, dashboard og chat-widget.",
       },
       stack: ["Next.js", "TypeScript", "Shopify API", "LLMs", "Postgres"],
     },
