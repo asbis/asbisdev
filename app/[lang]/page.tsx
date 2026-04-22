@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { Nav } from "@/components/nav";
 import { Hero } from "@/components/hero";
+import { ClientLogos } from "@/components/client-logos";
 import { ClientProjects } from "@/components/client-projects";
 import { SideProjects } from "@/components/side-projects";
 import { HowIWork } from "@/components/how-i-work";
@@ -24,6 +25,7 @@ export default async function Page({ params }: { params: Promise<{ lang: string 
     <>
       <Nav lang={l} />
       <Hero lang={l} />
+      <ClientLogos lang={l} />
       <ClientProjects lang={l} />
       <SideProjects lang={l} />
       <Experience lang={l} />

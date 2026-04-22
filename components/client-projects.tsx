@@ -1,22 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
 import { CONTENT, L, type Lang, type ClientProject } from "@/lib/content";
-
-function LogoChip({ src, alt, size = 48 }: { src: string; alt: string; size?: number }) {
-  return (
-    <Image
-      src={src}
-      alt={alt}
-      width={size}
-      height={size}
-      className="shrink-0 object-contain dark-invert"
-      style={{ width: size, height: size }}
-      unoptimized
-    />
-  );
-}
 
 export function ClientProjects({ lang }: { lang: Lang }) {
   return (
@@ -105,8 +90,7 @@ function ClientRow({
             <span className="opacity-40">·</span>
             <span>{L(p.role, lang)}</span>
           </div>
-          <div className="flex flex-wrap items-center gap-3.5">
-            <LogoChip src={p.logo} alt={`${p.company} logo`} size={48} />
+          <div className="flex flex-wrap items-baseline gap-3.5">
             <span
               className="font-display font-normal leading-none tracking-[-0.02em]"
               style={{

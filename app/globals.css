@@ -66,6 +66,27 @@ html[data-theme="dark"] .dark-invert {
   filter: invert(1) hue-rotate(180deg) brightness(1.1) contrast(0.95);
 }
 
+.client-logo {
+  filter: grayscale(1) brightness(0.28) contrast(1.05);
+  opacity: 0.65;
+  transition: filter 0.25s ease, opacity 0.25s ease;
+}
+
+.client-logo:hover {
+  filter: grayscale(0);
+  opacity: 1;
+}
+
+html[data-theme="dark"] .client-logo {
+  filter: grayscale(1) brightness(0) invert(1) contrast(1.1);
+  opacity: 0.55;
+}
+
+html[data-theme="dark"] .client-logo:hover {
+  filter: grayscale(0);
+  opacity: 1;
+}
+
 @keyframes float {
   0%,
   100% {
