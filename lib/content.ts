@@ -58,32 +58,17 @@ export const CONTENT = {
     {
       id: "dropby",
       name: "Dropby",
-      url: "dropby",
+      url: "dropby.app",
       category: { en: "Social · Mobile", no: "Sosialt · Mobil" },
       pitch: {
         en: "A social network built on local events and activities — not reels.",
         no: "Et sosialt nettverk bygget på lokale arrangementer — ikke reels.",
       },
       long: {
-        en: "Discover what's happening around you instead of scrolling endlessly. Dropby surfaces real gatherings, meetups and activities nearby, and makes it effortless to show up.",
-        no: "Oppdag hva som skjer rundt deg i stedet for å scrolle i det uendelige. Dropby viser ekte samlinger og aktiviteter i nærheten, og gjør det enkelt å møte opp.",
+        en: "Discover what's happening around you instead of scrolling endlessly. Dropby surfaces real gatherings, meetups and activities nearby, and makes it effortless to show up. Full stack built from scratch — Go backend, Flutter frontend, PostgreSQL. Architecture designed for scalability, privacy and security.",
+        no: "Oppdag hva som skjer rundt deg i stedet for å scrolle i det uendelige. Dropby viser ekte samlinger og aktiviteter i nærheten, og gjør det enkelt å møte opp. Hele stacken bygget fra bunn — Go på backend, Flutter på frontend, PostgreSQL. Arkitektur designet for skalerbarhet, personvern og sikkerhet.",
       },
       stack: ["Flutter", "Dart", "Go", "Postgres"],
-    },
-    {
-      id: "supportify",
-      name: "Supportify",
-      url: "supportify.no",
-      category: { en: "SaaS · AI · Shopify · CTO", no: "SaaS · AI · Shopify · CTO" },
-      pitch: {
-        en: "AI customer support for Shopify — resolves up to 85% of tickets automatically.",
-        no: "AI-kundesupport for Shopify — løser opptil 85 % av henvendelsene automatisk.",
-      },
-      long: {
-        en: "One inbox for chat, email (Gmail/Outlook), Instagram and Messenger, backed by an AI agent that handles order tracking, returns, refunds and product questions. Built the full stack as CTO — backend, LLM integrations, semantic search, prompt engineering, dashboard and chat widget. Live across 100+ Shopify stores.",
-        no: "Én innboks for chat, e-post (Gmail/Outlook), Instagram og Messenger, drevet av en AI-agent som håndterer ordresporing, retur, refusjon og produktspørsmål. Bygget hele stacken som CTO — backend, LLM-integrasjoner, semantisk søk, prompt engineering, dashboard og chat-widget. Live hos 100+ Shopify-butikker.",
-      },
-      stack: ["Next.js", "TypeScript", "Shopify API", "LLMs", "Postgres"],
     },
     {
       id: "flagchase",
@@ -200,20 +185,20 @@ export const CONTENT = {
   ],
   clientProjects: [
     {
-      company: "Aero Norway",
-      title: { en: "Software for an aero-engine MRO", no: "Programvare for flymotorverksted" },
-      client: "Aero Norway / ITP Aero",
+      company: "Supportify",
+      title: { en: "AI customer support for Shopify", no: "AI-kundesupport for Shopify" },
+      client: "supportify.no · Own company",
       period: "2025 — now",
-      role: { en: "Developer · via Netpower", no: "Utvikler · via Netpower" },
+      role: { en: "CTO · Co-founder", no: "CTO · Medgründer" },
       pitch: {
-        en: "Custom digital tools for an aero-engine maintenance facility at Sola.",
-        no: "Skreddersydde digitale løsninger for flymotorverksted på Sola.",
+        en: "AI customer support for Shopify — resolves up to 85% of tickets automatically. Live across 100+ stores.",
+        no: "AI-kundesupport for Shopify — løser opptil 85 % av henvendelsene automatisk. Live hos 100+ butikker.",
       },
       note: {
-        en: "Frontend and backend work with focus on integrations and data quality in a complex, safety-critical domain.",
-        no: "Frontend- og backend-utvikling med fokus på integrasjoner og datakvalitet i et komplekst og samfunnskritisk domene.",
+        en: "One inbox for chat, email (Gmail/Outlook), Instagram and Messenger, backed by an AI agent that handles order tracking, returns, refunds and product questions. Built the full stack as CTO — backend architecture, LLM integrations, semantic search, prompt engineering, dashboard and chat widget. Started as a side project at Netpower for AI capability-building.",
+        no: "Én innboks for chat, e-post (Gmail/Outlook), Instagram og Messenger, drevet av en AI-agent som håndterer ordresporing, retur, refusjon og produktspørsmål. Bygget hele stacken som CTO — backend-arkitektur, LLM-integrasjoner, semantisk søk, prompt engineering, dashboard og chat-widget. Startet som et sideprosjekt hos Netpower for kompetansebygging innen AI.",
       },
-      stack: ["TypeScript", ".NET"],
+      stack: ["Next.js", "TypeScript", "Shopify API", "LLMs", "Postgres"],
     },
     {
       company: "TryggDrift · KSL",

@@ -110,11 +110,9 @@ export default async function CvPage({ params }: { params: Promise<{ lang: strin
         </div>
       </Section>
 
-      <Section title={lang === "en" ? "Own products" : "Egne produkter"}>
+      <Section title={lang === "en" ? "Side projects" : "Sideprosjekter"}>
         <div>
-          {CONTENT.projects
-            .filter((p) => p.id === "supportify" || p.id === "dropby")
-            .map((p, i, arr) => (
+          {CONTENT.projects.map((p, i, arr) => (
               <article
                 key={p.id}
                 className={`grid gap-3 border-t border-[color:var(--hairline)] py-2.5 sm:gap-5 ${
