@@ -25,7 +25,7 @@ const PROFILE: ScoreProfile = {
     "llm",
   ],
   cpvCodes: ["72000000", "72200000", "72260000", "72262000", "48000000"],
-  preferredLocations: ["NO0A", "NO0"],
+  preferredLocations: ["NO043", "NO0A3"],
 };
 
 const server = new Server(
