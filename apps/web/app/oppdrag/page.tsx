@@ -28,10 +28,10 @@ export default function OppdragIndex() {
       ) : (
         <ul className="space-y-6">
           {tenders.map((t) => {
-            const title = t.analysis?.title ?? t.tender?.title ?? t.id;
-            const status = t.analysis?.status;
-            const deadline = t.analysis?.deadline ?? t.tender?.deadline;
-            const budget = t.analysis?.budget ?? t.tender?.budget;
+            const title = t.frontmatter.title ?? t.id;
+            const status = t.frontmatter.status;
+            const deadline = t.frontmatter.deadline;
+            const budget = t.frontmatter.budget;
             return (
               <li
                 key={t.id}
