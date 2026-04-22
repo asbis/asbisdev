@@ -1,0 +1,110 @@
+.oppdrag-prose {
+  max-width: 68ch;
+  line-height: 1.65;
+  color: var(--foreground);
+}
+.oppdrag-prose h1 {
+  font-family: var(--font-serif, ui-serif, Georgia, serif);
+  font-size: 2rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  margin: 2rem 0 1rem;
+  line-height: 1.15;
+}
+.oppdrag-prose h2 {
+  font-family: var(--font-serif, ui-serif, Georgia, serif);
+  font-size: 1.35rem;
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  margin: 2.25rem 0 0.75rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--hairline);
+}
+.oppdrag-prose h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 1.75rem 0 0.5rem;
+  letter-spacing: 0.005em;
+}
+.oppdrag-prose p {
+  margin: 0.9rem 0;
+}
+.oppdrag-prose ul,
+.oppdrag-prose ol {
+  margin: 0.9rem 0;
+  padding-left: 1.4rem;
+}
+.oppdrag-prose li {
+  margin: 0.35rem 0;
+}
+.oppdrag-prose a {
+  color: var(--foreground);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+.oppdrag-prose code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.88em;
+  background: color-mix(in srgb, var(--foreground) 6%, transparent);
+  padding: 0.1em 0.35em;
+  border-radius: 3px;
+}
+.oppdrag-prose pre {
+  background: color-mix(in srgb, var(--foreground) 5%, transparent);
+  padding: 1rem;
+  border-radius: 4px;
+  overflow-x: auto;
+  font-size: 0.85rem;
+}
+.oppdrag-prose blockquote {
+  border-left: 2px solid var(--hairline);
+  padding-left: 1rem;
+  margin: 1rem 0;
+  color: color-mix(in srgb, var(--foreground) 75%, transparent);
+  font-style: italic;
+}
+.oppdrag-prose table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1.2rem 0;
+  font-size: 0.92rem;
+}
+.oppdrag-prose th,
+.oppdrag-prose td {
+  text-align: left;
+  padding: 0.55rem 0.75rem;
+  border-bottom: 1px solid var(--hairline);
+  vertical-align: top;
+}
+.oppdrag-prose th {
+  font-weight: 600;
+  background: color-mix(in srgb, var(--foreground) 4%, transparent);
+}
+.oppdrag-prose hr {
+  border: 0;
+  border-top: 1px solid var(--hairline);
+  margin: 2rem 0;
+}
+
+.oppdrag-meta {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.35rem 1.25rem;
+  font-size: 0.9rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--hairline);
+  border-radius: 4px;
+  margin: 1.5rem 0 2rem;
+}
+.oppdrag-meta dt {
+  color: color-mix(in srgb, var(--foreground) 60%, transparent);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  align-self: center;
+}
+.oppdrag-meta dd {
+  margin: 0;
+}
