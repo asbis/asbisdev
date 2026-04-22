@@ -95,19 +95,16 @@ export default async function CvPage({ params }: { params: Promise<{ lang: strin
                 <div className="flex items-center gap-2">
                   <span
                     aria-hidden
-                    className="inline-flex h-[22px] w-[22px] shrink-0 items-center justify-center rounded-[4px]"
-                    style={{
-                      background: "var(--accent)",
-                      color: "var(--bg)",
-                      fontFamily: "var(--font-display), serif",
-                      fontStyle: "italic",
-                      fontSize: 13,
-                      fontWeight: 500,
-                      lineHeight: 1,
-                      letterSpacing: "-0.02em",
-                    }}
+                    className="inline-flex h-[26px] w-[26px] shrink-0 items-center justify-center overflow-hidden rounded-[4px] border border-[color:var(--hairline)] bg-white p-[3px]"
                   >
-                    {p.company.replace(/[·].*$/, "").trim().charAt(0).toUpperCase()}
+                    <Image
+                      src={p.logo}
+                      alt=""
+                      width={26}
+                      height={26}
+                      className="h-full w-full object-contain"
+                      unoptimized
+                    />
                   </span>
                   <div className="font-display text-[16px] leading-tight tracking-[-0.01em]">
                     {p.company}

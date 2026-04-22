@@ -1,42 +1,24 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import { CONTENT, L, type Lang, type ClientProject } from "@/lib/content";
 
-function monogramChar(company: string) {
-  const clean = company.replace(/[·].*$/, "").trim();
-  return clean.charAt(0).toUpperCase();
-}
-
-function Monogram({
-  company,
-  hover = false,
-  size = 40,
-}: {
-  company: string;
-  hover?: boolean;
-  size?: number;
-}) {
-  const ch = monogramChar(company);
+function LogoChip({ src, alt, size = 48 }: { src: string; alt: string; size?: number }) {
   return (
     <span
       aria-hidden
-      className="inline-flex shrink-0 items-center justify-center rounded-md"
-      style={{
-        width: size,
-        height: size,
-        background: hover ? "var(--ink)" : "var(--accent)",
-        color: "var(--bg)",
-        fontFamily: "var(--font-display), 'Times New Roman', Georgia, serif",
-        fontStyle: "italic",
-        fontWeight: 500,
-        fontSize: Math.round(size * 0.58),
-        lineHeight: 1,
-        letterSpacing: "-0.02em",
-        transition: "background .25s",
-      }}
+      className="inline-flex shrink-0 items-center justify-center rounded-md border border-[color:var(--hairline)] bg-white"
+      style={{ width: size, height: size, padding: Math.round(size * 0.2) }}
     >
-      {ch}
+      <Image
+        src={src}
+        alt={alt}
+        width={size}
+        height={size}
+        className="h-full w-full object-contain"
+        unoptimized
+      />
     </span>
   );
 }
@@ -129,7 +111,7 @@ function ClientRow({
             <span>{L(p.role, lang)}</span>
           </div>
           <div className="flex flex-wrap items-center gap-3.5">
-            <Monogram company={p.company} hover={hover} size={40} />
+            <LogoChip src={p.logo} alt={`${p.company} logo`} size={48} />
             <span
               className="font-display font-normal leading-none tracking-[-0.02em]"
               style={{

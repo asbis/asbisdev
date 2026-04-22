@@ -21,7 +21,7 @@ export type ClientProject = {
   pitch: Bilingual;
   note: Bilingual;
   stack: string[];
-  logoDomain: string;
+  logo: string;
 };
 
 export type Client = { name: string; note: Bilingual };
@@ -199,7 +199,7 @@ export const CONTENT = {
         no: "Én innboks for chat, e-post (Gmail/Outlook), Instagram og Messenger, drevet av en AI-agent som håndterer ordresporing, retur, refusjon og produktspørsmål. Bygget hele stacken som CTO — backend-arkitektur, LLM-integrasjoner, semantisk søk, prompt engineering, dashboard og chat-widget.",
       },
       stack: ["Next.js", "TypeScript", "Shopify API", "LLMs", "Postgres"],
-      logoDomain: "supportify.no",
+      logo: "/logos/supportify.png",
     },
     {
       company: "TryggDrift · KSL",
@@ -216,7 +216,7 @@ export const CONTENT = {
         no: "Risikovurdering, beredskapsplanlegging og HMS-oppgaver på gården. Utviklet sentrale deler i React Native og backend i .NET. Jobbet med feilretting og forbedringer basert på brukerinnspill fra bønder og rådgivere etter lansering.",
       },
       stack: ["React Native", ".NET", "C#"],
-      logoDomain: "tryggdrift.no",
+      logo: "/logos/nlr.svg",
     },
     {
       company: "Kolumbus",
@@ -233,7 +233,7 @@ export const CONTENT = {
         no: "Utviklet Flutter-funksjonalitet for explainable routing, reiseoppfølging i sanntid, kontekstuelle varslinger og pay-as-you-go-betaling. Integrasjoner mot Kolumbus og Entur. Særlig vekt på brukeropplevelse, robusthet og presisjon — spesielt for nye brukere, turister og pendlere.",
       },
       stack: ["Flutter", "Dart", "Go", "Entur", "REST APIs"],
-      logoDomain: "kolumbus.no",
+      logo: "/logos/kolumbus.png",
     },
     {
       company: "Altibox",
@@ -250,7 +250,7 @@ export const CONTENT = {
         no: "Flutter-utvikling i tverrfaglig Scrum-team. Implementerte en sømløs integrasjon som lar vanlige forbrukere konfigurere wifi, gjestenett, foreldrekontroll og feilsøke internettproblemer — alt fra mobilen.",
       },
       stack: ["Flutter", "Dart"],
-      logoDomain: "altibox.no",
+      logo: "/logos/altibox.svg",
     },
     {
       company: "Equinor",
@@ -267,7 +267,7 @@ export const CONTENT = {
         no: "Notifications håndterer varsling og oppfølging av avvik; Workorders styrer opprettelse og behandling av arbeidsordre for vedlikehold og operasjoner. Offshore-driften er avhengig av begge. React Native-utvikling i et strengt regulert miljø med høye krav til oppetid, pålitelighet og sikkerhet.",
       },
       stack: ["React Native", "TypeScript"],
-      logoDomain: "equinor.com",
+      logo: "/logos/equinor.svg",
     },
     {
       company: "Easee",
@@ -284,7 +284,7 @@ export const CONTENT = {
         no: "Flutter-utvikling på Easee-appen — brukervennlighet, stabilitet og nye funksjoner. EaseePay gir rettferdig fordeling av ladekostnader i borettslag. Direkte arbeid med kryptering, sikkerhet og PCI DSS for betalingsdata. Ga beboerne full transparens i forbruk og kostnader.",
       },
       stack: ["Flutter", "Dart", "Adyen", "PCI DSS"],
-      logoDomain: "easee.com",
+      logo: "/logos/easee.svg",
     },
   ] as ClientProject[],
   education: [
