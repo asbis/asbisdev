@@ -9,7 +9,7 @@ CPV 72200000/72260000/72262000/72212000/72230000/48000000, status=ACTIVE.
 | Score | Oppdrag | Kunde | Budsjett | URL |
 |---|---|---|---|---|
 | 26 | Utvikling av antidoping-app | Antidoping Norge | 1.8M NOK | https://www.doffin.no/notices/2026-107028 |
-| 22 | Selvhjelpsapp for kokainbrukere (RUSinfo) | Oslo kommune Velferdsetaten | — | https://www.doffin.no/notices/2026-105336 |
+| 22 | Selvhjelpsapp for kokainbrukere (RUSinfo) ⭐ oppjustert | Oslo kommune Velferdsetaten | — | https://www.doffin.no/notices/2026-105336 |
 | 16 | Digitalt reguleringsverktøy mikromobilitet | Trondheim kommune | 1.2M NOK | https://www.doffin.no/notices/2026-105919 |
 | 19 | Nettsideutvikling og drift — vetinst.no | Veterinærinstituttet | — | https://www.doffin.no/notices/2026-105950 |
 | 16 | Forvaltning og utvikling av nettsider | Asker kommune | anywhere | https://www.doffin.no/notices/2026-105710 |
