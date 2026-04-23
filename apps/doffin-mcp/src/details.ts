@@ -9,6 +9,15 @@ const TARGETS = [
   { id: "2026-107028", slug: "antidoping-app" },
   { id: "2026-105919", slug: "trondheim-mikromobilitet" },
   { id: "2026-105336", slug: "rusinfo-selvhjelpsapp" },
+  { id: "2026-106312", slug: "eksportfinansiering-nettsider" },
+  { id: "2026-107183", slug: "atb-mikromobilitet" },
+  { id: "2026-105486", slug: "raelingen-bti-stafettlogg" },
+  { id: "2026-105747", slug: "narvik-iam" },
+  { id: "2026-106257", slug: "udir-barnehage-hjem" },
+  { id: "2026-105950", slug: "vetinst-nettsider" },
+  { id: "2026-105710", slug: "asker-nettsider" },
+  { id: "2026-106061", slug: "domstol-tolkebestilling" },
+  { id: "2026-106738", slug: "nordre-follo-parkering" },
 ];
 
 async function fetchXml(id: string): Promise<string> {

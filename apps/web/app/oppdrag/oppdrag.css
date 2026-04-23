@@ -108,3 +108,67 @@
 .oppdrag-meta dd {
   margin: 0;
 }
+
+/* iPhone Mockup Styles */
+.iphone-frame {
+  position: relative;
+  width: 320px;
+  height: 640px;
+  background: #111;
+  border-radius: 44px;
+  padding: 12px;
+  box-shadow: 0 0 0 4px #222, 0 0 0 6px #333, 0 20px 50px rgba(0,0,0,0.3);
+  margin: 2rem auto;
+  overflow: hidden;
+}
+
+.iphone-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  border-radius: 34px;
+  overflow: hidden;
+  border: 1px solid #000;
+}
+
+.iphone-notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 28px;
+  background: #111;
+  border-bottom-left-radius: 18px;
+  border-bottom-right-radius: 18px;
+  z-index: 20;
+}
+
+.iphone-button-vup, .iphone-button-vdn, .iphone-button-pwr {
+  position: absolute;
+  background: #333;
+  border-radius: 2px;
+}
+
+.iphone-button-vup { left: -2px; top: 120px; width: 3px; height: 40px; }
+.iphone-button-vdn { left: -2px; top: 170px; width: 3px; height: 40px; }
+.iphone-button-pwr { right: -2px; top: 140px; width: 3px; height: 60px; }
+
+@media (min-width: 640px) {
+  .iphone-frame {
+    width: 375px;
+    height: 780px;
+    border-radius: 54px;
+    padding: 14px;
+  }
+  .iphone-screen {
+    border-radius: 42px;
+  }
+  .iphone-notch {
+    width: 160px;
+    height: 34px;
+    border-bottom-left-radius: 22px;
+    border-bottom-right-radius: 22px;
+  }
+}
