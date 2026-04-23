@@ -13,8 +13,7 @@ export const MedsSearch: React.FC<NavProps> = ({ theme, nav, lang }) => {
   const suggested = ['Paracet', 'Ibux', 'Ventoline', 'Pulmicort'];
 
   return (
-    <Screen theme={theme}>
-      <AppBar theme={theme} onBack={() => nav('home')} title={t.title}/>
+    <Screen theme={theme} header={<AppBar theme={theme} onBack={() => nav('home')} title={t.title}/>}>
       <View style={{ paddingHorizontal: 16, marginBottom: 8 }}>
         <SearchField theme={theme} value={q} onChange={setQ} placeholder={t.placeholder} autoFocus/>
       </View>
@@ -75,11 +74,10 @@ export const MedsDetail: React.FC<NavProps> = ({ theme, nav, lang, state }) => {
   const [sent, setSent] = useState(false);
 
   return (
-    <Screen theme={theme}>
-      <AppBar theme={theme} onBack={() => nav('meds-search')}/>
+    <Screen theme={theme} header={<AppBar theme={theme} onBack={() => nav('meds-search')}/>}>
       <View style={{ paddingHorizontal: 20, paddingBottom: 10 }}>
         <Text style={{ fontFamily: theme.monoFont, fontSize: 11, color: theme.muted, letterSpacing: 0.8, marginBottom: 8 }}>{med.brand.toUpperCase()} · LEGEMIDDEL</Text>
-        <Text style={{ fontFamily: theme.displayFont, fontSize: 36, color: theme.ink, letterSpacing: -0.8, lineHeight: 38 }}>{med.name}</Text>
+        <Text style={{ fontFamily: theme.displayFont, fontSize: 32, color: theme.ink, letterSpacing: -0.8, lineHeight: 36 }}>{med.name}</Text>
         <Text style={{ fontSize: 14, color: theme.muted, marginTop: 6 }}>{med.strength}</Text>
 
         <View style={{ backgroundColor: sc.bg, borderRadius: 16, padding: 18, marginTop: 20, flexDirection: 'row', gap: 14 }}>
@@ -119,8 +117,7 @@ export const WadaSearch: React.FC<NavProps> = ({ theme, nav, lang }) => {
   const suggested = ['Testosteron', 'Salbutamol', 'Efedrin', 'Cannabis'];
 
   return (
-    <Screen theme={theme}>
-      <AppBar theme={theme} onBack={() => nav('home')} title={t.title} subtitle={t.sub}/>
+    <Screen theme={theme} header={<AppBar theme={theme} onBack={() => nav('home')} title={t.title} subtitle={t.sub}/>}>
       <View style={{ paddingHorizontal: 16, marginBottom: 8 }}>
         <SearchField theme={theme} value={q} onChange={setQ} placeholder={t.placeholder} autoFocus/>
       </View>
@@ -195,11 +192,10 @@ export const WadaDetail: React.FC<NavProps> = ({ theme, nav, lang, state }) => {
   const sc = statusColors(theme, w.status);
 
   return (
-    <Screen theme={theme}>
-      <AppBar theme={theme} onBack={() => nav('wada-search')}/>
+    <Screen theme={theme} header={<AppBar theme={theme} onBack={() => nav('wada-search')}/>}>
       <View style={{ paddingHorizontal: 20, paddingBottom: 10 }}>
         <Text style={{ fontFamily: theme.monoFont, fontSize: 11, color: theme.muted, letterSpacing: 0.8, marginBottom: 8 }}>WADA PROHIBITED LIST 2026</Text>
-        <Text style={{ fontFamily: theme.displayFont, fontSize: 36, color: theme.ink, letterSpacing: -0.8, lineHeight: 38 }}>{w.name}</Text>
+        <Text style={{ fontFamily: theme.displayFont, fontSize: 32, color: theme.ink, letterSpacing: -0.8, lineHeight: 36 }}>{w.name}</Text>
         <View style={{ marginTop: 12 }}>
           <StatusBadge theme={theme} status={w.status}/>
         </View>

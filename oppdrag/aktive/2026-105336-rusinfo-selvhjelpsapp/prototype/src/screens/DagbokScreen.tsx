@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, SafeAreaView, ScrollView, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect, useRef } from 'react';
+import { View, Text, StyleSheet, Animated, TouchableOpacity } from 'react-native';
 import { useTheme } from '../components/ThemeContext';
 import { SectionTitle, Badge } from '../components/Primitives';
+import { AppBar } from '../components/AppBar';
 import { CrisisFab } from '../components/CrisisFab';
 import { tokens } from '../theme/tokens';
-import { BookOpen, StickyNote } from 'lucide-react-native';
+import { StickyNote } from 'lucide-react-native';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
 import { Storage } from '../lib/storage';
 import * as Haptics from 'expo-haptics';
@@ -14,6 +15,7 @@ export const DagbokScreen: React.FC = () => {
   const navigation = useNavigation<any>();
   const isFocused = useIsFocused();
   const [entries, setEntries] = useState<any[]>([]);
+  const scrollY = useRef(new Animated.Value(0)).current;
   const pills = ['Notat', 'Trigger', 'Plan'];
 
   useEffect(() => {
@@ -60,31 +62,37 @@ export const DagbokScreen: React.FC = () => {
   );
 
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: theme.base }]}>
-      <View style={styles.header}>
-        <SectionTitle size={34}>Dagbok</SectionTitle>
-      </View>
-      
-      <View style={styles.pillsContainer}>
-        {pills.map(p => (
-          <TouchableOpacity 
-            key={p} 
-            onPress={() => onAddEntry(p)}
-            activeOpacity={0.7}
-            style={[styles.pill, { 
-              backgroundColor: theme.surfaceAlt,
-              borderColor: theme.hairline
-            }]}
-          >
-            <Text style={[styles.pillText, { 
-              color: theme.textMuted,
-              fontFamily: tokens.typography.body
-            }]}>+ {p}</Text>
-          </TouchableOpacity>
-        ))}
-      </View>
+    <View style={[styles.container, { backgroundColor: theme.base }]}>
+      <AppBar 
+        title="Dagbok" 
+        scrollY={scrollY}
+      />
 
-      <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
+      <Animated.ScrollView 
+        onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: true })}
+        scrollEventThrottle={16}
+        contentContainerStyle={styles.scrollContent} 
+        showsVerticalScrollIndicator={false}
+      >
+        <View style={styles.pillsContainer}>
+            {pills.map(p => (
+            <TouchableOpacity 
+                key={p} 
+                onPress={() => onAddEntry(p)}
+                activeOpacity={0.7}
+                style={[styles.pill, { 
+                backgroundColor: theme.surfaceAlt,
+                borderColor: theme.hairline
+                }]}
+            >
+                <Text style={[styles.pillText, { 
+                color: theme.textMuted,
+                fontFamily: tokens.typography.body
+                }]}>+ {p}</Text>
+            </TouchableOpacity>
+            ))}
+        </View>
+
         {entries.length === 0 ? renderEmpty() : entries.map((e, i) => (
           <View key={e.id || i} style={[styles.entry, { borderTopWidth: i === 0 ? 0 : 1, borderTopColor: theme.hairline }]}>
             <View style={styles.entryHeader}>
@@ -105,123 +113,34 @@ export const DagbokScreen: React.FC = () => {
             )}
           </View>
         ))}
-      </ScrollView>
+      </Animated.ScrollView>
 
       <CrisisFab onPress={() => navigation.navigate('Kriseplan')} />
-    </SafeAreaView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  header: {
-    paddingTop: 40,
-    paddingHorizontal: 20,
-    paddingBottom: 6,
-  },
-  pillsContainer: {
-    paddingHorizontal: 20,
-    paddingVertical: 12,
-    flexDirection: 'row',
-    gap: 8,
-  },
-  pill: {
-    paddingHorizontal: 14,
-    paddingVertical: 8,
-    borderRadius: 20,
-    borderWidth: 1,
-  },
-  pillText: {
-    fontSize: 13,
-  },
-  scrollContent: {
-    paddingBottom: 100,
-  },
-  entry: {
-    paddingVertical: 18,
-    paddingHorizontal: 24,
-  },
-  entryHeader: {
-    flexDirection: 'row',
-    alignItems: 'baseline',
-    marginBottom: 6,
-  },
-  dateText: {
-    fontSize: 11,
-    letterSpacing: 0.6,
-  },
-  moodEmoji: {
-    fontSize: 14,
-  },
-  entryTitle: {
-    fontSize: 20,
-    lineHeight: 24,
-    fontWeight: '500',
-    letterSpacing: -0.3,
-  },
-  entryBody: {
-    marginTop: 6,
-    fontSize: 14,
-    lineHeight: 22,
-  },
-  tagRow: {
-    marginTop: 10,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 6,
-  },
-  badge: {
-    paddingHorizontal: 8,
-    paddingVertical: 2,
-  },
-  emptyContainer: {
-    flex: 1,
-    paddingHorizontal: 28,
-    paddingTop: 40,
-    alignItems: 'center',
-  },
-  emptyIcon: {
-    width: 72,
-    height: 72,
-    borderRadius: 36,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 24,
-  },
-  emptyTitle: {
-    textAlign: 'center',
-    lineHeight: 32,
-  },
-  emptyText: {
-    textAlign: 'center',
-    marginTop: 14,
-    fontSize: 15,
-    lineHeight: 22,
-    maxWidth: 280,
-  },
-  emptyCard: {
-    marginTop: 30,
-    padding: 20,
-    borderRadius: 20,
-    borderWidth: 1,
-    width: '100%',
-  },
-  emptyCardLabel: {
-    fontSize: 10,
-    letterSpacing: 0.8,
-    marginBottom: 6,
-  },
-  emptyCardTitle: {
-    fontSize: 20,
-    fontWeight: '500',
-  },
-  emptyCardDivider: {
-    height: 1,
-    marginVertical: 12,
-  },
-  emptyCardPlaceholder: {
-    fontSize: 14,
-  },
+  container: { flex: 1 },
+  scrollContent: { paddingBottom: 100, paddingTop: 10 },
+  pillsContainer: { paddingHorizontal: 20, paddingVertical: 12, flexDirection: 'row', gap: 8 },
+  pill: { paddingHorizontal: 14, paddingVertical: 8, borderRadius: 20, borderWidth: 1 },
+  pillText: { fontSize: 13 },
+  entry: { paddingVertical: 18, paddingHorizontal: 24 },
+  entryHeader: { flexDirection: 'row', alignItems: 'baseline', marginBottom: 6 },
+  dateText: { fontSize: 11, letterSpacing: 0.6 },
+  moodEmoji: { fontSize: 14 },
+  entryTitle: { fontSize: 20, lineHeight: 24, fontWeight: '500', letterSpacing: -0.3 },
+  entryBody: { marginTop: 6, fontSize: 14, lineHeight: 22 },
+  tagRow: { marginTop: 10, flexDirection: 'row', flexWrap: 'wrap', gap: 6 },
+  badge: { paddingHorizontal: 8, paddingVertical: 2 },
+  emptyContainer: { flex: 1, paddingHorizontal: 28, paddingTop: 40, alignItems: 'center' },
+  emptyIcon: { width: 72, height: 72, borderRadius: 36, alignItems: 'center', justifyContent: 'center', marginBottom: 24 },
+  emptyTitle: { textAlign: 'center', lineHeight: 32 },
+  emptyText: { textAlign: 'center', marginTop: 14, fontSize: 15, lineHeight: 22, maxWidth: 280 },
+  emptyCard: { marginTop: 30, padding: 20, borderRadius: 20, borderWidth: 1, width: '100%' },
+  emptyCardLabel: { fontSize: 10, letterSpacing: 0.8, marginBottom: 6 },
+  emptyCardTitle: { fontSize: 20, fontWeight: '500' },
+  emptyCardDivider: { height: 1, marginVertical: 12 },
+  emptyCardPlaceholder: { fontSize: 14 },
 });

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, SafeAreaView, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform } from 'react-native';
 import { useTheme } from '../components/ThemeContext';
-import { SectionTitle, Button } from '../components/Primitives';
+import { AppBar } from '../components/AppBar';
 import { tokens } from '../theme/tokens';
 import { Storage } from '../lib/storage';
 import { X, Check } from 'lucide-react-native';
@@ -20,12 +20,11 @@ export const DiaryEntryScreen: React.FC<{ route: any; onBack: () => void }> = ({
       title: text.split('\n')[0].slice(0, 40),
       body: text.split('\n').slice(1).join('\n'),
       tags,
-      mood: '🌱', // Default mood
+      mood: '🌱',
       date: new Date().toLocaleDateString('nb-NO', { day: '2-digit', month: 'short' }),
       weekday: new Date().toLocaleDateString('nb-NO', { weekday: 'long' }),
       createdAt: new Date().toISOString(),
     };
-
     await Storage.saveEntry(entry);
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
     onBack();
@@ -33,61 +32,22 @@ export const DiaryEntryScreen: React.FC<{ route: any; onBack: () => void }> = ({
 
   const toggleTag = (tag: string) => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    if (tags.includes(tag)) {
-      setTags(tags.filter(t => t !== tag));
-    } else {
-      setTags([...tags, tag]);
-    }
+    if (tags.includes(tag)) { setTags(tags.filter(t => t !== tag)); }
+    else { setTags([...tags, tag]); }
   };
 
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: theme.base }]}>
-      <KeyboardAvoidingView 
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'} 
-        style={{ flex: 1 }}
-      >
-        <View style={styles.header}>
-          <TouchableOpacity 
-            onPress={onBack}
-            style={[styles.headerButton, { backgroundColor: theme.surfaceAlt }]}
-          >
-            <X size={20} color={theme.text} />
-          </TouchableOpacity>
-          <View style={{ flex: 1 }}>
-            <Text style={[styles.headerLabel, { color: theme.textFaint }]}>NYTT {type.toUpperCase()}</Text>
-          </View>
-          <TouchableOpacity 
-            onPress={onSave}
-            disabled={!text}
-            style={[
-              styles.saveButton, 
-              { 
-                backgroundColor: text ? theme.primary : theme.surfaceAlt,
-                opacity: text ? 1 : 0.5 
-              }
-            ]}
-          >
-            <Check size={20} color={text ? theme.primaryInk : theme.textFaint} />
-          </TouchableOpacity>
-        </View>
+    <View style={[styles.container, { backgroundColor: theme.base }]}>
+      <AppBar 
+        title={`Nytt ${type}`} 
+        leftAction={{ icon: <X size={20} color={theme.text} />, onPress: onBack }}
+        rightAction={{ icon: <Check size={20} color={text ? theme.primaryInk : theme.textFaint} />, onPress: onSave }}
+        fixed
+      />
 
+      <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={{ flex: 1 }}>
         <View style={styles.content}>
-          <TextInput
-            autoFocus
-            multiline
-            placeholder="Hva skjedde i dag?"
-            placeholderTextColor={theme.textFaint}
-            value={text}
-            onChangeText={setText}
-            style={[
-              styles.input, 
-              { 
-                color: theme.text, 
-                fontFamily: tokens.typography.body,
-                fontSize: 20,
-              }
-            ]}
-          />
+          <TextInput autoFocus multiline placeholder="Hva skjedde i dag?" placeholderTextColor={theme.textFaint} value={text} onChangeText={setText} style={[styles.input, { color: theme.text, fontFamily: tokens.typography.body, fontSize: 20 }]} />
         </View>
 
         <View style={styles.footer}>
@@ -95,17 +55,7 @@ export const DiaryEntryScreen: React.FC<{ route: any; onBack: () => void }> = ({
             {['stress', 'kveld', 'helg', 'jobb'].map(tag => {
               const active = tags.includes(tag);
               return (
-                <TouchableOpacity 
-                  key={tag}
-                  onPress={() => toggleTag(tag)}
-                  style={[
-                    styles.tag, 
-                    { 
-                      backgroundColor: active ? theme.accent1 : theme.surfaceAlt, 
-                      borderColor: active ? theme.accent1 : theme.hairline 
-                    }
-                  ]}
-                >
+                <TouchableOpacity key={tag} onPress={() => toggleTag(tag)} style={[styles.tag, { backgroundColor: active ? theme.accent1 : theme.surfaceAlt, borderColor: active ? theme.accent1 : theme.hairline }]}>
                   <Text style={[styles.tagText, { color: active ? theme.primaryInk : theme.textMuted }]}>#{tag}</Text>
                 </TouchableOpacity>
               );
@@ -113,66 +63,16 @@ export const DiaryEntryScreen: React.FC<{ route: any; onBack: () => void }> = ({
           </View>
         </View>
       </KeyboardAvoidingView>
-    </SafeAreaView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  header: {
-    paddingHorizontal: 20,
-    paddingTop: 10,
-    paddingBottom: 10,
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 16,
-  },
-  headerButton: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  headerLabel: {
-    fontSize: 10,
-    letterSpacing: 0.8,
-  },
-  saveButton: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  content: {
-    flex: 1,
-    paddingHorizontal: 24,
-    paddingTop: 24,
-  },
-  input: {
-    flex: 1,
-    textAlignVertical: 'top',
-    lineHeight: 30,
-  },
-  footer: {
-    padding: 20,
-    paddingBottom: 40,
-  },
-  tagBar: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 8,
-  },
-  tag: {
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 12,
-    borderWidth: 1,
-  },
-  tagText: {
-    fontSize: 13,
-  },
+  container: { flex: 1 },
+  content: { flex: 1, paddingHorizontal: 24, paddingTop: 24 },
+  input: { flex: 1, textAlignVertical: 'top', lineHeight: 30 },
+  footer: { padding: 20, paddingBottom: 40 },
+  tagBar: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
+  tag: { paddingHorizontal: 12, paddingVertical: 6, borderRadius: 12, borderWidth: 1 },
+  tagText: { fontSize: 13 },
 });

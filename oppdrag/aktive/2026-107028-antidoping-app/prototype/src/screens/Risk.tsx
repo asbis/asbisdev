@@ -11,8 +11,7 @@ import { haptic } from '../native';
 export const RiskIntro: React.FC<NavProps> = ({ theme, nav, lang, state, setState }) => {
   const t = STRINGS[lang].risk;
   return (
-    <Screen theme={theme}>
-      <AppBar theme={theme} onBack={() => nav('home')}/>
+    <Screen theme={theme} header={<AppBar theme={theme} onBack={() => nav('home')}/>}>
       <View style={{ paddingHorizontal: 20 }}>
         <LargeTitle theme={theme} sub={t.intro_sub}>{t.intro_title}</LargeTitle>
 
@@ -77,8 +76,7 @@ export const RiskQuestion: React.FC<NavProps & { step: number }> = ({ theme, nav
   const back = () => { if (step === 0) nav('risk-intro'); else nav(`risk-q-${step - 1}`); };
 
   return (
-    <Screen theme={theme} scroll={false}>
-      <AppBar theme={theme} onBack={back} right={<Text style={{ fontSize: 12, color: theme.muted, fontFamily: theme.monoFont }}>{step + 1}/{total}</Text>}/>
+    <Screen theme={theme} scroll={false} header={<AppBar theme={theme} onBack={back} right={<Text style={{ fontSize: 12, color: theme.muted, fontFamily: theme.monoFont }}>{step + 1}/{total}</Text>}/>}>
       <View style={{ paddingHorizontal: 24 }}>
         <View style={{ height: 3, backgroundColor: theme.line2, borderRadius: 2, overflow: 'hidden' }}>
           <Animated.View style={{ height: '100%', width: progAnim.interpolate({ inputRange: [0, 1], outputRange: ['0%', '100%'] }), backgroundColor: theme.ink }}/>
@@ -94,7 +92,7 @@ export const RiskQuestion: React.FC<NavProps & { step: number }> = ({ theme, nav
           <Text style={{ fontSize: 13, color: theme.muted, flex: 1, lineHeight: 19 }}>{q.help}</Text>
         </View>
       </View>
-      <View style={{ paddingHorizontal: 24, paddingBottom: 10, gap: 10 }}>
+      <View style={{ paddingHorizontal: 24, paddingBottom: 20, gap: 10 }}>
         <Button theme={theme} onPress={() => answer('yes')}>{t.yes}</Button>
         <Button theme={theme} variant="secondary" onPress={() => answer('no')}>{t.no}</Button>
         <Button theme={theme} variant="ghost" onPress={() => answer('unsure')} style={{ minHeight: 36 }}>{t.unsure}</Button>
@@ -110,7 +108,7 @@ export const RiskCalc: React.FC<NavProps> = ({ theme, nav, lang }) => {
     return () => clearTimeout(id);
   }, []);
   return (
-    <Screen theme={theme}>
+    <Screen theme={theme} scroll={false}>
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 40 }}>
         <ActivityIndicator size="large" color={theme.ink} style={{ marginBottom: 32 }}/>
         <Text style={{ fontFamily: theme.displayFont, fontSize: 28, color: theme.ink, letterSpacing: -0.3, marginBottom: 10 }}>{t.calculating}</Text>
@@ -141,8 +139,7 @@ export const RiskResult: React.FC<NavProps> = ({ theme, nav, lang, state }) => {
   }).filter(Boolean).slice(0, 4) as { q: string; severity: string }[];
 
   return (
-    <Screen theme={theme}>
-      <AppBar theme={theme} onBack={() => nav('home')} right={<Pressable style={{ padding: 8 }}><IconDownload size={18} color={theme.muted}/></Pressable>}/>
+    <Screen theme={theme} header={<AppBar theme={theme} onBack={() => nav('home')} right={<Pressable style={{ padding: 8 }}><IconDownload size={18} color={theme.muted}/></Pressable>}/>}>
       <View style={{ paddingHorizontal: 20 }}>
         <Text style={{ fontFamily: theme.monoFont, fontSize: 11, color: theme.muted, letterSpacing: 0.8, textAlign: 'center', marginBottom: 6 }}>VURDERING FULLFØRT</Text>
         <RiskDisplay theme={theme} level={level} title={titles[0]} sub={titles[1]}/>

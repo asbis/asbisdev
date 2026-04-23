@@ -9,14 +9,23 @@ import { Tap, haptic } from './native';
 
 export const useT = (theme: Theme) => theme;
 
-export const Screen: React.FC<{ theme: Theme; children: React.ReactNode; scroll?: boolean }> = ({ theme, children, scroll = true }) => {
+export const Screen: React.FC<{ 
+  theme: Theme; 
+  children: React.ReactNode; 
+  scroll?: boolean;
+  header?: React.ReactNode;
+}> = ({ theme, children, scroll = true, header }) => {
   const insets = useSafeAreaInsets();
   const Inner = scroll ? ScrollView : View;
   return (
     <View style={{ flex: 1, backgroundColor: theme.bg }}>
+      {header}
       <Inner 
         style={{ flex: 1 }} 
-        contentContainerStyle={scroll ? { paddingBottom: Math.max(insets.bottom, 20) } : undefined}
+        contentContainerStyle={scroll ? { 
+          paddingBottom: Math.max(insets.bottom, 24),
+          paddingTop: header ? 0 : Math.max(insets.top, 20) 
+        } : { flex: 1 }}
         keyboardShouldPersistTaps="handled"
       >
         {children}
@@ -33,24 +42,28 @@ export const AppBar: React.FC<{ theme: Theme; title?: string; subtitle?: string;
       alignItems: 'center', 
       gap: 10, 
       paddingHorizontal: 16, 
-      paddingTop: Math.max(insets.top, 10), 
+      paddingTop: Math.max(insets.top, 12), 
       paddingBottom: 12, 
-      minHeight: 52 + insets.top,
-      backgroundColor: theme.bg 
+      backgroundColor: theme.bg,
+      borderBottomWidth: 0, // Keep it clean, or use theme.line2 for a divider
     }}>
-      {onBack && (
-        <Pressable onPress={onBack} style={({ hovered }) => [
-          { width: 36, height: 36, borderRadius: 18, alignItems: 'center', justifyContent: 'center', marginLeft: -4 },
-          Platform.OS === 'web' && hovered && { backgroundColor: theme.line2 }
-        ]}>
-          <IconArrowLeft size={22} stroke={1.8} color={theme.ink}/>
-        </Pressable>
-      )}
-      <View style={{ flex: 1 }}>
-        {!!title && <Text style={{ fontFamily: theme.displayFont, fontSize: 20, fontWeight: '600', color: theme.ink, letterSpacing: -0.3 }} numberOfLines={1}>{title}</Text>}
-        {!!subtitle && <Text style={{ fontSize: 11, color: theme.muted, marginTop: 1 }}>{subtitle}</Text>}
+      <View style={{ width: 36, height: 36, marginLeft: -4, justifyContent: 'center' }}>
+        {onBack && (
+          <Pressable onPress={onBack} style={({ hovered }) => [
+            { width: 36, height: 36, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
+            Platform.OS === 'web' && hovered && { backgroundColor: theme.line2 }
+          ]}>
+            <IconArrowLeft size={22} stroke={1.8} color={theme.ink}/>
+          </Pressable>
+        )}
       </View>
-      {right}
+      <View style={{ flex: 1, alignItems: 'center' }}>
+        {!!title && <Text style={{ fontFamily: theme.displayFont, fontSize: 17, fontWeight: '600', color: theme.ink }} numberOfLines={1}>{title}</Text>}
+        {!!subtitle && <Text style={{ fontSize: 10, color: theme.muted, marginTop: 1, fontWeight: '500' }}>{subtitle.toUpperCase()}</Text>}
+      </View>
+      <View style={{ width: 36, marginRight: -4, alignItems: 'flex-end', justifyContent: 'center' }}>
+        {right}
+      </View>
     </View>
   );
 };
