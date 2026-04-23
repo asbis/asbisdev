@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { ThemeProvider } from './src/components/ThemeContext';
 import { RootNavigator } from './src/navigation/RootNavigator';
 import { StatusBar } from 'expo-status-bar';
@@ -29,11 +30,13 @@ export default function App() {
   }
 
   return (
-    <ThemeProvider palette="A">
-      <NavigationContainer>
-        <RootNavigator />
-        <StatusBar style="auto" />
-      </NavigationContainer>
-    </ThemeProvider>
+    <SafeAreaProvider>
+      <ThemeProvider>
+        <NavigationContainer>
+          <RootNavigator />
+          <StatusBar style="auto" />
+        </NavigationContainer>
+      </ThemeProvider>
+    </SafeAreaProvider>
   );
 }

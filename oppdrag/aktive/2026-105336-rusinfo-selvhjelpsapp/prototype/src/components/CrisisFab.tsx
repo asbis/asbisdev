@@ -1,32 +1,28 @@
 import React, { useEffect, useRef } from 'react';
-import { TouchableOpacity, Animated, StyleSheet, ViewStyle } from 'react-native';
+import { Animated, StyleSheet, ViewStyle, TouchableOpacity } from 'react-native';
 import { Shield } from 'lucide-react-native';
-import { useTheme } from './ThemeContext';
-import { tokens } from '../theme/tokens';
+import { useTheme, useCrisis } from './ThemeContext';
 import * as Haptics from 'expo-haptics';
 
-export const CrisisFab: React.FC<{ onPress: () => void; style?: ViewStyle }> = ({ onPress, style }) => {
+export const CrisisFab: React.FC<{ onPress?: () => void; style?: ViewStyle }> = ({ onPress, style }) => {
   const { theme } = useTheme();
+  const { showCrisis } = useCrisis();
   const scaleAnim = useRef(new Animated.Value(1)).current;
 
   const handlePress = () => {
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
-    onPress();
+    if (onPress) {
+        onPress();
+    } else {
+        showCrisis();
+    }
   };
 
   useEffect(() => {
     const breathing = Animated.loop(
       Animated.sequence([
-        Animated.timing(scaleAnim, {
-          toValue: 1.1,
-          duration: 1500,
-          useNativeDriver: true,
-        }),
-        Animated.timing(scaleAnim, {
-          toValue: 1,
-          duration: 1500,
-          useNativeDriver: true,
-        }),
+        Animated.timing(scaleAnim, { toValue: 1.1, duration: 1500, useNativeDriver: true }),
+        Animated.timing(scaleAnim, { toValue: 1, duration: 1500, useNativeDriver: true }),
       ])
     );
     breathing.start();
@@ -60,7 +56,7 @@ export const CrisisFab: React.FC<{ onPress: () => void; style?: ViewStyle }> = (
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',
-    bottom: 90,
+    bottom: 20, // Lowered to sit naturally above the tab bar
     right: 20,
     width: 64,
     height: 64,

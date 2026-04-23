@@ -1,9 +1,8 @@
 import React, { useRef } from 'react';
 import { View, Text, StyleSheet, Animated, TouchableOpacity } from 'react-native';
 import { useTheme } from '../components/ThemeContext';
-import { SectionTitle, Card } from '../components/Primitives';
+import { Card } from '../components/Primitives';
 import { AppBar } from '../components/AppBar';
-import { CrisisFab } from '../components/CrisisFab';
 import { Search, ChevronRight, Settings } from 'lucide-react-native';
 import { useNavigation } from '@react-navigation/native';
 import * as Haptics from 'expo-haptics';
@@ -94,7 +93,6 @@ export const InfoScreen: React.FC = () => {
           </View>
         </View>
       </Animated.ScrollView>
-      <CrisisFab onPress={() => navigation.navigate('Kriseplan')} />
     </View>
   );
 };

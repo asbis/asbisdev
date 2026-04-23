@@ -2,13 +2,10 @@ import React, { useRef } from 'react';
 import { View, Text, StyleSheet, Animated } from 'react-native';
 import { useTheme } from '../components/ThemeContext';
 import { AppBar } from '../components/AppBar';
-import { CrisisFab } from '../components/CrisisFab';
 import { Target, Navigation, Hand, Activity, Circle } from 'lucide-react-native';
-import { useNavigation } from '@react-navigation/native';
 
 export const PrestasjonScreen: React.FC = () => {
   const { theme } = useTheme();
-  const navigation = useNavigation<any>();
   const scrollY = useRef(new Animated.Value(0)).current;
 
   const items = [
@@ -59,7 +56,6 @@ export const PrestasjonScreen: React.FC = () => {
           })}
         </View>
       </Animated.ScrollView>
-      <CrisisFab onPress={() => navigation.navigate('Kriseplan')} />
     </View>
   );
 };

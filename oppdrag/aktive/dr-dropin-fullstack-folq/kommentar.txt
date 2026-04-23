@@ -1,0 +1,18 @@
+Hei Christian Fredrik,
+
+Dette oppdraget traff godt, så jeg tenkte jeg skulle si litt om hvorfor jeg tror jeg passer.
+
+Jeg bygger og drifter Supportify (supportify.no) til daglig, en AI-drevet SaaS for Shopify som er live hos over 100 butikker. Den bruker AI til å svare kundene direkte, håndterer alt av returer, ordresporing og kanselleringer, og fungerer også som selger i chatten. Stacken er Next.js, TypeScript, Node, Postgres og Prisma, altså ganske nøyaktig det Dr.Dropin skal bygge. Så jeg kjenner ikke bare verktøyene, jeg vet også hva som faktisk kreves for å få AI til å gjøre reell nytte i et produkt med betalende kunder.
+
+På sensitiv data har jeg jobbet med EaseePay under PCI DSS og offshore kritiske apper for Equinor, så jeg er vant til at sikkerhet må bygges inn fra start og ikke limes på til slutt. Jeg har også levert HMS digitalisering for NLR (TryggDrift), som ligger ganske nært domenet deres med registrering, oppfølging og lovpålagte tidslinjer.
+
+Er vant til å jobbe solo ende til ende, både på Supportify og flere konsulentoppdrag. Bruker Claude Code og Cursor aktivt i hverdagen, det er egentlig slik jeg klarer å holde tempoet oppe alene.
+
+Sitter i Stavanger, men tar gjerne turen til Oslo for oppstart og viktige workshops. Kan begynne ganske raskt.
+
+Mer om bakgrunn og caser ligger på asbis.dev.
+
+Si ifra om du trenger noe mer fra min side før innsalg.
+
+Mvh
+Asbjørn

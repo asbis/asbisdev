@@ -1,10 +1,10 @@
 import React, { useRef } from 'react';
-import { View, Text, StyleSheet, Animated } from 'react-native';
+import { View, Text, StyleSheet, Animated, TouchableOpacity } from 'react-native';
 import { useTheme } from '../components/ThemeContext';
 import { SectionTitle } from '../components/Primitives';
 import { AppBar } from '../components/AppBar';
 import { tokens } from '../theme/tokens';
-import { ChevronLeft, Share2, Heart } from 'lucide-react-native';
+import { ChevronLeft, Share2 } from 'lucide-react-native';
 
 export const ArticleScreen: React.FC<{ route: any; onBack: () => void }> = ({ route, onBack }) => {
   const { theme } = useTheme();

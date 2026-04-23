@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Home, BookOpen, BarChart2, Award, Info } from 'lucide-react-native';
-import { useTheme } from '../components/ThemeContext';
+import { useTheme, useCrisis } from '../components/ThemeContext';
 import { HomeScreen } from '../screens/HomeScreen';
 import { OnboardingScreen } from '../screens/OnboardingScreen';
 import { DagbokScreen } from '../screens/DagbokScreen';
@@ -18,6 +18,7 @@ import { SettingsScreen } from '../screens/SettingsScreen';
 import { SecurityCheckScreen } from '../screens/SecurityCheckScreen';
 import { ChatScreen } from '../screens/ChatScreen';
 import { Storage } from '../lib/storage';
+import { BottomSheet } from '../components/BottomSheet';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -85,6 +86,7 @@ export const RootNavigator = () => {
   const [isOnboarded, setIsOnboarded] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [securityEnabled, setSecurityEnabled] = useState(false);
+  const { isCrisisVisible, hideCrisis } = useCrisis();
 
   useEffect(() => {
     (async () => {
@@ -105,44 +107,48 @@ export const RootNavigator = () => {
   if (loading) return null;
 
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      {!isOnboarded ? (
-        <Stack.Screen name="Onboarding">
-          {() => <OnboardingScreen onComplete={() => {
-            setIsOnboarded(true);
-            setIsAuthenticated(true);
-          }} />}
-        </Stack.Screen>
-      ) : !isAuthenticated ? (
-        <Stack.Screen name="SecurityCheck">
-          {() => <SecurityCheckScreen onAuthenticated={() => setIsAuthenticated(true)} />}
-        </Stack.Screen>
-      ) : (
-        <>
-          <Stack.Screen name="Main" component={MainTabs} />
-          <Stack.Screen name="Kriseplan">
-            {({ navigation }) => <KriseplanScreen onClose={() => navigation.goBack()} />}
+    <>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        {!isOnboarded ? (
+          <Stack.Screen name="Onboarding">
+            {() => <OnboardingScreen onComplete={() => {
+              setIsOnboarded(true);
+              setIsAuthenticated(true);
+            }} />}
           </Stack.Screen>
-          <Stack.Screen name="Motivasjonsvegg">
-            {({ navigation }) => <VeggScreen onBack={() => navigation.goBack()} />}
+        ) : !isAuthenticated ? (
+          <Stack.Screen name="SecurityCheck">
+            {() => <SecurityCheckScreen onAuthenticated={() => setIsAuthenticated(true)} />}
           </Stack.Screen>
-          <Stack.Screen name="Kartlegging">
-            {({ navigation }) => <KalenderScreen onBack={() => navigation.goBack()} />}
-          </Stack.Screen>
-          <Stack.Screen name="Article">
-            {(props) => <ArticleScreen {...props} onBack={() => props.navigation.goBack()} />}
-          </Stack.Screen>
-          <Stack.Screen name="DiaryEntry">
-            {(props) => <DiaryEntryScreen {...props} onBack={() => props.navigation.goBack()} />}
-          </Stack.Screen>
-          <Stack.Screen name="Settings">
-            {({ navigation }) => <SettingsScreen onBack={() => navigation.goBack()} />}
-          </Stack.Screen>
-          <Stack.Screen name="Chat">
-            {({ navigation }) => <ChatScreen onBack={() => navigation.goBack()} />}
-          </Stack.Screen>
-        </>
-      )}
-    </Stack.Navigator>
+        ) : (
+          <>
+            <Stack.Screen name="Main" component={MainTabs} />
+            <Stack.Screen name="Motivasjonsvegg">
+              {({ navigation }) => <VeggScreen onBack={() => navigation.goBack()} />}
+            </Stack.Screen>
+            <Stack.Screen name="Kartlegging">
+              {({ navigation }) => <KalenderScreen onBack={() => navigation.goBack()} />}
+            </Stack.Screen>
+            <Stack.Screen name="Article">
+              {(props) => <ArticleScreen {...props} onBack={() => props.navigation.goBack()} />}
+            </Stack.Screen>
+            <Stack.Screen name="DiaryEntry">
+              {(props) => <DiaryEntryScreen {...props} onBack={() => props.navigation.goBack()} />}
+            </Stack.Screen>
+            <Stack.Screen name="Settings">
+              {({ navigation }) => <SettingsScreen onBack={() => navigation.goBack()} />}
+            </Stack.Screen>
+            <Stack.Screen name="Chat">
+              {({ navigation }) => <ChatScreen onBack={() => navigation.goBack()} />}
+            </Stack.Screen>
+          </>
+        )}
+      </Stack.Navigator>
+
+      {/* Global Crisis Bottom Sheet */}
+      <BottomSheet isVisible={isCrisisVisible} onClose={hideCrisis}>
+        <KriseplanScreen onClose={hideCrisis} />
+      </BottomSheet>
+    </>
   );
 };

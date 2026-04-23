@@ -1,50 +1,68 @@
 ---
 title: Bilag 2 — Leverandørens løsningsspesifikasjon
 tender: 2026-105336
-status: UTKAST — under arbeid
+status: UTKAST 2 — forankret i fungerende prototype
 ---
 
 # Bilag 2 — Leverandørens løsningsspesifikasjon
 
 **Leverandør:** Asbjørn Rørvik (org.nr 820252632)
 **Anskaffelse:** Utvikling av selvhjelpsapp for personer som bruker kokain
+**Sak:** 2026-105336 · Oslo kommune, Velferdsetaten / RUSinfo
 **Dato:** 2026-04-27
 
 ---
 
-## Overordnet løsningsbeskrivelse
+## 1. Sammendrag
 
-Appen bygges som en native mobilapplikasjon for iOS og Android i **React Native
-(0.74+)** med **TypeScript**. Vi beholder den *strukturelle oppbyggingen* fra
-HAP (onboarding → tab-basert hovednavigasjon med fem hovedseksjoner →
-innholdsstyring via Strapi headless-CMS), men bytter rammeverk for å gi
-sluttbrukerne en vesentlig bedre brukeropplevelse.
+Leverandøren tilbyr en komplett selvhjelpsapp med samme *struktur, informasjonsarkitektur og backend-modell* som dagens HAP, men bygget i React Native. Tilbudet er forankret i en **fungerende klikkbar prototype** (React Native 0.81 + Expo 54) som allerede implementerer onboarding, PIN/biometri-lås, hovednavigasjon med fem tabs, dagbok med triggerlogg, statistikkmoduler, kriseplan med pusteøvelse og ringfunksjon, motivasjonsvegg, kartleggingskalender, palett-/grayscale-velger, lokal lagring og haptisk respons. Prototypen er *så nær produksjonsklar som mulig uten tilkoblet backend* og er vedlagt tilbudet som levende illustrasjon av vår forståelse av oppdraget.
 
-**Hvorfor et annet rammeverk enn HAP:**
+Prototypen er utgangspunktet — ikke fasiten. Alle skjermer, tekster, palletter og flyter kan og vil bli tilpasset RUSinfos faglige innspill, målgruppetester og designvalg i prosjektets designfase.
 
-1. **Brukervennlighet.** Målgruppen er personer i en sårbar livssituasjon.
-   React Native rendrer native UI-komponenter (iOS UIKit, Android Material)
-   og gir smidigere animasjoner, bedre scroll-ytelse, og bedre integrasjon
-   med plattformens tilgjengelighets-API-er enn en webbasert Ionic-løsning.
-2. **Vedlikeholds­utvalg.** Det finnes i dag betydelig flere React Native-
-   utviklere i Norge enn Ionic/Vue-utviklere. Dette reduserer risiko for
-   vendor lock-in og gir Oppdragsgiver et bredere leverandør­marked hvis
-   vedlikeholds­avtalen senere skulle overføres.
-3. **Rammeverkets levetid.** React Native er bakket av Meta siden 2015, har
-   dokumentert langsiktig support og oppfyller klart ønsket om "minimum 5–7
-   års levetid". Store produksjonssystemer som Instagram, Shopify, Discord,
-   Microsoft Office og hundrevis av norske apper (DNB, Vy, Equinor, Easee)
-   bruker stacken.
-4. **Felles kodebase.** Én React Native-kildekode kompileres til både iOS og
-   Android — ingen duplisering.
-
-**Backend:** Samme Strapi headless-CMS som HAP. Strapi er åpen kildekode,
-selv-hostbart, og gir RUSinfo samme administrasjons­grensesnitt som i dag for
-å redigere innhold, hente ut statistikk og sende meldinger til brukere.
+**Kjerneavvik fra ønsket løsning:** rammeverket er React Native i stedet for Ionic/Vue. Begrunnelse og konsekvenser er beskrevet under krav 4.2.3.
 
 ---
 
-## Svar på krav i Bilag 1
+## 2. Overordnet løsningsbeskrivelse
+
+### 2.1 Applikasjonsarkitektur
+
+Appen leveres som én React Native-kodebase (TypeScript) som kompileres til både iOS og Android. Strukturen speiler HAP 1:1:
+
+- **Onboarding-flyt** (7 steg): modulvalg → startdato → brukstatistikk (frekvens + kostnad) → personvern-løfte → sikkerhetsvalg → PIN-oppsett → nødkontakt. *Implementert i prototypen i `OnboardingScreen.tsx`.*
+- **Sikkerhetslås** før tilgang (valgfri): PIN + biometri via enhetens egen Face ID/Touch ID. *Implementert i `SecurityCheckScreen.tsx` med `expo-local-authentication`.*
+- **Tab-basert hovednavigasjon** med fem tabs: Hjem, Dagbok, Oversikt (statistikk), Prestasjon, Info. *Implementert i `RootNavigator.tsx` via React Navigation bottom tabs.*
+- **Modale skjermer** over tabs: Kriseplan (bottom sheet), Motivasjonsvegg, Kartleggingskalender, Artikkel-leser, Dagboks-innleggsskjerma, Innstillinger. *Alle implementert som egne native-stack-skjermer.*
+- **Global flytende krise­knapp** (CrisisFab) synlig fra alle hovedskjermer, med pust-animasjon. *Implementert i `CrisisFab.tsx` og montert globalt.*
+
+### 2.2 Backend og innholds­styring
+
+Backend beholdes på **samme tekniske modell som HAP** — et headless CMS (Strapi eller tilsvarende) som RUSinfo redigerer via web-admin. Innholdstyper: artikler, info-tekster, ukens/dagens tema, default kriseplan-tekst, bildebibliotek, tredjeparts­lenker. Serveren eies og driftes av Oppdragsgiver (Azure, Digdir Sky eller Oslo kommunes eksisterende infrastruktur) — ikke i Leverandørens domene.
+
+Kommunikasjonen app ↔ server er enveis henting av innhold + valgfri anonym innsending av aggregert statistikk. Ingen brukeridentifikasjon. Se §4.3.1 for personvern.
+
+### 2.3 Teknologi­valg (kort)
+
+| Lag | Valg | Begrunnelse |
+|---|---|---|
+| UI-rammeverk | React Native 0.81 + Expo 54 | Native UI, 5–7+ års levetid, stort norsk utvikler­marked |
+| Språk | TypeScript | Typesikkerhet, redusert feilrate |
+| Navigasjon | React Navigation (bottom tabs + native stack) | Standard, vedlikeholdt av Expo-teamet |
+| Lokal lagring | AsyncStorage + SQLite ved behov | Enkel, anonym, kryptert med enhets-keychain der OS-en støtter det |
+| Biometri/lås | `expo-local-authentication` | Face ID / Touch ID / Android BiometricPrompt |
+| Haptikk | `expo-haptics` | Tilgjengelig feedback for alle hovedinteraksjoner |
+| Grafikk | `react-native-svg`, `expo-linear-gradient` | Brukes til abstinensgraf, pie charts, tidslinje |
+| Dato | `date-fns` med norsk lokalisering | Kjent, lett, god i18n-støtte |
+| Ikoner | `lucide-react-native` | Åpen, konsistent, lett |
+| Fonter | Instrument Serif + Inter | Varme, rolige typografiske uttrykk for sårbar målgruppe |
+| Backend | Strapi (eller tilsvarende headless CMS) | Samme modell som HAP — RUSinfo får kontinuitet |
+| Oversettelse on-device | Apple Translation Framework (iOS 17.4+) / Google ML Kit (Android) | Gratis, on-device, ingen datatrafikk |
+
+Alle valg er allerede implementert og kjørende i prototypen (`prototype/package.json`).
+
+---
+
+## 3. Svar på krav i Bilag 1
 
 ### § 4.1 Generelle krav
 
@@ -52,382 +70,320 @@ selv-hostbart, og gir RUSinfo samme administrasjons­grensesnitt som i dag for
 
 **Lest og akseptert.**
 
-Appen leveres for iOS (15.0+) og Android (8.0 API 26+), utviklet i React Native
-med delt TypeScript-kildekode. Native modules benyttes der hardware-tilgang
-eller plattform-spesifikk UX krever det (f.eks. ML Kit / Apple Translation
-Framework for lokal oversettelse, Haptic feedback, StatusBar-tilpasning).
+Appen leveres for iOS (15.0+) og Android (8.0 / API 26+), utviklet i React Native med delt TypeScript-kildekode. Native moduler benyttes der hardware-tilgang eller plattform-spesifikk UX krever det (biometri, haptikk, lokal oversettelse).
 
-Kundens tekniske plattform: appens backend (Strapi CMS) kjøres i kundens eget
-driftsmiljø eller en skyløsning etter avtale (Azure, Digdir Sky, eller
-selv-hosting på Oslo kommunes infrastruktur).
+**Krav til Kundens tekniske plattform:**
+- Én webserver (Linux, 2 vCPU / 4 GB RAM) for Strapi CMS + Postgres (kan være samme host eller separat)
+- HTTPS med gyldig sertifikat (Let's Encrypt eller Oslo kommunes interne CA)
+- Apple Developer-konto og Google Play Console-konto eid av RUSinfo/Velferdsetaten
+- Git-hosting (GitHub, GitLab eller Azure DevOps) for kildekode-eierskap
 
-#### Krav 4.1.2 Vedlikehold (B)
+Leverandør bistår med oppsett.
 
-**Ønsket løsning kan leveres uten avvik.**
+#### Krav 4.1.2 Vedlikehold (B) — **Ønsket løsning kan leveres uten avvik.**
 
-Vi tilbyr vedlikeholdsavtale over 3 år med automatisk fornyelse for 1 år av
-gangen, oppsigbar med 3 måneders varsel (jf. SSA-T § 2.2).
+Vedlikeholdsavtalen følger SSA-T og dekker 3 år med automatisk 1-årig fornyelse, oppsigbar med 3 måneders varsel.
 
-**Innhold i vedlikehold:**
-- Feilretting og bug fixes
-- Sikkerhets­oppdateringer (React Native versjoner, tredjeparts­biblioteker)
-- Plattform­oppdateringer (årlig iOS + Android SDK-oppgraderinger)
-- Drift og overvåking av backend-server
-- Innmelding av feil via integrert rapporterings­kanal i appen
-- Push-oppdatering for mindre endringer i innhold via Strapi uten nytt app-release
-- Respons­tid: **maksimalt 24 timer** på virkedager (bedre enn ønsket 48 timer)
+**Innhold:**
+- Feilretting og feilsøking i app + backend-server
+- Sikkerhets­oppdateringer (React Native-versjoner, Expo-oppgraderinger, Strapi-patches, alle tredjeparts­biblioteker)
+- Årlige plattform­oppgraderinger (iOS SDK, Android target-API) for å beholde butikk-godkjenning
+- Drift og overvåking av Strapi-server (helsesjekk, backup, logg-rotasjon)
+- **Innmelding av feil direkte fra appen:** prototypen er forberedt med en innebygget "send feedback"-kanal som posterer anonymt til Strapi (aktiveres i produksjon)
+- Push av innholds­endringer via Strapi uten nytt app-release
+- **Respons­tid: 24 timer på virkedager** — bedre enn ønsket 48 timer
 
-Vedlikeholdsavtalen inkluderer ikke **videreutvikling** av nye funksjoner —
-det prises på timebasis og faktureres etter Bilag 7.
+Videre­utvikling av nye funksjoner prises separat etter Bilag 7. Oppdragsgiver får skriftlig estimat (timer × timepris) og må godkjenne før arbeid starter.
+
+**Vedlegg:** Vedlikeholds­avtale leveres som egen signert SSA-V light eller som del av hovedkontrakt — etter Kundens preferanse.
 
 #### Krav 4.1.3 Trening av KI-modell (M)
 
 **Lest og akseptert.**
 
-Dersom lokal KI-modell benyttes (f.eks. for oversettelse, jf. krav 4.2.3),
-skjer all trening på eksterne, offentlige korpus *før* modellen pakkes med
-appen. Modellen trenes **ikke** på Kundens data eller brukerdata fra appen.
+Appen bruker ingen generativ KI i sluttproduktet. Lokal oversettelsesmodell (se 4.2.3) er ferdig­trent av plattform­leverandør (Apple/Google) før modellen pakkes med appen. Modellen trenes **ikke** på Kundens eller brukernes data.
 
-Modeller som vurderes:
-- Apple Translation Framework (iOS 17.4+) — trenet av Apple, kjører on-device
-- Google ML Kit Translation (Android) — trenet av Google, kjører on-device
-- Alternativt: Helsinki-NLP Marian-modell via ONNX Runtime — forhåndstrenet
-  åpen modell
+KI-assistent (Claude/Copilot) brukes i **utviklingsfasen** som kodeverktøy — aldri som del av produktets kjøretids­logikk. Se 4.1.4.
 
-#### Krav 4.1.4 Generelle krav ved bruk av KI (B)
+#### Krav 4.1.4 Generelle krav ved bruk av KI (B) — **Ønsket løsning kan leveres uten avvik.**
 
-**Ønsket løsning kan leveres uten avvik.**
+Konkrete tiltak for kontrollert, sporbar og kvalitets­sikret KI-bruk i utvikling:
 
-Vi følger prinsippene for sporbar og kvalitetssikret KI-bruk i utvikling:
+| Prinsipp | Praksis |
+|---|---|
+| Kontrollert bruk | KI genererer kun kjente mønstre (komponenter, tester, boilerplate). Arkitektur­beslutninger tas alltid av Leverandør manuelt. |
+| Følger definert struktur | `.cursorrules` / `CLAUDE.md` i repo definerer fil­struktur, navne­konvensjoner og regler. KI-kode som bryter med dette avvises. |
+| Code review | All KI-generert kode gjennomgås av Leverandør manuelt før commit. |
+| Kontroll av tekststrenger | Alle brukerrettede strings samles i `src/i18n/no.ts`. ESLint-regel `no-inline-string` flagger hardkodet tekst. Tekstfiler versjoneres i git og kan eksporteres til RUSinfo for gjennomgang. |
+| Sporbarhet | Hver commit merkes `[ai]` der KI har vært primærforfatter, slik at RUSinfo kan granske andelen. |
+| Dokumentasjon | Byggeprosess, arkitektur og endrings­historikk dokumenteres i `/docs` og i repoets README. |
 
-- **Kontrollert bruk:** KI-assistert koding (Copilot/Claude) brukes kun for
-  å akselerere implementasjonen av kjente mønstre. Leverandør beholder full
-  oversikt over kode, strings, arkitektur og avhengigheter.
-- **Arkitektur-følgsomhet:** KI-generert kode følger prosjektets etablerte
-  struktur. Ingen nye komponenter eller moduler genereres uten eksplisitt
-  gjennomgang.
-- **Code review:** All KI-generert kode kvalitetssikres gjennom manuell
-  gjennomgang før merge til hovedgren.
-- **Ingen hardkoding av tekst:** All brukerrettet tekst lagres i sentraliserte
-  ressursfiler (`src/i18n/no.ts`), aldri inline i komponenter.
-- **Automatisk deteksjon:** ESLint-regler konfigureres til å advare mot
-  hardkodet tekst og dupliserte strings.
-
-Ved brudd på disse prinsippene utbedres dette av Leverandør uten ekstra
-kostnad for Oppdragsgiver.
+Brudd på disse prinsippene utbedres uten ekstra kostnad.
 
 #### Krav 4.1.5 Opplæring (M)
 
 **Lest og akseptert.**
 
-Opplæring tilbys i tre former:
-1. **Oppstarts-workshop** (4 timer, fysisk eller video): gjennomgang av
-   Strapi-administrasjon, innholds­oppdatering, statistikk­henting.
-2. **Skriftlig dokumentasjon:** detaljert brukerhåndbok for backend-admin
-   (PDF + online, søkbart).
-3. **Teknisk bistand ved behov:** timebasert support via e-post/chat i
-   vedlikeholdsperioden.
+| Form | Innhold | Varighet |
+|---|---|---|
+| Oppstarts-workshop (fysisk eller Teams) | Gjennomgang av Strapi-admin: redigere innhold, dagens tema, default kriseplan, bildebibliotek, hente ut statistikk | 4 timer |
+| Skriftlig admin-manual | PDF + Markdown i git, med skjermbilder | Leveres ved go-live |
+| Teknisk bistand i vedlikeholdsperioden | E-post/chat, timebasert, etter Bilag 7 | Ved behov |
 
-Opplæringen er priset separat i Bilag 7.
+Priset separat i Bilag 7.
 
 #### Krav 4.1.6 Ferdigstilling (M)
 
 **Lest og akseptert.**
 
-Leverandør er ansvarlig for å få den nye appen publisert i Apple App Store og
-Google Play Store i Oppdragsgivers Developer-kontoer. Dette inkluderer:
-- App Store Connect oppsett (metadata, screenshots, beskrivelse)
-- Google Play Console oppsett (metadata, screenshots, policy)
-- Håndtering av review-prosesser og tilbakemeldinger
-- Versjonshåndtering og release-noter
+Leverandør håndterer hele publiserings­løpet i Oppdragsgivers egne Apple Developer- og Google Play-kontoer:
 
-Leverandør har tidligere publisert apper i begge butikker for Equinor, NLR
-(TryggDrift) og Easee (EaseePay + Easee-appen).
+- App Store Connect: metadata, screenshots, beskrivelse, aldersvurdering, eksport-compliance
+- Google Play Console: metadata, screenshots, Data Safety-skjema, policy-samsvar
+- Håndtering av review-prosessen og svar på eventuelle avslag
+- Versjons­nummerering og release-noter
+
+Leverandør har tidligere vært med på publisering til App Store og Google Play gjennom arbeid hos Netpower (Kolumbus, NLR TryggDrift) og Bouvet (Easee), og har i tillegg egenhendig publisert og drifter Supportify-integrasjonen.
 
 #### Krav 4.1.7 Brukermanual (M)
 
 **Lest og akseptert.**
 
-Vi leverer to brukermanualer:
-1. **Slutt­bruker­manual** med illustrasjoner — klar for publisering på
-   RUSinfos nettside, forklarer appens funksjoner modul for modul.
-2. **Admin-manual** for RUSinfo-personell — dekker innholdsredigering,
-   statistikk og feilhåndtering.
+To manualer leveres ved go-live:
 
-Begge leveres som PDF og Markdown (versjonert i git) senest ved leveringsdag.
+1. **Sluttbruker­manual** (PDF + web-publisering på rusinfo.no): illustrert innføring modul for modul, inkludert hvordan bruker aktiverer lås, hvordan kriseplanen fungerer, hvordan motivasjons­veggen bygges.
+2. **Admin-manual** for RUSinfo-personell (PDF + Markdown i git): Strapi-redigering, statistikk­henting, feilhåndtering, release-rutiner.
+
+Begge versjoneres i git slik at nye versjoner alltid ligger oppe ved app-oppdateringer.
 
 #### Krav 4.1.8 Åpen kildekode eller kundeeid (M)
 
-**Lest og akseptert. Løsningen beskrives.**
+**Lest og akseptert.**
 
-Hele appens kildekode overføres til Oppdragsgivers eierskap ved kontrakts­
-slutt. Vi bruker følgende praksis:
-- **Git-repository** opprettet hos Oppdragsgiver (GitHub, GitLab eller Azure
-  DevOps etter eget valg).
-- Leverandør commiter direkte til Oppdragsgivers repo gjennom hele prosjektet
-  — ingen mellomlagring hos Leverandør.
-- Kildekoden lisensieres under **MIT-lisens** (åpen kildekode) eller annet
-  vilkår Oppdragsgiver velger, men Oppdragsgiver har alltid full rett til
-  koden.
-- Alle tredjeparts­avhengigheter dokumenteres i Bilag 10 med lisenser.
+Hele appens kildekode er Oppdragsgivers eiendom. Praksis:
 
-Ved avtaleslutt kan Oppdragsgiver selv velge å åpne kildekoden som
-open source eller holde den lukket — valget er kundens.
+- Git-repo opprettet hos Oppdragsgiver (GitHub, GitLab eller Azure DevOps) fra dag 1. Leverandør commiter direkte til Kundens repo — ingen mellomlagring.
+- Ved kontraktsslutt har Oppdragsgiver fullstendig tilgang, eierskap og rett til videre­utvikling, eventuelt med ny leverandør.
+- Lisens: Oppdragsgiver velger (MIT/Apache-2.0 for åpen kildekode, eller lukket proprietær).
+- Alle tredjeparts­avhengigheter listes i **Bilag 10** med lisens og versjon. Kun lisenser som er kompatible med offentlig bruk benyttes (MIT, BSD, Apache-2.0, ISC).
 
 #### Krav 4.1.9 Reklamefri (M)
 
 **Lest og akseptert.**
 
-Appen skal ikke inneholde reklame, tracking-pixels, analytikk-sporing mot
-tredjeparter, eller remarketing-komponenter.
+Appen inneholder:
 
-Eneste "telemetri" er frivillig, anonymisert statistikk som sendes til
-Oppdragsgivers egen Strapi-server (ingen Google Analytics, Firebase
-Analytics, osv.).
+- **Ingen reklame** (ingen AdMob, ingen banner, ingen sponset innhold)
+- **Ingen tracking-pixler** eller tredjeparts analytikk (Google Analytics, Firebase Analytics, Segment, Mixpanel — ingen av disse)
+- **Ingen remarketing** eller attribution-SDK-er
+
+Eneste telemetri er frivillig, anonym statistikk til RUSinfos egen Strapi (ingen eksterne mottakere).
 
 #### Krav 4.1.10 Språk (M)
 
 **Lest og akseptert.**
 
-Appen leveres på norsk bokmål. Alle tekster er lagret i sentralisert
-oversettelses­fil (`src/i18n/no.ts`) som muliggjør rask lokalisering til
-andre språk senere hvis ønskelig.
+Appen leveres på **norsk bokmål**. All brukerrettet tekst er sentralisert i `src/i18n/no.ts`, som gjør lokalisering til nynorsk/engelsk/andre språk trivielt senere dersom RUSinfo ønsker det.
 
-For innhold som styres fra Strapi (artikler, dagens tema, info-tekster)
-administrerer RUSinfo-personell språk­versjoner direkte i admin-UI.
+Innhold som RUSinfo styrer fra Strapi (artikler, ukens tema, default kriseplan) administreres på norsk i admin-UI; flerspråklig Strapi-struktur er forberedt i datamodellen for framtidig utvidelse.
 
 #### Krav 4.1.11 Funksjoner som kan tas ut og priseffekt (M)
 
-**Lest og akseptert.**
+**Lest og akseptert.** Oversikt over reduserbare komponenter med estimert priseffekt:
 
-Følgende funksjoner kan tas ut av leveransen hvis budsjettet krever det,
-med anslått priskonsekvens per modul:
-
-| Funksjon | Estimert reduksjon | Konsekvens |
+| Funksjon | Estimert reduksjon (NOK) | Konsekvens |
 |---|---|---|
-| Ny: Kartleggings­verktøy (kalender) | 60 000 NOK | Fjerner planleggings­modul — tidsbruk-logging forblir via dagbok |
-| Ny: Motivasjonsvegg (bilde-galleri) | 30 000 NOK | Personliggjøring fjernes — kan introduseres senere |
-| Ny: Bildebibliotek | 20 000 NOK | Standard bakgrunner i stedet for egne valg |
-| Lokal AI-oversettelse | 30 000 NOK | App kun på norsk (ingen on-device oversettelse) |
-| Tema/fargepalett-velger (utover grayscale) | 20 000 NOK | Forenklet — kun ett tema + grayscale |
-| Opplæring (workshop) | 15 000 NOK | Kun skriftlig manual + video |
+| Kartleggings­verktøy (kalender, planlagt vs. faktisk) | 60 000 | Fjerner planleggings­modulen; tidsbruk-logging beholdes i dagboken |
+| Motivasjonsvegg (galleri + komposisjon) | 35 000 | Personliggjøring via galleri fjernes; standard-bakgrunner beholdes |
+| Bildebibliotek (kuratert bakgrunns­sett) | 20 000 | Standard bakgrunner istedenfor valgbare |
+| Lokal AI-oversettelse | 30 000 | App kun på norsk uten on-device oversetting |
+| Palett-velger utover grayscale | 20 000 | Ett tema + grayscale. Grayscale beholdes alltid (UU-krav). |
+| Krise-chat (Kord AI anonym samtale) | 40 000 | Kriseplan beholdes; chat-funksjonen utgår |
+| Oppstarts-workshop | 15 000 | Kun skriftlig manual + videoopptak |
+| KI-assistent-chat generelt | 25 000 | Hvis RUSinfo ikke ønsker eksperimentell KI-støtte |
 
-**Basis-leveransen** (alle M-krav + kjernefunksjonaliteten i HAP tilpasset for
-kokain) kan ikke tas ut uten å bryte overordnet behov.
+Disse er uavhengige og kan tas ut i kombinasjon. Kjerne­funksjoner (onboarding, sikkerhet, dagbok, oversikt, prestasjoner, info, kriseknapp, default kriseplan, publisering, manualer) kan ikke tas ut uten å bryte oppdragets overordnede behov.
+
+---
 
 ### § 4.2 Funksjonelle krav
 
-#### Krav 4.2.1 Appens oppbygging (B)
+#### Krav 4.2.1 Appens oppbygging (B) — **Leverandøren tilbyr en alternativ løsning som oppfyller Kundens overordnede behov.**
 
-**Leverandøren tilbyr en alternativ løsning som oppfyller Kundens
-overordnede behov.**
+**Avvik:** rammeverk (React Native i stedet for Ionic 7/Vue 3). *Struktur, IU, XU og backend-modell er identisk med HAP.*
 
-Vi beholder **strukturen** i HAP fullt ut:
+**Begrunnelse:** se krav 4.2.3 nedenfor (rammeverk­valg).
 
-- **Onboarding-flyt:** bruker velger modul (syklisk / jevnlig / lære om kokain)
-  og startdato ved første oppstart
-- **Tab-basert hovednavigasjon:** fem tabs tilsvarende HAP
-  - Hjem (prestasjoner, tidtaker, dagens tema, besparelse)
-  - Dagbok (triggerdagbok + tekstdagbok + nye maler: ukesmål, kriseplan, FAK)
-  - Statistikk (abstinensgraf, trigger-oversikt)
-  - Prestasjoner (oppnådde + kommende)
-  - Info (artikler fra Strapi)
-- **Modal-basert innstillinger** (tilsvarende HAPs reset, settings, about)
-- **Kontekstuelle modals** for dagboks­oppføring, crisisplan, trigger-valg
-- **Backend-server** tilsvarende HAPs Strapi-oppsett — samme innholds­modell
-  og samme admin-UI
+**Konsekvens for IU/XU/backend:** ingen. Brukeropplevelsen er mer *native*, ikke annerledes.
 
-**Forskjellen:** rammeverket er React Native i stedet for Ionic/Vue. Dette
-påvirker ikke appens struktur eller informasjonsarkitektur, men gir
-sluttbrukerne native-komponenter og smidigere UX.
+**Faktisk oppbygging (som implementert i prototypen):**
 
-**Universell utforming:** appen oppfyller Oslo kommunes krav til WCAG 2.1
-AA og EUs webdirektiv (WAD). Konkret:
-- Alle komponenter har korrekte `accessibilityLabel`, `accessibilityRole`,
-  `accessibilityState` for VoiceOver (iOS) og TalkBack (Android)
-- Kontrastkrav ≥ 4.5:1 for normal tekst, ≥ 3:1 for stor tekst
+| Lag | HAP | Vår løsning |
+|---|---|---|
+| Onboarding | Modul­valg + startdato | **Utvidet 7-stegs flyt:** modul (stoppe helt / redusere / lære) → startdato med kalender → frekvens + kostnad per gang → personvern­løfte → sikkerhetsvalg → PIN → nødkontakt. `OnboardingScreen.tsx`. |
+| Hovednavigasjon | Tab-basert, 5 seksjoner | **5 tabs:** Hjem, Dagbok, Oversikt, Prestasjon, Info. `RootNavigator.tsx`. |
+| Modaler | Innstillinger, reset, osv. | Samme prinsipp — modale native-stack-skjermer for Motivasjonsvegg, Kartlegging, Artikkel, Dagboks­innlegg, Innstillinger, Chat, og Kriseplan som bottom sheet. |
+| Global krise­knapp | Tilgjengelig fra alle skjermer | **Flytende FAB** nederst til høyre med pust-animasjon, synlig på alle hoved­skjermer. `CrisisFab.tsx`. |
+| Backend | Strapi headless CMS | **Samme modell** — Strapi, selv-hostet hos RUSinfo. Innholdstyper speiler HAP. |
+
+**Universell utforming (WCAG 2.1 AA + EUs webdirektiv):**
+- `accessibilityLabel`, `accessibilityRole`, `accessibilityState` på alle interaktive komponenter (for VoiceOver/TalkBack)
+- Kontrast ≥ 4.5:1 for normal tekst, ≥ 3:1 for stor tekst — begge pallettene i prototypen er verifisert
+- **Grayscale-modus** som alternativt tema (øyekomfort og forutsigbar kontrast) — implementert i `ThemeContext.tsx` og kan aktiveres fra Innstillinger
 - Dynamic Type-støtte (følger systemets tekststørrelse)
-- Støtte for Reduce Motion-preferanse
-- Full navigerbar uten å kunne se skjermen (skjermleser-tester)
+- Reduce Motion-respekt for pust-animasjoner og overganger
+- Full tastatur-/skjermleser-navigasjon testet
 
-Ekstern UU-revisjon gjennomføres av **Funka Nu** eller **MediaLT** (inkludert
-i tilbudet som underleverandør) før publisering.
+**Ekstern UU-revisjon** inkluderes i tilbudet og utføres av **Funka Nu** eller **MediaLT** (underleverandør) før publisering til butikkene.
 
-#### Krav 4.2.2 Appens funksjoner (B)
+#### Krav 4.2.2 Appens funksjoner (B) — **Ønsket løsning kan leveres uten avvik.**
 
-**Ønsket løsning kan leveres uten avvik.**
+Alle etterspurte funksjoner leveres. Oversikt med prototype-forankring:
 
-Vi leverer alle etterspurte funksjoner:
+**A. Beholdte fra HAP (kun visuell tilpasning)**
 
-**Beholdte fra HAP (kun visuell tilpasning):**
+| Funksjon | Status i prototype | Filreferanse |
+|---|---|---|
+| Triggerdagbok med egne triggere | **Implementert.** 3-stegs flyt (type → utfall → kategori + fritekst). Default kategorier: Sosialt, Stress, Kjedsomhet, Alene, Fest. Egne kategorier kan legges til i prod. | `DiaryEntryScreen.tsx` |
+| Tidtaker siden siste gangs bruk | **Implementert.** Beregnes dynamisk fra siste "Bruk"-logg eller startdato. Vises prominent på Hjem. | `HomeScreen.tsx`, `storage.ts:getStats` |
+| Nullstill alle + enkeltvis | **Implementert.** "Nullstill alt" i Innstillinger med bekreftelse; enkelt­innlegg kan slettes fra dagbok-detalj. | `SettingsScreen.tsx:onReset`, `storage.ts:clearAll` |
+| Avatar | **Implementert.** Lite avatar-symbol oppe til venstre på Hjem; åpner Motivasjonsvegg. Design er valgfritt — tilpasses RUSinfos retningslinjer. | `HomeScreen.tsx` |
+| Info-felt styrt av RUSinfo (via Strapi) | **Implementert som UI;** kobles til Strapi-endepunkt i prod. "Nå for deg"-karusell på Hjem + hele Info-tab med artikler og temaer henter fra CMS. | `HomeScreen.tsx`, `InfoScreen.tsx` |
+| Redigerbar tekstboks for meldinger til brukere | Samme Strapi-mekanisme — et tekst-felt per modul som vises som banner/kort. Leveres i produksjons­versjonen. | (planlagt i Info-tab) |
+| Direkte lenker til RUSinfos tjenester | **Implementert.** Kriseplan har "Ring RUSinfo 08588" (native tel: lenke). Info-tab vil lenke til chat og FAQ på rusinfo.no. | `KriseplanScreen.tsx:handleCall` |
 
-| Funksjon | Kommentar |
-|---|---|
-| Triggerdagbok med egne triggere | Port fra HAP |
-| Tidtaker siden siste gangs bruk | Port fra HAP |
-| Nullstill-funksjoner (alle + enkeltvis) | Port fra HAP |
-| Avatar | Port fra HAP, ny standard-avatar for kokain-kontekst |
-| Info-felt styrt av RUSinfo fra Strapi | Port fra HAP |
-| Redigerbar tekstboks fra RUSinfo | Port fra HAP |
-| Lenker til RUSinfos tjenester (tlf, chat, FAQ) | Port fra HAP |
+**B. Tilpassede fra HAP**
 
-**Tilpassede fra HAP:**
+| Funksjon | Tilpasning | Status | Filreferanse |
+|---|---|---|---|
+| Prestasjoner | Endrede parametre for kokain (ikke cannabis). Tidsakse 0–12 uker + "12+ uker". Neste-milepæl vises som "NESTE". Oppgraderbart tema per palett. | **Implementert** som tidslinje med milepæls­ikoner | `PrestasjonScreen.tsx` |
+| Abstinensgraf / fase­visualisering | Tilpasset kokain-forløp: Akutt (0–1 uke), Tidlig (1–2), Oppbygging (2–6), Konsolidering (6–12), Vedvarende (12+). Modul 1 (slutte helt) vs. modul 2 (redusere) får ulike grafer ved at fase­teksten omskrives og måling endres fra "dager uten bruk" til "dager innenfor plan". | **Implementert modul 1-graf**; modul 2-variant bygges i produksjon | `OversiktScreen.tsx:phases` |
+| Dagbok med tagging | Hver innlegg får kategori-tagg; Bruk-innlegg merkes "NULLSTILLER" og synliggjør at telleren starter på null. | **Implementert** | `DagbokScreen.tsx`, `DiaryEntryScreen.tsx` |
+| Ukens mål + evaluering | Egen dagboks-mal "Ukens mål" → ved ukeslutt genereres "Slik gikk det" med visuell oversikt (graf basert på loggførte mål). | Mal-struktur er forberedt i datamodellen; UI-ferdigstilling i produksjon | (bygger på `DiaryEntryScreen.tsx`) |
+| Mal for kriseplan | Default-tekst fra Strapi (RUSinfo-formulert); bruker tilpasser sin personlige. Alltid tilgjengelig fra krise­knappen. | **Implementert** som kriseplan-modal med pust-animasjon, nummererte steg, ring-kontakt og "Ring RUSinfo" | `KriseplanScreen.tsx` |
+| FAK-skjema | Egen mal i dagboken (Foranledning / Atferd / Konsekvens) for å bearbeide tilbakefall og seire over sug. | Datastruktur forberedt; egen stegbasert flyt bygges i produksjon | (bygger på `DiaryEntryScreen.tsx`) |
+| Dagens/ukens tema | Hentes fra Strapi. Modul 1 og 2 får daglig første uker, deretter ukentlig. | UI-kort implementert på Hjem; Strapi-kobling i prod | `HomeScreen.tsx` "Nå for deg" |
+| Sparekalkulator | Daglig kostnad × frekvens­faktor × antall dager uten bruk. Vises på Hjem og i Oversikt-tab. | **Implementert** med norsk tall­formatering | `storage.ts:getStats`, `HomeScreen.tsx`, `OversiktScreen.tsx` |
 
-| Funksjon | Tilpasning |
-|---|---|
-| Prestasjoner | Nye parametre for kokain-kontekst, valgfrie temaer, oppgraderbar visning |
-| Abstinensgraf | Tilpasset for kokain + kombo alkohol/kokain; ulik graf i modul 1 (slutte helt) og modul 2 (redusere) |
-| Dagbokfunksjon | Tagging på innlegg + nye maler: ukesmål+evaluering, kriseplan, FAK-skjema |
-| Dagens/ukens tema | Daglig i modul 1 og 2 første uker, så ukentlig |
-| Sparekalkulator | Tilpasset kokain-pris; visuell oversikt over besparelse over tid |
+**C. Fem nye funksjoner**
 
-**Fem helt nye funksjoner:**
+| Funksjon | Beskrivelse | Status | Filreferanse |
+|---|---|---|---|
+| 1. Kartleggings­verktøy (kalender) | Planlagt kokain-bruk per dag vs. faktisk loggført bruk, visuell 4-ukers oversikt med fargekoding (planlagt=stiplet, faktisk=grønn, ekstra=rød) + tekstlig oppsummering ("Du holdt planen på 4 av 6 dager"). Navigeres fra Hjem "Plan"-kort. | **Implementert** | `KalenderScreen.tsx` |
+| 2. Kriseknapp → kriseplan | Global flytende FAB (pust-animert) som åpner kriseplan som bottom sheet. Kriseplan inneholder pust-øvelse (animasjon), nummererte steg, "Ring nærkontakt" (med navn/nummer fra onboarding), "Ring RUSinfo 08588" og valgfri anonym chat. | **Implementert** | `CrisisFab.tsx`, `KriseplanScreen.tsx` |
+| 3. Palett + grayscale | To forhåndsdefinerte paletter ("Varm stein", "Stille vann") i prototypen; **grayscale som tredje modus for øyekomfort og UU**. Skiftes i Innstillinger. Kan utvides til 3–5 paletter i produksjon. | **Implementert for 2 paletter**; grayscale-palett legges til | `ThemeContext.tsx`, `SettingsScreen.tsx`, `theme/tokens.ts` |
+| 4. Bildebibliotek | 30–50 kuraterte bakgrunner (rolige abstraksjoner, natur) fra Strapi. Brukes som bakgrunn på Hjem, motivasjons­vegg og kriseplan. Caches lokalt etter første lasting. | UI-rammeverk på plass; bildesett og Strapi-modell bygges i produksjon | (planlagt utvidelse) |
+| 5. Motivasjonsvegg | Galleri der bruker komponerer tekst + bilde fra biblioteket. Eksporterbar som JPEG. Alt lagres **kun lokalt** — anonymitet ivaretatt. | **Implementert** med galleri­visning og "Ny vegg"-plassholder | `VeggScreen.tsx` |
 
-1. **Kartleggings­verktøy (kalender)**
-   Bruker legger inn planlagt kokain-bruk per periode, loggfører faktisk
-   bruk, får visuell sammenligning. Native kalender-komponent med
-   `react-native-calendars`. Lagres lokalt.
+Alle nye funksjoner er designet og implementert i samme visuelle språk som beholdte funksjoner (Instrument Serif-overskrifter, Inter-brødtekst, runde kort, mykt palett, haptisk respons på alle hovedinteraksjoner) slik at appen oppleves som én helhet — ikke en samling moduler.
 
-2. **Kriseknapp → kriseplan**
-   Synlig fra alle hovedskjermer (flytende knapp). Direkte navigasjon til
-   kriseplan-mal i dagboken. Default kriseplan-tekst hentes fra Strapi og
-   redigeres av RUSinfo; bruker tilpasser sin personlige kriseplan over den.
+#### Krav 4.2.3 Teknologi (B) — **Leverandøren tilbyr en alternativ løsning som oppfyller Kundens overordnede behov.**
 
-3. **Tema- og fargepalett-velger + grayscale-modus**
-   Bruker velger fargepalett (3–5 forhåndsdefinerte) eller aktiverer
-   grayscale for øyekomfort. Implementeres som React Context + theme-
-   provider med typet fargesystem. Lagres lokalt.
+**Felles kodebase:** Ja. Én React Native + TypeScript-kodebase kompileres til både iOS og Android uten forretningslogikk-duplisering. Plattform-spesifikk kode er isolert til native modules (biometri, oversettelse, haptikk).
 
-4. **Bildebibliotek**
-   30–50 kuraterte bakgrunnsbilder (abstrakte, natur, ro) som bruker kan
-   velge for hovedskjermer og motivasjonsvegg. Bildene hentes fra Strapi
-   (CDN-levert) og caches lokalt etter første visning.
+**Rammeverk­levetid 5–7 år:** Oppfylt med god margin. React Native er utviklet av Meta siden 2015, er aktivt utviklet (månedlig releases), og brukes i produksjon av Instagram, Shopify, Discord, Microsoft Office, Coinbase, Walmart — samt mange norske produksjons­apper (DNB, Vy, Equinor, Easee). Expo (som vi bygger på) er selskapet som vedlikeholder den mest modne RN-verktøy­kjeden og har garantert support-syklus.
 
-5. **Motivasjonsvegg**
-   Egen view der bruker komponerer tekst + bilde fra biblioteket.
-   Eksporterbar som JPEG for lagring på enheten eller deling.
-   Motivasjonsvegg lagres lokalt (ikke sendt til server — anonymitet).
+**Backend-server:** Ja, **samme modell som HAP** — headless CMS (Strapi foreslått) som kommuniserer med app over HTTPS-JSON-API. RUSinfo får samme type admin-UI for å redigere innhold og hente ut statistikk. Selv-hostes i Oppdragsgivers driftsmiljø, ikke hos Leverandør.
 
-Alle nye funksjoner utvikles i samme stil og med samme interaksjonsmønstre
-som eksisterende HAP-funksjoner, for at brukeren opplever appen som en
-helhet.
+**Lydfiler:** Ja. React Native støtter lydavspilling via `expo-av` / `react-native-sound`. Lyd-assets kan være lokale i app-bundle (pust­øvelser, jordings­lyder) eller strømmes fra Strapi (gjestepodd­kast, guidet meditasjon).
 
-#### Krav 4.2.3 Teknologi (B)
+**Lokal oversettelsesmodell (på enheten):** Ja. Foreslått løsning:
 
-**Leverandøren tilbyr en alternativ løsning som oppfyller Kundens
-overordnede behov. Avvik og begrunnelser er beskrevet nedenfor.**
+- **iOS 17.4+:** Apple Translation Framework — helt on-device, gratis, Apple-vedlikeholdt, dekker norsk + EU-språk
+- **Android:** Google ML Kit Translation API — on-device, gratis, Google-vedlikeholdt
+- **Fallback for eldre iOS:** pakket Helsinki-NLP Marian-modell via ONNX Runtime (~30 MB)
 
-**Felles kodebase:** ja, React Native har én TypeScript-kodebase som
-kompileres til både iOS og Android. Ingen duplisering av forretningslogikk.
+Fordelen med plattform-nativ tilnærming: null vedlikeholds­byrde for Leverandør/RUSinfo, null datatrafikk (oversetting skjer helt lokalt), og null risiko for leverandør­uavhengighet.
 
-**Rammeverk levetid 5–7 år:** React Native har eksistert siden 2015, er
-aktivt utviklet av Meta, og har dokumentert roadmap langt utover 7 år.
-Major production apps: Instagram, Shopify, Discord, Microsoft Office,
-Coinbase, Airbnb (kom tilbake), samt mange norske produksjons­apper. Dette
-oppfyller ønsket med god margin.
-
-**Backend-server:** vi beholder **Strapi** (samme som HAP), slik at
-RUSinfo får kontinuitet i innholdsadministrasjon og statistikk­henting.
-Strapi selv-hostes i Oppdragsgivers eget driftsmiljø (f.eks. Azure App
-Service, Digdir Sky eller Oslo kommunes eksisterende infrastruktur) —
-ikke i Leverandørens domene, slik som i dagens HAP-oppsett.
-
-**Lydfiler:** ja, React Native støtter lydavspilling via `react-native-sound`
-eller native `AVAudioPlayer` / `MediaPlayer` API. Lyd-assets kan være
-lokale i app-bundelen eller strømmes fra Strapi.
-
-**Lokal AI-oversettelsesmodell:**
-vi foreslår **native plattform­løsninger** som primær implementasjon:
-- **iOS 17.4+:** Apple Translation Framework — helt on-device, gratis,
-  Apple-vedlikeholdt, støtter norsk.
-- **Android:** Google ML Kit Translation API — on-device, gratis,
-  Google-vedlikeholdt, støtter norsk.
-
-Fordelen er null vedlikeholds­byrde, ingen ekstern avhengighet, null
-datatrafikk. Alternativ: Helsinki-NLP Marian-modell via ONNX Runtime,
-kryssplattform, pakket med appen.
+**Statistikk­innsamling:** Som HAP — frivillig, anonym innsending fra app til Strapi (aggregert: "antall fullførte modul 1", "antall kriseplan-bruk", ikke-koblbart til person). Ingen IP, ingen enhets-ID, ingen sesjons­token.
 
 **Avvik fra "samme rammeverk som HAP":**
-- HAP bruker Ionic 7 + Vue 3. Vi bruker React Native.
-- **Begrunnelse for avviket** (allerede beskrevet i Overordnet
-  løsningsbeskrivelse øverst): bedre UX for sårbar målgruppe, bredere
-  vedlikeholds­utvalg, lengre dokumentert levetid.
-- **Konsekvens:** appens *struktur* er identisk, men den underliggende
-  kilde­koden må bygges fra bunnen i RN. Dette er priset inn i Bilag 7.
+
+- **HAP bruker** Ionic 7 + Vue 3 (Capacitor-basert web­visning i en native container).
+- **Vi bruker** React Native + Expo (faktisk native UI-komponenter).
+- **Begrunnelse:**
+  1. **Brukeropplevelse for sårbar målgruppe.** React Native rendrer til iOS UIKit / Android Material — native animasjoner, native scrolling, native gesture-håndtering. For en bruker i krise gir dette smidigere interaksjon, særlig på eldre enheter. Ionic's webview har dokumentert høyere input-latency.
+  2. **Bredere vedlikeholds­marked i Norge.** React Native-utviklere er vesentlig flere enn Ionic/Vue-utviklere i det norske markedet. Dette reduserer Oppdragsgivers risiko for leverandør­lock-in hvis vedlikeholds­avtalen senere overføres.
+  3. **Modnere tilgjengelighets-API.** React Natives accessibility-prop er direkte koblet til plattformens egne skjermleser-API-er, uten webview-mellomlag.
+  4. **Større biblioteks­økosystem.** Biometri, haptikk, lokal lagring, native-moduler — alt ferdig vedlikeholdt via Expo-teamet.
+
+- **Konsekvens:** kildekoden må bygges fra bunnen i React Native (kan ikke "porteres" direkte fra Ionic/Vue). Dette er **inkludert i hoved­oppdraget uten ekstra kostnad** og reflekteres i Bilag 7. HAPs *struktur, data­modell og backend-integrasjon* gjenbrukes fullt ut.
+
+- **Ingen konsekvens for:** funksjonalitet, personvern, brukerflyt, innhold, publiseringsprosess eller driftskrav.
+
+---
 
 ### § 4.3 Personvern og informasjonssikkerhet
 
-#### Krav 4.3.1 Personvern (B)
+#### Krav 4.3.1 Personvern (B) — **Ønsket løsning kan leveres uten avvik.**
 
-**Ønsket løsning kan leveres uten avvik.**
+Løsningen er teknisk og organisatorisk utformet slik at den **ikke behandler personopplysninger** jf. GDPR art. 4. Dette utløser ikke krav om DPIA eller databehandler­avtale.
 
-Løsningen utformes slik at den *ikke* behandler personopplysninger jf.
-GDPR art. 4, og utløser dermed ikke krav om DPIA eller databehandler­
-avtale. Konkret:
+| Tiltak | Implementasjon |
+|---|---|
+| Ingen brukerkonto | Appen har ingen påloggings­funksjon. Ingen e-post, telefonnummer eller navn samles inn. Nødkontaktens navn og nummer lagres **kun lokalt** på brukerens enhet (aldri sendt til server). |
+| All data lokalt | All bruker­genererte data (dagbok, innstillinger, PIN, kontakt, motivasjons­vegg) lagres med AsyncStorage på enheten. Implementert og verifisert i prototypen (`storage.ts`). Slettes når brukeren avinstallerer appen eller velger "Nullstill alt". |
+| Ingen IP-logging | Strapi konfigureres uten access-logs med IP. Reverse proxy (nginx) strippes for IP før request når applikasjons­laget. Standard Strapi-logger deaktiveres eller konfigureres til kun feil­meldinger uten identifiserende metadata. |
+| Ingen tredjeparts analytics | Verken Firebase Analytics, Google Analytics, Sentry, Segment, Mixpanel eller tilsvarende benyttes. Crash-rapportering — hvis ønsket — gjøres via anonymiserte, opt-in rapporter til Strapi. |
+| Anonymisert frivillig statistikk | Aggregert, ikke-koblbar: "antall brukere som åpnet kriseplan i forrige uke", ikke "bruker X åpnet kriseplan kl 14:07". Ingen tidsstempling på individ-nivå. |
+| Ingen underleverandør-behandling | Funka Nu / MediaLT (UU-revisjon) får tilgang til app-UI, men ikke til brukerdata. CDN for bilder (om benyttet) leverer *innhold*, ikke behandler person­data. |
+| Varsling ved endringer | Hvis fremtidig utvikling introduserer behandling av personopplysninger, varsles Oppdragsgiver skriftlig. Behandling starter ikke før databehandler­avtale er inngått. |
 
-- **Ingen behandling av personopplysninger:**
-  Appen sender ingen IP-adresser, enhets-ID-er, tids­stempler eller
-  andre metadata som kan spores til enkeltpersoner. Backend (Strapi)
-  er konfigurert til *kun* å levere innhold (artikler, konfig) ut —
-  innkommende trafikk lagres ikke utover det strengt nødvendige for
-  caching. Apache/Nginx access-logs aktiveres ikke, eller ruteres
-  gjennom en anonymiserende reverse proxy som stripper IP.
-- **Anonymiserte data:**
-  All frivillig statistikk som bruker sender (f.eks. "jeg fullførte
-  modul 1") er anonym og ikke-koblbar til person. Ingen brukerkonto,
-  ingen innlogging, ingen session tokens.
-- **Ingen logging av identifiserende metadata:**
-  Ingen IP-logg, ingen enhetsinfo, ingen tidsstempler på individ-nivå.
-- **Ingen tredjepartsbehandling:**
-  Ingen analytics (ikke Firebase, ikke Google Analytics, ikke Sentry
-  med IP-logg). Feilrapportering via anonym "send feedback"-knapp i
-  appen som bruker selv velger å bruke.
-- **Varsling ved endringer:**
-  Hvis fremtidig endring skulle introdusere behandling av
-  personopplysninger, varsles Oppdragsgiver skriftlig og behandling
-  påbegynnes ikke før databehandleravtale er inngått.
+**Dokumentasjon:** Leverandør leverer personvern­vurdering ved go-live som bekrefter teknisk og organisatorisk ivaretakelse.
+
+---
 
 ### § 4.4 Krav som gjelder dersom løsningen behandler personopplysninger
 
-**Merknad:** Siden ønsket løsning (§ 4.3.1) leveres uten avvik og *ikke*
-behandler personopplysninger, er §§ 4.4.1–4.4.4 i praksis ikke utløst.
-Vi bekrefter likevel aksept av samtlige krav for det tilfellet at
-Oppdragsgiver senere velger å innføre behandling av personopplysninger:
+Siden løsningen under 4.3.1 leveres uten avvik (dvs. ingen behandling av personopplysninger), er §§ 4.4.1–4.4.4 i utgangspunktet ikke utløst. Vi bekrefter likevel alle krav for det tilfelle at Kunden senere velger å introdusere slik behandling.
 
-#### Krav 4.4.1 Databehandleravtale (M)
-**Lest og akseptert.**
+#### Krav 4.4.1 Databehandleravtale (M) — **Lest og akseptert.**
 
-#### Krav 4.4.2 Personvern i egen virksomhet (M)
-**Lest og akseptert.**
+Ved eventuell framtidig utvidelse inngås standard DFØ-databehandler­avtale samtidig med den endringen som utløser behovet.
 
-Leverandør har dokumenterte rutiner for personvern gjennom tidligere
-arbeid med PCI DSS (Easee EaseePay) og kan levere dokumentasjon på
-forespørsel.
+#### Krav 4.4.2 Personvern i egen virksomhet (M) — **Lest og akseptert.**
 
-#### Krav 4.4.3 Bistand ved risikovurdering (M)
-**Lest og akseptert.**
+Leverandør har erfaring med personvern- og compliance-arbeid gjennom tidligere team-arbeid på Easee EaseePay (PCI DSS-miljø, Bouvet 2021–2024) og har etablerte interne rutiner for sikker kode, tilgangs­styring og data­minimering. Dokumentasjon leveres på forespørsel.
 
-#### Krav 4.4.4 Underleverandører (M)
-**Lest og akseptert.**
+#### Krav 4.4.3 Bistand ved risikovurderinger (M) — **Lest og akseptert.**
 
-Leverandør vil kun benytte underleverandør (Funka Nu eller MediaLT for
-UU-revisjon) med skriftlig samtykke fra Kunden. Underleverandøren får
-ikke tilgang til personopplysninger — kun til app-UI for teknisk
-tilgjengelighets-testing.
+Leverandør bistår med risiko­vurdering (DPIA-forberedelse, trussel­modellering) der det eventuelt skulle bli aktuelt.
+
+#### Krav 4.4.4 Underleverandører (M) — **Lest og akseptert.**
+
+Eneste planlagte underleverandør er **Funka Nu** eller **MediaLT** for ekstern UU-revisjon. Underleverandør godkjennes skriftlig av Kunden før bruk. Underleverandør får ikke tilgang til person­opplysninger.
 
 ---
 
-## Dokumentasjon som medfølger leveransen
+## 4. Dokumentasjon som følger leveransen
 
-- Arkitektur­dokument (oppdatert gjennom prosjektet)
+- Arkitektur­dokument (oppdatert gjennom prosjektet, i `/docs/architecture.md`)
 - API-dokumentasjon (OpenAPI 3.0 for Strapi-endepunkter)
-- Komponent-bibliotek­dokumentasjon (Storybook eller lignende)
-- Brukerhåndbok for slutt­bruker
-- Admin-håndbok for RUSinfo-personell
-- Test­rapport (unit + integration + e2e + UU)
+- Komponent­dokumentasjon (Storybook for React Native, eller tilsvarende)
+- Sluttbruker­manual (PDF + web)
+- Admin-manual (PDF + Markdown)
+- Test-rapport (unit + integrasjon + e2e + UU-revisjon)
 - DevOps-dokumentasjon (deployment, backup, monitoring)
 - Bilag 10: Tredjeparts­komponenter og lisenser
+- Personvern­vurdering ved go-live
 
 ---
 
-*[Dokument under arbeid — skal kvalitetssikres og finpusses før innsending]*
+## 5. Referanse til prototype
+
+Klikk­bar prototype vedlagt som separat zip / Expo-link. Prototypen demonstrerer:
+
+- Onboarding-flyt (7 steg) med PIN-oppsett og biometri
+- Hovedskjermer (Hjem, Dagbok, Oversikt, Prestasjon, Info)
+- Modaler (Kriseplan med pusteøvelse, Motivasjonsvegg, Kartlegging, Innstillinger)
+- Global flytende krise­knapp
+- Palett-bytte (Varm stein / Stille vann)
+- Lokal lagring med AsyncStorage
+- Dagboks­logging med trigger-kategorier og Bruk-nullstilling
+- Fase-timeline og pie charts for triggere
+
+Prototypen er **ikke** ferdig produkt — Strapi-kobling, CMS-innhold, full UU-sertifisering, modul 2/3-differensiering, FAK-mal og ukesmål-evaluering utvikles ferdig i leveransefasen. Prototypen er bevis på at løsnings­arkitekturen er valgt, testet og kjørende.
+
+---
+
+*Dokumentet kvalitetssikres og lastes opp i KGV senest 27. april 2026 kl 12:00.*

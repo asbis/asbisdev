@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, StyleSheet, Animated, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, Animated, Dimensions, TouchableOpacity } from 'react-native';
 import { useTheme } from '../components/ThemeContext';
 import { SectionTitle, Card } from '../components/Primitives';
 import { AppBar } from '../components/AppBar';
-import { CrisisFab } from '../components/CrisisFab';
 import { tokens } from '../theme/tokens';
 import Svg, { Path, Circle } from 'react-native-svg';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
@@ -41,32 +40,21 @@ const PieChart = ({ segments, size = 110 }: { segments: any[], size?: number }) 
 
 export const OversiktScreen: React.FC = () => {
   const { theme } = useTheme();
-  const navigation = useNavigation<any>();
   const isFocused = useIsFocused();
   const scrollY = useRef(new Animated.Value(0)).current;
-  
-  const [stats, setStats] = useState({
-    days: 0,
-    saved: '0',
-    entries: 0,
-    crisisUsed: 0,
-  });
+  const [stats, setStats] = useState({ days: 0, saved: '0', entries: 0, crisisUsed: 0 });
 
   useEffect(() => {
     if (isFocused) { loadData(); }
   }, [isFocused]);
 
   const loadData = async () => {
-    const settings = await Storage.getSettings();
-    const entries = await Storage.getEntries();
-    const start = parseISO(settings.startDate);
-    const now = new Date();
-    const days = differenceInDays(now, start);
+    const data = await Storage.getStats();
     setStats({
-      days,
-      saved: (days * 420).toLocaleString('nb-NO'),
-      entries: entries.length,
-      crisisUsed: entries.filter((e: any) => e.tags && e.tags.includes('krise')).length,
+      days: data.daysClean,
+      saved: data.savedMoney.toLocaleString('nb-NO'),
+      entries: data.totalEntries,
+      crisisUsed: data.managedTriggers, 
     });
   };
 
@@ -88,7 +76,6 @@ export const OversiktScreen: React.FC = () => {
         contentContainerStyle={styles.scrollContent} 
         showsVerticalScrollIndicator={false}
       >
-        {/* Phase Indicator */}
         <View style={styles.section}>
           <Text style={[styles.sectionLabel, { color: theme.textFaint }]}>DIN STATUS</Text>
           <Card style={styles.phaseCard}>
@@ -120,7 +107,6 @@ export const OversiktScreen: React.FC = () => {
           </Card>
         </View>
 
-        {/* Patterns */}
         <View style={styles.section}>
           <Text style={[styles.sectionLabel, { color: theme.textFaint }]}>DINE MØNSTRE</Text>
           <View style={styles.patternsGrid}>
@@ -134,11 +120,10 @@ export const OversiktScreen: React.FC = () => {
           </View>
         </View>
 
-        {/* Numbers */}
         <View style={styles.section}>
           <Text style={[styles.sectionLabel, { color: theme.textFaint }]}>DINE TALL</Text>
           <Card style={styles.numbersCard}>
-            {[{ k: 'Dager uten bruk', v: stats.days.toString(), sub: 'siden start' }, { k: 'Spart', v: `kr ${stats.saved}`, sub: '420 kr/dag' }, { k: 'Dagbok-innlegg', v: stats.entries.toString(), sub: 'total loggføring' }, { k: 'Kriseplan brukt', v: stats.crisisUsed.toString(), sub: 'aktiverte planer' }].map((r, i, arr) => (
+            {[{ k: 'Dager uten bruk', v: stats.days.toString(), sub: 'siden start' }, { k: 'Spart', v: `kr ${stats.saved}`, sub: 'beregnet snitt' }, { k: 'Dagbok-innlegg', v: stats.entries.toString(), sub: 'total loggføring' }, { k: 'Kriseplan brukt', v: stats.crisisUsed.toString(), sub: 'seire logget' }].map((r, i, arr) => (
               <View key={i} style={[styles.numberRow, { borderBottomWidth: i < arr.length - 1 ? 1 : 0, borderBottomColor: theme.hairline }]}>
                 <Text style={[styles.numberKey, { color: theme.text }]}>{r.k}</Text>
                 <Text style={[styles.numberValue, { color: theme.text }]}>{r.v}</Text>
@@ -148,7 +133,6 @@ export const OversiktScreen: React.FC = () => {
           </Card>
         </View>
       </Animated.ScrollView>
-      <CrisisFab onPress={() => navigation.navigate('Kriseplan')} />
     </View>
   );
 };
