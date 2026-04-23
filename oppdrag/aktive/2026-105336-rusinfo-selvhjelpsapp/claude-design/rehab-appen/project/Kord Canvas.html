@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Kord — canvas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Lora:ital,wght@0,400;0,500;1,400&family=Source+Serif+4:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  html, body { margin: 0; padding: 0; background: #E8E3DA; font-family: 'IBM Plex Sans', system-ui, sans-serif; }
+  * { box-sizing: border-box; }
+  @keyframes kordBreath { 0%,100% { transform: scale(1); opacity: 0.25; } 50% { transform: scale(1.18); opacity: 0.45; } }
+  @keyframes kordPulse { 0%,100% { opacity: 0.5; } 50% { opacity: 1; } }
+  @keyframes kordFadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+  @keyframes kordFadeSlide { from { opacity: 0; transform: translateX(8px); } to { opacity: 1; transform: none; } }
+  @keyframes kordGrow { from { transform: scale(0.4); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+  div::-webkit-scrollbar { display: none; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="frames/ios-frame.jsx"></script>
+<script type="text/babel" src="frames/design-canvas.jsx"></script>
+<script type="text/babel" src="src/tokens.jsx"></script>
+<script type="text/babel" src="src/primitives.jsx"></script>
+<script type="text/babel" src="src/screens-1.jsx"></script>
+<script type="text/babel" src="src/screens-2.jsx"></script>
+<script type="text/babel" src="src/screens-3.jsx"></script>
+
+<script type="text/babel" data-presets="react">
+  const PAL_OPTIONS = [
+    { id: 'A', label: 'Varm stein', sub: 'warm brown · rust · sage' },
+    { id: 'B', label: 'Stille vann', sub: 'blue-grey · turquoise · sand' },
+    { id: 'C', label: 'Nordlys', sub: 'purple · lilac · warm shimmer' },
+  ];
+
+  function Phone({ children, dark = false, w = 402, h = 874 }) {
+    return <IOSDevice dark={dark} width={w} height={h}>{children}</IOSDevice>;
+  }
+
+  function Frame({ pal = 'A', dark = false, grayscale = false, font = 'Instrument Serif', children }) {
+    const theme = window.kordTheme({ palette: pal, dark, grayscale, font });
+    // Render as children of Phone; screens fill automatically
+    return (
+      <Phone dark={dark}>
+        <div style={{ width: '100%', height: '100%' }}>
+          {typeof children === 'function' ? children({ theme }) : children}
+        </div>
+      </Phone>
+    );
+  }
+
+  // Section: Palette exploration — same Home screen, three palettes, light + dark
+  function PaletteSection() {
+    const artboards = [];
+    PAL_OPTIONS.forEach(p => {
+      artboards.push(
+        <DCArtboard key={`${p.id}-l`} id={`home-${p.id}-light`} label={`Hjem · ${p.label}`} width={402} height={874}>
+          <Frame pal={p.id}>{({ theme }) => <ScreenHome theme={theme} layout="greeting-first" crisisVariant="hand" onNav={()=>{}} onOpenCrisis={()=>{}}/>}</Frame>
+        </DCArtboard>
+      );
+    });
+    artboards.push(
+      <DCArtboard key="home-A-dark" id="home-A-dark" label="Hjem · Varm stein · mørk" width={402} height={874}>
+        <Frame pal="A" dark>{({ theme }) => <ScreenHome theme={theme} layout="greeting-first" crisisVariant="hand" onNav={()=>{}} onOpenCrisis={()=>{}}/>}</Frame>
+      </DCArtboard>
+    );
+    artboards.push(
+      <DCArtboard key="home-A-gs" id="home-A-gs" label="Hjem · Gråskala (sensorisk)" width={402} height={874}>
+        <Frame pal="A" grayscale>{({ theme }) => <ScreenHome theme={theme} layout="greeting-first" crisisVariant="hand" onNav={()=>{}} onOpenCrisis={()=>{}}/>}</Frame>
+      </DCArtboard>
+    );
+    return <DCSection id="palette" title="Palettutforskning · samme Hjem-skjerm i tre paletter + mørk + gråskala">{artboards}</DCSection>;
+  }
+
+  function OnboardingSection() {
+    return (
+      <DCSection id="onboarding" title="Onboarding · 3 slides">
+        <DCArtboard id="ob1" label="Slide 1 · Modulvalg" width={402} height={874}>
+          <Frame pal="A">{({ theme }) => <ScreenOnboarding theme={theme} slide={1} onContinue={()=>{}}/>}</Frame>
+        </DCArtboard>
+        <DCArtboard id="ob2" label="Slide 2 · Startdato" width={402} height={874}>
+          <Frame pal="A">{({ theme }) => <ScreenOnboarding theme={theme} slide={2} onContinue={()=>{}}/>}</Frame>
+        </DCArtboard>
+        <DCArtboard id="ob3" label="Slide 3 · Løftet vårt" width={402} height={874}>
+          <Frame pal="A">{({ theme }) => <ScreenOnboarding theme={theme} slide={3} onContinue={()=>{}}/>}</Frame>
+        </DCArtboard>
+      </DCSection>
+    );
+  }
+
+  function MainSection() {
+    return (
+      <DCSection id="main" title="Hovedskjermer · Varm stein">
+        <DCArtboard id="home" label="Hjem · hilsen først" width={402} height={874}>
+          <Frame pal="A">{({ theme }) => <ScreenHome theme={theme} layout="greeting-first" crisisVariant="hand" onNav={()=>{}} onOpenCrisis={()=>{}}/>}</Frame>
+        </DCArtboard>
+        <DCArtboard id="home-alt" label="Hjem · check-in først (variant)" width={402} height={874}>
+          <Frame pal="A">{({ theme }) => <ScreenHome theme={theme} layout="checkin-first" crisisVariant="hand" onNav={()=>{}} onOpenCrisis={()=>{}}/>}</Frame>
+        </DCArtboard>
+        <DCArtboard id="dagbok" label="Dagbok · med innlegg" width={402} height={874}>
+          <Frame pal="A">{({ theme }) => <ScreenDagbok theme={theme} crisisVariant="hand" onNav={()=>{}} onOpenCrisis={()=>{}}/>}</Frame>
+        </DCArtboard>
+        <DCArtboard id="dagbok-empty" label="Dagbok · tom tilstand" width={402} height={874}>
+          <Frame pal="A">{({ theme }) => <ScreenDagbok theme={theme} empty crisisVariant="hand" onNav={()=>{}} onOpenCrisis={()=>{}}/>}</Frame>
+        </DCArtboard>
+        <DCArtboard id="oversikt" label="Oversikt" width={402} height={874}>
+          <Frame pal="A">{({ theme }) => <ScreenOversikt theme={theme} crisisVariant="hand" onNav={()=>{}} onOpenCrisis={()=>{}}/>}</Frame>
+        </DCArtboard>
+        <DCArtboard id="kriseplan" label="Kriseplan (aktivert)" width={402} height={874}>
+          <Frame pal="A">{({ theme }) => <ScreenKriseplan theme={theme} onClose={()=>{}}/>}</Frame>
+        </DCArtboard>
+        <DCArtboard id="prestasjoner" label="Prestasjoner · tidslinje" width={402} height={874}>
+          <Frame pal="A">{({ theme }) => <ScreenPrestasjoner theme={theme} crisisVariant="hand" onNav={()=>{}} onOpenCrisis={()=>{}}/>}</Frame>
+        </DCArtboard>
+        <DCArtboard id="info" label="Info · hubs + søk" width={402} height={874}>
+          <Frame pal="A">{({ theme }) => <ScreenInfo theme={theme} crisisVariant="hand" onNav={()=>{}} onOpenCrisis={()=>{}}/>}</Frame>
+        </DCArtboard>
+        <DCArtboard id="vegg" label="Motivasjonsvegg" width={402} height={874}>
+          <Frame pal="A">{({ theme }) => <ScreenVegg theme={theme} onBack={()=>{}}/>}</Frame>
+        </DCArtboard>
+        <DCArtboard id="kalender" label="Kartlegging · plan vs. faktisk" width={402} height={874}>
+          <Frame pal="A">{({ theme }) => <ScreenKalender theme={theme} onBack={()=>{}}/>}</Frame>
+        </DCArtboard>
+      </DCSection>
+    );
+  }
+
+  function CrisisSection() {
+    const variants = [['hand','Åpen hånd'],['shield','Skjold'],['circle','Sirkel'],['ring','Pusteringer']];
+    return (
+      <DCSection id="crisis" title="Kriseknapp · fire ikon-varianter (pustende)">
+        {variants.map(([v, label]) => (
+          <DCArtboard key={v} id={`crisis-${v}`} label={label} width={402} height={874}>
+            <Frame pal="A">{({ theme }) => <ScreenHome theme={theme} layout="greeting-first" crisisVariant={v} onNav={()=>{}} onOpenCrisis={()=>{}}/>}</Frame>
+          </DCArtboard>
+        ))}
+      </DCSection>
+    );
+  }
+
+  function FontSection() {
+    const fonts = ['Instrument Serif','Lora','Source Serif Pro','IBM Plex Serif'];
+    return (
+      <DCSection id="fonts" title="Overskriftsfont · samme Hjem, fire serifer">
+        {fonts.map(f => (
+          <DCArtboard key={f} id={`font-${f}`} label={f} width={402} height={874}>
+            <Frame pal="A" font={f}>{({ theme }) => <ScreenHome theme={theme} layout="greeting-first" crisisVariant="hand" onNav={()=>{}} onOpenCrisis={()=>{}}/>}</Frame>
+          </DCArtboard>
+        ))}
+      </DCSection>
+    );
+  }
+
+  function App() {
+    return (
+      <DesignCanvas title="Kord — RUSinfo selvhjelp-app" subtitle="Komplett mockupsett. Alle skjermer · paletter · varianter.">
+        <OnboardingSection/>
+        <MainSection/>
+        <PaletteSection/>
+        <FontSection/>
+        <CrisisSection/>
+      </DesignCanvas>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>

@@ -1,0 +1,532 @@
+<?xml version="1.0" encoding="UTF-8"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">
+  <ext:UBLExtensions>
+    <ext:UBLExtension>
+      <ext:ExtensionContent>
+        <efext:EformsExtension>
+          <efbc:TransmissionDate>2026-04-07+00:00</efbc:TransmissionDate>
+          <efbc:TransmissionTime>10:08:42+00:00</efbc:TransmissionTime>
+          <efac:NoticeSubType>
+            <cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+          </efac:NoticeSubType>
+          <efac:Organizations>
+            <efac:Organization>
+              <efac:Company>
+                <cbc:WebsiteURI>http://www.eksfin.no</cbc:WebsiteURI>
+                <cac:PartyIdentification>
+                  <cbc:ID schemeName="organization">ORG-0001</cbc:ID>
+                </cac:PartyIdentification>
+                <cac:PartyName>
+                  <cbc:Name languageID="NOR">Eksportfinansiering Norge</cbc:Name>
+                </cac:PartyName>
+                <cac:PartyName>
+                  <cbc:Name languageID="ENG">Eksportfinansiering Norge</cbc:Name>
+                </cac:PartyName>
+                <cac:PostalAddress>
+                  <cbc:StreetName>Støperigata 1</cbc:StreetName>
+                  <cbc:Department>Innkjøp</cbc:Department>
+                  <cbc:CityName>OSLO</cbc:CityName>
+                  <cbc:PostalZone>0250</cbc:PostalZone>
+                  <cbc:CountrySubentityCode listName="nuts">NO081</cbc:CountrySubentityCode>
+                  <cac:Country>
+                    <cbc:IdentificationCode listName="country">NOR</cbc:IdentificationCode>
+                  </cac:Country>
+                </cac:PostalAddress>
+                <cac:PartyLegalEntity>
+                  <cbc:CompanyID schemeID="002">926718304</cbc:CompanyID>
+                </cac:PartyLegalEntity>
+                <cac:Contact>
+                  <cbc:Name>Jacob Sebastian Scheid</cbc:Name>
+                  <cbc:Telephone>+47</cbc:Telephone>
+                  <cbc:ElectronicMail>sebastian@innkjopskontoret.no</cbc:ElectronicMail>
+                </cac:Contact>
+              </efac:Company>
+            </efac:Organization>
+            <efac:Organization>
+              <efac:Company>
+                <cbc:WebsiteURI>https://www.domstol.no/no/domstoler/tingrett/oslo-tingrett/</cbc:WebsiteURI>
+                <cac:PartyIdentification>
+                  <cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+                </cac:PartyIdentification>
+                <cac:PartyName>
+                  <cbc:Name languageID="NOR">Oslo tingrett</cbc:Name>
+                </cac:PartyName>
+                <cac:PartyName>
+                  <cbc:Name languageID="ENG">Oslo tingrett</cbc:Name>
+                </cac:PartyName>
+                <cac:PostalAddress>
+                  <cbc:StreetName>Postboks 2106 Vika</cbc:StreetName>
+                  <cbc:CityName>Oslo</cbc:CityName>
+                  <cbc:PostalZone>0125</cbc:PostalZone>
+                  <cbc:CountrySubentityCode listName="nuts">NO081</cbc:CountrySubentityCode>
+                  <cac:Country>
+                    <cbc:IdentificationCode listName="country">NOR</cbc:IdentificationCode>
+                  </cac:Country>
+                </cac:PostalAddress>
+                <cac:PartyLegalEntity>
+                  <cbc:CompanyID schemeID="002">926 725 939</cbc:CompanyID>
+                </cac:PartyLegalEntity>
+                <cac:Contact>
+                  <cbc:Telephone>22 03 52 00</cbc:Telephone>
+                  <cbc:ElectronicMail>oslo.tingrett@domstol.no</cbc:ElectronicMail>
+                </cac:Contact>
+              </efac:Company>
+            </efac:Organization>
+          </efac:Organizations>
+        </efext:EformsExtension>
+      </ext:ExtensionContent>
+    </ext:UBLExtension>
+  </ext:UBLExtensions>
+  <cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+  <cbc:CustomizationID>eforms-sdk-1.13#extended#urn:fdc:anskaffelser.no:2023:eforms:eu</cbc:CustomizationID>
+  <cbc:ID schemeName="notice-id">32cb9064-b24d-40de-b400-4455a1553b0c</cbc:ID>
+  <cbc:ContractFolderID>4a60c774-9a99-45be-aa7a-fdd2f3b99a25</cbc:ContractFolderID>
+  <cbc:IssueDate>2026-04-07+00:00</cbc:IssueDate>
+  <cbc:IssueTime>09:55:51+00:00</cbc:IssueTime>
+  <cbc:VersionID>01</cbc:VersionID>
+  <cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+  <cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+  <cbc:NoticeLanguageCode>NOR</cbc:NoticeLanguageCode>
+  <cac:AdditionalNoticeLanguage>
+    <cbc:ID>ENG</cbc:ID>
+  </cac:AdditionalNoticeLanguage>
+  <cac:ContractingParty>
+    <cac:ContractingPartyType>
+      <cbc:PartyTypeCode listName="buyer-legal-type">pub-undert</cbc:PartyTypeCode>
+    </cac:ContractingPartyType>
+    <cac:ContractingActivity>
+      <cbc:ActivityTypeCode listName="authority-activity">gen-pub</cbc:ActivityTypeCode>
+    </cac:ContractingActivity>
+    <cac:Party>
+      <cac:PartyIdentification>
+        <cbc:ID schemeName="organization">ORG-0001</cbc:ID>
+      </cac:PartyIdentification>
+    </cac:Party>
+  </cac:ContractingParty>
+  <cac:TenderingTerms>
+    <cac:TendererQualificationRequest>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-corrpt</cbc:TendererRequirementTypeCode>
+        <cbc:Description languageID="NOR">Er leverandøren selv eller en person, som er medlem av leverandørens administrasjons-, ledelses- eller kontrollorgan eller har kompetanse til å representere eller kontrollere eller treffe beslutninger i slike organer, ved rettskraftig dom blitt dømt for korrupsjon ved en dom avsagt for ikke mer enn fem år siden, eller en avvisningsperiode fastsatt direkte i dommen som fortsatt gjelder? Korrupsjon som definert i artikkel 3 i konvensjonen om bekjempelse av korrupsjon, som involverer tjenestemenn i De Europeiske Fellesskapene eller i Den Europeiske Unions medlemsstater (EUT C 195 av 25.6.1997, s. 1), og i artikkel 2, stk. 1, i Rådets rammeavgjørelse 2003/568/RIA av 22. juli 2003 om bekjempelse av korrupsjon i den private sektor (EUT L 192 av 31.7.2003, s. 54). Denne avvisningsgrunnen omfatter også korrupsjon som definert i nasjonal rett for oppdragsgiveren eller leverandøren.</cbc:Description>
+        <cbc:Description languageID="ENG">Is the tenderer himself or a person, who is a member of the tenderer's administration, management or supervisory body or has the competence to represent or control or make decisions in such bodies, in the event a enforceable verdict has been convicted of corruption by a verdict handed down not more than five years ago, or a rejection period determined directly in the judgement that still applies? Corruption as defined in Article 3 of the Convention on Combating Corruption, Involving European Communities or European Union Member States (EUT C 195 of 25.6.1997, s. 1), and in Article 2, point 1, in the Council ́s framework decision 2003/568/RIA of 22 July 2003 on combating corruption in the private sector (EUT L 192 of 31.7.2003,  p. 54). This rejection reason also includes corruption as defined in national law for the contracting authority or supplier.</cbc:Description>
+      </cac:SpecificTendererRequirement>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-fraud</cbc:TendererRequirementTypeCode>
+        <cbc:Description languageID="NOR">Er leverandøren selv eller en person, som er medlem av leverandørens administrasjons-, ledelses- eller kontrollorgan eller har kompetanse til å representere eller kontrollere eller treffe beslutninger i slike organer, ved rettskraftig dom blitt dømt for bedrageri ved en dom avsagt for ikke mer enn fem år siden, eller en avvisningsperiode fastsatt direkte i dommen som fortsatt gjelder? Bedrageri som omhandlet i artikkel 1 i konvensjonen om beskyttelse av De Europeiske Fellesskapenes finansielle interesser (EFT C 316 av 27.11.1995, s. 48).</cbc:Description>
+        <cbc:Description languageID="ENG">Is the tenderer himself or a person, who is a member of the tenderer's administration, management or supervisory body or has the competence to represent or control or make decisions in such bodies, at the time a legally convicted of fraud has been convicted of fraud by a verdict handed down not more than five years ago, or a rejection period determined directly in the judgement that still applies? Fraud included in Article 1 of the Convention on protection of the Financial Interests of the European Communities (EFT C 316 of 27.11.1995, p. 48).</cbc:Description>
+      </cac:SpecificTendererRequirement>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-laund</cbc:TendererRequirementTypeCode>
+        <cbc:Description languageID="NOR">Er leverandøren selv eller en person, som er medlem av leverandørens administrasjons-, ledelses- eller kontrollorgan eller har kompetanse til å representere eller kontrollere eller treffe beslutninger i slike organer, ved rettskraftig dom blitt dømt for hvitvasking av penger eller finansiering av terrorisme ved en dom avsagt for ikke mer enn fem år siden, eller en avvisningsperiode fastsatt direkte i dommen som fortsatt gjelder? Hvitvasking av penger eller finansiering av terrorismeSom definert i artikkel 1 i Europaparlamentets og Rådets direktiv 2005/60/EF av 26. oktober 2005 om forebyggende tiltak mot bruk av det finansielle system til hvitvasking av penger og finansiering av terrorisme (EUT L 309 av 25.11.2005, s. 15).</cbc:Description>
+        <cbc:Description languageID="ENG">Is the tenderer himself or a person, who is a member of the tenderer's administration, management or supervisory body or has the competence to represent or control or make decisions in such bodies, in the event a legal verdict has been convicted of money laundering or financing terrorism by a verdict handed down no more than five years ago, or a rejection period set out directly in the judgement that still applies? Money laundering or financing terrorism As defined in Article 1 of the European Parliament and Council Directive 2005/60/EF of 26 October 2005 on preventive measures against the use of the financial system for money laundering and financing terrorism (EUT L 309 of 25.11.2005, p. 15).</cbc:Description>
+      </cac:SpecificTendererRequirement>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-part</cbc:TendererRequirementTypeCode>
+        <cbc:Description languageID="NOR">Er leverandøren selv eller en person, som er medlem av leverandørens administrasjons-, ledelses- eller kontrollorgan eller har kompetanse til å representere eller kontrollere eller treffe beslutninger i slike organer, ved rettskraftig dom blitt dømt for deltakelse i en kriminell organisasjon ved en dom avsagt for ikke mer enn fem år siden, eller en avvisningsperiode fastsatt direkte i dommen som fortsatt gjelder? Deltakelse i en kriminell organisasjon som definert i artikkel 2 i Rådets rammeavgjørelse 2008/841/RIA av 24. oktober 2008 om bekjempelse av organisert kriminalitet (EUT L 300 av 11.11.2008, s. 42)</cbc:Description>
+        <cbc:Description languageID="ENG">Is the tenderer himself or a person, who is a member of the tenderer's administration, management or supervisory body or has the competence to represent or control or make decisions in such bodies, at the time a legally convicted verdict of participation in a criminal organisation by a verdict handed down no more than five years ago, or a rejection period set out directly in the judgement that still applies? Participation in a criminal organisation as defined in Article 2 of the Council ́s framework decision 2008/841/RIA of 24 October 2008 on control of organised crime (EUT L 300 of 11.11.2008, p. 42)</cbc:Description>
+      </cac:SpecificTendererRequirement>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-terror</cbc:TendererRequirementTypeCode>
+        <cbc:Description languageID="NOR">Er leverandøren selv eller en person, som er medlem av leverandørens administrasjons-, ledelses- eller kontrollorgan eller har kompetanse til å representere eller kontrollere eller treffe beslutninger i slike organer, ved rettskraftig dom blitt dømt for terrorhandlinger eller straffbare handlinger med forbindelse til terroraktivitetved en dom avsagt for ikke mer enn fem år siden, eller en avvisningsperiode fastsatt direkte i dommen som fortsatt gjelder? Terrorhandlinger eller straffbare handlinger med forbindelse til terroraktivitet som definert i artikkel 1 og 3 i Rådets rammeavgjørelse 2002/475/RIA av 13. juni 2002 om bekjempelse av terrorisme (EFT L 164 af 22.6.2002, s. 3). Denne avvisningsgrunnen omfatter også oppfordring til, medvirkning til eller forsøk på å begå slike handlinger som omhandlet i artikkel 4 i nevnte rammeavgjørelse.</cbc:Description>
+        <cbc:Description languageID="ENG">Is the tenderer himself or a person, who is a member of the tenderer's administration, management or supervisory body, or has the competence to represent or control or make decisions in such bodies, in the event a legal verdict has been convicted of acts of terrorism or criminal acts connected to terrorist activities by a verdict handed down no more than five years ago, or a rejection period set out directly in the judgement that still applies? Acts of terrorism or criminal acts relating to terrorist activity as defined in Article 1 and 3 of the Council ́s framework decision 2002/475/RIA of 13 June 2002 on combating terrorism (EFT L 164, af 22.6.2002, p. 3). This rejection reason also includes incitement to, participation or attempts to commit such actions as included in Article 4 in the mentioned framework decision.</cbc:Description>
+      </cac:SpecificTendererRequirement>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-traffick</cbc:TendererRequirementTypeCode>
+        <cbc:Description languageID="NOR">Er leverandøren selv eller en person, som er medlem av leverandørens administrasjons-, ledelses- eller kontrollorgan eller har kompetanse til å representere eller kontrollere eller treffe beslutninger i slike organer, ved rettskraftig dom blitt dømt for barnearbeid og andre former for menneskehandel ved en dom avsagt for ikke mer enn fem år siden, eller en avvisningsperiode fastsatt direkte i dommen som fortsatt gjelder? Barnearbeid og andre former for menneskehandel som definert i artikkel 2 i Europaparlamentets og Rådets direktiv 2011/36/EU av 5. april 2011 om forebygging og bekjempelse av menneskehandel og beskyttelse av dets ofre, og om erstatning av Rådets rammeavgjørelse 2002/629/RIA (EUT L 101 av 15.4.2011, s. 1).</cbc:Description>
+        <cbc:Description languageID="ENG">Is the tenderer himself or a person, who is a member of the tenderer's administration, management or supervisory body or has the competence to represent or control or make decisions in such bodies, in the event a legal verdict has been convicted of child labour and other forms of human trafficking by a verdict handed down no more than five years ago, or a rejection period determined directly in the judgement that still applies? Child labour and other forms of human trafficking as defined in Article 2 of the European Parliament and council directive 2011/36/EU of 5. 1 April 2011 on the prevention and control of human trafficking and the protection of its victims and for compensation of the Council ́s framework decision 2002/629/RIA (EUT L 101 of 15.4.2011, p. 1).</cbc:Description>
+      </cac:SpecificTendererRequirement>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-env-law</cbc:TendererRequirementTypeCode>
+        <cbc:Description languageID="NOR">Er leverandøren kjent med å ha begått brudd på bestemmelser om miljø slik som de fremgår av nasjonal rett, den relevante kunngjøringen eller anskaffelsesdokumentene eller artikkel 18 (2) i direktiv 2014/24/EU.</cbc:Description>
+        <cbc:Description languageID="ENG">Is the tenderer aware of breaches of environmental provisions as stated in national law, the relevant notice or procurement documents or Article 18 (2) of Directive 2014/24/EU.</cbc:Description>
+      </cac:SpecificTendererRequirement>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-lab-law</cbc:TendererRequirementTypeCode>
+        <cbc:Description languageID="NOR">Er leverandøren kjent med å ha begått brudd på bestemmelser om arbeidsforhold slik som de fremgår av nasjonal rett, den relevante kunngjøringen eller anskaffelsesdokumentene eller artikkel 18 (2) i direktiv 2014/24/EU.</cbc:Description>
+        <cbc:Description languageID="ENG">Is the tenderer aware of breaches of provisions on working conditions as stated in national law, the relevant notice or procurement documents or Article 18 (2) of Directive 2014/24/EU.</cbc:Description>
+      </cac:SpecificTendererRequirement>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-soc-law</cbc:TendererRequirementTypeCode>
+        <cbc:Description languageID="NOR">Er leverandøren kjent med å ha begått brudd på bestemmelser om sosiale forhold slik som de fremgår av nasjonal rett, den relevante kunngjøringen eller anskaffelsesdokumentene eller artikkel 18 (2) i direktiv 2014/24/EU.</cbc:Description>
+        <cbc:Description languageID="ENG">Is the tenderer aware of breaches of provisions on social conditions as stated in national law, the relevant notice or procurement documents or Article 18 (2) of Directive 2014/24/EU.</cbc:Description>
+      </cac:SpecificTendererRequirement>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-distortion</cbc:TendererRequirementTypeCode>
+        <cbc:Description languageID="NOR">Har leverandør inngått avtale(r) med andre leverandører med hensikt å vri konkurransen?</cbc:Description>
+        <cbc:Description languageID="ENG">Has the tenderer entered into agreement(s) with other tenderers with the intention of turning the competition?</cbc:Description>
+      </cac:SpecificTendererRequirement>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misconduct</cbc:TendererRequirementTypeCode>
+        <cbc:Description languageID="NOR">Har leverandøren begått alvorlige feil i yrkesutøvelsen? Hvis det er relevant, se definisjoner i nasjonal rett, den relevante kunngjøring eller anskaffelsesdokumentene.</cbc:Description>
+        <cbc:Description languageID="ENG">Has the tenderer committed serious errors in professional practice? If relevant, see the definitions in national law, the relevant notice or procurement documents.</cbc:Description>
+      </cac:SpecificTendererRequirement>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misrepresent</cbc:TendererRequirementTypeCode>
+        <cbc:Description languageID="NOR">Har leverandøren: a) gitt grovt uriktige opplysninger ved meddelelsen av opplysningene som kreves for å kontrollere at det ikke er grunnlag for avvisning, eller av at kvalifikasjonskravene er oppfylt, b) unnlatt å gi slike opplysninger, c) tatt forbehold om straks å fremlegge de støttedokumenter som oppdragsgiver anmoder om, eller d) urettmessig påvirket oppdragsgivers beslutningsprosess for å tilegne seg konfidensiell informasjon som kan gi denne en urettmessig fordel i forbindelse med konkurransen, eller uaktsomt har gitt misvisende opplysninger som kan få vesentlig innflytelse på beslutninger om avvisning, utvelgelse eller tildeling?</cbc:Description>
+        <cbc:Description languageID="ENG">Has the tenderer: a) given grossly incorrect information with the notification of the information required to verify that there is no basis for rejection, or of the qualification requirements being fulfilled, b) failed to provide such information, c) made reservations immediately to present the supporting documents requested by the contracting authority, or d) improperly affected the contracting authority ́s decision process to acquire confidential information that could give this an unlawful advantage in connection with competition, or negligently has given misleading information that can have a significant influence on decisions on rejection, selection or award?</cbc:Description>
+      </cac:SpecificTendererRequirement>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-partic-confl</cbc:TendererRequirementTypeCode>
+        <cbc:Description languageID="NOR">Er leverandør oppmerksom på en interessekonflikt slik denne er angitt i nasjonal rett, den relevante kunngjøring eller anskaffelsesdokumentene?</cbc:Description>
+        <cbc:Description languageID="ENG">Are tenderers aware of a conflict of interest as stated in national law, the relevant notice or procurement documents?</cbc:Description>
+      </cac:SpecificTendererRequirement>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-prep-confl</cbc:TendererRequirementTypeCode>
+        <cbc:Description languageID="NOR">Har leverandør eller en virksomhet tilknyttet leverandøren gitt råd til oppdragsgiver eller på annen måte vært involvert i planleggingen av konkurransen?</cbc:Description>
+        <cbc:Description languageID="ENG">Has the tenderer or an entity associated with the supplier advised the contracting authority or in another way been involved in the planning of the competition?</cbc:Description>
+      </cac:SpecificTendererRequirement>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-sanction</cbc:TendererRequirementTypeCode>
+        <cbc:Description languageID="NOR">Har leverandør begått vesentlig kontraktsbrudd i forbindelse med oppfyllelsen av en tidligere offentlig kontrakt, en tidligere kontrakt med en offentlig oppdragsgiver eller en tidligere konsesjonskontrakt, der bruddet har ført til heving av kontrakten, erstatning eller andre lignende sanksjoner?</cbc:Description>
+        <cbc:Description languageID="ENG">Has the tenderer committed significant breaches of contract in connection with the fulfilment of a previous public contract, a previous contract with a public contracting authority or a previous concession contract, where the breach has led to the cancellation of the contract, compensation or other similar sanctions?</cbc:Description>
+      </cac:SpecificTendererRequirement>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-ssc</cbc:TendererRequirementTypeCode>
+        <cbc:Description languageID="NOR">Har leverandør unnlatt å oppfylle alle sine forpliktelser til å betale trygdeavgifter både i det land han er etablert i, og i oppdragsgivers medlemsstat, hvis dette er et annet land enn det han er etablert i?</cbc:Description>
+        <cbc:Description languageID="ENG">Have tenderers failed to fulfil all their social security obligations in the country where they are established and in their member state, if this is a different country than what he is established in?</cbc:Description>
+      </cac:SpecificTendererRequirement>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-tax</cbc:TendererRequirementTypeCode>
+        <cbc:Description languageID="NOR">Har leverandøren unnlatt å oppfylle sine forpliktelser til å betale skatter og avgifter i det land han er etablert i, og i oppdragsgivers medlemsstat, hvis dette er et annet land enn det han er etablert i?</cbc:Description>
+        <cbc:Description languageID="ENG">Has the tenderer not fulfilled his tax and duty obligations in the country in which he is established, and in the contracting authority's member state, if this is a different country than what he is established in?</cbc:Description>
+      </cac:SpecificTendererRequirement>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-as-susp</cbc:TendererRequirementTypeCode>
+        <cbc:Description languageID="NOR">Angi hvorfor man under nevnte omstendigheter likevel er i stand til å utføre kontrakten, tatt i betraktning gjeldende nasjonale bestemmelser og tiltak vedrørende fortsettelse av forretningsaktivitetene? Det er ikke nødvendig å angi disse opplysningene hvis avvisning av leverandørerer gjort obligatorisk i henhold til gjeldende nasjonal rett uten mulighet for unntak.</cbc:Description>
+        <cbc:Description languageID="ENG">Specify why, under the mentioned circumstances, one is able to carry out the contract, considering the current national provisions and measures for continuing the business activities? It is not necessary to provide this information if rejection of tenderers made mandatory in accordance with the current national law without the possibility for exceptions.</cbc:Description>
+      </cac:SpecificTendererRequirement>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-bankr</cbc:TendererRequirementTypeCode>
+        <cbc:Description languageID="NOR">Er leverandøren i en konkurssituasjon? Angi hvorfor man under nevnte omstendigheter likevel er i stand til å utføre kontrakten, tatt i betraktning gjeldende nasjonale bestemmelser og tiltak vedrørende fortsettelse av forretningsaktivitetene? Det er ikke nødvendig å angi disse opplysningene hvis avvisning av leverandørerer gjort obligatorisk i henhold til gjeldende nasjonal rett uten mulighet for unntak.</cbc:Description>
+        <cbc:Description languageID="ENG">Is the tenderer in a bankruptcy situation? Specify why, under the mentioned circumstances, one is able to carry out the contract, considering the current national provisions and measures for continuing the business activities? It is not necessary to provide this information if rejection of tenderers made mandatory in accordance with the current national law without the possibility for exceptions.</cbc:Description>
+      </cac:SpecificTendererRequirement>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-cred-arran</cbc:TendererRequirementTypeCode>
+        <cbc:Description languageID="NOR">Er leverandøren i en situasjon hvor han har fått tvungen gjeldsordning? Angi hvorfor man under nevnte omstendigheter likevel er i stand til å utføre kontrakten, tatt i betraktning gjeldende nasjonale bestemmelser og tiltak vedrørende fortsettelse av forretningsaktivitetene? Det er ikke nødvendig å angi disse opplysningene hvis avvisning av leverandørerer gjort obligatorisk i henhold til gjeldende nasjonal rett uten mulighet for unntak.</cbc:Description>
+        <cbc:Description languageID="ENG">Is the supplier in a situation where he has been forced debt arrangement? Specify why, under the mentioned circumstances, one is able to carry out the contract, considering the current national provisions and measures for continuing the business activities? It is not necessary to provide this information if rejection of tenderers made mandatory in accordance with the current national law without the possibility for exceptions.</cbc:Description>
+      </cac:SpecificTendererRequirement>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-insolvency</cbc:TendererRequirementTypeCode>
+        <cbc:Description languageID="NOR">Er leverandøren i en insolvenssituasjon? Angi hvorfor man under nevnte omstendigheter likevel er i stand til å utføre kontrakten, tatt i betraktning gjeldende nasjonale bestemmelser og tiltak vedrørende fortsettelse av forretningsaktivitetene? Det er ikke nødvendig å angi disse opplysningene hvis avvisning av leverandørerer gjort obligatorisk i henhold til gjeldende nasjonal rett uten mulighet for unntak.</cbc:Description>
+        <cbc:Description languageID="ENG">Is the tenderer in an insolvency situation? Specify why, under the mentioned circumstances, one is able to carry out the contract, considering the current national provisions and measures for continuing the business activities? It is not necessary to provide this information if rejection of tenderers made mandatory in accordance with the current national law without the possibility for exceptions.</cbc:Description>
+      </cac:SpecificTendererRequirement>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-liq-admin</cbc:TendererRequirementTypeCode>
+        <cbc:Description languageID="NOR">Angi hvorfor man under nevnte omstendigheter likevel er i stand til å utføre kontrakten, tatt i betraktning gjeldende nasjonale bestemmelser og tiltak vedrørende fortsettelse av forretningsaktivitetene? Det er ikke nødvendig å angi disse opplysningene hvis avvisning av leverandørerer gjort obligatorisk i henhold til gjeldende nasjonal rett uten mulighet for unntak.</cbc:Description>
+        <cbc:Description languageID="ENG">Specify why, under the mentioned circumstances, one is able to carry out the contract, considering the current national provisions and measures for continuing the business activities? It is not necessary to provide this information if rejection of tenderers made mandatory in accordance with the current national law without the possibility for exceptions.</cbc:Description>
+      </cac:SpecificTendererRequirement>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-other</cbc:TendererRequirementTypeCode>
+        <cbc:Description languageID="NOR">Er leverandøren i en situasjon hvor han har fått tvungen gjeldsordning? Angi hvorfor man under nevnte omstendigheter likevel er i stand til å utføre kontrakten, tatt i betraktning gjeldende nasjonale bestemmelser og tiltak vedrørende fortsettelse av forretningsaktivitetene? Det er ikke nødvendig å angi disse opplysningene hvis avvisning av leverandørerer gjort obligatorisk i henhold til gjeldende nasjonal rett uten mulighet for unntak.</cbc:Description>
+        <cbc:Description languageID="ENG">Is the supplier in a situation where he has been forced debt arrangement? Specify why, under the mentioned circumstances, one is able to carry out the contract, considering the current national provisions and measures for continuing the business activities? It is not necessary to provide this information if rejection of tenderers made mandatory in accordance with the current national law without the possibility for exceptions.</cbc:Description>
+      </cac:SpecificTendererRequirement>
+    </cac:TendererQualificationRequest>
+    <cac:TendererQualificationRequest>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-notice</cbc:TendererRequirementTypeCode>
+      </cac:SpecificTendererRequirement>
+    </cac:TendererQualificationRequest>
+  </cac:TenderingTerms>
+  <cac:TenderingProcess>
+    <cbc:Description languageID="NOR">Konkurransen gjennomføres i henhold til lov om offentlige anskaffelser av 17. juni 2016 nr. 73 (LOA) med tilhørende forskrift av 12. august 2016 nr. 974 (FOA), samt de bestemmelser som fremgår av dette konkurransegrunnlaget.
+
+Konkurransen gjennomføres som TED - Åpen anbudskonkurranse etter forskriftens Del I og III.
+
+Ved denne prosedyreformen kan alle interesserte leverandører levere tilbud. Forhandlinger er ikke tillatt.
+
+Anskaffelsen er kunngjort i DOFFIN- og TED- databasen.</cbc:Description>
+    <cbc:Description languageID="ENG">The competition will be held in accordance with the Public Procurement Act from 17 June 2016 no. 73 (LOA), with the accompanying regulations of 12 August 2016 no. 974 (FOA), as well as the provisions in this tender documentation.
+
+The competition will be held as TED - open tender contest in accordance with the regulations Parts I and III.
+
+All interested tenderers can submit tenders for this type of procedure. Negotiations are not allowed.
+
+The procurement is announced in the DOFFIN and TED database.</cbc:Description>
+    <cbc:ProcedureCode listName="procurement-procedure-type">open</cbc:ProcedureCode>
+    <cac:ProcessJustification>
+      <cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+    </cac:ProcessJustification>
+  </cac:TenderingProcess>
+  <cac:ProcurementProject>
+    <cbc:ID>26094</cbc:ID>
+    <cbc:Name languageID="NOR">Nye nettsider</cbc:Name>
+    <cbc:Name languageID="ENG">New websites</cbc:Name>
+    <cbc:Description languageID="NOR">Konkurransen gjelder levering av en helhetlig løsning for etablering og videre forvaltning av virksomhetens nettside. Leveransen skal omfatte utvikling og etablering av ny nettside, teknisk drift og hosting, samt løpende bistand og rådgivning innen webutvikling, design og videreutvikling av løsningen. Leverandøren sørger for stabil drift, sikker forvaltning og kontinuerlig forbedring av nettsiden gjennom hele avtaleperioden. Leverandøren etablerer nettsiden på en standardisert og anerkjent CMS-plattform.
+
+Anskaffelsens verdi anslås til: over EØS - terskelverdi. Volumet er et estimat og er ikke bindende for oppdragsgiver.
+
+For nærmere informasjon viser vi til anskaffelsesdokumentene.
+
+Oppdragsgiver tar forbehold om avlysning av konkurransen, blant annet i forbindelse med budsjettmessig dekning.
+
+Denne anskaffelsen er etter sin art vurdert til å ha en uvesentlig innvirkning på klima og miljø, jf. forskriften §7-9, femte ledd. Begrunnelsen for dette er at anskaffelsen gjelder kjøp av  utvikling og etablering av ny nettside, teknisk drift og hosting, samt løpende bistand og rådgivning innen webutvikling, design og videreutvikling av løsningen. Leverandøren sørger for stabil drift, sikker forvaltning og kontinuerlig forbedring av nettsiden gjennom hele avtaleperioden, der anskaffelsens art medfører at oppdragsgiver er avskåret fra å påvirke klima og miljøpåvirkningen, siden krav og kriterier som retter seg mot disse elementene ikke vil ha tilstrekkelig tilknytning til leveransen, jf. DFØs miljøveileder.
+
+LÆRLING: Plikten til å stille krav om lærling er vurdert til å gjelde for denne anskaffelsen, jf. anskaffelsesloven § 7.</cbc:Description>
+    <cbc:Description languageID="ENG">The competition is for the delivery of a comprehensive system for the establishment and further management of the entity ́s website. The delivery shall include the development and establishment of a new website, technical operations and hosting, as well as ongoing assistance and advice within web development, design and further development of the system. The tenderer ensures stable operation, secure management and continual improvements to the website throughout the entire contract period. The tenderer will establish the website on a standardised and recognised CMS platform.
+
+The procurement ́s value is estimated to: above the EEA threshold. The volume is an estimate and is not binding for the contracting authority.
+
+See the procurement documents for further information.
+
+The contracting authority reserves the right to cancel the competition, i.a. in connection with budgetary coverage.
+
+This procurement is considered to have an immaterial impact on climate and the environment, cf. the Regulations §7-9, fifth paragraph. The justification for this is that the procurement concerns the purchase of development and establishment of a new website, technical operation and hosting, as well as ongoing assistance and consultancy services within web development, design and further development of the system. The tenderer ensures stable operation, secure management and continual improvements to the website throughout the contract period, where the nature of the procurement means that the contracting authority has been cut off from affecting climate and environmental impact, as the requirements and criteria targeting these elements will not have sufficient connection to the delivery, c.f. DFØ ́s environment supervisor.
+
+APPRENTICE: The obligation to set requirements for apprentices is considered to apply for this procurement, cf. the Procurement Act § 7.</cbc:Description>
+    <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+    <cac:MainCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+    </cac:MainCommodityClassification>
+    <cac:AdditionalCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">72200000</cbc:ItemClassificationCode>
+    </cac:AdditionalCommodityClassification>
+    <cac:AdditionalCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">72400000</cbc:ItemClassificationCode>
+    </cac:AdditionalCommodityClassification>
+    <cac:AdditionalCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">72410000</cbc:ItemClassificationCode>
+    </cac:AdditionalCommodityClassification>
+    <cac:AdditionalCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">72413000</cbc:ItemClassificationCode>
+    </cac:AdditionalCommodityClassification>
+    <cac:AdditionalCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">72415000</cbc:ItemClassificationCode>
+    </cac:AdditionalCommodityClassification>
+    <cac:RealizedLocation>
+      <cac:Address>
+        <cbc:CountrySubentityCode listName="nuts">NO081</cbc:CountrySubentityCode>
+        <cac:Country>
+          <cbc:IdentificationCode listName="country">NOR</cbc:IdentificationCode>
+        </cac:Country>
+      </cac:Address>
+    </cac:RealizedLocation>
+  </cac:ProcurementProject>
+  <cac:ProcurementProjectLot>
+    <cbc:ID schemeName="Lot">LOT-0000</cbc:ID>
+    <cac:TenderingTerms>
+      <cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+      <cbc:RecurringProcurementIndicator>false</cbc:RecurringProcurementIndicator>
+      <cac:CallForTendersDocumentReference>
+        <cbc:ID>Lenke til innkjøpsdokumentene</cbc:ID>
+        <cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+        <cac:Attachment>
+          <cac:ExternalReference>
+            <cbc:URI>https://tendsign.com/doc.aspx?MeFormsNoticeId=88425</cbc:URI>
+          </cac:ExternalReference>
+        </cac:Attachment>
+      </cac:CallForTendersDocumentReference>
+      <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="ecatalog-submission">allowed</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="esignature-submission">true</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:AwardingTerms>
+        <cac:AwardingCriterion>
+          <cac:SubordinateAwardingCriterion>
+            <ext:UBLExtensions>
+              <ext:UBLExtension>
+                <ext:ExtensionContent>
+                  <efext:EformsExtension>
+                    <efac:AwardCriterionParameter>
+                      <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                      <efbc:ParameterNumeric>15</efbc:ParameterNumeric>
+                    </efac:AwardCriterionParameter>
+                  </efext:EformsExtension>
+                </ext:ExtensionContent>
+              </ext:UBLExtension>
+            </ext:UBLExtensions>
+            <cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+            <cbc:Name languageID="NOR">Priser og kostnader</cbc:Name>
+            <cbc:Name languageID="ENG">Prices and Costs</cbc:Name>
+            <cbc:Description languageID="NOR">-</cbc:Description>
+            <cbc:Description languageID="ENG">-</cbc:Description>
+          </cac:SubordinateAwardingCriterion>
+          <cac:SubordinateAwardingCriterion>
+            <ext:UBLExtensions>
+              <ext:UBLExtension>
+                <ext:ExtensionContent>
+                  <efext:EformsExtension>
+                    <efac:AwardCriterionParameter>
+                      <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                      <efbc:ParameterNumeric>55</efbc:ParameterNumeric>
+                    </efac:AwardCriterionParameter>
+                  </efext:EformsExtension>
+                </ext:ExtensionContent>
+              </ext:UBLExtension>
+            </ext:UBLExtensions>
+            <cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+            <cbc:Name languageID="NOR">Løsningsforslag, funksjonalitet og brukervennlighet</cbc:Name>
+            <cbc:Name languageID="ENG">Solution proposals, functionality and user friendliness.</cbc:Name>
+            <cbc:Description languageID="NOR">-</cbc:Description>
+            <cbc:Description languageID="ENG">-</cbc:Description>
+          </cac:SubordinateAwardingCriterion>
+          <cac:SubordinateAwardingCriterion>
+            <ext:UBLExtensions>
+              <ext:UBLExtension>
+                <ext:ExtensionContent>
+                  <efext:EformsExtension>
+                    <efac:AwardCriterionParameter>
+                      <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                      <efbc:ParameterNumeric>15</efbc:ParameterNumeric>
+                    </efac:AwardCriterionParameter>
+                  </efext:EformsExtension>
+                </ext:ExtensionContent>
+              </ext:UBLExtension>
+            </ext:UBLExtensions>
+            <cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+            <cbc:Name languageID="NOR">Implementering</cbc:Name>
+            <cbc:Name languageID="ENG">Implementation</cbc:Name>
+            <cbc:Description languageID="NOR">-</cbc:Description>
+            <cbc:Description languageID="ENG">-</cbc:Description>
+          </cac:SubordinateAwardingCriterion>
+          <cac:SubordinateAwardingCriterion>
+            <ext:UBLExtensions>
+              <ext:UBLExtension>
+                <ext:ExtensionContent>
+                  <efext:EformsExtension>
+                    <efac:AwardCriterionParameter>
+                      <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                      <efbc:ParameterNumeric>15</efbc:ParameterNumeric>
+                    </efac:AwardCriterionParameter>
+                  </efext:EformsExtension>
+                </ext:ExtensionContent>
+              </ext:UBLExtension>
+            </ext:UBLExtensions>
+            <cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+            <cbc:Name languageID="NOR">Service og oppdragsspesifikk kompetanse</cbc:Name>
+            <cbc:Name languageID="ENG">Service and assignment specific competence</cbc:Name>
+            <cbc:Description languageID="NOR">-</cbc:Description>
+            <cbc:Description languageID="ENG">-</cbc:Description>
+          </cac:SubordinateAwardingCriterion>
+        </cac:AwardingCriterion>
+      </cac:AwardingTerms>
+      <cac:TenderRecipientParty>
+        <cbc:EndpointID>https://tendsign.com/doc.aspx?MeFormsNoticeId=88425&amp;GoTo=Tender</cbc:EndpointID>
+      </cac:TenderRecipientParty>
+      <cac:TenderValidityPeriod>
+        <cbc:DurationMeasure unitCode="DAY">106</cbc:DurationMeasure>
+      </cac:TenderValidityPeriod>
+      <cac:AppealTerms>
+        <cac:PresentationPeriod>
+          <cbc:Description languageID="NOR">-</cbc:Description>
+          <cbc:Description languageID="ENG">-</cbc:Description>
+        </cac:PresentationPeriod>
+        <cac:AppealInformationParty>
+          <cac:PartyIdentification>
+            <cbc:ID schemeName="organization">ORG-0001</cbc:ID>
+          </cac:PartyIdentification>
+        </cac:AppealInformationParty>
+        <cac:AppealReceiverParty>
+          <cac:PartyIdentification>
+            <cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+          </cac:PartyIdentification>
+        </cac:AppealReceiverParty>
+      </cac:AppealTerms>
+      <cac:Language>
+        <cbc:ID>NOR</cbc:ID>
+      </cac:Language>
+      <cac:PostAwardProcess>
+        <cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+        <cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+      </cac:PostAwardProcess>
+    </cac:TenderingTerms>
+    <cac:TenderingProcess>
+      <cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+      <cbc:GovernmentAgreementConstraintIndicator>false</cbc:GovernmentAgreementConstraintIndicator>
+      <cac:TenderSubmissionDeadlinePeriod>
+        <cbc:EndDate>2026-05-13+00:00</cbc:EndDate>
+        <cbc:EndTime>10:00:58+00:00</cbc:EndTime>
+      </cac:TenderSubmissionDeadlinePeriod>
+      <cac:AdditionalInformationRequestPeriod>
+        <cbc:EndDate>2026-04-28+00:00</cbc:EndDate>
+        <cbc:EndTime>22:00:00+00:00</cbc:EndTime>
+      </cac:AdditionalInformationRequestPeriod>
+      <cac:OpenTenderEvent>
+        <cbc:OccurrenceDate>2026-05-13+00:00</cbc:OccurrenceDate>
+        <cbc:OccurrenceTime>10:01:00+00:00</cbc:OccurrenceTime>
+      </cac:OpenTenderEvent>
+      <cac:AuctionTerms>
+        <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+      </cac:AuctionTerms>
+      <cac:ContractingSystem>
+        <cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+      </cac:ContractingSystem>
+      <cac:ContractingSystem>
+        <cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+      </cac:ContractingSystem>
+    </cac:TenderingProcess>
+    <cac:ProcurementProject>
+      <cbc:ID>26094</cbc:ID>
+      <cbc:Name languageID="NOR">Nye nettsider</cbc:Name>
+      <cbc:Name languageID="ENG">New websites</cbc:Name>
+      <cbc:Description languageID="NOR">Konkurransen gjelder levering av en helhetlig løsning for etablering og videre forvaltning av virksomhetens nettside. Leveransen skal omfatte utvikling og etablering av ny nettside, teknisk drift og hosting, samt løpende bistand og rådgivning innen webutvikling, design og videreutvikling av løsningen. Leverandøren sørger for stabil drift, sikker forvaltning og kontinuerlig forbedring av nettsiden gjennom hele avtaleperioden. Leverandøren etablerer nettsiden på en standardisert og anerkjent CMS-plattform.
+
+Anskaffelsens verdi anslås til: over EØS - terskelverdi. Volumet er et estimat og er ikke bindende for oppdragsgiver.
+
+For nærmere informasjon viser vi til anskaffelsesdokumentene.
+
+Oppdragsgiver tar forbehold om avlysning av konkurransen, blant annet i forbindelse med budsjettmessig dekning.
+
+Denne anskaffelsen er etter sin art vurdert til å ha en uvesentlig innvirkning på klima og miljø, jf. forskriften §7-9, femte ledd. Begrunnelsen for dette er at anskaffelsen gjelder kjøp av  utvikling og etablering av ny nettside, teknisk drift og hosting, samt løpende bistand og rådgivning innen webutvikling, design og videreutvikling av løsningen. Leverandøren sørger for stabil drift, sikker forvaltning og kontinuerlig forbedring av nettsiden gjennom hele avtaleperioden, der anskaffelsens art medfører at oppdragsgiver er avskåret fra å påvirke klima og miljøpåvirkningen, siden krav og kriterier som retter seg mot disse elementene ikke vil ha tilstrekkelig tilknytning til leveransen, jf. DFØs miljøveileder.
+
+LÆRLING: Plikten til å stille krav om lærling er vurdert til å gjelde for denne anskaffelsen, jf. anskaffelsesloven § 7.</cbc:Description>
+      <cbc:Description languageID="ENG">The competition is for the delivery of a comprehensive system for the establishment and further management of the entity ́s website. The delivery shall include the development and establishment of a new website, technical operations and hosting, as well as ongoing assistance and advice within web development, design and further development of the system. The tenderer ensures stable operation, secure management and continual improvements to the website throughout the entire contract period. The tenderer will establish the website on a standardised and recognised CMS platform.
+
+The procurement ́s value is estimated to: above the EEA threshold. The volume is an estimate and is not binding for the contracting authority.
+
+See the procurement documents for further information.
+
+The contracting authority reserves the right to cancel the competition, i.a. in connection with budgetary coverage.
+
+This procurement is considered to have an immaterial impact on climate and the environment, cf. the Regulations §7-9, fifth paragraph. The justification for this is that the procurement concerns the purchase of development and establishment of a new website, technical operation and hosting, as well as ongoing assistance and consultancy services within web development, design and further development of the system. The tenderer ensures stable operation, secure management and continual improvements to the website throughout the contract period, where the nature of the procurement means that the contracting authority has been cut off from affecting climate and environmental impact, as the requirements and criteria targeting these elements will not have sufficient connection to the delivery, c.f. DFØ ́s environment supervisor.
+
+APPRENTICE: The obligation to set requirements for apprentices is considered to apply for this procurement, cf. the Procurement Act § 7.</cbc:Description>
+      <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+      <cac:MainCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+      </cac:MainCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">72200000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">72400000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">72410000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">72413000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">72415000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:RealizedLocation>
+        <cac:Address>
+          <cbc:CountrySubentityCode listName="nuts">NO081</cbc:CountrySubentityCode>
+          <cac:Country>
+            <cbc:IdentificationCode listName="country">NOR</cbc:IdentificationCode>
+          </cac:Country>
+        </cac:Address>
+      </cac:RealizedLocation>
+      <cac:PlannedPeriod>
+        <cbc:DescriptionCode listName="Duration">UNLIMITED</cbc:DescriptionCode>
+      </cac:PlannedPeriod>
+    </cac:ProcurementProject>
+  </cac:ProcurementProjectLot>
+</ContractNotice>

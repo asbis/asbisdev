@@ -1,0 +1,13 @@
+{
+  "expo": {
+    "name": "Antidoping i lomma",
+    "slug": "antidoping-prototype",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "assetBundlePatterns": ["**/*"],
+    "ios": { "supportsTablet": false },
+    "newArchEnabled": true,
+    "web": { "bundler": "metro" }
+  }
+}

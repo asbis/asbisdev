@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">
+  <ext:UBLExtensions>
+    <ext:UBLExtension>
+      <ext:ExtensionContent>
+        <efext:EformsExtension>
+          <efbc:TransmissionDate>2026-03-27+00:00</efbc:TransmissionDate>
+          <efbc:TransmissionTime>12:31:28+00:00</efbc:TransmissionTime>
+          <efac:NoticeSubType>
+            <cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+          </efac:NoticeSubType>
+          <efac:Organizations>
+            <efac:Organization>
+              <efac:Company>
+                <cbc:WebsiteURI>https://www.domstol.no</cbc:WebsiteURI>
+                <cac:PartyIdentification>
+                  <cbc:ID schemeName="organization">ORG-0001</cbc:ID>
+                </cac:PartyIdentification>
+                <cac:PartyName>
+                  <cbc:Name languageID="NOR">Domstoladministrasjonen</cbc:Name>
+                </cac:PartyName>
+                <cac:PartyName>
+                  <cbc:Name languageID="ENG">Domstoladministrasjonen</cbc:Name>
+                </cac:PartyName>
+                <cac:PostalAddress>
+                  <cbc:StreetName>Dronningens gate 2</cbc:StreetName>
+                  <cbc:CityName>TRONDHEIM</cbc:CityName>
+                  <cbc:PostalZone>7011</cbc:PostalZone>
+                  <cbc:CountrySubentityCode listName="nuts">NO060</cbc:CountrySubentityCode>
+                  <cac:Country>
+                    <cbc:IdentificationCode listName="country">NOR</cbc:IdentificationCode>
+                  </cac:Country>
+                </cac:PostalAddress>
+                <cac:PartyLegalEntity>
+                  <cbc:CompanyID schemeID="002">984195796</cbc:CompanyID>
+                </cac:PartyLegalEntity>
+                <cac:Contact>
+                  <cbc:Name>Leila Hadjaeva</cbc:Name>
+                  <cbc:Telephone>+47 40179532</cbc:Telephone>
+                  <cbc:ElectronicMail>leila.hadjaeva@inventura.no</cbc:ElectronicMail>
+                </cac:Contact>
+              </efac:Company>
+            </efac:Organization>
+            <efac:Organization>
+              <efac:Company>
+                <cac:PartyIdentification>
+                  <cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+                </cac:PartyIdentification>
+                <cac:PartyName>
+                  <cbc:Name languageID="NOR">Trøndelag tingrett</cbc:Name>
+                </cac:PartyName>
+                <cac:PartyName>
+                  <cbc:Name languageID="ENG">Trøndelag tingrett</cbc:Name>
+                </cac:PartyName>
+                <cac:PostalAddress>
+                  <cbc:CityName>Trondheim</cbc:CityName>
+                  <cbc:PostalZone>7004</cbc:PostalZone>
+                  <cbc:CountrySubentityCode listName="nuts">NO060</cbc:CountrySubentityCode>
+                  <cac:Country>
+                    <cbc:IdentificationCode listName="country">NOR</cbc:IdentificationCode>
+                  </cac:Country>
+                </cac:PostalAddress>
+                <cac:PartyLegalEntity>
+                  <cbc:CompanyID schemeID="002">926 722 794</cbc:CompanyID>
+                </cac:PartyLegalEntity>
+              </efac:Company>
+            </efac:Organization>
+          </efac:Organizations>
+        </efext:EformsExtension>
+      </ext:ExtensionContent>
+    </ext:UBLExtension>
+  </ext:UBLExtensions>
+  <cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+  <cbc:CustomizationID>eforms-sdk-1.13#extended#urn:fdc:anskaffelser.no:2023:eforms:eu</cbc:CustomizationID>
+  <cbc:ID schemeName="notice-id">4fca2065-6d1f-44f7-ba69-ac5a70121a13</cbc:ID>
+  <cbc:ContractFolderID>26981482-a1f0-42a0-b756-50b18a9e9d40</cbc:ContractFolderID>
+  <cbc:IssueDate>2026-03-27+00:00</cbc:IssueDate>
+  <cbc:IssueTime>09:10:39+00:00</cbc:IssueTime>
+  <cbc:VersionID>01</cbc:VersionID>
+  <cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+  <cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+  <cbc:NoticeLanguageCode>NOR</cbc:NoticeLanguageCode>
+  <cac:AdditionalNoticeLanguage>
+    <cbc:ID>ENG</cbc:ID>
+  </cac:AdditionalNoticeLanguage>
+  <cac:ContractingParty>
+    <cbc:BuyerProfileURI>https://eu.eu-supply.com/ctm/company/companyinformation/index/339555</cbc:BuyerProfileURI>
+    <cac:ContractingPartyType>
+      <cbc:PartyTypeCode listName="buyer-legal-type">body-pl</cbc:PartyTypeCode>
+    </cac:ContractingPartyType>
+    <cac:ContractingActivity>
+      <cbc:ActivityTypeCode listName="authority-activity">gen-pub</cbc:ActivityTypeCode>
+    </cac:ContractingActivity>
+    <cac:Party>
+      <cac:PartyIdentification>
+        <cbc:ID schemeName="organization">ORG-0001</cbc:ID>
+      </cac:PartyIdentification>
+    </cac:Party>
+  </cac:ContractingParty>
+  <cac:TenderingTerms>
+    <cac:TendererQualificationRequest>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-sub-espd</cbc:TendererRequirementTypeCode>
+      </cac:SpecificTendererRequirement>
+    </cac:TendererQualificationRequest>
+  </cac:TenderingTerms>
+  <cac:TenderingProcess>
+    <cbc:ProcedureCode listName="procurement-procedure-type">neg-w-call</cbc:ProcedureCode>
+    <cac:ProcessJustification>
+      <cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+    </cac:ProcessJustification>
+  </cac:TenderingProcess>
+  <cac:ProcurementProject>
+    <cbc:ID>26/1171</cbc:ID>
+    <cbc:Name languageID="NOR">Tolkebestillingsløsning</cbc:Name>
+    <cbc:Name languageID="ENG">System for ordering interpretators</cbc:Name>
+    <cbc:Description languageID="NOR">Domstolene i Norge har hvert år behov for tolketjenester, både fysiske og digitale. Domstolene i Norge v/ DA skal derfor inngå avtale om drift og vedlikehold av en tolkebestillingsløsning. Løsningen skal tilrettelegge for bestilling av den best kvalifiserte og tilgjengelige tolken i rimelig avstand fra oppmøtestedet.  
+
+For oppdraget skal det inngås kontrakt med én leverandør. 
+
+For anskaffelsen legges følgende kontrakt til grunn: Statens standardavtale – løpende tjenestekjøp over internett (SSA-L).</cbc:Description>
+    <cbc:Description languageID="ENG">Every year the law courts in Norway require interpretation services, both physical and digital. The courts in Norway c/o DA shall therefore enter into a contract for the operation and maintenance of an interpreter ordering system. The system shall facilitate the ordering of the best qualified and available interpreter at a reasonable distance from the address place.  
+
+A contract shall be signed with one tenderer for the assignment. 
+
+The following contract will form the basis of the procurement: The Government ́s standard contract - ongoing service procurements over the internet (SSA-L).</cbc:Description>
+    <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+    <cbc:Note languageID="NOR">Merk at oppdragsgiver forbeholder seg retten til å gjennomføre forhandlinger med én eller to leverandør dersom oppdragsgiver mottar ett eller to tilbud.</cbc:Note>
+    <cbc:Note languageID="ENG">Note that the contracting authority reserves the right to conduct negotiations with one or two tenderers if the contracting authority receives one or two tender offers.</cbc:Note>
+    <cac:RequestedTenderTotal>
+      <cbc:EstimatedOverallContractAmount currencyID="NOK">5000000</cbc:EstimatedOverallContractAmount>
+    </cac:RequestedTenderTotal>
+    <cac:MainCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">72260000</cbc:ItemClassificationCode>
+    </cac:MainCommodityClassification>
+    <cac:AdditionalCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">48100000</cbc:ItemClassificationCode>
+    </cac:AdditionalCommodityClassification>
+    <cac:AdditionalCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">48211000</cbc:ItemClassificationCode>
+    </cac:AdditionalCommodityClassification>
+    <cac:AdditionalCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">48942000</cbc:ItemClassificationCode>
+    </cac:AdditionalCommodityClassification>
+    <cac:AdditionalCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+    </cac:AdditionalCommodityClassification>
+    <cac:AdditionalCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">72261000</cbc:ItemClassificationCode>
+    </cac:AdditionalCommodityClassification>
+    <cac:AdditionalCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">72262000</cbc:ItemClassificationCode>
+    </cac:AdditionalCommodityClassification>
+    <cac:AdditionalCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">72263000</cbc:ItemClassificationCode>
+    </cac:AdditionalCommodityClassification>
+    <cac:AdditionalCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">72266000</cbc:ItemClassificationCode>
+    </cac:AdditionalCommodityClassification>
+    <cac:AdditionalCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">72268000</cbc:ItemClassificationCode>
+    </cac:AdditionalCommodityClassification>
+    <cac:AdditionalCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">79540000</cbc:ItemClassificationCode>
+    </cac:AdditionalCommodityClassification>
+    <cac:RealizedLocation>
+      <cac:Address>
+        <cbc:Region>anyw-cou</cbc:Region>
+        <cac:Country>
+          <cbc:IdentificationCode listName="country">NOR</cbc:IdentificationCode>
+        </cac:Country>
+      </cac:Address>
+    </cac:RealizedLocation>
+  </cac:ProcurementProject>
+  <cac:ProcurementProjectLot>
+    <cbc:ID schemeName="Lot">LOT-0000</cbc:ID>
+    <cac:TenderingTerms>
+      <ext:UBLExtensions>
+        <ext:UBLExtension>
+          <ext:ExtensionContent>
+            <efext:EformsExtension>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-ratio</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="NOR">Leverandøren skal ha finansiell styrke til å kunne oppfylle kontrakten. Dette skal dokumenteres med leverandørens årsregnskap inkludert noter med styre- og revisjonsberetning fra 2024 og 2025.
+
+Dersom siste års regnskap ikke er ferdigstilt ved fristen for søknad, skal det vedlegges foreløpige regnskapstall for 2025. Dersom det foreligger grunner som gjør at dette ikke kan vedlegges skal leverandøren dokumentere finansiell styrke på annen egnet måte.</cbc:Description>
+                <cbc:Description languageID="ENG">The tenderer shall have the financial strength to be able to fulfil the contract. This shall be documented by the tenderer's annual accounts including notes with the board ́s and auditor ́s reports from 2024 and 2025.
+
+If the last year's accounts have not been completed by the application deadline, provisional accounting figures for 2025 must be enclosed. If there are reasons that mean that this cannot be enclosed, the tenderer shall document financial strength in another suitable manner.</cbc:Description>
+                <efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+              </efac:SelectionCriteria>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-trade</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="NOR">Leverandøren skal være et lovlig etablert foretak.</cbc:Description>
+                <cbc:Description languageID="ENG">The tenderer shall be a legally established company.</cbc:Description>
+                <efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+              </efac:SelectionCriteria>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-supply</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="NOR">Leverandøren skal ha god erfaring fra relevante og sammenlignbare leveranser.
+
+Med relevant og sammenlignbare leveranser menes etablering, drift og vedlikehold av skybasert løsning for bestilling av fagpersonell.</cbc:Description>
+                <cbc:Description languageID="ENG">Tenderers shall have good experience from relevant and comparable deliveries.
+
+Relevant and comparable deliveries means the establishment, operation and maintenance of a cloud based system for ordering professionals.</cbc:Description>
+                <efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+              </efac:SelectionCriteria>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-mgmt-qual</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="NOR">Leverandøren skal ha et dokumentert kvalitetsledelsessystem.</cbc:Description>
+                <cbc:Description languageID="ENG">Tenderers shall have a documented quality management system.</cbc:Description>
+                <efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+              </efac:SelectionCriteria>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-yrly-avg-mp</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="NOR">Leverandøren skal ha gjennomføringsevne til å oppfylle kontrakten.
+
+Kvalifikasjonskravet skal dokumenteres med en beskrivelse av hvordan leverandøren er organisert for gjennomføring av denne kontrakten, samt foretakets kapasitet. Dersom leverandøren benytter underleverandører, skal det oppgis en oversikt over fordelingen av personell mellom hovedleverandør og underleverandøren.</cbc:Description>
+                <cbc:Description languageID="ENG">Tenderers must have the ability to fulfil the contract.
+
+The qualification requirement shall be documented by a description of how the tenderer is organised for the execution of this contract, as well as the company ́s capacity. If a tenderer uses sub-suppliers, an overview shall be provided of the distribution of personnel between the main supplier and the sub-supplier.</cbc:Description>
+                <efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+              </efac:SelectionCriteria>
+            </efext:EformsExtension>
+          </ext:ExtensionContent>
+        </ext:UBLExtension>
+      </ext:UBLExtensions>
+      <cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+      <cac:CallForTendersDocumentReference>
+        <cbc:ID>Anskaffelsesdokumenter</cbc:ID>
+        <cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+        <cac:Attachment>
+          <cac:ExternalReference>
+            <cbc:URI>https://eu.eu-supply.com/app/rfq/rwlentrance_s.asp?PID=452596&amp;TID=200413460&amp;B=</cbc:URI>
+          </cac:ExternalReference>
+        </cac:Attachment>
+      </cac:CallForTendersDocumentReference>
+      <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:AwardingTerms>
+        <cbc:NoFurtherNegotiationIndicator>true</cbc:NoFurtherNegotiationIndicator>
+      </cac:AwardingTerms>
+      <cac:TenderRecipientParty>
+        <cbc:EndpointID>https://eu.eu-supply.com/app/rfq/rwlentrance_s.asp?PID=452596&amp;TID=200413460&amp;B=</cbc:EndpointID>
+      </cac:TenderRecipientParty>
+      <cac:AppealTerms>
+        <cac:PresentationPeriod>
+          <cbc:Description languageID="NOR">Det vil være en karensperiode på minst 10 dager etter tildeling av kontrakt.</cbc:Description>
+          <cbc:Description languageID="ENG">There will be a waiting period of at least 10 days after the award of contract.</cbc:Description>
+        </cac:PresentationPeriod>
+        <cac:AppealInformationParty>
+          <cac:PartyIdentification>
+            <cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+          </cac:PartyIdentification>
+        </cac:AppealInformationParty>
+        <cac:AppealReceiverParty>
+          <cac:PartyIdentification>
+            <cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+          </cac:PartyIdentification>
+        </cac:AppealReceiverParty>
+      </cac:AppealTerms>
+      <cac:Language>
+        <cbc:ID>NOR</cbc:ID>
+      </cac:Language>
+      <cac:PostAwardProcess>
+        <cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+        <cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+      </cac:PostAwardProcess>
+    </cac:TenderingTerms>
+    <cac:TenderingProcess>
+      <cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+      <cbc:CandidateReductionConstraintIndicator>true</cbc:CandidateReductionConstraintIndicator>
+      <cbc:GovernmentAgreementConstraintIndicator>false</cbc:GovernmentAgreementConstraintIndicator>
+      <cac:ParticipationRequestReceptionPeriod>
+        <cbc:EndDate>2026-04-30+00:00</cbc:EndDate>
+        <cbc:EndTime>10:00:00+00:00</cbc:EndTime>
+      </cac:ParticipationRequestReceptionPeriod>
+      <cac:EconomicOperatorShortList>
+        <cbc:LimitationDescription>false</cbc:LimitationDescription>
+        <cbc:MinimumQuantity>3</cbc:MinimumQuantity>
+      </cac:EconomicOperatorShortList>
+      <cac:AuctionTerms>
+        <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+      </cac:AuctionTerms>
+      <cac:ContractingSystem>
+        <cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+      </cac:ContractingSystem>
+      <cac:ContractingSystem>
+        <cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+      </cac:ContractingSystem>
+    </cac:TenderingProcess>
+    <cac:ProcurementProject>
+      <cbc:ID>26/1171</cbc:ID>
+      <cbc:Name languageID="NOR">Tolkebestillingsløsning</cbc:Name>
+      <cbc:Name languageID="ENG">System for ordering interpretators</cbc:Name>
+      <cbc:Description languageID="NOR">Domstolene i Norge har hvert år behov for tolketjenester, både fysiske og digitale. Domstolene i Norge v/ DA skal derfor inngå avtale om drift og vedlikehold av en tolkebestillingsløsning. Løsningen skal tilrettelegge for bestilling av den best kvalifiserte og tilgjengelige tolken i rimelig avstand fra oppmøtestedet.  
+
+For oppdraget skal det inngås kontrakt med én leverandør. 
+
+For anskaffelsen legges følgende kontrakt til grunn: Statens standardavtale – løpende tjenestekjøp over internett (SSA-L).</cbc:Description>
+      <cbc:Description languageID="ENG">Every year the law courts in Norway require interpretation services, both physical and digital. The courts in Norway c/o DA shall therefore enter into a contract for the operation and maintenance of an interpreter ordering system. The system shall facilitate the ordering of the best qualified and available interpreter at a reasonable distance from the address place.  
+
+A contract shall be signed with one tenderer for the assignment. 
+
+The following contract will form the basis of the procurement: The Government ́s standard contract - ongoing service procurements over the internet (SSA-L).</cbc:Description>
+      <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+      <cbc:Note languageID="NOR">Merk at oppdragsgiver forbeholder seg retten til å gjennomføre forhandlinger med én eller to leverandør dersom oppdragsgiver mottar ett eller to tilbud.</cbc:Note>
+      <cbc:Note languageID="ENG">Note that the contracting authority reserves the right to conduct negotiations with one or two tenderers if the contracting authority receives one or two tender offers.</cbc:Note>
+      <cac:RequestedTenderTotal>
+        <cbc:EstimatedOverallContractAmount currencyID="NOK">5000000</cbc:EstimatedOverallContractAmount>
+      </cac:RequestedTenderTotal>
+      <cac:MainCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">72260000</cbc:ItemClassificationCode>
+      </cac:MainCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">48100000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">48211000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">48942000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">72261000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">72262000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">72263000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">72266000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">72268000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">79540000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:RealizedLocation>
+        <cac:Address>
+          <cbc:Region>anyw-cou</cbc:Region>
+          <cac:Country>
+            <cbc:IdentificationCode listName="country">NOR</cbc:IdentificationCode>
+          </cac:Country>
+        </cac:Address>
+      </cac:RealizedLocation>
+      <cac:PlannedPeriod>
+        <cbc:DescriptionCode listName="Duration">UNLIMITED</cbc:DescriptionCode>
+      </cac:PlannedPeriod>
+    </cac:ProcurementProject>
+  </cac:ProcurementProjectLot>
+</ContractNotice>

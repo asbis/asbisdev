@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">
+  <ext:UBLExtensions>
+    <ext:UBLExtension>
+      <ext:ExtensionContent>
+        <efext:EformsExtension>
+          <efbc:TransmissionDate>2026-03-27+00:00</efbc:TransmissionDate>
+          <efbc:TransmissionTime>10:53:17+00:00</efbc:TransmissionTime>
+          <efac:Changes>
+            <efbc:ChangedNoticeIdentifier>1330e27f-1849-4d28-a1fd-4dab2b305ed7-01</efbc:ChangedNoticeIdentifier>
+            <efac:Change>
+              <efac:ChangedSection>
+                <efbc:ChangedSectionIdentifier>LOT-0000</efbc:ChangedSectionIdentifier>
+              </efac:ChangedSection>
+            </efac:Change>
+            <efac:ChangeReason>
+              <cbc:ReasonCode listName="change-corrig-justification">update-add</cbc:ReasonCode>
+            </efac:ChangeReason>
+          </efac:Changes>
+          <efac:NoticeSubType>
+            <cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+          </efac:NoticeSubType>
+          <efac:Organizations>
+            <efac:Organization>
+              <efac:Company>
+                <cbc:WebsiteURI>http://www.vetinst.no</cbc:WebsiteURI>
+                <cac:PartyIdentification>
+                  <cbc:ID schemeName="organization">ORG-0001</cbc:ID>
+                </cac:PartyIdentification>
+                <cac:PartyName>
+                  <cbc:Name languageID="NOR">Veterinærinstituttet</cbc:Name>
+                </cac:PartyName>
+                <cac:PartyName>
+                  <cbc:Name languageID="ENG">Veterinærinstituttet</cbc:Name>
+                </cac:PartyName>
+                <cac:PostalAddress>
+                  <cbc:StreetName>Arboretveien 57</cbc:StreetName>
+                  <cbc:Department>104 Infrastruktur</cbc:Department>
+                  <cbc:CityName>Ås</cbc:CityName>
+                  <cbc:PostalZone>1433</cbc:PostalZone>
+                  <cbc:CountrySubentityCode listName="nuts">NO084</cbc:CountrySubentityCode>
+                  <cac:Country>
+                    <cbc:IdentificationCode listName="country">NOR</cbc:IdentificationCode>
+                  </cac:Country>
+                </cac:PostalAddress>
+                <cac:PartyLegalEntity>
+                  <cbc:CompanyID schemeID="002">970955623</cbc:CompanyID>
+                </cac:PartyLegalEntity>
+                <cac:Contact>
+                  <cbc:Name>Innkjop VI</cbc:Name>
+                  <cbc:Telephone>+47 23 21 60 00</cbc:Telephone>
+                  <cbc:ElectronicMail>innkjop@vetinst.no</cbc:ElectronicMail>
+                </cac:Contact>
+              </efac:Company>
+            </efac:Organization>
+            <efac:Organization>
+              <efac:Company>
+                <cbc:WebsiteURI>https://www.domstol.no/no/domstoler/tingrett/oslo-tingrett/</cbc:WebsiteURI>
+                <cac:PartyIdentification>
+                  <cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+                </cac:PartyIdentification>
+                <cac:PartyName>
+                  <cbc:Name languageID="NOR">Oslo tingrett</cbc:Name>
+                </cac:PartyName>
+                <cac:PartyName>
+                  <cbc:Name languageID="ENG">Oslo tingrett</cbc:Name>
+                </cac:PartyName>
+                <cac:PostalAddress>
+                  <cbc:StreetName>Postboks 2106 Vika</cbc:StreetName>
+                  <cbc:CityName>Oslo</cbc:CityName>
+                  <cbc:PostalZone>0125</cbc:PostalZone>
+                  <cbc:CountrySubentityCode listName="nuts">NO081</cbc:CountrySubentityCode>
+                  <cac:Country>
+                    <cbc:IdentificationCode listName="country">NOR</cbc:IdentificationCode>
+                  </cac:Country>
+                </cac:PostalAddress>
+                <cac:PartyLegalEntity>
+                  <cbc:CompanyID schemeID="002">926 725 939</cbc:CompanyID>
+                </cac:PartyLegalEntity>
+                <cac:Contact>
+                  <cbc:Telephone>22 03 52 00</cbc:Telephone>
+                  <cbc:ElectronicMail>oslo.tingrett@domstol.no</cbc:ElectronicMail>
+                </cac:Contact>
+              </efac:Company>
+            </efac:Organization>
+          </efac:Organizations>
+        </efext:EformsExtension>
+      </ext:ExtensionContent>
+    </ext:UBLExtension>
+  </ext:UBLExtensions>
+  <cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+  <cbc:CustomizationID>eforms-sdk-1.13#extended#urn:fdc:anskaffelser.no:2023:eforms:eu</cbc:CustomizationID>
+  <cbc:ID schemeName="notice-id">10b50331-f89a-4cc4-ac44-907451800d4a</cbc:ID>
+  <cbc:ContractFolderID>320286a9-848d-4449-acf7-5b177976d9b1</cbc:ContractFolderID>
+  <cbc:IssueDate>2026-03-27+00:00</cbc:IssueDate>
+  <cbc:IssueTime>10:39:44+00:00</cbc:IssueTime>
+  <cbc:VersionID>01</cbc:VersionID>
+  <cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+  <cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+  <cbc:NoticeLanguageCode>NOR</cbc:NoticeLanguageCode>
+  <cac:AdditionalNoticeLanguage>
+    <cbc:ID>ENG</cbc:ID>
+  </cac:AdditionalNoticeLanguage>
+  <cac:ContractingParty>
+    <cac:ContractingPartyType>
+      <cbc:PartyTypeCode listName="buyer-legal-type">pub-undert-cga</cbc:PartyTypeCode>
+    </cac:ContractingPartyType>
+    <cac:ContractingActivity>
+      <cbc:ActivityTypeCode listName="authority-activity">gen-pub</cbc:ActivityTypeCode>
+    </cac:ContractingActivity>
+    <cac:Party>
+      <cac:PartyIdentification>
+        <cbc:ID schemeName="organization">ORG-0001</cbc:ID>
+      </cac:PartyIdentification>
+    </cac:Party>
+  </cac:ContractingParty>
+  <cac:TenderingTerms>
+    <cac:TendererQualificationRequest>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-sub-espd</cbc:TendererRequirementTypeCode>
+      </cac:SpecificTendererRequirement>
+    </cac:TendererQualificationRequest>
+  </cac:TenderingTerms>
+  <cac:TenderingProcess>
+    <cbc:ProcedureCode listName="procurement-procedure-type">open</cbc:ProcedureCode>
+    <cac:ProcessJustification>
+      <cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+    </cac:ProcessJustification>
+  </cac:TenderingProcess>
+  <cac:ProcurementProject>
+    <cbc:ID>26-04268</cbc:ID>
+    <cbc:Name languageID="NOR">Nettsideutvikling og drift - vetinst.no</cbc:Name>
+    <cbc:Name languageID="ENG">Website development and operation - vetinst.no</cbc:Name>
+    <cbc:Description languageID="NOR">Formålet med anskaffelsen er å inngå kontrakt om kjøp av tjenester for å sikre stabil og forutsigbar drift, forvaltning, vedlikehold og videreutvikling av Veterinærinstituttets eksterne nettsider og tilhørende digitale tjenester.
+De eksterne nettsidene er en sentral kanal for instituttets formidling, samhandling og beredskapskommunikasjon, og skal være tilgjengelige, sikre og brukervennlige i tråd med instituttets samfunnsoppdrag.</cbc:Description>
+    <cbc:Description languageID="ENG">The aim of the procurement is to enter into a contract for services to ensure stable and predictable operation, management, maintenance and further development of the Norwegian Veterinary Institute ́s external websites and accompanying digital services.
+The external websites are a central channel for the institute ́s communication, interaction and stand-by communication, and shall be available, secure and user friendly in accordance with the institute ́s social mission.</cbc:Description>
+    <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+    <cac:MainCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">72415000</cbc:ItemClassificationCode>
+    </cac:MainCommodityClassification>
+    <cac:AdditionalCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+    </cac:AdditionalCommodityClassification>
+    <cac:AdditionalCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">72212224</cbc:ItemClassificationCode>
+    </cac:AdditionalCommodityClassification>
+    <cac:AdditionalCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">72250000</cbc:ItemClassificationCode>
+    </cac:AdditionalCommodityClassification>
+    <cac:RealizedLocation>
+      <cac:Address>
+        <cbc:StreetName>Elizabeth Stephansens vei 1</cbc:StreetName>
+        <cbc:CityName>Ås</cbc:CityName>
+        <cbc:PostalZone>1433</cbc:PostalZone>
+        <cbc:CountrySubentityCode listName="nuts">NO084</cbc:CountrySubentityCode>
+        <cac:Country>
+          <cbc:IdentificationCode listName="country">NOR</cbc:IdentificationCode>
+        </cac:Country>
+      </cac:Address>
+    </cac:RealizedLocation>
+  </cac:ProcurementProject>
+  <cac:ProcurementProjectLot>
+    <cbc:ID schemeName="Lot">LOT-0000</cbc:ID>
+    <cac:TenderingTerms>
+      <ext:UBLExtensions>
+        <ext:UBLExtension>
+          <ext:ExtensionContent>
+            <efext:EformsExtension>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-trade</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="NOR">Leverandøren skal være registrert i et foretaksregister, faglig register eller et handelsregister i den staten leverandøren er etablert.</cbc:Description>
+                <cbc:Description languageID="ENG">Tenderers shall be registered in a company register, professional register or a commerce register in the country where the tenderer is established.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-ratio</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="NOR">Leverandøren skal ha tilstrekkelig økonomisk og finansiell kapasitet til å kunne utføre kontrakten. 
+
+Kredittvurderingen skal vise at leverandøren er økonomisk solid og i stand til å oppfylle kontraktsforpliktelsene.</cbc:Description>
+                <cbc:Description languageID="ENG">Tenderers must have sufficient economic and financial capacity to fulfil the contract. 
+
+The credit rating shall show that the tenderer is financially solid and able to fulfil the contractual obligations.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-mgmt-env</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="NOR">Leverandøren skal ha et etablert miljøledelsessystem eller tilsvarende rutiner for å redusere miljøbelastning i virksomheten.</cbc:Description>
+                <cbc:Description languageID="ENG">Tenderers shall have an established environmental management system or equivalent routines for reducing the impact on the environment in the company.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-mgmt-qual</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="NOR">Leverandøren skal ha et kvalitetssystem relevant for gjennomføringen av leveransen.</cbc:Description>
+                <cbc:Description languageID="ENG">Tenderers shall have a quality system relevant for the execution of the delivery.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-mgmt-qual</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="NOR">For varer eller tjenester som er kompliserte, eller som unntaksvis skal benyttes til et spesielt formål: Vil leverandøren tillate, at det foretas kontroll av leverandørens produksjonskapasitet eller tekniske kapasitet og, hvor det er nødvendig, av de undersøkelses- og forskningsfasiliteter som leverandøren råder over, og av kvalitetskontrolltiltak? Kontrollen skal foretas av oppdragsgiveren eller oppdragsgiver kan overlate det til et kompetent offentlige organ i den staten leverandøren er etablert.</cbc:Description>
+                <cbc:Description languageID="ENG">For goods or services that are complicated, or that in exceptional cases shall be used for a particular purpose: Will the tenderer allow checks of the tenderer's production capacity or technical capacity and, where necessary, of the survey and research facilities that the tenderer has at its disposal and of quality control measures? The inspections shall be undertaken by the contracting authority or the contracting authority can leave it to a competent public body in the country where the tenderer is established.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-yrly-avg-mp</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="NOR">Leverandøren skal ha tilstrekkelig
+Organisatorisk kapasitet og relevante, tilgjengelige ressurser til å gjennomføre kontrakten i hele avtaleperioden .</cbc:Description>
+                <cbc:Description languageID="ENG">Tenderers shall have sufficient
+Organisational capacity and relevant available resources to carry out the contract during the entire contract period.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="NOR">Leverandøren skal ha erfaring fra sammenlignbare oppdrag de tre siste år. Med sammenlignbare oppdrag menes leveranser som omfatter drift og videreutvikling av webbaserte publiseringsløsninger, herunder teknisk forvaltning, integrasjoner eller tilsvarende kompleksitet.</cbc:Description>
+                <cbc:Description languageID="ENG">Tenderers shall have experience from comparable contracts in the last three years. Comparable assignments means deliveries that include operation and further development of web based publication systems, including technical management, integrations or equivalent complexity.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-qual-inst</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="NOR">Kan leverandør levere etterspurte attester utstedt av offisielle organer for kvalitetskontroll, og som kan bekrefte at varene, som er klart identifisert ved henvisning til tekniske spesifikasjoner eller standarder, som er fastsatt i kunngjøringen eller i anskaffelsesdokumentene, er i overensstemmelse med disse?</cbc:Description>
+                <cbc:Description languageID="ENG">Can tenderers submit the requested certificates issued by official bodies for quality control, and who can confirm that the goods, which are clearly identified by reference to technical specifications or standards, as determined in the notice or in the procurement documents, are in accordance with these?</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-sche-qu-cert-indep</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="NOR">Kan leverandør fremlegge attester utstedt av uavhengige organer som dokumentasjon for at leverandøren oppfyller de angitte kvalitetssikringsstandardene, inkludert krav til universell utforming?</cbc:Description>
+                <cbc:Description languageID="ENG">Can tenderers submit certificates issued by independent bodies that document that the tenderer fulfils the stated quality assurance standards, including universal design requirements?</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-sche-env-cert-indep</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="NOR">Er leverandøren i stand til å fremlegge attester utstedt av uavhengige organer som dokumentasjon for at leverandøren oppfyller de angitte miljøledelsessystemene eller -standardene?</cbc:Description>
+                <cbc:Description languageID="ENG">Is the tenderer able to submit certificates issued by independent bodies as documentation that the tenderer fulfils the stated environmental management systems or standards?</cbc:Description>
+              </efac:SelectionCriteria>
+            </efext:EformsExtension>
+          </ext:ExtensionContent>
+        </ext:UBLExtension>
+      </ext:UBLExtensions>
+      <cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+      <cbc:RecurringProcurementIndicator>false</cbc:RecurringProcurementIndicator>
+      <cac:CallForTendersDocumentReference>
+        <cbc:ID>Lenke til innkjøpsdokumentene</cbc:ID>
+        <cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+        <cac:Attachment>
+          <cac:ExternalReference>
+            <cbc:URI>https://tendsign.com/doc.aspx?MeFormsNoticeId=86876</cbc:URI>
+          </cac:ExternalReference>
+        </cac:Attachment>
+      </cac:CallForTendersDocumentReference>
+      <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="ecatalog-submission">allowed</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="esignature-submission">false</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:TenderRecipientParty>
+        <cbc:EndpointID>https://tendsign.com/doc.aspx?MeFormsNoticeId=86876&amp;GoTo=Tender</cbc:EndpointID>
+      </cac:TenderRecipientParty>
+      <cac:TenderValidityPeriod>
+        <cbc:DurationMeasure unitCode="DAY">98</cbc:DurationMeasure>
+      </cac:TenderValidityPeriod>
+      <cac:AppealTerms>
+        <cac:PresentationPeriod>
+          <cbc:Description languageID="NOR">Eventuelle klager må fremsettes innen utløpet av karensperioden før kontraktsinngåelse.
+Karensperioden er minimum 10 kalenderdager regnet fra dagen etter at tildelingsmeddelelsen er sendt elektronisk til leverandørene.</cbc:Description>
+          <cbc:Description languageID="ENG">Any appeals must be submitted by the expiry of the waiting period before the contract is signed.
+The waiting period is a minimum of 10 calendar days calculated from the day after the award notice is sent electronically to the tenderers.</cbc:Description>
+        </cac:PresentationPeriod>
+        <cac:AppealReceiverParty>
+          <cac:PartyIdentification>
+            <cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+          </cac:PartyIdentification>
+        </cac:AppealReceiverParty>
+      </cac:AppealTerms>
+      <cac:Language>
+        <cbc:ID>NOR</cbc:ID>
+      </cac:Language>
+      <cac:PostAwardProcess>
+        <cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+        <cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+      </cac:PostAwardProcess>
+    </cac:TenderingTerms>
+    <cac:TenderingProcess>
+      <cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+      <cbc:GovernmentAgreementConstraintIndicator>false</cbc:GovernmentAgreementConstraintIndicator>
+      <cac:TenderSubmissionDeadlinePeriod>
+        <cbc:EndDate>2026-05-04+00:00</cbc:EndDate>
+        <cbc:EndTime>10:00:58+00:00</cbc:EndTime>
+      </cac:TenderSubmissionDeadlinePeriod>
+      <cac:AdditionalInformationRequestPeriod>
+        <cbc:EndDate>2026-04-19+00:00</cbc:EndDate>
+        <cbc:EndTime>22:00:00+00:00</cbc:EndTime>
+      </cac:AdditionalInformationRequestPeriod>
+      <cac:OpenTenderEvent>
+        <cbc:OccurrenceDate>2026-05-04+00:00</cbc:OccurrenceDate>
+        <cbc:OccurrenceTime>10:01:00+00:00</cbc:OccurrenceTime>
+        <cac:OccurenceLocation>
+          <cbc:Description languageID="NOR">Oslo</cbc:Description>
+          <cbc:Description languageID="ENG">Oslo</cbc:Description>
+        </cac:OccurenceLocation>
+      </cac:OpenTenderEvent>
+      <cac:AuctionTerms>
+        <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+      </cac:AuctionTerms>
+      <cac:FrameworkAgreement>
+        <cbc:MaximumOperatorQuantity>0</cbc:MaximumOperatorQuantity>
+      </cac:FrameworkAgreement>
+      <cac:ContractingSystem>
+        <cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+      </cac:ContractingSystem>
+      <cac:ContractingSystem>
+        <cbc:ContractingSystemTypeCode listName="framework-agreement">fa-wo-rc</cbc:ContractingSystemTypeCode>
+      </cac:ContractingSystem>
+    </cac:TenderingProcess>
+    <cac:ProcurementProject>
+      <cbc:ID>26-04268</cbc:ID>
+      <cbc:Name languageID="NOR">Nettsideutvikling og drift - vetinst.no</cbc:Name>
+      <cbc:Name languageID="ENG">Website development and operation - vetinst.no</cbc:Name>
+      <cbc:Description languageID="NOR">Formålet med anskaffelsen er å inngå kontrakt om kjøp av tjenester for å sikre stabil og forutsigbar drift, forvaltning, vedlikehold og videreutvikling av Veterinærinstituttets eksterne nettsider og tilhørende digitale tjenester.
+De eksterne nettsidene er en sentral kanal for instituttets formidling, samhandling og beredskapskommunikasjon, og skal være tilgjengelige, sikre og brukervennlige i tråd med instituttets samfunnsoppdrag.</cbc:Description>
+      <cbc:Description languageID="ENG">The aim of the procurement is to enter into a contract for services to ensure stable and predictable operation, management, maintenance and further development of the Norwegian Veterinary Institute ́s external websites and accompanying digital services.
+The external websites are a central channel for the institute ́s communication, interaction and stand-by communication, and shall be available, secure and user friendly in accordance with the institute ́s social mission.</cbc:Description>
+      <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+      <cac:MainCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">72415000</cbc:ItemClassificationCode>
+      </cac:MainCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">72212224</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">72250000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:RealizedLocation>
+        <cac:Address>
+          <cbc:StreetName>Elizabeth Stephansens vei 1</cbc:StreetName>
+          <cbc:CityName>Ås</cbc:CityName>
+          <cbc:PostalZone>1433</cbc:PostalZone>
+          <cbc:CountrySubentityCode listName="nuts">NO084</cbc:CountrySubentityCode>
+          <cac:Country>
+            <cbc:IdentificationCode listName="country">NOR</cbc:IdentificationCode>
+          </cac:Country>
+        </cac:Address>
+      </cac:RealizedLocation>
+      <cac:PlannedPeriod>
+        <cbc:DurationMeasure unitCode="MONTH">24</cbc:DurationMeasure>
+      </cac:PlannedPeriod>
+      <cac:ContractExtension>
+        <cbc:MaximumNumberNumeric>2</cbc:MaximumNumberNumeric>
+        <cac:Renewal>
+          <cac:Period>
+            <cbc:Description languageID="NOR">Forlengelse er 12 måneder</cbc:Description>
+            <cbc:Description languageID="ENG">Renewal lenght is 12 months</cbc:Description>
+          </cac:Period>
+        </cac:Renewal>
+      </cac:ContractExtension>
+    </cac:ProcurementProject>
+  </cac:ProcurementProjectLot>
+</ContractNotice>

@@ -1,0 +1,60 @@
+export const tokens = {
+  colors: {
+    paletteA: {
+      base: '#F6F2EC',
+      surface: '#FFFFFF',
+      surfaceAlt: '#FDFCFB',
+      primary: '#6B5544',
+      primaryInk: '#FFFFFF',
+      accent1: '#B86B4A',
+      accent2: '#8BA78F',
+      text: '#231F1C',
+      textMuted: '#6B5544AA',
+      textFaint: '#6B554466',
+      hairline: '#6B554411',
+      crisis: '#9E4F4F',
+      glow: '#D4C4A8',
+    },
+    paletteB: {
+      base: '#FAFAF7',
+      surface: '#FFFFFF',
+      surfaceAlt: '#FDFCFB',
+      primary: '#4A5F6E',
+      primaryInk: '#FFFFFF',
+      accent1: '#7FA8A4',
+      accent2: '#D4C4A8',
+      text: '#1E2A33',
+      textMuted: '#4A5F6EAA',
+      textFaint: '#4A5F6E66',
+      hairline: '#4A5F6E11',
+      crisis: '#C97B7B',
+      glow: '#D4C4A8',
+    },
+  },
+  spacing: {
+    xs: 4,
+    sm: 8,
+    md: 16,
+    lg: 24,
+    xl: 32,
+    xxl: 40,
+    header: 70,
+  },
+  radii: {
+    sm: 8,
+    md: 12,
+    lg: 18,
+    xl: 22,
+    full: 9999,
+  },
+  typography: {
+    head: 'InstrumentSerif',
+    headItalic: 'InstrumentSerif-Italic',
+    body: 'Inter',
+    bodyMedium: 'Inter-Medium',
+    bodySemiBold: 'Inter-SemiBold',
+    mono: 'monospace',
+  }
+};
+
+export type Theme = typeof tokens.colors.paletteA;

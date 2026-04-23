@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Kord — prototype</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Lora:ital,wght@0,400;0,500;1,400&family=Source+Serif+4:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  html, body { margin: 0; padding: 0; background: #E8E3DA; }
+  body { font-family: 'IBM Plex Sans', system-ui, sans-serif; }
+  * { box-sizing: border-box; }
+  @keyframes kordBreath { 0%,100% { transform: scale(1); opacity: 0.25; } 50% { transform: scale(1.18); opacity: 0.45; } }
+  @keyframes kordPulse { 0%,100% { opacity: 0.5; } 50% { opacity: 1; } }
+  @keyframes kordFadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+  @keyframes kordFadeSlide { from { opacity: 0; transform: translateX(8px); } to { opacity: 1; transform: none; } }
+  @keyframes kordGrow { from { transform-origin: center; transform: scale(0.4); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+  /* scrollbar hiding for horizontal strips */
+  div::-webkit-scrollbar { display: none; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="frames/ios-frame.jsx"></script>
+<script type="text/babel" src="src/tokens.jsx"></script>
+<script type="text/babel" src="src/primitives.jsx"></script>
+<script type="text/babel" src="src/screens-1.jsx"></script>
+<script type="text/babel" src="src/screens-2.jsx"></script>
+<script type="text/babel" src="src/screens-3.jsx"></script>
+<script type="text/babel" src="src/app.jsx"></script>
+<script type="text/babel" data-presets="react">
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  // Persist current screen across refresh
+  const saved = (() => { try { return JSON.parse(localStorage.getItem('kord-screen') || 'null'); } catch { return null; } })();
+  function Root() {
+    const [initial] = React.useState(saved || 'home');
+    React.useEffect(() => {
+      const iv = setInterval(() => {
+        // persist current screen from the app's state via DOM query would be complex;
+        // simpler: listen for hash changes. Rail updates hash.
+      }, 500);
+      return () => clearInterval(iv);
+    }, []);
+    return <KordApp defaults={{ initial }}/>;
+  }
+  root.render(<Root/>);
+</script>
+</body>
+</html>
