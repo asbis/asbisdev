@@ -9,6 +9,8 @@ const Icon: React.FC<P & { children: React.ReactNode }> = ({ size = 24, stroke =
   </Svg>
 );
 
+export const IconHome = (p: P) => (<Icon {...p}><Path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><Path d="M9 22V12h6v10"/></Icon>);
+export const IconShare = (p: P) => (<Icon {...p}><Path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><Path d="m16 6-4-4-4 4"/><Path d="M12 2v13"/></Icon>);
 export const IconFlask = (p: P) => (<Icon {...p}><Path d="M9 3h6"/><Path d="M10 3v6.5L4.5 19a2 2 0 0 0 1.7 3h11.6a2 2 0 0 0 1.7-3L14 9.5V3"/><Path d="M7 14h10"/></Icon>);
 export const IconPill = (p: P) => (<Icon {...p}><Rect x="3" y="8" width="18" height="8" rx="4"/><Path d="M12 8v8"/></Icon>);
 export const IconShield = (p: P) => (<Icon {...p}><Path d="M12 3 4 6v6c0 5 3.5 8.5 8 9 4.5-.5 8-4 8-9V6l-8-3Z"/><Path d="m9 12 2 2 4-4"/></Icon>);

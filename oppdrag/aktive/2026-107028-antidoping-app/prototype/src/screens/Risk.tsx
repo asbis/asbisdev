@@ -1,50 +1,90 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, ScrollView, Pressable, ActivityIndicator, Animated, Easing } from 'react-native';
-import { Screen, AppBar, LargeTitle, Button, RiskDisplay } from '../ui';
-import { IconArrowRight, IconBarcode, IconInfo, IconDownload, IconChat } from '../icons';
+import { Screen, AppBar, LargeTitle, Button, RiskDisplay, MonoCaps, Section } from '../ui';
+import { IconArrowRight, IconBarcode, IconInfo, IconDownload, IconChat, IconFlask } from '../icons';
 import { STRINGS } from '../strings';
 import { RISK_QUESTIONS } from '../data';
 import { NavProps } from './types';
 import { Theme } from '../theme';
 import { haptic } from '../native';
-
 export const RiskIntro: React.FC<NavProps> = ({ theme, nav, lang, state, setState }) => {
   const t = STRINGS[lang].risk;
+  const [scanning, setScanning] = useState(false);
+  const [product, setProduct] = useState<string | null>(null);
+
+  const startScan = () => {
+    setScanning(true);
+    haptic('medium');
+    setTimeout(() => {
+      setScanning(false);
+      setProduct('Pre-Workout Extreme (PWO)');
+      haptic('success');
+    }, 2000);
+  };
+
+  if (scanning) {
+    return (
+      <Screen theme={theme} scroll={false}>
+        <View style={{ flex: 1, backgroundColor: '#000', alignItems: 'center', justifyContent: 'center' }}>
+          <View style={{ width: 280, height: 280, borderWidth: 2, borderColor: theme.accent, borderRadius: 24, overflow: 'hidden', alignItems: 'center', justifyContent: 'center' }}>
+             <View style={{ width: '100%', height: 2, backgroundColor: theme.accent, position: 'absolute', top: '50%' }}/>
+             <Text style={{ color: '#fff', fontSize: 14, marginTop: 120 }}>Søker etter strekkode...</Text>
+          </View>
+          <Pressable onPress={() => setScanning(false)} style={{ marginTop: 40, padding: 16 }}>
+            <Text style={{ color: '#fff', fontSize: 16 }}>Avbryt</Text>
+          </Pressable>
+        </View>
+      </Screen>
+    );
+  }
+
   return (
     <Screen theme={theme} header={<AppBar theme={theme} onBack={() => nav('home')}/>}>
       <View style={{ paddingHorizontal: 20 }}>
         <LargeTitle theme={theme} sub={t.intro_sub}>{t.intro_title}</LargeTitle>
 
-        <View style={{ backgroundColor: theme.surface, borderWidth: 1, borderColor: theme.line, borderRadius: 18, padding: 22, flexDirection: 'row', gap: 16, alignItems: 'center', marginTop: 8 }}>
-          <View style={{ width: 80, height: 100, borderRadius: 10, backgroundColor: theme.line2, borderWidth: 1, borderColor: theme.line, alignItems: 'center', justifyContent: 'center' }}>
-            <Text style={{ fontFamily: theme.monoFont, fontSize: 10, color: theme.muted }}>product</Text>
+        <View style={{ backgroundColor: theme.surface, borderWidth: 1.5, borderColor: theme.line, borderRadius: 20, padding: 24, flexDirection: 'row', gap: 20, alignItems: 'center', marginTop: 8 }}>
+          <View style={{ width: 84, height: 110, borderRadius: 12, backgroundColor: theme.line2, borderWidth: 1.5, borderColor: theme.line, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+            {product ? (
+              <View style={{ width: '100%', height: '100%', backgroundColor: theme.badBg, alignItems: 'center', justifyContent: 'center' }}>
+                 <IconFlask size={32} color={theme.bad}/>
+              </View>
+            ) : (
+              <MonoCaps theme={theme} style={{ fontSize: 10 }}>Product</MonoCaps>
+            )}
           </View>
           <View style={{ flex: 1 }}>
-            <Text style={{ fontFamily: theme.monoFont, fontSize: 11, color: theme.muted, letterSpacing: 0.6 }}>PRODUKT</Text>
-            <Text style={{ fontSize: 15, color: theme.ink, fontWeight: '500', marginTop: 4 }}>Ingen produkt valgt</Text>
-            <Text style={{ fontSize: 12, color: theme.muted, marginTop: 4, lineHeight: 17 }}>Skann strekkode eller skriv inn produktnavn.</Text>
+            <MonoCaps theme={theme}>Valgt produkt</MonoCaps>
+            <Text style={{ fontSize: 17, color: theme.ink, fontWeight: '700', marginTop: 6 }}>{product || 'Ingen produkt valgt'}</Text>
+            <Text style={{ fontSize: 14, color: theme.muted, marginTop: 6, lineHeight: 20 }}>
+              {product ? 'Dette produktet har høy risiko for forurensing.' : 'Skann strekkode eller skriv inn produktnavn.'}
+            </Text>
           </View>
         </View>
 
-        <View style={{ marginTop: 14 }}>
-          <Button theme={theme} variant="secondary" icon={<IconBarcode size={18}/>}>{t.intro_scan}</Button>
+        <View style={{ marginTop: 16, gap: 10 }}>
+          <Button theme={theme} variant={product ? 'secondary' : 'primary'} icon={<IconBarcode size={20}/>} onPress={startScan}>
+            {product ? 'Skann nytt produkt' : t.intro_scan}
+          </Button>
+          {product && <Button theme={theme} variant="ghost" onPress={() => setProduct(null)}>Nullstill</Button>}
         </View>
 
-        <Section theme={theme} label="Vi vurderer" style={{ paddingHorizontal: 0, paddingTop: 32 }}>
-          <View style={{ backgroundColor: theme.surface, borderWidth: 1, borderColor: theme.line, borderRadius: 16, overflow: 'hidden' }}>
+        <Section theme={theme} label="Vi vurderer" style={{ paddingHorizontal: 0, paddingTop: 40 }}>
+...
+          <View style={{ backgroundColor: theme.surface, borderWidth: 1.5, borderColor: theme.line, borderRadius: 20, overflow: 'hidden' }}>
             {['Opprinnelse og kjøpsland', 'Sertifisering og testprogrammer', 'Ingrediensliste og merking', 'Markedsføring og produsent'].map((it, i) => (
-              <View key={i} style={{ flexDirection: 'row', alignItems: 'center', gap: 12, padding: 14, borderBottomWidth: i < 3 ? 1 : 0, borderColor: theme.line2 }}>
-                <View style={{ width: 22, height: 22, borderRadius: 11, backgroundColor: theme.line2, alignItems: 'center', justifyContent: 'center' }}>
-                  <Text style={{ fontFamily: theme.monoFont, fontSize: 10, color: theme.ink2 }}>{i + 1}</Text>
+              <View key={i} style={{ flexDirection: 'row', alignItems: 'center', gap: 14, padding: 18, borderBottomWidth: i < 3 ? 1 : 0, borderColor: theme.line2 }}>
+                <View style={{ width: 26, height: 26, borderRadius: 13, backgroundColor: theme.line2, alignItems: 'center', justifyContent: 'center' }}>
+                  <Text style={{ fontFamily: theme.monoFont, fontSize: 12, color: theme.ink2, fontWeight: '700' }}>{i + 1}</Text>
                 </View>
-                <Text style={{ fontSize: 14, color: theme.ink }}>{it}</Text>
+                <Text style={{ fontSize: 15, color: theme.ink, fontWeight: '500' }}>{it}</Text>
               </View>
             ))}
           </View>
         </Section>
 
-        <View style={{ marginTop: 32 }}>
-          <Button theme={theme} onPress={() => { setState({ ...state, answers: [] }); nav('risk-q-0'); }} icon={<IconArrowRight size={18}/>}>{t.intro_cta}</Button>
+        <View style={{ marginTop: 40 }}>
+          <Button theme={theme} onPress={() => { setState({ ...state, answers: [] }); nav('risk-q-0'); }} icon={<IconArrowRight size={20}/>}>{t.intro_cta}</Button>
         </View>
       </View>
     </Screen>
@@ -76,30 +116,31 @@ export const RiskQuestion: React.FC<NavProps & { step: number }> = ({ theme, nav
   const back = () => { if (step === 0) nav('risk-intro'); else nav(`risk-q-${step - 1}`); };
 
   return (
-    <Screen theme={theme} scroll={false} header={<AppBar theme={theme} onBack={back} right={<Text style={{ fontSize: 12, color: theme.muted, fontFamily: theme.monoFont }}>{step + 1}/{total}</Text>}/>}>
+    <Screen theme={theme} scroll={false} header={<AppBar theme={theme} onBack={back} right={<MonoCaps theme={theme}>{`${step + 1}/${total}`}</MonoCaps>}/>}>
       <View style={{ paddingHorizontal: 24 }}>
-        <View style={{ height: 3, backgroundColor: theme.line2, borderRadius: 2, overflow: 'hidden' }}>
+        <View style={{ height: 4, backgroundColor: theme.line2, borderRadius: 2, overflow: 'hidden' }}>
           <Animated.View style={{ height: '100%', width: progAnim.interpolate({ inputRange: [0, 1], outputRange: ['0%', '100%'] }), backgroundColor: theme.ink }}/>
         </View>
       </View>
       <View style={{ flex: 1, paddingHorizontal: 24, justifyContent: 'center', paddingBottom: 40 }}>
-        <Text style={{ fontFamily: theme.monoFont, fontSize: 11, color: theme.muted, letterSpacing: 0.8, marginBottom: 14, textAlign: 'center' }}>
-          {t.step_of(step + 1, total).toUpperCase()}
-        </Text>
-        <Text style={{ fontFamily: theme.displayFont, fontSize: 30, lineHeight: 36, color: theme.ink, letterSpacing: -0.5, textAlign: 'center' }}>{q.q}</Text>
-        <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 6, marginTop: 24, backgroundColor: theme.surface, padding: 14, borderRadius: 12, borderWidth: 1, borderColor: theme.line }}>
-          <IconInfo size={16} stroke={1.8} color={theme.muted}/>
-          <Text style={{ fontSize: 13, color: theme.muted, flex: 1, lineHeight: 19 }}>{q.help}</Text>
+        <MonoCaps theme={theme} style={{ marginBottom: 20, textAlign: 'center' }}>
+          {t.step_of(step + 1, total)}
+        </MonoCaps>
+        <Text style={{ fontFamily: theme.displayFont, fontSize: 32, lineHeight: 40, color: theme.ink, letterSpacing: -0.8, textAlign: 'center' }}>{q.q}</Text>
+        <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 10, marginTop: 32, backgroundColor: theme.surface, padding: 18, borderRadius: 16, borderWidth: 1.5, borderColor: theme.line }}>
+          <IconInfo size={20} stroke={2} color={theme.muted}/>
+          <Text style={{ fontSize: 14, color: theme.muted, flex: 1, lineHeight: 20, fontWeight: '500' }}>{q.help}</Text>
         </View>
       </View>
-      <View style={{ paddingHorizontal: 24, paddingBottom: 20, gap: 10 }}>
+      <View style={{ paddingHorizontal: 24, paddingBottom: 24, gap: 12 }}>
         <Button theme={theme} onPress={() => answer('yes')}>{t.yes}</Button>
         <Button theme={theme} variant="secondary" onPress={() => answer('no')}>{t.no}</Button>
-        <Button theme={theme} variant="ghost" onPress={() => answer('unsure')} style={{ minHeight: 36 }}>{t.unsure}</Button>
+        <Button theme={theme} variant="ghost" onPress={() => answer('unsure')} style={{ minHeight: 44 }}>{t.unsure}</Button>
       </View>
     </Screen>
   );
 };
+
 
 export const RiskCalc: React.FC<NavProps> = ({ theme, nav, lang }) => {
   const t = STRINGS[lang].risk;
@@ -139,30 +180,30 @@ export const RiskResult: React.FC<NavProps> = ({ theme, nav, lang, state }) => {
   }).filter(Boolean).slice(0, 4) as { q: string; severity: string }[];
 
   return (
-    <Screen theme={theme} header={<AppBar theme={theme} onBack={() => nav('home')} right={<Pressable style={{ padding: 8 }}><IconDownload size={18} color={theme.muted}/></Pressable>}/>}>
+    <Screen theme={theme} header={<AppBar theme={theme} onBack={() => nav('home')} right={<Pressable style={{ width: 44, height: 44, alignItems: 'center', justifyContent: 'center', marginRight: -8 }}><IconDownload size={22} color={theme.muted}/></Pressable>}/>}>
       <View style={{ paddingHorizontal: 20 }}>
-        <Text style={{ fontFamily: theme.monoFont, fontSize: 11, color: theme.muted, letterSpacing: 0.8, textAlign: 'center', marginBottom: 6 }}>VURDERING FULLFØRT</Text>
+        <MonoCaps theme={theme} style={{ textAlign: 'center', marginBottom: 8 }}>Vurdering fullført</MonoCaps>
         <RiskDisplay theme={theme} level={level} title={titles[0]} sub={titles[1]}/>
 
         {flags.length > 0 && (
-          <View style={{ marginTop: 24 }}>
-            <Text style={{ fontFamily: theme.monoFont, fontSize: 11, color: theme.muted, letterSpacing: 0.8, marginBottom: 10, paddingHorizontal: 4 }}>
-              {zone === 'high' ? 'VARSELPUNKTER' : 'MERKNADER'}
-            </Text>
-            <View style={{ backgroundColor: theme.surface, borderWidth: 1, borderColor: theme.line, borderRadius: 16, overflow: 'hidden' }}>
+          <View style={{ marginTop: 32 }}>
+            <MonoCaps theme={theme} style={{ marginBottom: 12, paddingHorizontal: 4 }}>
+              {zone === 'high' ? 'Varselpunkter' : 'Merknader'}
+            </MonoCaps>
+            <View style={{ backgroundColor: theme.surface, borderWidth: 1.5, borderColor: theme.line, borderRadius: 18, overflow: 'hidden' }}>
               {flags.map((f, i) => (
-                <View key={i} style={{ paddingVertical: 14, paddingHorizontal: 16, borderBottomWidth: i < flags.length - 1 ? 1 : 0, borderColor: theme.line2, flexDirection: 'row', gap: 12 }}>
-                  <View style={{ width: 8, height: 8, borderRadius: 4, marginTop: 6, backgroundColor: f.severity === 'high' ? theme.bad : theme.warn }}/>
-                  <Text style={{ flex: 1, fontSize: 13, color: theme.ink2, lineHeight: 19 }}>{f.q}</Text>
+                <View key={i} style={{ paddingVertical: 18, paddingHorizontal: 18, borderBottomWidth: i < flags.length - 1 ? 1 : 0, borderColor: theme.line2, flexDirection: 'row', gap: 14 }}>
+                  <View style={{ width: 10, height: 10, borderRadius: 5, marginTop: 6, backgroundColor: f.severity === 'high' ? theme.bad : theme.warn }}/>
+                  <Text style={{ flex: 1, fontSize: 15, color: theme.ink2, lineHeight: 22, fontWeight: '500' }}>{f.q}</Text>
                 </View>
               ))}
             </View>
           </View>
         )}
 
-        <View style={{ gap: 8, marginTop: 24 }}>
+        <View style={{ gap: 10, marginTop: 32 }}>
           {zone !== 'low' && (
-            <Button theme={theme} variant="accent" icon={<IconChat size={18}/>} onPress={() => nav('contact')}>{t.contact_adno}</Button>
+            <Button theme={theme} variant="accent" icon={<IconChat size={20}/>} onPress={() => nav('contact')}>{t.contact_adno}</Button>
           )}
           <Button theme={theme} variant="secondary" onPress={() => nav('risk-intro')}>{t.new_check}</Button>
           <Button theme={theme} variant="ghost" onPress={() => nav('home')}>{t.save_result}</Button>

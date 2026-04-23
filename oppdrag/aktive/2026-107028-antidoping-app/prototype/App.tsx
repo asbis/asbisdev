@@ -9,6 +9,7 @@ import { Home } from './src/screens/Home';
 import { RiskIntro, RiskQuestion, RiskCalc, RiskResult } from './src/screens/Risk';
 import { MedsSearch, MedsDetail, WadaSearch, WadaDetail } from './src/screens/Search';
 import { Messages, MessageDetail, Asthma, Tue, Report, Contact, Settings, Learn } from './src/screens/Misc';
+import { TabBar } from './src/ui';
 
 type HistoryEntry = { route: string; state: any };
 
@@ -23,6 +24,10 @@ export default function App() {
   const nav = (route: string, stateExt: any = {}) => {
     setHistory(h => {
       const last = h[h.length - 1];
+      // Reset history if going home from onboarding to prevent back-navigation into onboarding
+      if (route === 'home' && last.route.startsWith('onb-')) {
+        return [{ route, state: { ...last.state, ...stateExt } }];
+      }
       return [...h, { route, state: { ...last.state, ...stateExt } }];
     });
   };
@@ -37,6 +42,8 @@ export default function App() {
   const props = { theme, lang, state: cur.state, setState, nav, setLang, dark, setDark };
 
   const r = cur.route;
+  const showTabs = !r.startsWith('onb-') && r !== 'risk-intro' && !r.startsWith('risk-q') && r !== 'risk-calc' && r !== 'risk-result';
+
   let screen: React.ReactNode;
   if (r === 'onb-welcome') screen = <OnbWelcome {...props}/>;
   else if (r === 'onb-role') screen = <OnbRole {...props}/>;
@@ -65,6 +72,15 @@ export default function App() {
       <View style={{ flex: 1, backgroundColor: theme.bg }}>
         <View style={{ flex: 1, maxWidth: Platform.OS === 'web' ? 420 : undefined, width: '100%', alignSelf: 'center', backgroundColor: theme.bg, overflow: 'hidden' }}>
           <ScreenTransition routeKey={r}>{screen}</ScreenTransition>
+          {showTabs && <TabBar theme={theme} current={r} onNav={(dest) => {
+            // Simple tab switching: replace last history entry if it's another tab
+            const mainTabs = ['home', 'meds-search', 'messages', 'learn', 'settings'];
+            if (mainTabs.includes(r)) {
+              setHistory(h => [...h.slice(0, -1), { route: dest, state: h[h.length-1].state }]);
+            } else {
+              nav(dest);
+            }
+          }}/>}
         </View>
         <StatusBar style={dark ? 'light' : 'dark'}/>
       </View>

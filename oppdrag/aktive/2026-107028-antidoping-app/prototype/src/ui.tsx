@@ -45,23 +45,23 @@ export const AppBar: React.FC<{ theme: Theme; title?: string; subtitle?: string;
       paddingTop: Math.max(insets.top, 12), 
       paddingBottom: 12, 
       backgroundColor: theme.bg,
-      borderBottomWidth: 0, // Keep it clean, or use theme.line2 for a divider
+      minHeight: 64, // Ensured minimum height for standard AppBar
     }}>
-      <View style={{ width: 36, height: 36, marginLeft: -4, justifyContent: 'center' }}>
+      <View style={{ width: 44, height: 44, marginLeft: -8, justifyContent: 'center' }}>
         {onBack && (
-          <Pressable onPress={onBack} style={({ hovered }) => [
-            { width: 36, height: 36, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
+          <Pressable onPress={onBack} style={({ hovered }: any) => [
+            { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
             Platform.OS === 'web' && hovered && { backgroundColor: theme.line2 }
           ]}>
-            <IconArrowLeft size={22} stroke={1.8} color={theme.ink}/>
+            <IconArrowLeft size={24} stroke={2} color={theme.ink}/>
           </Pressable>
         )}
       </View>
       <View style={{ flex: 1, alignItems: 'center' }}>
-        {!!title && <Text style={{ fontFamily: theme.displayFont, fontSize: 17, fontWeight: '600', color: theme.ink }} numberOfLines={1}>{title}</Text>}
-        {!!subtitle && <Text style={{ fontSize: 10, color: theme.muted, marginTop: 1, fontWeight: '500' }}>{subtitle.toUpperCase()}</Text>}
+        {!!title && <Text style={{ fontFamily: theme.displayFont, fontSize: 18, fontWeight: '600', color: theme.ink }} numberOfLines={1}>{title}</Text>}
+        {!!subtitle && <Text style={{ fontSize: 11, color: theme.muted, marginTop: 2, fontWeight: '600', letterSpacing: 0.5 }}>{subtitle.toUpperCase()}</Text>}
       </View>
-      <View style={{ width: 36, marginRight: -4, alignItems: 'flex-end', justifyContent: 'center' }}>
+      <View style={{ width: 44, marginRight: -8, alignItems: 'flex-end', justifyContent: 'center' }}>
         {right}
       </View>
     </View>
@@ -70,15 +70,15 @@ export const AppBar: React.FC<{ theme: Theme; title?: string; subtitle?: string;
 
 export const LargeTitle: React.FC<{ theme: Theme; children: React.ReactNode; sub?: string }> = ({ theme, children, sub }) => (
   <View style={{ paddingHorizontal: 20, paddingTop: 4, paddingBottom: 16 }}>
-    <Text style={{ fontFamily: theme.displayFont, fontSize: 36, lineHeight: 38, color: theme.ink, letterSpacing: -0.8 }}>{children}</Text>
-    {!!sub && <Text style={{ fontSize: 14, color: theme.muted, marginTop: 8, lineHeight: 20 }}>{sub}</Text>}
+    <Text style={{ fontFamily: theme.displayFont, fontSize: 34, lineHeight: 40, color: theme.ink, letterSpacing: -0.8 }}>{children}</Text>
+    {!!sub && <Text style={{ fontSize: 15, color: theme.muted, marginTop: 10, lineHeight: 22 }}>{sub}</Text>}
   </View>
 );
 
 export const Card: React.FC<{ theme: Theme; onPress?: () => void; style?: ViewStyle; children: React.ReactNode }> = ({ theme, onPress, style, children }) => {
   const Inner = onPress ? Pressable : View;
   return (
-    <Inner onPress={onPress} style={[{ backgroundColor: theme.surface, borderWidth: 1, borderColor: theme.line, borderRadius: 16, padding: 16 }, style]}>
+    <Inner onPress={onPress} style={[{ backgroundColor: theme.surface, borderWidth: 1, borderColor: theme.line, borderRadius: 18, padding: 18 }, style]}>
       {children}
     </Inner>
   );
@@ -97,13 +97,13 @@ export const Button: React.FC<{ theme: Theme; onPress?: () => void; variant?: Bt
   return (
     <Tap onPress={onPress} disabled={disabled} hapticKind={variant === 'primary' || variant === 'accent' ? 'medium' : 'light'} style={{ alignSelf: full ? 'stretch' : 'auto' }}>
       <View style={[{
-        backgroundColor: s.bg, borderColor: s.border, borderWidth: 1,
-        minHeight: 52, borderRadius: 14, paddingHorizontal: 20,
-        flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8,
+        backgroundColor: s.bg, borderColor: s.border, borderWidth: 1.5,
+        minHeight: 56, borderRadius: 16, paddingHorizontal: 24,
+        flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10,
         opacity: disabled ? 0.4 : 1,
       }, style]}>
-        {icon && React.isValidElement(icon) ? React.cloneElement(icon as any, { color: s.fg }) : icon}
-        <Text style={{ color: s.fg, fontSize: 15, fontWeight: '500' }}>{children}</Text>
+        {icon && React.isValidElement(icon) ? React.cloneElement(icon as any, { color: s.fg, size: 20 }) : icon}
+        <Text style={{ color: s.fg, fontSize: 16, fontWeight: '600' }}>{children}</Text>
       </View>
     </Tap>
   );
@@ -122,11 +122,11 @@ export const statusLabel = (s: Status) => ({
 
 export const StatusBadge: React.FC<{ theme: Theme; status: Status; size?: 'sm' | 'md' }> = ({ theme, status, size = 'md' }) => {
   const c = statusColors(theme, status);
-  const p = size === 'sm' ? { fontSize: 11, px: 8, py: 3 } : { fontSize: 12, px: 10, py: 5 };
+  const p = size === 'sm' ? { fontSize: 12, px: 10, py: 4 } : { fontSize: 13, px: 12, py: 6 };
   return (
     <View style={{ flexDirection: 'row', alignItems: 'center', alignSelf: 'flex-start', gap: 6, backgroundColor: c.bg, borderRadius: 999, paddingHorizontal: p.px, paddingVertical: p.py }}>
-      <View style={{ width: 6, height: 6, borderRadius: 3, backgroundColor: c.fg }}/>
-      <Text style={{ color: c.fg, fontSize: p.fontSize, fontWeight: '500' }}>{statusLabel(status)}</Text>
+      <View style={{ width: 7, height: 7, borderRadius: 4, backgroundColor: c.fg }}/>
+      <Text style={{ color: c.fg, fontSize: p.fontSize, fontWeight: '600' }}>{statusLabel(status)}</Text>
     </View>
   );
 };
@@ -134,11 +134,11 @@ export const StatusBadge: React.FC<{ theme: Theme; status: Status; size?: 'sm' |
 export const RiskBar: React.FC<{ theme: Theme; level: number }> = ({ theme, level }) => {
   const zone = level < 0.34 ? 'low' : level < 0.67 ? 'mid' : 'high';
   return (
-    <View style={{ flexDirection: 'row', gap: 4 }}>
+    <View style={{ flexDirection: 'row', gap: 6 }}>
       {[0, 1, 2].map(i => {
         const filled = (zone === 'low' && i === 0) || (zone === 'mid' && i <= 1) || zone === 'high';
         const col = i === 0 ? theme.ok : i === 1 ? theme.warn : theme.bad;
-        return <View key={i} style={{ flex: 1, height: 10, borderRadius: 5, backgroundColor: filled ? col : theme.line2 }}/>;
+        return <View key={i} style={{ flex: 1, height: 8, borderRadius: 4, backgroundColor: filled ? col : theme.line2 }}/>;
       })}
     </View>
   );
@@ -165,48 +165,40 @@ export const RiskDisplay: React.FC<{ theme: Theme; level: number; title: string;
 
   return (
     <View style={{ alignItems: 'center', paddingVertical: 10 }}>
-      <View style={{ width: 220, height: 130 }}>
-        <Svg width={220} height={130} viewBox="0 0 220 130">
-          <Path d="M20 110 A 90 90 0 0 1 200 110" stroke={theme.line} strokeWidth={10} fill="none" strokeLinecap="round"/>
-          <Path d="M20 110 A 90 90 0 0 1 200 110" stroke={fg} strokeWidth={10} fill="none" strokeLinecap="round" strokeDasharray={`${dash} ${circ}`}/>
-          {[0, 0.33, 0.67, 1].map((tt, i) => {
-            const a = Math.PI * (1 - tt);
-            const x1 = 110 + Math.cos(a) * 78;
-            const y1 = 110 - Math.sin(a) * 78;
-            const x2 = 110 + Math.cos(a) * 68;
-            const y2 = 110 - Math.sin(a) * 68;
-            return <Line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke={theme.muted} strokeWidth={1}/>;
-          })}
+      <View style={{ width: 220, height: 110 }}>
+        <Svg width={220} height={120} viewBox="0 0 220 120">
+          <Path d="M20 110 A 90 90 0 0 1 200 110" stroke={theme.line} strokeWidth={12} fill="none" strokeLinecap="round"/>
+          <Path d="M20 110 A 90 90 0 0 1 200 110" stroke={fg} strokeWidth={12} fill="none" strokeLinecap="round" strokeDasharray={`${dash} ${circ}`}/>
         </Svg>
-        <View style={{ position: 'absolute', left: 0, right: 0, bottom: 8, alignItems: 'center' }}>
-          {zone === 'low' ? <IconCheck size={36} stroke={2.2} color={fg}/> : <IconAlert size={36} stroke={2} color={fg}/>}
+        <View style={{ position: 'absolute', left: 0, right: 0, bottom: 0, alignItems: 'center' }}>
+          {zone === 'low' ? <IconCheck size={40} stroke={2.5} color={fg}/> : <IconAlert size={40} stroke={2.5} color={fg}/>}
         </View>
       </View>
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '100%', paddingHorizontal: 28, marginTop: -4 }}>
-        <Text style={{ fontFamily: theme.monoFont, fontSize: 10, color: theme.muted, letterSpacing: 0.8 }}>LAV</Text>
-        <Text style={{ fontFamily: theme.monoFont, fontSize: 10, color: theme.muted, letterSpacing: 0.8 }}>MIDDELS</Text>
-        <Text style={{ fontFamily: theme.monoFont, fontSize: 10, color: theme.muted, letterSpacing: 0.8 }}>HØY</Text>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '100%', paddingHorizontal: 28, marginTop: 8 }}>
+        <MonoCaps theme={theme}>Lav</MonoCaps>
+        <MonoCaps theme={theme}>Middels</MonoCaps>
+        <MonoCaps theme={theme}>Høy</MonoCaps>
       </View>
       <Text style={{ fontFamily: theme.displayFont, fontSize: 32, color: fg, letterSpacing: -0.6, marginTop: 20 }}>{title}</Text>
-      {!!sub && <Text style={{ fontSize: 14, color: theme.muted, marginTop: 8, paddingHorizontal: 24, textAlign: 'center', lineHeight: 20 }}>{sub}</Text>}
+      {!!sub && <Text style={{ fontSize: 15, color: theme.muted, marginTop: 10, paddingHorizontal: 24, textAlign: 'center', lineHeight: 22 }}>{sub}</Text>}
     </View>
   );
 };
 
 export const SearchField: React.FC<{ theme: Theme; value: string; onChange: (v: string) => void; placeholder?: string; autoFocus?: boolean }> = ({ theme, value, onChange, placeholder, autoFocus }) => (
-  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, backgroundColor: theme.surface, borderWidth: 1, borderColor: theme.line, borderRadius: 14, paddingHorizontal: 14, paddingVertical: 12 }}>
-    <IconSearch size={18} stroke={1.8} color={theme.muted}/>
+  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, backgroundColor: theme.surface, borderWidth: 1.5, borderColor: theme.line, borderRadius: 16, paddingHorizontal: 16, paddingVertical: 14 }}>
+    <IconSearch size={20} stroke={2} color={theme.muted}/>
     <TextInput value={value} onChangeText={onChange} placeholder={placeholder} placeholderTextColor={theme.muted} autoFocus={autoFocus}
-      style={{ flex: 1, fontSize: 15, color: theme.ink, paddingVertical: 0 }}/>
+      style={{ flex: 1, fontSize: 16, color: theme.ink, paddingVertical: 0 }}/>
     {value.length > 0 && (
-      <Pressable onPress={() => onChange('')}><IconX size={16} color={theme.muted}/></Pressable>
+      <Pressable onPress={() => onChange('')} style={{ padding: 4 }}><IconX size={18} color={theme.muted}/></Pressable>
     )}
   </View>
 );
 
 export const Section: React.FC<{ theme: Theme; label?: string; children: React.ReactNode; style?: ViewStyle }> = ({ theme, label, children, style }) => (
-  <View style={[{ paddingHorizontal: 20, paddingTop: 18, paddingBottom: 8 }, style]}>
-    {!!label && <Text style={{ fontFamily: theme.monoFont, fontSize: 10, letterSpacing: 0.8, color: theme.muted, marginBottom: 10 }}>{label.toUpperCase()}</Text>}
+  <View style={[{ paddingHorizontal: 20, paddingTop: 20, paddingBottom: 10 }, style]}>
+    {!!label && <MonoCaps theme={theme} style={{ marginBottom: 12 }}>{label}</MonoCaps>}
     {children}
   </View>
 );
@@ -214,24 +206,65 @@ export const Section: React.FC<{ theme: Theme; label?: string; children: React.R
 export const ListRow: React.FC<{ theme: Theme; icon?: React.ReactNode; title: string; sub?: string; right?: React.ReactNode; onPress?: () => void; divider?: boolean }> = ({ theme, icon, title, sub, right, onPress, divider = true }) => {
   const Inner: any = onPress ? Pressable : View;
   return (
-    <Inner onPress={onPress} style={{ flexDirection: 'row', alignItems: 'center', gap: 12, paddingHorizontal: 16, paddingVertical: 14, borderBottomWidth: divider ? 1 : 0, borderBottomColor: theme.line2 }}>
+    <Inner onPress={onPress} style={{ flexDirection: 'row', alignItems: 'center', gap: 14, paddingHorizontal: 16, paddingVertical: 16, borderBottomWidth: divider ? 1 : 0, borderBottomColor: theme.line2 }}>
       {icon}
       <View style={{ flex: 1 }}>
-        <Text style={{ fontSize: 15, color: theme.ink }}>{title}</Text>
-        {!!sub && <Text style={{ fontSize: 12, color: theme.muted, marginTop: 2 }}>{sub}</Text>}
+        <Text style={{ fontSize: 16, color: theme.ink, fontWeight: '500' }}>{title}</Text>
+        {!!sub && <Text style={{ fontSize: 13, color: theme.muted, marginTop: 4, lineHeight: 18 }}>{sub}</Text>}
       </View>
       {right}
-      {onPress && !right && <IconChevronRight size={18} color={theme.muted}/>}
+      {onPress && !right && <IconChevronRight size={20} color={theme.muted}/>}
     </Inner>
   );
 };
 
 export const Switch: React.FC<{ theme: Theme; value: boolean; onChange: (v: boolean) => void }> = ({ theme, value, onChange }) => (
-  <Pressable onPress={() => onChange(!value)} style={{ width: 44, height: 26, borderRadius: 13, backgroundColor: value ? theme.ink : theme.line, justifyContent: 'center' }}>
-    <View style={{ position: 'absolute', top: 3, left: value ? 21 : 3, width: 20, height: 20, borderRadius: 10, backgroundColor: theme.surface }}/>
+  <Pressable onPress={() => onChange(!value)} style={{ width: 52, height: 30, borderRadius: 15, backgroundColor: value ? theme.ink : theme.line, justifyContent: 'center', paddingHorizontal: 3 }}>
+    <View style={{ width: 24, height: 24, borderRadius: 12, backgroundColor: theme.surface, alignSelf: value ? 'flex-end' : 'flex-start' }}/>
   </Pressable>
 );
 
 export const MonoCaps: React.FC<{ theme: Theme; children: string; style?: TextStyle }> = ({ theme, children, style }) => (
-  <Text style={[{ fontFamily: theme.monoFont, fontSize: 11, color: theme.muted, letterSpacing: 0.8 }, style]}>{children.toUpperCase()}</Text>
+  <Text style={[{ fontFamily: theme.monoFont, fontSize: 12, color: theme.muted, letterSpacing: 1, fontWeight: '600' }, style]}>{children.toUpperCase()}</Text>
 );
+
+export const TabBar: React.FC<{ theme: Theme; current: string; onNav: (route: string) => void }> = ({ theme, current, onNav }) => {
+  const insets = useSafeAreaInsets();
+  
+  // Custom icons needed here or use the ones from icons.tsx
+  const { IconHome, IconBell, IconBook, IconUser, IconSearch: IconS } = require('./icons');
+
+  const tabs = [
+    { id: 'home',     label: 'Hjem',    icon: IconHome }, // Simplified icons for tab bar
+    { id: 'search',   label: 'Søk',     icon: IconS },
+    { id: 'messages', label: 'Varsler', icon: IconBell },
+    { id: 'learn',    label: 'Kurs',    icon: IconBook },
+    { id: 'settings', label: 'Meg',     icon: IconUser },
+  ];
+
+  return (
+    <View style={{ 
+      flexDirection: 'row', 
+      backgroundColor: theme.surface, 
+      borderTopWidth: 1, 
+      borderTopColor: theme.line, 
+      paddingBottom: Math.max(insets.bottom, 12),
+      paddingTop: 12,
+      paddingHorizontal: 10,
+    }}>
+      <Tab theme={theme} active={current === 'home'} label="Hjem" onPress={() => onNav('home')} icon={<IconHome size={22} color={current === 'home' ? theme.ink : theme.muted} stroke={2}/>}/>
+      <Tab theme={theme} active={current === 'meds-search' || current === 'wada-search'} label="Søk" onPress={() => onNav('meds-search')} icon={<IconS size={22} color={current.includes('search') ? theme.ink : theme.muted} stroke={2}/>}/>
+      <Tab theme={theme} active={current === 'messages'} label="Varsler" onPress={() => onNav('messages')} icon={<IconBell size={22} color={current === 'messages' ? theme.ink : theme.muted} stroke={2}/>}/>
+      <Tab theme={theme} active={current === 'learn'} label="Kurs" onPress={() => onNav('learn')} icon={<IconBook size={22} color={current === 'learn' ? theme.ink : theme.muted} stroke={2}/>}/>
+      <Tab theme={theme} active={current === 'settings'} label="Profil" onPress={() => onNav('settings')} icon={<IconUser size={22} color={current === 'settings' ? theme.ink : theme.muted} stroke={2}/>}/>
+    </View>
+  );
+};
+
+const Tab: React.FC<{ theme: Theme; active: boolean; label: string; icon: React.ReactNode; onPress: () => void }> = ({ theme, active, label, icon, onPress }) => (
+  <Pressable onPress={onPress} style={{ flex: 1, alignItems: 'center', gap: 4 }}>
+    {icon}
+    <Text style={{ fontSize: 11, fontWeight: '600', color: active ? theme.ink : theme.muted }}>{label}</Text>
+  </Pressable>
+);
+

@@ -40,7 +40,7 @@ export const Tap: React.FC<Props> = ({ onPress, style, children, disabled, scale
       onPressIn={() => { if (!disabled) { press(); haptic(hapticKind); } }}
       onPressOut={release}
       onPress={disabled ? undefined : onPress}
-      style={({ hovered }) => [
+      style={({ hovered }: any) => [
         style as any,
         Platform.OS === 'web' && !disabled && { cursor: 'pointer', transition: 'opacity 0.2s', opacity: hovered ? 0.9 : 1 }
       ]}
