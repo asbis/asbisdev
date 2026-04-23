@@ -10,9 +10,16 @@ export default function AntidopingPage({ params }: { params: Promise<{ lang: str
   const [password, setPassword] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [error, setError] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     params.then(p => setLang(p.lang));
+    
+    // Simple mobile detection for layout purposes
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
   }, [params]);
 
   const handleLogin = (e: React.FormEvent) => {
@@ -35,7 +42,7 @@ export default function AntidopingPage({ params }: { params: Promise<{ lang: str
             <h1 className="text-3xl font-display mb-3">Prototype</h1>
             <h2 className="text-xl font-sans font-medium mb-6 text-[var(--accent)]">Antidoping Norge</h2>
             <p className="text-[var(--muted)] mb-8 text-sm leading-relaxed">
-              Vennligst oppgi passord for å teste prototypen. Denne versjonen er optimalisert for web-review med native haptikk og animasjoner.
+              Vennligst oppgi passord for å teste prototypen.
             </p>
             <form onSubmit={handleLogin} className="space-y-5">
               <div className="space-y-2">
@@ -45,11 +52,11 @@ export default function AntidopingPage({ params }: { params: Promise<{ lang: str
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Skriv inn passord..."
-                  className="w-full px-5 py-4 rounded-2xl bg-[var(--bg)] border border-[var(--hairline)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)] transition-all placeholder:text-[var(--muted)]/40"
+                  className="w-full px-5 py-4 rounded-2xl bg-[var(--bg)] border border-[var(--hairline)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)] transition-all"
                   autoFocus
                 />
               </div>
-              {error && <p className="text-red-500 text-xs font-medium ml-1">Feil passord, vennligst prøv igjen.</p>}
+              {error && <p className="text-red-500 text-xs font-medium ml-1">Feil passord.</p>}
               <button
                 type="submit"
                 className="w-full bg-[var(--ink)] hover:bg-[var(--accent)] text-[var(--bg)] font-bold py-4 rounded-2xl transition-all shadow-lg active:scale-[0.98]"
@@ -65,6 +72,20 @@ export default function AntidopingPage({ params }: { params: Promise<{ lang: str
     );
   }
 
+  // Mobile version: True fullscreen without any site UI
+  if (isMobile) {
+    return (
+      <div className="fixed inset-0 bg-white z-[9999]">
+        <iframe 
+          src="/antidoping-proto/index.html" 
+          className="w-full h-full border-none"
+          title="Antidoping Prototype"
+        />
+      </div>
+    );
+  }
+
+  // Desktop version: Styled iPhone frame
   return (
     <div className="min-h-screen bg-[var(--bg)] text-[var(--ink)] flex flex-col">
       <Nav lang={lang} />
@@ -75,8 +96,7 @@ export default function AntidopingPage({ params }: { params: Promise<{ lang: str
           </div>
           <h1 className="text-5xl font-display mb-6 tracking-tight">Antidoping Norge</h1>
           <p className="text-lg text-[var(--muted)] leading-relaxed font-sans">
-            Dette er en interaktiv simulator for den nye utøver-appen. 
-            Test navigasjon, søk etter medisiner og risikovurdering i sanntid.
+            Dette er en interaktiv simulator for den nye utøver-appen.
           </p>
         </div>
 
@@ -98,13 +118,13 @@ export default function AntidopingPage({ params }: { params: Promise<{ lang: str
           <div className="p-8 rounded-3xl border border-[var(--hairline)] bg-[var(--bg)] shadow-sm">
             <h3 className="text-[var(--accent)] font-bold text-xs tracking-widest uppercase mb-4">Instruksjoner</h3>
             <p className="text-[var(--muted)] text-sm leading-relaxed">
-              Bruk musen for å interagere. Appen har simulerte haptiske responser og native overganger som fungerer i nettleseren.
+              Bruk musen for å interagere. Appen har simulerte haptiske responser og native overganger.
             </p>
           </div>
           <div className="p-8 rounded-3xl border border-[var(--hairline)] bg-[var(--bg)] shadow-sm">
             <h3 className="text-[var(--accent)] font-bold text-xs tracking-widest uppercase mb-4">Målsetning</h3>
             <p className="text-[var(--muted)] text-sm leading-relaxed">
-              Vise hvordan en moderne, lynrask og tilgjengelig app kan forenkle hverdagen for toppidrettsutøvere.
+              Vise hvordan en moderne og tilgjengelig app kan forenkle hverdagen for toppidrettsutøvere.
             </p>
           </div>
         </div>
