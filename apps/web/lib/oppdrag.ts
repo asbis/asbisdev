@@ -14,6 +14,12 @@ export type Frontmatter = {
   contract?: string;
   buyer?: string;
   portal?: string;
+  oppdragsgiver?: string;
+  leverandor?: string;
+  kriterium?: string;
+  sider?: string;
+  dato?: string;
+  versjon?: string;
 };
 
 export type DocEntry = {
