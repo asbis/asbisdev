@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { View, Text, Pressable, ScrollView, TextInput, ActivityIndicator, Linking, Alert as RNAlert, Platform } from 'react-native';
+import { View, Text, Pressable, ScrollView, TextInput, ActivityIndicator, Linking, Alert as RNAlert, Platform, KeyboardAvoidingView } from 'react-native';
 import { Screen, AppBar, LargeTitle, Button, Section, ListRow, Switch } from '../ui';
 import { IconLock, IconExternal, IconChat, IconCheck, IconAlert, IconBell, IconGlobe, IconSparkle, IconFileText, IconInfo, IconDownload, IconPlay, IconChevronDown, IconSearch } from '../icons';
 import { STRINGS } from '../strings';
@@ -25,6 +25,13 @@ function formatDate(iso: string): string {
   return `${d}.${m}.${y}`;
 }
 
+const MOCK_ALERTS: Alert[] = [
+  { id: 'a1', cat: 'Hastevarsel', title: 'Kosttilskudd Pure Mass XL trukket fra markedet', preview: 'Prøver viser stanozolol. Stopp bruk umiddelbart.', body: 'ADNO advarer mot Pure Mass XL fra musclezone.com etter at uavhengige laboratorieprøver påviste stanozolol i tre av fem partier. Utøvere som har brukt produktet bes kontakte ADNO snarest.', date: '2026-05-09', source: 'ADNO', url: 'https://www.antidoping.no' },
+  { id: 'a2', cat: 'Regelendring', title: 'WADA 2026: nye grenseverdier for salbutamol', preview: 'Maks 600 µg per 8 timer (tidligere 800 µg).', body: 'WADA strammet inn grenseverdiene for salbutamol fra 1. januar 2026. Maks 600 mikrogram per 8 timer og 1600 mikrogram per døgn. Utøvere som bruker høyere doser må søke fritak.', date: '2026-05-02', source: 'WADA' },
+  { id: 'a3', cat: 'Nyhet', title: 'Ny e-læringsmodul: Whereabouts for U23-utøvere', preview: 'Lansert sammen med Olympiatoppen.', body: 'Modulen er på 25 minutter og dekker rutiner for å registrere oppholdssted, konsekvenser ved tre tapte tester, og hvordan korrigere oppføringer i ADAMS.', date: '2026-04-28', source: 'Ren Utøver' },
+  { id: 'a4', cat: 'Påminnelse', title: 'Frist for fritakssøknad nærmer seg', preview: 'Send senest 30 dager før konkurransestart.', body: 'Hvis du planlegger å konkurrere internasjonalt i sommer og bruker forbudt substans av medisinske grunner, må du sende fritakssøknad innen fristen. Bruk skjema fra antidoping.no.', date: '2026-04-22', source: 'ADNO' },
+];
+
 export const Messages: React.FC<NavProps> = ({ theme, nav, lang }) => {
   const t = STRINGS[lang].messages;
   const [alerts, setAlerts] = useState<Alert[]>([]);
@@ -34,19 +41,12 @@ export const Messages: React.FC<NavProps> = ({ theme, nav, lang }) => {
 
   useEffect(() => {
     let cancelled = false;
-    (async () => {
-      try {
-        const res = await fetch('/api/adno-news', { cache: 'no-store' });
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const json = await res.json();
-        if (!cancelled) setAlerts(json.alerts || []);
-      } catch (e) {
-        if (!cancelled) setError(e instanceof Error ? e.message : 'Kunne ikke hente varsler');
-      } finally {
-        if (!cancelled) setLoading(false);
-      }
-    })();
-    return () => { cancelled = true; };
+    const id = setTimeout(() => {
+      if (cancelled) return;
+      setAlerts(MOCK_ALERTS);
+      setLoading(false);
+    }, 450);
+    return () => { cancelled = true; clearTimeout(id); };
   }, []);
 
   const openMsg = (a: Alert) => {
@@ -61,8 +61,7 @@ export const Messages: React.FC<NavProps> = ({ theme, nav, lang }) => {
   const unreadCount = alerts.filter((a) => !readIds.includes(a.id)).length;
 
   return (
-    <Screen theme={theme}>
-      <AppBar theme={theme} onBack={() => nav('home')} title={t.title} subtitle={unreadCount > 0 ? `${unreadCount} uleste` : 'Alt lest'}/>
+    <Screen theme={theme} scroll={false} header={<AppBar theme={theme} onBack={() => nav('home')} title={t.title} subtitle={unreadCount > 0 ? `${unreadCount} uleste` : 'Alt lest'}/>}>
       <ScrollView contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 24 }}>
         {loading && (
           <View style={{ padding: 40, alignItems: 'center' }}>
@@ -111,15 +110,13 @@ export const MessageDetail: React.FC<NavProps> = ({ theme, nav, state }) => {
   const m: Alert | undefined = state.alert;
   if (!m) {
     return (
-      <Screen theme={theme}>
-        <AppBar theme={theme} onBack={() => nav('messages')}/>
+      <Screen theme={theme} scroll={false} header={<AppBar theme={theme} onBack={() => nav('messages')}/>}>
         <Text style={{ padding: 30, textAlign: 'center', color: theme.muted }}>Fant ikke meldingen.</Text>
       </Screen>
     );
   }
   return (
-    <Screen theme={theme}>
-      <AppBar theme={theme} onBack={() => nav('messages')}/>
+    <Screen theme={theme} scroll={false} header={<AppBar theme={theme} onBack={() => nav('messages')}/>}>
       <ScrollView contentContainerStyle={{ paddingHorizontal: 24, paddingBottom: 30 }}>
         <Text style={{ fontFamily: theme.monoFont, fontSize: 11, color: m.cat === 'Hastevarsel' ? theme.bad : theme.muted, letterSpacing: 0.8 }}>
           {m.cat.toUpperCase()} · {formatDate(m.date)} · {m.source.toUpperCase()}
@@ -171,8 +168,7 @@ export const Asthma: React.FC<NavProps> = ({ theme, nav, lang }) => {
   const allowed = total <= med.limit24h;
 
   return (
-    <Screen theme={theme}>
-      <AppBar theme={theme} onBack={() => nav('home')}/>
+    <Screen theme={theme} scroll={false} header={<AppBar theme={theme} onBack={() => nav('home')} title={t.title}/>}>
       <ScrollView contentContainerStyle={{ paddingHorizontal: 20, paddingBottom: 30 }}>
         <LargeTitle theme={theme} sub={t.sub}>{t.title}</LargeTitle>
 
@@ -241,8 +237,7 @@ export const Tue: React.FC<NavProps> = ({ theme, nav, lang }) => {
     { title: 'Frister', body: 'Nasjonalt nivå: 30 dager før. Internasjonalt: kontakt ditt særforbund.' },
   ];
   return (
-    <Screen theme={theme}>
-      <AppBar theme={theme} onBack={() => nav('home')}/>
+    <Screen theme={theme} scroll={false} header={<AppBar theme={theme} onBack={() => nav('home')} title={t.title}/>}>
       <ScrollView contentContainerStyle={{ paddingHorizontal: 20, paddingBottom: 30 }}>
         <LargeTitle theme={theme} sub={t.sub}>{t.title}</LargeTitle>
         <View style={{ gap: 10 }}>
@@ -280,8 +275,7 @@ export const Tue: React.FC<NavProps> = ({ theme, nav, lang }) => {
 export const Report: React.FC<NavProps> = ({ theme, nav, lang }) => {
   const t = STRINGS[lang].report;
   return (
-    <Screen theme={theme}>
-      <AppBar theme={theme} onBack={() => nav('home')}/>
+    <Screen theme={theme} scroll={false} header={<AppBar theme={theme} onBack={() => nav('home')} title={t.title}/>}>
       <ScrollView contentContainerStyle={{ paddingHorizontal: 24, paddingBottom: 30 }}>
         <LargeTitle theme={theme} sub={t.sub}>{t.title}</LargeTitle>
         <View style={{ backgroundColor: theme.surface, borderWidth: 1, borderColor: theme.line, borderRadius: 16, padding: 20, marginTop: 8 }}>
@@ -337,7 +331,16 @@ export const Contact: React.FC<NavProps> = ({ theme, nav }) => {
     setTimeout(() => scrollRef.current?.scrollToEnd({ animated: true }), 50);
   }, [messages]);
 
-  const send = async (text: string) => {
+  const mockReply = (q: string): string => {
+    const lower = q.toLowerCase();
+    if (lower.includes('paracet')) return 'Paracet (paracetamol) står ikke på WADAs prohibited list og kan trygt brukes både i og utenfor konkurranse. Følg anbefalt dose på pakningen.';
+    if (lower.includes('ventoline') || lower.includes('salbutamol')) return 'Salbutamol (Ventoline) er tillatt i inhalert form opptil 600 µg per 8 timer og 1600 µg per døgn (WADA 2026). Doser over dette krever medisinsk fritak.';
+    if (lower.includes('ritalin') || lower.includes('metylfenidat')) return 'Metylfenidat (Ritalin) er forbudt i konkurranse (S6 Stimulerende midler). Du må ha innvilget medisinsk fritak før konkurranse.';
+    if (lower.includes('kosttilskudd')) return 'Bruk Risikosjekk-funksjonen i appen, og sjekk om produktet er Informed Sport-sertifisert. Om mulig velg apotekkjøp i Norge fra leverandører med batch-testing.';
+    return 'Takk for spørsmålet. Generelt råd: sjekk legemidler i Felleskatalogen + dopinglisten, og kontakt ADNOs medisinske rådgiver direkte ved tvil. Ansvar for hva som inntas ligger alltid hos utøveren.';
+  };
+
+  const send = (text: string) => {
     const trimmed = text.trim();
     if (!trimmed || streaming) return;
     setError(null);
@@ -345,43 +348,11 @@ export const Contact: React.FC<NavProps> = ({ theme, nav }) => {
     setMessages(next);
     setInput('');
     setStreaming(true);
-
-    try {
-      const res = await fetch('/api/adno-chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: next }),
-      });
-      if (!res.ok) {
-        const errBody = await res.json().catch(() => ({ error: `HTTP ${res.status}` }));
-        throw new Error(errBody.error || `HTTP ${res.status}`);
-      }
-      if (!res.body) throw new Error('Ingen respons-strøm.');
-
-      const reader = res.body.getReader();
-      const decoder = new TextDecoder();
-      let assistantText = '';
-      setMessages((prev) => [...prev, { role: 'assistant', content: '' }]);
-
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        assistantText += decoder.decode(value, { stream: true });
-        setMessages((prev) => {
-          const copy = [...prev];
-          copy[copy.length - 1] = { role: 'assistant', content: assistantText };
-          return copy;
-        });
-      }
-    } catch (err) {
-      const msg = err instanceof Error ? err.message : String(err);
-      setError(msg.includes('ANTHROPIC_API_KEY')
-        ? 'AI-rådgiveren er ikke konfigurert ennå. Sett ANTHROPIC_API_KEY på serveren.'
-        : `Kunne ikke nå rådgiveren: ${msg}`);
-      setMessages((prev) => prev.filter((m, i) => !(i === prev.length - 1 && m.role === 'assistant' && m.content === '')));
-    } finally {
+    const reply = mockReply(trimmed);
+    setTimeout(() => {
+      setMessages((prev) => [...prev, { role: 'assistant', content: reply }]);
       setStreaming(false);
-    }
+    }, 900 + Math.random() * 700);
   };
 
   const clearChat = () => {
@@ -391,14 +362,14 @@ export const Contact: React.FC<NavProps> = ({ theme, nav }) => {
   };
 
   return (
-    <Screen theme={theme}>
-      <AppBar theme={theme} onBack={() => nav('home')} title="Spør ADNO" right={
+    <Screen theme={theme} scroll={false} header={<AppBar theme={theme} onBack={() => nav('home')} title="Spør ADNO" right={
         messages.length > 0 ? (
           <Pressable onPress={clearChat} style={{ paddingHorizontal: 12, paddingVertical: 6 }}>
             <Text style={{ fontSize: 13, color: theme.muted }}>Tøm</Text>
           </Pressable>
         ) : undefined
-      }/>
+      }/>}>
+      <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : undefined} keyboardVerticalOffset={80}>
 
       <ScrollView
         ref={scrollRef}
@@ -484,6 +455,7 @@ export const Contact: React.FC<NavProps> = ({ theme, nav }) => {
           AI-GENERERT · DOBBELTSJEKK MED ADNO VED TVIL
         </Text>
       </View>
+      </KeyboardAvoidingView>
     </Screen>
   );
 };
@@ -591,9 +563,8 @@ export const Settings: React.FC<NavProps> = ({ theme, nav, lang, setLang, dark, 
   };
 
   return (
-    <Screen theme={theme}>
-      <AppBar theme={theme} onBack={() => nav('home')} title={t.title}/>
-      <ScrollView contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 30 }}>
+    <Screen theme={theme} scroll={false} header={<AppBar theme={theme} onBack={() => nav('home')} title={t.title}/>}>
+      <ScrollView contentContainerStyle={{ paddingBottom: 30 }}>
         <Section theme={theme} label="Profil">
           <View style={{ backgroundColor: theme.surface, borderWidth: 1, borderColor: theme.line, borderRadius: 16, padding: 18, flexDirection: 'row', gap: 14, alignItems: 'center' }}>
             <View style={{ width: 54, height: 54, borderRadius: 27, backgroundColor: theme.accent, alignItems: 'center', justifyContent: 'center' }}>
@@ -705,8 +676,7 @@ export const Learn: React.FC<NavProps> = ({ theme, nav }) => {
   };
 
   return (
-    <Screen theme={theme}>
-      <AppBar theme={theme} onBack={() => nav('home')}/>
+    <Screen theme={theme} scroll={false} header={<AppBar theme={theme} onBack={() => nav('home')} title="Ren Utøver"/>}>
       <ScrollView contentContainerStyle={{ paddingHorizontal: 20, paddingBottom: 30 }}>
         <LargeTitle theme={theme} sub="Offisiell e-læring fra Antidoping Norge. Ca. 110 minutter totalt.">Ren Utøver</LargeTitle>
         <View style={{ gap: 10 }}>

@@ -122,7 +122,30 @@ export const STRINGS = {
   en: null as any,
 };
 
-// Use nb for both (English not critical for demo)
-STRINGS.en = STRINGS.nb;
+// English overrides — covers Home, settings, and tab labels for demo
+STRINGS.en = {
+  ...STRINGS.nb,
+  appName: 'Antidoping',
+  tagline: 'in your pocket',
+  home_hello: 'Hi, Emma',
+  home_sub: 'What can we help with today?',
+  home_features: {
+    risk: 'Supplements',
+    medicine: 'Medicines',
+    wada: 'Prohibited list',
+    messages: 'Alerts',
+    learn: 'Clean Athlete',
+    exemption: 'TUE',
+    asthma: 'Asthma',
+    report: 'Report',
+    contact: 'Ask ADNO',
+  },
+  settings: {
+    title: 'Settings',
+    profile: 'Profile', push: 'Notifications', privacy: 'Privacy',
+    language: 'Language', about: 'About', signout: 'Sign out',
+    version: 'Version 1.0 (beta)',
+  },
+};
 
 export const T = (lang: Lang) => STRINGS[lang] || STRINGS.nb;

@@ -41,9 +41,8 @@ export const OnbRole: React.FC<NavProps> = ({ theme, nav, lang, state, setState 
     { id: 'parent', title: t.role_parent, sub: t.role_parent_sub },
   ];
   return (
-    <Screen theme={theme} scroll={false}>
+    <Screen theme={theme} scroll={false} header={<AppBar theme={theme} onBack={() => nav('onb-welcome')}/>}>
       <View style={{ flex: 1, paddingHorizontal: 20, paddingBottom: 20 }}>
-        <AppBar theme={theme} onBack={() => nav('onb-welcome')}/>
         <View style={{ paddingHorizontal: 20, marginBottom: 12 }}>
           <Dots theme={theme} step={1}/>
         </View>
@@ -82,9 +81,8 @@ export const OnbConsent: React.FC<NavProps> = ({ theme, nav, lang, state, setSta
   const [push, setPush] = useState(true);
   const [privacy, setPrivacy] = useState(false);
   return (
-    <Screen theme={theme} scroll={false}>
+    <Screen theme={theme} scroll={false} header={<AppBar theme={theme} onBack={() => nav('onb-role')}/>}>
       <View style={{ flex: 1, paddingHorizontal: 20, paddingBottom: 20 }}>
-        <AppBar theme={theme} onBack={() => nav('onb-role')}/>
         <View style={{ paddingHorizontal: 20, marginBottom: 12 }}>
           <Dots theme={theme} step={2}/>
         </View>

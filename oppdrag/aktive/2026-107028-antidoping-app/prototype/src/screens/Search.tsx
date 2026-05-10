@@ -6,22 +6,26 @@ import { STRINGS } from '../strings';
 import { MEDICINES, WADA_LIST } from '../data';
 import { NavProps } from './types';
 
-export const MedsSearch: React.FC<NavProps> = ({ theme, nav, lang }) => {
+type SearchTab = 'meds' | 'wada';
+
+const SearchTabsBar: React.FC<{ theme: any; tab: SearchTab; setTab: (t: SearchTab) => void }> = ({ theme, tab, setTab }) => (
+  <View style={{ paddingHorizontal: 16, marginBottom: 8, flexDirection: 'row', gap: 8 }}>
+    <Pressable onPress={() => setTab('meds')} style={{ flex: 1, paddingVertical: 10, borderBottomWidth: 2, borderColor: tab === 'meds' ? theme.ink : 'transparent', alignItems: 'center' }}>
+      <Text style={{ fontSize: 14, fontWeight: tab === 'meds' ? '700' : '500', color: tab === 'meds' ? theme.ink : theme.muted }}>Legemidler</Text>
+    </Pressable>
+    <Pressable onPress={() => setTab('wada')} style={{ flex: 1, paddingVertical: 10, borderBottomWidth: 2, borderColor: tab === 'wada' ? theme.ink : 'transparent', alignItems: 'center' }}>
+      <Text style={{ fontSize: 14, fontWeight: tab === 'wada' ? '700' : '500', color: tab === 'wada' ? theme.ink : theme.muted }}>Dopinglisten</Text>
+    </Pressable>
+  </View>
+);
+
+const MedsTab: React.FC<{ theme: any; nav: any; lang: any }> = ({ theme, nav, lang }) => {
   const t = STRINGS[lang].meds;
   const [q, setQ] = useState('');
   const results = q.trim() === '' ? [] : MEDICINES.filter(m => (m.name + ' ' + m.active).toLowerCase().includes(q.toLowerCase()));
   const suggested = ['Paracet', 'Ibux', 'Ventoline', 'Pulmicort'];
-
   return (
-    <Screen theme={theme} header={<AppBar theme={theme} onBack={() => nav('home')} title={t.title}/>}>
-      <View style={{ paddingHorizontal: 16, marginBottom: 8, flexDirection: 'row', gap: 8 }}>
-        <Pressable onPress={() => {}} style={{ flex: 1, paddingVertical: 10, borderBottomWidth: 2, borderColor: theme.ink, alignItems: 'center' }}>
-          <Text style={{ fontSize: 14, fontWeight: '700', color: theme.ink }}>Legemidler</Text>
-        </Pressable>
-        <Pressable onPress={() => nav('wada-search')} style={{ flex: 1, paddingVertical: 10, borderBottomWidth: 2, borderColor: 'transparent', alignItems: 'center' }}>
-          <Text style={{ fontSize: 14, fontWeight: '500', color: theme.muted }}>Dopinglisten</Text>
-        </Pressable>
-      </View>
+    <>
       <View style={{ paddingHorizontal: 16, marginBottom: 12, marginTop: 8 }}>
         <SearchField theme={theme} value={q} onChange={setQ} placeholder={t.placeholder}/>
       </View>
@@ -71,9 +75,11 @@ export const MedsSearch: React.FC<NavProps> = ({ theme, nav, lang }) => {
           )}
         </View>
       )}
-    </Screen>
+    </>
   );
 };
+
+export const MedsSearch: React.FC<NavProps> = (props) => <SearchScreen {...props} initialTab="meds"/>;
 
 export const MedsDetail: React.FC<NavProps> = ({ theme, nav, lang, state }) => {
   const t = STRINGS[lang].meds;
@@ -140,7 +146,7 @@ export const MedsDetail: React.FC<NavProps> = ({ theme, nav, lang, state }) => {
   );
 };
 
-export const WadaSearch: React.FC<NavProps> = ({ theme, nav, lang }) => {
+const WadaTab: React.FC<{ theme: any; nav: any; lang: any }> = ({ theme, nav, lang }) => {
   const t = STRINGS[lang].wada;
   const [q, setQ] = useState('');
   const results = q.trim() === '' ? [] : WADA_LIST.filter(w => {
@@ -150,15 +156,7 @@ export const WadaSearch: React.FC<NavProps> = ({ theme, nav, lang }) => {
   const suggested = ['Testosteron', 'Salbutamol', 'Efedrin', 'Cannabis'];
 
   return (
-    <Screen theme={theme} header={<AppBar theme={theme} onBack={() => nav('home')} title="Dopinglisten"/>}>
-      <View style={{ paddingHorizontal: 16, marginBottom: 8, flexDirection: 'row', gap: 8 }}>
-        <Pressable onPress={() => nav('meds-search')} style={{ flex: 1, paddingVertical: 10, borderBottomWidth: 2, borderColor: 'transparent', alignItems: 'center' }}>
-          <Text style={{ fontSize: 14, fontWeight: '500', color: theme.muted }}>Legemidler</Text>
-        </Pressable>
-        <Pressable onPress={() => {}} style={{ flex: 1, paddingVertical: 10, borderBottomWidth: 2, borderColor: theme.ink, alignItems: 'center' }}>
-          <Text style={{ fontSize: 14, fontWeight: '700', color: theme.ink }}>Dopinglisten</Text>
-        </Pressable>
-      </View>
+    <>
       <View style={{ paddingHorizontal: 16, marginBottom: 12, marginTop: 8 }}>
         <SearchField theme={theme} value={q} onChange={setQ} placeholder="Søk på virkestoff eller kategori..."/>
       </View>
@@ -223,9 +221,22 @@ export const WadaSearch: React.FC<NavProps> = ({ theme, nav, lang }) => {
           )}
         </View>
       )}
+    </>
+  );
+};
+
+const SearchScreen: React.FC<NavProps & { initialTab: SearchTab }> = ({ theme, nav, lang, initialTab }) => {
+  const [tab, setTab] = useState<SearchTab>(initialTab);
+  const title = tab === 'meds' ? STRINGS[lang].meds.title : 'Dopinglisten';
+  return (
+    <Screen theme={theme} header={<AppBar theme={theme} onBack={() => nav('home')} title={title}/>}>
+      <SearchTabsBar theme={theme} tab={tab} setTab={setTab}/>
+      {tab === 'meds' ? <MedsTab theme={theme} nav={nav} lang={lang}/> : <WadaTab theme={theme} nav={nav} lang={lang}/>}
     </Screen>
   );
 };
+
+export const WadaSearch: React.FC<NavProps> = (props) => <SearchScreen {...props} initialTab="wada"/>;
 
 export const WadaDetail: React.FC<NavProps> = ({ theme, nav, lang, state }) => {
   const t = STRINGS[lang].wada;

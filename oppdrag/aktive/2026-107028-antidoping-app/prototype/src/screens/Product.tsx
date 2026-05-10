@@ -114,8 +114,7 @@ export const ProductSearch: React.FC<NavProps> = ({ theme, nav }) => {
   };
 
   return (
-    <Screen theme={theme}>
-      <AppBar theme={theme} onBack={() => nav('home')} title="Sjekk produkt"/>
+    <Screen theme={theme} scroll={false} header={<AppBar theme={theme} onBack={() => nav('home')} title="Sjekk produkt"/>}>
       <ScrollView contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 24 }} keyboardShouldPersistTaps="handled">
         <View style={{ paddingHorizontal: 4, marginBottom: 14 }}>
           <Text style={{ fontSize: 13, color: theme.muted, lineHeight: 20 }}>
@@ -211,8 +210,7 @@ export const ProductDetail: React.FC<NavProps> = ({ theme, nav, state }) => {
   const p: OffProduct | undefined = state.product;
   if (!p) {
     return (
-      <Screen theme={theme}>
-        <AppBar theme={theme} onBack={() => nav('product-search')}/>
+      <Screen theme={theme} scroll={false} header={<AppBar theme={theme} onBack={() => nav('product-search')}/>}>
         <Text style={{ padding: 30, textAlign: 'center', color: theme.muted }}>Ingen produktdata.</Text>
       </Screen>
     );
@@ -228,8 +226,7 @@ export const ProductDetail: React.FC<NavProps> = ({ theme, nav, state }) => {
   const offUrl = `https://world.openfoodfacts.org/product/${p.code}`;
 
   return (
-    <Screen theme={theme}>
-      <AppBar theme={theme} onBack={() => nav('product-search')}/>
+    <Screen theme={theme} scroll={false} header={<AppBar theme={theme} onBack={() => nav('product-search')} title={p.product_name || 'Produkt'}/>}>
       <ScrollView contentContainerStyle={{ paddingHorizontal: 20, paddingBottom: 30 }}>
         <MonoCaps theme={theme} style={{ marginBottom: 8 }}>{`${p.brands || 'Produkt'} · OFF`}</MonoCaps>
         <Text style={{ fontFamily: theme.displayFont, fontSize: 30, color: theme.ink, letterSpacing: -0.5, lineHeight: 34 }}>

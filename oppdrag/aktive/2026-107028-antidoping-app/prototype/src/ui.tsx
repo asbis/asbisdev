@@ -238,41 +238,47 @@ export const MonoCaps: React.FC<{ theme: Theme; children: string; style?: TextSt
 
 export const TabBar: React.FC<{ theme: Theme; current: string; onNav: (route: string) => void }> = ({ theme, current, onNav }) => {
   const insets = useSafeAreaInsets();
-  
-  // Custom icons needed here or use the ones from icons.tsx
   const { IconHome, IconBell, IconBook, IconUser, IconSearch: IconS } = require('./icons');
 
-  const tabs = [
-    { id: 'home',     label: 'Hjem',    icon: IconHome }, // Simplified icons for tab bar
-    { id: 'search',   label: 'Søk',     icon: IconS },
-    { id: 'messages', label: 'Varsler', icon: IconBell },
-    { id: 'learn',    label: 'Kurs',    icon: IconBook },
-    { id: 'settings', label: 'Meg',     icon: IconUser },
+  const isSearch = current === 'meds-search' || current === 'wada-search' || current.includes('search');
+  const items = [
+    { id: 'home', label: 'Hjem', active: current === 'home', Icon: IconHome, target: 'home' },
+    { id: 'search', label: 'Søk', active: isSearch, Icon: IconS, target: 'meds-search' },
+    { id: 'messages', label: 'Varsler', active: current === 'messages', Icon: IconBell, target: 'messages' },
+    { id: 'learn', label: 'Kurs', active: current === 'learn', Icon: IconBook, target: 'learn' },
+    { id: 'settings', label: 'Profil', active: current === 'settings', Icon: IconUser, target: 'settings' },
   ];
 
   return (
-    <View style={{ 
-      flexDirection: 'row', 
-      backgroundColor: theme.surface, 
-      borderTopWidth: 1, 
-      borderTopColor: theme.line, 
+    <View style={{
+      flexDirection: 'row',
+      backgroundColor: theme.surface,
+      borderTopWidth: 1,
+      borderTopColor: theme.line,
       paddingBottom: Math.max(insets.bottom, 12),
-      paddingTop: 12,
-      paddingHorizontal: 10,
+      paddingTop: 10,
+      paddingHorizontal: 6,
     }}>
-      <Tab theme={theme} active={current === 'home'} label="Hjem" onPress={() => onNav('home')} icon={<IconHome size={22} color={current === 'home' ? theme.ink : theme.muted} stroke={2}/>}/>
-      <Tab theme={theme} active={current === 'meds-search' || current === 'wada-search'} label="Søk" onPress={() => onNav('meds-search')} icon={<IconS size={22} color={current.includes('search') ? theme.ink : theme.muted} stroke={2}/>}/>
-      <Tab theme={theme} active={current === 'messages'} label="Varsler" onPress={() => onNav('messages')} icon={<IconBell size={22} color={current === 'messages' ? theme.ink : theme.muted} stroke={2}/>}/>
-      <Tab theme={theme} active={current === 'learn'} label="Kurs" onPress={() => onNav('learn')} icon={<IconBook size={22} color={current === 'learn' ? theme.ink : theme.muted} stroke={2}/>}/>
-      <Tab theme={theme} active={current === 'settings'} label="Profil" onPress={() => onNav('settings')} icon={<IconUser size={22} color={current === 'settings' ? theme.ink : theme.muted} stroke={2}/>}/>
+      {items.map(it => (
+        <Tab key={it.id} theme={theme} active={it.active} label={it.label} onPress={() => onNav(it.target)}
+          icon={<it.Icon size={22} color={it.active ? theme.ink : theme.muted} stroke={it.active ? 2.4 : 2}/>}
+        />
+      ))}
     </View>
   );
 };
 
 const Tab: React.FC<{ theme: Theme; active: boolean; label: string; icon: React.ReactNode; onPress: () => void }> = ({ theme, active, label, icon, onPress }) => (
-  <Pressable onPress={onPress} style={{ flex: 1, alignItems: 'center', gap: 4 }}>
-    {icon}
-    <Text style={{ fontSize: 11, fontWeight: '600', color: active ? theme.ink : theme.muted }}>{label}</Text>
+  <Pressable onPress={onPress} style={{ flex: 1, alignItems: 'center', gap: 4, paddingVertical: 4 }}>
+    <View style={{
+      paddingHorizontal: 14,
+      paddingVertical: 4,
+      borderRadius: 14,
+      backgroundColor: active ? theme.line2 : 'transparent',
+    }}>
+      {icon}
+    </View>
+    <Text style={{ fontSize: 11, fontWeight: active ? '700' : '500', color: active ? theme.ink : theme.muted }}>{label}</Text>
   </Pressable>
 );
 
