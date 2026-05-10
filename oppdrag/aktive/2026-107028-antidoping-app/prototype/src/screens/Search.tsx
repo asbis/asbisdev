@@ -229,7 +229,7 @@ const SearchScreen: React.FC<NavProps & { initialTab: SearchTab }> = ({ theme, n
   const [tab, setTab] = useState<SearchTab>(initialTab);
   const title = tab === 'meds' ? STRINGS[lang].meds.title : 'Dopinglisten';
   return (
-    <Screen theme={theme} header={<AppBar theme={theme} onBack={() => nav('home')} title={title}/>}>
+    <Screen theme={theme} header={<AppBar theme={theme} title={title}/>}>
       <SearchTabsBar theme={theme} tab={tab} setTab={setTab}/>
       {tab === 'meds' ? <MedsTab theme={theme} nav={nav} lang={lang}/> : <WadaTab theme={theme} nav={nav} lang={lang}/>}
     </Screen>

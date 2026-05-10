@@ -61,7 +61,7 @@ export const Messages: React.FC<NavProps> = ({ theme, nav, lang }) => {
   const unreadCount = alerts.filter((a) => !readIds.includes(a.id)).length;
 
   return (
-    <Screen theme={theme} scroll={false} header={<AppBar theme={theme} onBack={() => nav('home')} title={t.title} subtitle={unreadCount > 0 ? `${unreadCount} uleste` : 'Alt lest'}/>}>
+    <Screen theme={theme} scroll={false} header={<AppBar theme={theme} title={t.title} subtitle={unreadCount > 0 ? `${unreadCount} uleste` : 'Alt lest'}/>}>
       <ScrollView contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 24 }}>
         {loading && (
           <View style={{ padding: 40, alignItems: 'center' }}>
@@ -317,7 +317,8 @@ const SUGGESTED_QUESTIONS = [
   'Hvordan vurderer jeg risiko ved kosttilskudd?',
 ];
 
-export const Contact: React.FC<NavProps> = ({ theme, nav }) => {
+export const Contact: React.FC<NavProps> = ({ theme, nav, lang }) => {
+  const ct = (STRINGS[lang] as any).chat || (STRINGS.nb as any).chat;
   const [messages, setMessages] = useState<ChatMsg[]>(() =>
     storage.get<ChatMsg[]>('chat-history', []),
   );
@@ -362,14 +363,14 @@ export const Contact: React.FC<NavProps> = ({ theme, nav }) => {
   };
 
   return (
-    <Screen theme={theme} scroll={false} header={<AppBar theme={theme} onBack={() => nav('home')} title="Spør ADNO" right={
+    <Screen theme={theme} scroll={false} header={<AppBar theme={theme} onBack={() => nav('home')} title={ct.title} right={
         messages.length > 0 ? (
           <Pressable onPress={clearChat} style={{ paddingHorizontal: 12, paddingVertical: 6 }}>
-            <Text style={{ fontSize: 13, color: theme.muted }}>Tøm</Text>
+            <Text style={{ fontSize: 13, color: theme.muted }}>{ct.clear}</Text>
           </Pressable>
         ) : undefined
       }/>}>
-      <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : undefined} keyboardVerticalOffset={80}>
+      <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : 'height'} keyboardVerticalOffset={Platform.OS === 'ios' ? 110 : 0}>
 
       <ScrollView
         ref={scrollRef}
@@ -383,14 +384,14 @@ export const Contact: React.FC<NavProps> = ({ theme, nav }) => {
                 <IconSparkle size={18} color="#fff"/>
               </View>
               <View style={{ flex: 1 }}>
-                <Text style={{ fontSize: 16, fontWeight: '600', color: theme.ink }}>AI-rådgiver</Text>
-                <Text style={{ fontSize: 12, color: theme.muted }}>Bygget på WADA 2026 + ADNO-veiledning</Text>
+                <Text style={{ fontSize: 16, fontWeight: '600', color: theme.ink }}>{ct.advisor}</Text>
+                <Text style={{ fontSize: 12, color: theme.muted }}>{ct.advisor_sub}</Text>
               </View>
             </View>
             <Text style={{ fontSize: 14, color: theme.ink2, lineHeight: 22, marginBottom: 18 }}>
-              Spør om legemidler, fritak, kosttilskudd eller WADA-regler. Jeg svarer basert på offisiell informasjon, men endelig ansvar ligger hos deg.
+              {ct.intro}
             </Text>
-            <Text style={{ fontFamily: theme.monoFont, fontSize: 11, color: theme.muted, letterSpacing: 0.8, marginBottom: 10 }}>FORSLAG</Text>
+            <Text style={{ fontFamily: theme.monoFont, fontSize: 11, color: theme.muted, letterSpacing: 0.8, marginBottom: 10 }}>{ct.suggestions}</Text>
             <View style={{ gap: 8 }}>
               {SUGGESTED_QUESTIONS.map((q) => (
                 <Pressable key={q} onPress={() => send(q)} style={{ backgroundColor: theme.surface, borderWidth: 1.5, borderColor: theme.line, borderRadius: 14, padding: 14, flexDirection: 'row', alignItems: 'center', gap: 10 }}>
@@ -408,7 +409,7 @@ export const Contact: React.FC<NavProps> = ({ theme, nav }) => {
             {streaming && messages[messages.length - 1]?.role === 'user' && (
               <View style={{ alignSelf: 'flex-start', flexDirection: 'row', gap: 6, padding: 12 }}>
                 <ActivityIndicator size="small" color={theme.muted}/>
-                <Text style={{ fontSize: 13, color: theme.muted }}>tenker…</Text>
+                <Text style={{ fontSize: 13, color: theme.muted }}>{ct.thinking}</Text>
               </View>
             )}
           </View>
@@ -422,12 +423,12 @@ export const Contact: React.FC<NavProps> = ({ theme, nav }) => {
         )}
       </ScrollView>
 
-      <View style={{ paddingHorizontal: 16, paddingTop: 8, paddingBottom: 12, borderTopWidth: 1, borderColor: theme.line2, backgroundColor: theme.bg }}>
+      <View style={{ paddingHorizontal: 16, paddingTop: 8, paddingBottom: Platform.OS === 'ios' ? 12 : 16, borderTopWidth: 1, borderColor: theme.line2, backgroundColor: theme.bg }}>
         <View style={{ flexDirection: 'row', gap: 8, alignItems: 'flex-end' }}>
           <TextInput
             value={input}
             onChangeText={setInput}
-            placeholder="Skriv et spørsmål…"
+            placeholder={ct.placeholder}
             placeholderTextColor={theme.muted}
             multiline
             onSubmitEditing={() => send(input)}
@@ -452,7 +453,7 @@ export const Contact: React.FC<NavProps> = ({ theme, nav }) => {
           </Pressable>
         </View>
         <Text style={{ fontSize: 10, color: theme.muted, textAlign: 'center', marginTop: 6, fontFamily: theme.monoFont, letterSpacing: 0.5 }}>
-          AI-GENERERT · DOBBELTSJEKK MED ADNO VED TVIL
+          {ct.disclaimer}
         </Text>
       </View>
       </KeyboardAvoidingView>
@@ -563,31 +564,31 @@ export const Settings: React.FC<NavProps> = ({ theme, nav, lang, setLang, dark, 
   };
 
   return (
-    <Screen theme={theme} scroll={false} header={<AppBar theme={theme} onBack={() => nav('home')} title={t.title}/>}>
+    <Screen theme={theme} scroll={false} header={<AppBar theme={theme} title={t.title}/>}>
       <ScrollView contentContainerStyle={{ paddingBottom: 30 }}>
-        <Section theme={theme} label="Profil">
+        <Section theme={theme} label={t.profile}>
           <View style={{ backgroundColor: theme.surface, borderWidth: 1, borderColor: theme.line, borderRadius: 16, padding: 18, flexDirection: 'row', gap: 14, alignItems: 'center' }}>
             <View style={{ width: 54, height: 54, borderRadius: 27, backgroundColor: theme.accent, alignItems: 'center', justifyContent: 'center' }}>
               <Text style={{ fontFamily: theme.displayFont, fontSize: 22, color: '#fff' }}>EB</Text>
             </View>
             <View style={{ flex: 1 }}>
               <Text style={{ fontSize: 16, color: theme.ink, fontWeight: '500' }}>Emma Berg</Text>
-              <Text style={{ fontSize: 12, color: theme.muted, marginTop: 2 }}>Utøver · emma@idrett.no</Text>
+              <Text style={{ fontSize: 12, color: theme.muted, marginTop: 2 }}>{t.role_athlete} · emma@idrett.no</Text>
             </View>
           </View>
         </Section>
 
-        <Section theme={theme} label="Preferanser">
+        <Section theme={theme} label={t.preferences}>
           <View style={{ backgroundColor: theme.surface, borderWidth: 1, borderColor: theme.line, borderRadius: 16 }}>
             <ListRow
               theme={theme}
               icon={<IconBell size={18} color={theme.ink2}/>}
               title={t.push}
               sub={
-                pushPerm === 'granted' ? 'Aktive · Hastevarsler og regelendringer' :
-                pushPerm === 'denied' ? 'Blokkert i nettleseren — endre i sideinnstillinger' :
-                pushPerm === 'unsupported' ? 'Krever native bygg (iOS/Android)' :
-                'Hastevarsler, regelendringer, nyheter'
+                pushPerm === 'granted' ? t.push_active :
+                pushPerm === 'denied' ? t.push_blocked :
+                pushPerm === 'unsupported' ? t.push_unsupported :
+                t.push_default
               }
               right={<Switch theme={theme} value={pushOn} onChange={togglePush}/>}
             />
@@ -595,8 +596,8 @@ export const Settings: React.FC<NavProps> = ({ theme, nav, lang, setLang, dark, 
               <ListRow
                 theme={theme}
                 icon={<IconAlert size={18} color={theme.ink2}/>}
-                title="Send testvarsel"
-                sub="Verifiser at varsler fungerer på enheten din"
+                title={t.send_test}
+                sub={t.send_test_sub}
                 onPress={sendTestNotification}
               />
             )}
@@ -609,24 +610,24 @@ export const Settings: React.FC<NavProps> = ({ theme, nav, lang, setLang, dark, 
                 ))}
               </View>
             }/>
-            <ListRow theme={theme} icon={<IconSparkle size={18} color={theme.ink2}/>} title="Mørk modus" right={<Switch theme={theme} value={dark} onChange={setDark}/>} divider={false}/>
+            <ListRow theme={theme} icon={<IconSparkle size={18} color={theme.ink2}/>} title={t.dark_mode} right={<Switch theme={theme} value={dark} onChange={setDark}/>} divider={false}/>
           </View>
         </Section>
 
-        <Section theme={theme} label="Personvern og data">
+        <Section theme={theme} label={t.privacy_data}>
           <View style={{ backgroundColor: theme.surface, borderWidth: 1, borderColor: theme.line, borderRadius: 16 }}>
             <ListRow
               theme={theme}
               icon={<IconLock size={18} color={theme.ink2}/>}
-              title="Personvernerklæring"
-              sub="WADA ISPPPI-kompatibel · antidoping.no"
+              title={t.privacy_policy}
+              sub={t.privacy_policy_sub}
               onPress={() => Linking.openURL('https://www.antidoping.no/personvern')}
             />
             <ListRow
               theme={theme}
               icon={<IconDownload size={18} color={theme.ink2}/>}
-              title="Last ned mine data"
-              sub="JSON-eksport av alt appen har lagret om deg"
+              title={t.download_data}
+              sub={t.download_data_sub}
               onPress={downloadMyData}
             />
             <ListRow
@@ -676,7 +677,7 @@ export const Learn: React.FC<NavProps> = ({ theme, nav }) => {
   };
 
   return (
-    <Screen theme={theme} scroll={false} header={<AppBar theme={theme} onBack={() => nav('home')} title="Ren Utøver"/>}>
+    <Screen theme={theme} scroll={false} header={<AppBar theme={theme} title="Ren Utøver"/>}>
       <ScrollView contentContainerStyle={{ paddingHorizontal: 20, paddingBottom: 30 }}>
         <LargeTitle theme={theme} sub="Offisiell e-læring fra Antidoping Norge. Ca. 110 minutter totalt.">Ren Utøver</LargeTitle>
         <View style={{ gap: 10 }}>

@@ -60,12 +60,9 @@ export default function App() {
   const navTab = (dest: string) => {
     setHistory((h) => {
       const last = h[h.length - 1];
-      if (MAIN_TABS.includes(last.route)) {
-        setDirection('tab');
-        return [...h.slice(0, -1), { route: dest, state: last.state, key: nextKey() }];
-      }
-      setDirection('push');
-      return [...h, { route: dest, state: last.state, key: nextKey() }];
+      // Tab tap always resets to root for that section — never pushes
+      setDirection('tab');
+      return [{ route: dest, state: last.state, key: nextKey() }];
     });
   };
 
@@ -127,7 +124,7 @@ export default function App() {
             renderScreen={renderScreen}
             onTransitionEnd={() => setDirection('none')}
           />
-          {showTabs && <TabBar theme={theme} current={r} onNav={navTab}/>}
+          {showTabs && <TabBar theme={theme} current={r} onNav={navTab} lang={lang}/>}
         </View>
         <StatusBar style={dark ? 'light' : 'dark'}/>
       </View>
@@ -201,9 +198,9 @@ const Stack: React.FC<{
     }
   }, [history, direction]);
 
-  const renderTop = useMemo(() => renderScreen(top), [top.key]);
+  const renderTop = renderScreen(top);
   const beneathEntry = history.length >= 2 ? history[history.length - 2] : null;
-  const renderBeneath = useMemo(() => (beneathEntry ? renderScreen(beneathEntry) : null), [beneathEntry?.key]);
+  const renderBeneath = beneathEntry ? renderScreen(beneathEntry) : null;
 
   const isPushAnim = animating && direction === 'push';
   const isPopAnim = animating && direction === 'pop';

@@ -31,25 +31,7 @@ Jeg leverer én app — ikke en samling lenker. iOS og Android, lastbar fra App 
 
 Hovedsiden er et **3×3 ikongrid** med de ni funksjonene fra kravspesifikasjonen:
 
-```
-┌──────────────────────────────────────────┐
-│  [ADNO-logo]              [🔔]  [👤]     │
-├──────────────────────────────────────────┤
-│                                          │
-│   ⚗️           💊          📋            │
-│ Kosttilskudd  Legemiddel-  Dopinglista   │
-│               søk          (norsk)       │
-│                                          │
-│   🎓          📄          🌬️              │
-│ Ren Utøver    Medisinsk    Astma-        │
-│ (e-læring)    fritak       kalkulator    │
-│                                          │
-│   🚨          💬          🔍             │
-│ Varsling      Kontakt oss  (reservert)   │
-│               (dopingvarsel)             │
-│                                          │
-└──────────────────────────────────────────┘
-```
+![Hjem-skjermen i prototypen — 3×3 grid med Kosttilskudd, Legemidler, Dopinglista, Fritak, Astma, Ren Utøver, Meldinger, Varsle og Spør ADNO. Bottom navigation med Hjem, Søk, Varsler, Kurs og Profil.](/skjermbilder-antidoping/01-home.png)
 
 Design­filosofien er hentet direkte fra målgruppens situasjon: 15–35 år gamle utøvere, ofte på trening, i bilen, på reise, rett før konkurranse. De skal ta en rask beslutning («kan jeg ta denne medisinen?», «er dette kosttilskuddet trygt?») — og svaret skal komme i appen, i lomma, på sekunder. Det utelukker fem under­menyer og mye tekst.
 

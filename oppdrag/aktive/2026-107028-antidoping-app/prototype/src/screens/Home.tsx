@@ -60,7 +60,7 @@ export const Home: React.FC<NavProps> = ({ theme, nav, lang }) => {
           <Text style={{ fontFamily: theme.displayFont, fontSize: 38, color: theme.ink, letterSpacing: -1, lineHeight: 40 }}>
             {t.home_hello}<Text style={{ color: theme.accent, fontStyle: 'italic' }}>.</Text>
           </Text>
-          <Text style={{ fontSize: 16, color: theme.muted, marginTop: 10, lineHeight: 22 }}>Hva kan vi hjelpe deg med i dag?</Text>
+          <Text style={{ fontSize: 16, color: theme.muted, marginTop: 10, lineHeight: 22 }}>{t.home_sub}</Text>
         </View>
 
         <View style={{ paddingHorizontal: 16, flexDirection: 'row', flexWrap: 'wrap', gap: 10, justifyContent: 'center' }}>

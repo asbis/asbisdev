@@ -57,6 +57,25 @@
   overflow-x: auto;
   font-size: 0.85rem;
 }
+.oppdrag-prose img {
+  display: block;
+  margin: 1.5rem auto;
+  max-width: 280px;
+  width: 100%;
+  height: auto;
+  border-radius: 28px;
+  border: 1px solid color-mix(in srgb, var(--foreground) 12%, transparent);
+  box-shadow: 0 4px 18px color-mix(in srgb, var(--foreground) 8%, transparent),
+              0 1px 3px color-mix(in srgb, var(--foreground) 6%, transparent);
+}
+@media print {
+  .oppdrag-prose img {
+    max-width: 240px;
+    margin: 12px auto;
+    box-shadow: none;
+    border: 0.5pt solid #d8d3c8;
+  }
+}
 .oppdrag-prose blockquote {
   border-left: 2px solid var(--hairline);
   padding-left: 1rem;

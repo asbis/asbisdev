@@ -14,7 +14,7 @@ import sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 from _paths import SRC_DIR, DST_DIR, UTKAST_DIR
-from _docx_utils import set_cell_text
+from _docx_utils import set_cell_text, render_markdown_to_cell
 
 SRC = SRC_DIR / "2.1 SSA-O Bilag.docx"
 DST = DST_DIR / "SSA-O Bilag (utfylt).docx"
@@ -78,7 +78,7 @@ def fill_kvalitetskriterier(doc):
             print(f"  ⚠ Mangler markdown: {md_path}")
             continue
         body = load_md_body(md_path)
-        set_cell_text(rows[ridx].cells[1], body, size=10)
+        render_markdown_to_cell(rows[ridx].cells[1], body, size=10)
         filled.append(nr)
     return filled
 

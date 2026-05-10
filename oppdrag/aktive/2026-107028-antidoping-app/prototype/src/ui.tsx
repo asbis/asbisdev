@@ -194,6 +194,8 @@ export const SearchField: React.FC<{ theme: Theme; value: string; onChange: (v: 
       placeholder={placeholder}
       placeholderTextColor={theme.muted}
       autoFocus={autoFocus}
+      autoCorrect={false}
+      autoCapitalize="none"
       onSubmitEditing={onSubmit}
       returnKeyType={onSubmit ? 'search' : 'default'}
       style={{ flex: 1, fontSize: 16, color: theme.ink, paddingVertical: 0 }}
@@ -236,17 +238,21 @@ export const MonoCaps: React.FC<{ theme: Theme; children: string; style?: TextSt
   <Text style={[{ fontFamily: theme.monoFont, fontSize: 12, color: theme.muted, letterSpacing: 1, fontWeight: '600' }, style]}>{children.toUpperCase()}</Text>
 );
 
-export const TabBar: React.FC<{ theme: Theme; current: string; onNav: (route: string) => void }> = ({ theme, current, onNav }) => {
+export const TabBar: React.FC<{ theme: Theme; current: string; onNav: (route: string) => void; lang?: 'nb' | 'en' }> = ({ theme, current, onNav, lang = 'nb' }) => {
   const insets = useSafeAreaInsets();
   const { IconHome, IconBell, IconBook, IconUser, IconSearch: IconS } = require('./icons');
 
+  const labels = lang === 'en'
+    ? { home: 'Home', search: 'Search', messages: 'Alerts', learn: 'Courses', profile: 'Profile' }
+    : { home: 'Hjem', search: 'Søk', messages: 'Varsler', learn: 'Kurs', profile: 'Profil' };
+
   const isSearch = current === 'meds-search' || current === 'wada-search' || current.includes('search');
   const items = [
-    { id: 'home', label: 'Hjem', active: current === 'home', Icon: IconHome, target: 'home' },
-    { id: 'search', label: 'Søk', active: isSearch, Icon: IconS, target: 'meds-search' },
-    { id: 'messages', label: 'Varsler', active: current === 'messages', Icon: IconBell, target: 'messages' },
-    { id: 'learn', label: 'Kurs', active: current === 'learn', Icon: IconBook, target: 'learn' },
-    { id: 'settings', label: 'Profil', active: current === 'settings', Icon: IconUser, target: 'settings' },
+    { id: 'home', label: labels.home, active: current === 'home', Icon: IconHome, target: 'home' },
+    { id: 'search', label: labels.search, active: isSearch, Icon: IconS, target: 'meds-search' },
+    { id: 'messages', label: labels.messages, active: current === 'messages', Icon: IconBell, target: 'messages' },
+    { id: 'learn', label: labels.learn, active: current === 'learn', Icon: IconBook, target: 'learn' },
+    { id: 'settings', label: labels.profile, active: current === 'settings', Icon: IconUser, target: 'settings' },
   ];
 
   return (
