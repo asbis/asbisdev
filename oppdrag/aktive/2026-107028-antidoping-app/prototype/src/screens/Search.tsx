@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Pressable, ScrollView, Platform } from 'react-native';
+import { View, Text, Pressable, ScrollView, Platform, Linking } from 'react-native';
 import { Screen, AppBar, SearchField, Section, StatusBadge, statusColors, statusLabel, Button, ListRow, Card, MonoCaps } from '../ui';
 import { IconInfo, IconSearch, IconMail, IconCheck, IconX, IconAlert, IconChevronRight, IconExternal, IconShare } from '../icons';
 import { STRINGS } from '../strings';
@@ -81,8 +81,17 @@ export const MedsDetail: React.FC<NavProps> = ({ theme, nav, lang, state }) => {
   const sc = statusColors(theme, med.status);
   const [sent, setSent] = useState(false);
 
+  const sharePill = async () => {
+    const text = `${med.name} (${med.active}) — ${statusLabel(med.status)}. Kilde: Felleskatalogen.`;
+    if (Platform.OS === 'web' && typeof navigator !== 'undefined' && (navigator as any).share) {
+      try { await (navigator as any).share({ title: med.name, text, url: (med as any).url }); } catch { /* user cancelled */ }
+    } else if (typeof navigator !== 'undefined' && navigator.clipboard) {
+      await navigator.clipboard.writeText(`${text}\n${(med as any).url || ''}`);
+    }
+  };
+
   return (
-    <Screen theme={theme} header={<AppBar theme={theme} onBack={() => nav('meds-search')} right={<Pressable style={{ width: 44, height: 44, alignItems: 'center', justifyContent: 'center', marginRight: -8 }}><IconShare size={22} color={theme.ink}/></Pressable>}/>}>
+    <Screen theme={theme} header={<AppBar theme={theme} onBack={() => nav('meds-search')} right={<Pressable onPress={sharePill} style={{ width: 44, height: 44, alignItems: 'center', justifyContent: 'center', marginRight: -8 }}><IconShare size={22} color={theme.ink}/></Pressable>}/>}>
       <View style={{ paddingHorizontal: 20, paddingBottom: 10 }}>
         <MonoCaps theme={theme} style={{ marginBottom: 10 }}>{`${med.brand} · Legemiddel`}</MonoCaps>
         <Text style={{ fontFamily: theme.displayFont, fontSize: 36, color: theme.ink, letterSpacing: -1, lineHeight: 40 }}>{med.name}</Text>
@@ -102,13 +111,26 @@ export const MedsDetail: React.FC<NavProps> = ({ theme, nav, lang, state }) => {
           <View style={{ backgroundColor: theme.surface, borderWidth: 1.5, borderColor: theme.line, borderRadius: 18 }}>
             <ListRow theme={theme} title="Virkestoff" right={<Text style={{ fontSize: 15, color: theme.ink2, fontWeight: '500' }}>{med.active}</Text>}/>
             <ListRow theme={theme} title="Produsent" right={<Text style={{ fontSize: 15, color: theme.ink2, fontWeight: '500' }}>{med.brand}</Text>}/>
-            <ListRow theme={theme} title="Form" right={<Text style={{ fontSize: 15, color: theme.ink2, fontWeight: '500' }}>{med.strength}</Text>} divider={false}/>
+            <ListRow theme={theme} title="ATC-kode" right={<Text style={{ fontSize: 15, color: theme.ink2, fontWeight: '500', fontFamily: theme.monoFont }}>{med.strength}</Text>}/>
+            {(med as any).url && (
+              <ListRow
+                theme={theme}
+                title="Felleskatalogen"
+                sub="Full preparatomtale"
+                right={<Text style={{ fontSize: 15, color: theme.accent }}>↗</Text>}
+                onPress={() => Linking.openURL((med as any).url)}
+                divider={false}
+              />
+            )}
           </View>
         </Section>
 
-        <View style={{ marginTop: 32 }}>
+        <View style={{ marginTop: 24, gap: 10 }}>
           <Button theme={theme} onPress={() => { setSent(true); setTimeout(() => setSent(false), 2500); }} icon={<IconMail size={20}/>} variant={sent ? 'secondary' : 'primary'}>
             {sent ? t.confirm_sent : t.send_confirm}
+          </Button>
+          <Button theme={theme} variant="secondary" icon={<IconExternal size={18}/>} onPress={() => Linking.openURL(`https://www.globaldro.com/Search?country=NOR&substance=${encodeURIComponent(med.active)}`)}>
+            Sjekk i Global DRO
           </Button>
         </View>
 
@@ -121,7 +143,10 @@ export const MedsDetail: React.FC<NavProps> = ({ theme, nav, lang, state }) => {
 export const WadaSearch: React.FC<NavProps> = ({ theme, nav, lang }) => {
   const t = STRINGS[lang].wada;
   const [q, setQ] = useState('');
-  const results = q.trim() === '' ? [] : WADA_LIST.filter(w => (w.name + ' ' + w.cat).toLowerCase().includes(q.toLowerCase()));
+  const results = q.trim() === '' ? [] : WADA_LIST.filter(w => {
+    const hay = (w.name + ' ' + w.cat + ' ' + (w.aliases || []).join(' ')).toLowerCase();
+    return hay.includes(q.toLowerCase());
+  });
   const suggested = ['Testosteron', 'Salbutamol', 'Efedrin', 'Cannabis'];
 
   return (
@@ -207,8 +232,17 @@ export const WadaDetail: React.FC<NavProps> = ({ theme, nav, lang, state }) => {
   const w = WADA_LIST.find(x => x.id === state.wadaId) || WADA_LIST[0];
   const sc = statusColors(theme, w.status);
 
+  const shareSubstance = async () => {
+    const text = `${w.name} (${w.cat}) — ${statusLabel(w.status)}. ${w.note}`;
+    if (Platform.OS === 'web' && typeof navigator !== 'undefined' && (navigator as any).share) {
+      try { await (navigator as any).share({ title: w.name, text }); } catch { /* user cancelled */ }
+    } else if (typeof navigator !== 'undefined' && navigator.clipboard) {
+      await navigator.clipboard.writeText(text);
+    }
+  };
+
   return (
-    <Screen theme={theme} header={<AppBar theme={theme} onBack={() => nav('wada-search')} right={<Pressable style={{ width: 44, height: 44, alignItems: 'center', justifyContent: 'center', marginRight: -8 }}><IconShare size={22} color={theme.ink}/></Pressable>}/>}>
+    <Screen theme={theme} header={<AppBar theme={theme} onBack={() => nav('wada-search')} right={<Pressable onPress={shareSubstance} style={{ width: 44, height: 44, alignItems: 'center', justifyContent: 'center', marginRight: -8 }}><IconShare size={22} color={theme.ink}/></Pressable>}/>}>
       <View style={{ paddingHorizontal: 20, paddingBottom: 10 }}>
         <MonoCaps theme={theme} style={{ marginBottom: 10 }}>Wada Prohibited List 2026</MonoCaps>
         <Text style={{ fontFamily: theme.displayFont, fontSize: 36, color: theme.ink, letterSpacing: -1, lineHeight: 40 }}>{w.name}</Text>
@@ -224,7 +258,20 @@ export const WadaDetail: React.FC<NavProps> = ({ theme, nav, lang, state }) => {
 
         <Section theme={theme} label="Ressurser" style={{ paddingHorizontal: 0, paddingTop: 32 }}>
           <View style={{ backgroundColor: theme.surface, borderWidth: 1.5, borderColor: theme.line, borderRadius: 18, overflow: 'hidden' }}>
-            <ListRow theme={theme} icon={<IconExternal size={20} color={theme.ink2}/>} title="Les WADA-dokumentasjon" sub="wada-ama.org" onPress={() => {}}/>
+            <ListRow
+              theme={theme}
+              icon={<IconExternal size={20} color={theme.ink2}/>}
+              title="Les WADA-dokumentasjon"
+              sub="wada-ama.org · Prohibited List 2026"
+              onPress={() => Linking.openURL('https://www.wada-ama.org/en/prohibited-list')}
+            />
+            <ListRow
+              theme={theme}
+              icon={<IconExternal size={20} color={theme.ink2}/>}
+              title="Sjekk i Global DRO"
+              sub={`Globaldro.com · ${w.name}`}
+              onPress={() => Linking.openURL(`https://www.globaldro.com/Search?country=NOR&substance=${encodeURIComponent(w.name)}`)}
+            />
             <ListRow theme={theme} icon={<IconMail size={20} color={theme.ink2}/>} title={t.ask_adno} onPress={() => nav('contact')} divider={false}/>
           </View>
         </Section>

@@ -5,9 +5,26 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "userInterfaceStyle": "light",
-    "assetBundlePatterns": ["**/*"],
-    "ios": { "supportsTablet": false },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": false
+    },
     "newArchEnabled": true,
-    "web": { "bundler": "metro" }
+    "web": {
+      "bundler": "metro"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "9c444e7c-82c8-4b28-b53a-7b438dbae2e6"
+      }
+    },
+    "owner": "asbis",
+    "runtimeVersion": "exposdk:54.0.0",
+    "updates": {
+      "url": "https://u.expo.dev/9c444e7c-82c8-4b28-b53a-7b438dbae2e6"
+    },
+    "android": {}
   }
 }

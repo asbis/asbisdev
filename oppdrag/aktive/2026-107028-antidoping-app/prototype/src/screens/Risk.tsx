@@ -9,34 +9,11 @@ import { Theme } from '../theme';
 import { haptic } from '../native';
 export const RiskIntro: React.FC<NavProps> = ({ theme, nav, lang, state, setState }) => {
   const t = STRINGS[lang].risk;
-  const [scanning, setScanning] = useState(false);
   const [product, setProduct] = useState<string | null>(null);
 
   const startScan = () => {
-    setScanning(true);
-    haptic('medium');
-    setTimeout(() => {
-      setScanning(false);
-      setProduct('Pre-Workout Extreme (PWO)');
-      haptic('success');
-    }, 2000);
+    nav('product-search');
   };
-
-  if (scanning) {
-    return (
-      <Screen theme={theme} scroll={false}>
-        <View style={{ flex: 1, backgroundColor: '#000', alignItems: 'center', justifyContent: 'center' }}>
-          <View style={{ width: 280, height: 280, borderWidth: 2, borderColor: theme.accent, borderRadius: 24, overflow: 'hidden', alignItems: 'center', justifyContent: 'center' }}>
-             <View style={{ width: '100%', height: 2, backgroundColor: theme.accent, position: 'absolute', top: '50%' }}/>
-             <Text style={{ color: '#fff', fontSize: 14, marginTop: 120 }}>Søker etter strekkode...</Text>
-          </View>
-          <Pressable onPress={() => setScanning(false)} style={{ marginTop: 40, padding: 16 }}>
-            <Text style={{ color: '#fff', fontSize: 16 }}>Avbryt</Text>
-          </Pressable>
-        </View>
-      </Screen>
-    );
-  }
 
   return (
     <Screen theme={theme} header={<AppBar theme={theme} onBack={() => nav('home')}/>}>

@@ -10,11 +10,18 @@ import { Theme } from '../theme';
 const Tile: React.FC<{ theme: Theme; label: string; icon: React.ReactNode; onPress: () => void }> = ({ theme, label, icon, onPress }) => (
   <Tap onPress={onPress} style={{ width: '31%' }} scale={0.92}>
     <View style={{
-      aspectRatio: 0.9, backgroundColor: theme.surface, borderWidth: 1.5, borderColor: theme.line,
-      borderRadius: 20, padding: 12, justifyContent: 'center', alignItems: 'center', gap: 8
+      aspectRatio: 0.92, backgroundColor: theme.surface, borderWidth: 1.5, borderColor: theme.line,
+      borderRadius: 20, paddingHorizontal: 8, paddingVertical: 14, justifyContent: 'center', alignItems: 'center', gap: 10,
     }}>
-      <View style={{ marginBottom: 4 }}>{icon}</View>
-      <Text style={{ fontSize: 11, color: theme.ink, fontWeight: '700', lineHeight: 14, textAlign: 'center' }}>{label.toUpperCase()}</Text>
+      <View>{icon}</View>
+      <Text
+        numberOfLines={2}
+        adjustsFontSizeToFit
+        minimumFontScale={0.8}
+        style={{ fontSize: 12, color: theme.ink, fontWeight: '600', lineHeight: 15, textAlign: 'center', letterSpacing: -0.1 }}
+      >
+        {label}
+      </Text>
     </View>
   </Tap>
 );

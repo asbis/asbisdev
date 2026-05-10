@@ -2,8 +2,9 @@
 
 - **Doffin-ID:** 2026-107028
 - **Oppdragsgiver:** ?
-- **Frist:** 2026-05-11+00:00 10:00:00+00:00
-- **Estimert verdi:** 1800000.00 NOK
+- **Frist:** 2026-05-11 12:00 (jf. konkurransegrunnlag pkt. 2.5)
+- **Vedståelsesfrist:** 31.08.2026
+- **Ramme:** 1 600 000 NOK inkl. mva (fastpris), maks 1 800 000 NOK inkl. mva (jf. Q&A 1)
 - **CPV:** 72000000, 72200000, 72230000, 72260000, 72262000, 72266000
 - **Kontakt:** dagthomas.nybo-sorensen@inventura.no
 - **Lenke:** https://www.doffin.no/notices/2026-107028

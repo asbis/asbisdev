@@ -1,47 +1,138 @@
-import React, { useState } from 'react';
-import { View, Text, Pressable, ScrollView, TextInput } from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
+import { View, Text, Pressable, ScrollView, TextInput, ActivityIndicator, Linking, Alert as RNAlert, Platform } from 'react-native';
 import { Screen, AppBar, LargeTitle, Button, Section, ListRow, Switch } from '../ui';
-import { IconLock, IconExternal, IconChat, IconCheck, IconAlert, IconBell, IconGlobe, IconSparkle, IconFileText, IconInfo, IconDownload, IconPlay, IconChevronDown } from '../icons';
+import { IconLock, IconExternal, IconChat, IconCheck, IconAlert, IconBell, IconGlobe, IconSparkle, IconFileText, IconInfo, IconDownload, IconPlay, IconChevronDown, IconSearch } from '../icons';
 import { STRINGS } from '../strings';
-import { MESSAGES, ASTHMA_MEDS } from '../data';
+import { ASTHMA_MEDS } from '../data';
 import { NavProps } from './types';
 import { Theme } from '../theme';
+import { storage } from '../storage';
+import { requestPermission, showNotification, getPermission } from '../notifications';
+
+type Alert = {
+  id: string;
+  cat: 'Hastevarsel' | 'Regelendring' | 'Påminnelse' | 'Nyhet';
+  title: string;
+  preview: string;
+  body: string;
+  date: string;
+  source: string;
+  url?: string;
+};
+
+function formatDate(iso: string): string {
+  const [y, m, d] = iso.split('-');
+  return `${d}.${m}.${y}`;
+}
 
 export const Messages: React.FC<NavProps> = ({ theme, nav, lang }) => {
   const t = STRINGS[lang].messages;
+  const [alerts, setAlerts] = useState<Alert[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [readIds, setReadIds] = useState<string[]>(() => storage.get<string[]>('read-alerts', []));
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch('/api/adno-news', { cache: 'no-store' });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const json = await res.json();
+        if (!cancelled) setAlerts(json.alerts || []);
+      } catch (e) {
+        if (!cancelled) setError(e instanceof Error ? e.message : 'Kunne ikke hente varsler');
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    })();
+    return () => { cancelled = true; };
+  }, []);
+
+  const openMsg = (a: Alert) => {
+    if (!readIds.includes(a.id)) {
+      const next = [...readIds, a.id];
+      setReadIds(next);
+      storage.set('read-alerts', next);
+    }
+    nav('message-detail', { alert: a });
+  };
+
+  const unreadCount = alerts.filter((a) => !readIds.includes(a.id)).length;
+
   return (
     <Screen theme={theme}>
-      <AppBar theme={theme} onBack={() => nav('home')} title={t.title}/>
+      <AppBar theme={theme} onBack={() => nav('home')} title={t.title} subtitle={unreadCount > 0 ? `${unreadCount} uleste` : 'Alt lest'}/>
       <ScrollView contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 24 }}>
-        <View style={{ backgroundColor: theme.surface, borderWidth: 1, borderColor: theme.line, borderRadius: 16, overflow: 'hidden' }}>
-          {MESSAGES.map((m, i) => (
-            <Pressable key={m.id} onPress={() => nav('message-detail', { msgId: m.id })} style={{ padding: 14, borderBottomWidth: i < MESSAGES.length - 1 ? 1 : 0, borderColor: theme.line2, flexDirection: 'row', gap: 12 }}>
-              <View style={{ width: 8, height: 8, borderRadius: 4, marginTop: 8, backgroundColor: m.unread ? theme.bad : 'transparent' }}/>
-              <View style={{ flex: 1 }}>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                  <Text style={{ fontFamily: theme.monoFont, fontSize: 10, color: theme.muted, letterSpacing: 0.8 }}>{m.cat.toUpperCase()}</Text>
-                  <Text style={{ fontSize: 11, color: theme.muted }}>{m.date}</Text>
-                </View>
-                <Text style={{ fontSize: 15, color: theme.ink, fontWeight: m.unread ? '600' : '500', marginTop: 4 }}>{m.title}</Text>
-                <Text style={{ fontSize: 13, color: theme.muted, marginTop: 4, lineHeight: 18 }} numberOfLines={2}>{m.preview}</Text>
-              </View>
-            </Pressable>
-          ))}
-        </View>
+        {loading && (
+          <View style={{ padding: 40, alignItems: 'center' }}>
+            <ActivityIndicator size="small" color={theme.muted}/>
+            <Text style={{ marginTop: 10, fontSize: 13, color: theme.muted }}>Henter varsler…</Text>
+          </View>
+        )}
+        {error && (
+          <View style={{ padding: 14, marginBottom: 14, backgroundColor: theme.badBg, borderRadius: 12, flexDirection: 'row', gap: 10 }}>
+            <IconAlert size={18} color={theme.bad}/>
+            <Text style={{ flex: 1, fontSize: 13, color: theme.bad, lineHeight: 19 }}>Kunne ikke hente varsler: {error}</Text>
+          </View>
+        )}
+        {!loading && alerts.length > 0 && (
+          <View style={{ backgroundColor: theme.surface, borderWidth: 1, borderColor: theme.line, borderRadius: 16, overflow: 'hidden' }}>
+            {alerts.map((m, i) => {
+              const unread = !readIds.includes(m.id);
+              return (
+                <Pressable key={m.id} onPress={() => openMsg(m)} style={({ hovered }: any) => [
+                  { padding: 14, borderBottomWidth: i < alerts.length - 1 ? 1 : 0, borderColor: theme.line2, flexDirection: 'row', gap: 12 },
+                  Platform.OS === 'web' && hovered && { backgroundColor: theme.line2 },
+                ]}>
+                  <View style={{ width: 8, height: 8, borderRadius: 4, marginTop: 8, backgroundColor: unread ? (m.cat === 'Hastevarsel' ? theme.bad : theme.accent) : 'transparent' }}/>
+                  <View style={{ flex: 1 }}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                      <Text style={{ fontFamily: theme.monoFont, fontSize: 10, color: m.cat === 'Hastevarsel' ? theme.bad : theme.muted, letterSpacing: 0.8 }}>{m.cat.toUpperCase()} · {m.source.toUpperCase()}</Text>
+                      <Text style={{ fontSize: 11, color: theme.muted }}>{formatDate(m.date)}</Text>
+                    </View>
+                    <Text style={{ fontSize: 15, color: theme.ink, fontWeight: unread ? '700' : '500', marginTop: 4 }}>{m.title}</Text>
+                    <Text style={{ fontSize: 13, color: theme.muted, marginTop: 4, lineHeight: 18 }} numberOfLines={2}>{m.preview}</Text>
+                  </View>
+                </Pressable>
+              );
+            })}
+          </View>
+        )}
+        <Text style={{ fontFamily: theme.monoFont, fontSize: 10, color: theme.muted, letterSpacing: 0.8, textAlign: 'center', marginTop: 22 }}>
+          OPPDATERES FRA ADNO + WADA
+        </Text>
       </ScrollView>
     </Screen>
   );
 };
 
 export const MessageDetail: React.FC<NavProps> = ({ theme, nav, state }) => {
-  const m = MESSAGES.find(x => x.id === state.msgId) || MESSAGES[0];
+  const m: Alert | undefined = state.alert;
+  if (!m) {
+    return (
+      <Screen theme={theme}>
+        <AppBar theme={theme} onBack={() => nav('messages')}/>
+        <Text style={{ padding: 30, textAlign: 'center', color: theme.muted }}>Fant ikke meldingen.</Text>
+      </Screen>
+    );
+  }
   return (
     <Screen theme={theme}>
       <AppBar theme={theme} onBack={() => nav('messages')}/>
       <ScrollView contentContainerStyle={{ paddingHorizontal: 24, paddingBottom: 30 }}>
-        <Text style={{ fontFamily: theme.monoFont, fontSize: 11, color: theme.muted, letterSpacing: 0.8 }}>{m.cat.toUpperCase()} · {m.date}</Text>
-        <Text style={{ fontFamily: theme.displayFont, fontSize: 32, color: theme.ink, lineHeight: 36, letterSpacing: -0.5, marginTop: 8, marginBottom: 16 }}>{m.title}</Text>
+        <Text style={{ fontFamily: theme.monoFont, fontSize: 11, color: m.cat === 'Hastevarsel' ? theme.bad : theme.muted, letterSpacing: 0.8 }}>
+          {m.cat.toUpperCase()} · {formatDate(m.date)} · {m.source.toUpperCase()}
+        </Text>
+        <Text style={{ fontFamily: theme.displayFont, fontSize: 30, color: theme.ink, lineHeight: 36, letterSpacing: -0.5, marginTop: 8, marginBottom: 16 }}>{m.title}</Text>
         <Text style={{ fontSize: 15, color: theme.ink2, lineHeight: 24 }}>{m.body}</Text>
+        {m.url && (
+          <View style={{ marginTop: 22 }}>
+            <Button theme={theme} variant="secondary" icon={<IconExternal size={18}/>} onPress={() => Linking.openURL(m.url!)}>
+              Les originalkilde
+            </Button>
+          </View>
+        )}
       </ScrollView>
     </Screen>
   );
@@ -135,12 +226,18 @@ export const Asthma: React.FC<NavProps> = ({ theme, nav, lang }) => {
   );
 };
 
+const TUE_RESOURCES = [
+  { label: 'Søknadsskjema TUE (norsk)', url: 'https://www.antidoping.no/medisinsk-fritak' },
+  { label: 'WADA TUE Application Form (engelsk)', url: 'https://www.wada-ama.org/sites/default/files/2024-01/2024_tue_application_form.pdf' },
+  { label: 'Internasjonale standarder for fritak (ISTUE)', url: 'https://www.wada-ama.org/sites/default/files/2024-12/2025_ISTUE.pdf' },
+];
+
 export const Tue: React.FC<NavProps> = ({ theme, nav, lang }) => {
   const t = STRINGS[lang].tue;
   const sections = [
     { title: 'Hvem trenger fritak?', body: 'Utøvere som må bruke en substans eller metode som står på dopinglisten av medisinske grunner.' },
     { title: 'Hvordan søker jeg?', body: 'Fyll ut søknadsskjema sammen med legen din. Send til ADNO senest 30 dager før konkurranse.' },
-    { title: 'Skjemaer', body: 'Last ned søknadsskjema, legeerklæring og journalutdrag.', attach: true },
+    { title: 'Skjemaer og veiledning', body: 'Offisielle skjemaer fra Antidoping Norge og WADA.', attach: true },
     { title: 'Frister', body: 'Nasjonalt nivå: 30 dager før. Internasjonalt: kontakt ditt særforbund.' },
   ];
   return (
@@ -156,12 +253,19 @@ export const Tue: React.FC<NavProps> = ({ theme, nav, lang }) => {
               <Text style={{ fontSize: 14, color: theme.ink2, marginTop: 10, lineHeight: 20 }}>{s.body}</Text>
               {s.attach && (
                 <View style={{ marginTop: 14, gap: 6 }}>
-                  {['TUE-søknadsskjema.pdf', 'Legeerklæring.pdf'].map(f => (
-                    <View key={f} style={{ flexDirection: 'row', gap: 10, alignItems: 'center', padding: 10, borderWidth: 1, borderColor: theme.line, borderRadius: 10 }}>
-                      <IconDownload size={16} stroke={1.6} color={theme.ink2}/>
-                      <Text style={{ flex: 1, fontSize: 13, color: theme.ink2 }}>{f}</Text>
-                      <Text style={{ fontSize: 11, fontFamily: theme.monoFont, color: theme.muted }}>PDF</Text>
-                    </View>
+                  {TUE_RESOURCES.map((f) => (
+                    <Pressable
+                      key={f.url}
+                      onPress={() => Linking.openURL(f.url)}
+                      style={({ hovered }: any) => [
+                        { flexDirection: 'row', gap: 10, alignItems: 'center', padding: 12, borderWidth: 1, borderColor: theme.line, borderRadius: 10 },
+                        Platform.OS === 'web' && hovered && { backgroundColor: theme.line2, borderColor: theme.ink2 },
+                      ]}
+                    >
+                      <IconExternal size={16} color={theme.ink2}/>
+                      <Text style={{ flex: 1, fontSize: 13, color: theme.ink2 }}>{f.label}</Text>
+                      <Text style={{ fontSize: 11, fontFamily: theme.monoFont, color: theme.muted }}>↗</Text>
+                    </Pressable>
                   ))}
                 </View>
               )}
@@ -191,78 +295,301 @@ export const Report: React.FC<NavProps> = ({ theme, nav, lang }) => {
           </View>
         </View>
         <View style={{ marginTop: 18 }}>
-          <Button theme={theme} icon={<IconExternal size={18}/>}>{t.cta}</Button>
+          <Button
+            theme={theme}
+            icon={<IconExternal size={18}/>}
+            onPress={() => Linking.openURL('https://www.antidoping.no/varslingsportal')}
+          >{t.cta}</Button>
         </View>
-        <Text style={{ fontSize: 11, color: theme.muted, textAlign: 'center', marginTop: 20, fontFamily: theme.monoFont }}>
-          dopingvarsel.whistleblowernetwork.net
-        </Text>
+        <Pressable
+          onPress={() => Linking.openURL('https://www.antidoping.no/varslingsportal')}
+          style={{ marginTop: 20 }}
+        >
+          <Text style={{ fontSize: 11, color: theme.muted, textAlign: 'center', fontFamily: theme.monoFont }}>
+            antidoping.no/varslingsportal
+          </Text>
+        </Pressable>
       </ScrollView>
     </Screen>
   );
 };
 
-export const Contact: React.FC<NavProps> = ({ theme, nav, lang }) => {
-  const t = STRINGS[lang].contact;
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [msg, setMsg] = useState('');
-  const [sent, setSent] = useState(false);
+type ChatMsg = { role: 'user' | 'assistant'; content: string };
 
-  const field = (label: string, value: string, set: (v: string) => void, placeholder: string, multiline?: boolean) => (
-    <View>
-      <Text style={{ fontFamily: theme.monoFont, fontSize: 11, color: theme.muted, letterSpacing: 0.8, marginBottom: 8 }}>{label.toUpperCase()}</Text>
-      <TextInput
-        value={value} onChangeText={set} placeholder={placeholder} placeholderTextColor={theme.muted}
-        multiline={multiline} numberOfLines={multiline ? 4 : 1}
-        style={{
-          backgroundColor: theme.surface, borderWidth: 1, borderColor: theme.line,
-          borderRadius: 12, padding: 12, fontSize: 15, color: theme.ink,
-          minHeight: multiline ? 96 : undefined, textAlignVertical: multiline ? 'top' : 'center',
-        }}
-      />
-    </View>
+const SUGGESTED_QUESTIONS = [
+  'Kan jeg ta Paracet før konkurranse?',
+  'Hvor mye Ventoline kan jeg bruke per døgn?',
+  'Trenger jeg fritak for Ritalin?',
+  'Hvordan vurderer jeg risiko ved kosttilskudd?',
+];
+
+export const Contact: React.FC<NavProps> = ({ theme, nav }) => {
+  const [messages, setMessages] = useState<ChatMsg[]>(() =>
+    storage.get<ChatMsg[]>('chat-history', []),
   );
+  const [input, setInput] = useState('');
+  const [streaming, setStreaming] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const scrollRef = useRef<ScrollView>(null);
+
+  useEffect(() => {
+    storage.set('chat-history', messages);
+    setTimeout(() => scrollRef.current?.scrollToEnd({ animated: true }), 50);
+  }, [messages]);
+
+  const send = async (text: string) => {
+    const trimmed = text.trim();
+    if (!trimmed || streaming) return;
+    setError(null);
+    const next: ChatMsg[] = [...messages, { role: 'user', content: trimmed }];
+    setMessages(next);
+    setInput('');
+    setStreaming(true);
+
+    try {
+      const res = await fetch('/api/adno-chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: next }),
+      });
+      if (!res.ok) {
+        const errBody = await res.json().catch(() => ({ error: `HTTP ${res.status}` }));
+        throw new Error(errBody.error || `HTTP ${res.status}`);
+      }
+      if (!res.body) throw new Error('Ingen respons-strøm.');
+
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+      let assistantText = '';
+      setMessages((prev) => [...prev, { role: 'assistant', content: '' }]);
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        assistantText += decoder.decode(value, { stream: true });
+        setMessages((prev) => {
+          const copy = [...prev];
+          copy[copy.length - 1] = { role: 'assistant', content: assistantText };
+          return copy;
+        });
+      }
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : String(err);
+      setError(msg.includes('ANTHROPIC_API_KEY')
+        ? 'AI-rådgiveren er ikke konfigurert ennå. Sett ANTHROPIC_API_KEY på serveren.'
+        : `Kunne ikke nå rådgiveren: ${msg}`);
+      setMessages((prev) => prev.filter((m, i) => !(i === prev.length - 1 && m.role === 'assistant' && m.content === '')));
+    } finally {
+      setStreaming(false);
+    }
+  };
+
+  const clearChat = () => {
+    setMessages([]);
+    storage.remove('chat-history');
+    setError(null);
+  };
 
   return (
     <Screen theme={theme}>
-      <AppBar theme={theme} onBack={() => nav('home')}/>
-      <ScrollView contentContainerStyle={{ paddingHorizontal: 20, paddingBottom: 30 }} keyboardShouldPersistTaps="handled">
-        <LargeTitle theme={theme}>{t.title}</LargeTitle>
-        <View style={{ backgroundColor: theme.okBg, borderRadius: 16, padding: 16, flexDirection: 'row', gap: 12, alignItems: 'center' }}>
-          <View style={{ width: 10, height: 10, borderRadius: 5, backgroundColor: theme.ok }}/>
-          <View style={{ flex: 1 }}>
-            <Text style={{ fontSize: 14, fontWeight: '600', color: theme.ok }}>{t.chat_open}</Text>
-            <Text style={{ fontSize: 12, color: theme.ok, opacity: 0.85, marginTop: 2 }}>{t.hours}</Text>
-          </View>
-        </View>
+      <AppBar theme={theme} onBack={() => nav('home')} title="Spør ADNO" right={
+        messages.length > 0 ? (
+          <Pressable onPress={clearChat} style={{ paddingHorizontal: 12, paddingVertical: 6 }}>
+            <Text style={{ fontSize: 13, color: theme.muted }}>Tøm</Text>
+          </Pressable>
+        ) : undefined
+      }/>
 
-        {sent ? (
-          <View style={{ marginTop: 30, padding: 30, alignItems: 'center' }}>
-            <View style={{ width: 56, height: 56, borderRadius: 28, backgroundColor: theme.okBg, alignItems: 'center', justifyContent: 'center', marginBottom: 16 }}>
-              <IconCheck size={26} stroke={2.4} color={theme.ok}/>
+      <ScrollView
+        ref={scrollRef}
+        contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 8, paddingBottom: 16 }}
+        keyboardShouldPersistTaps="handled"
+      >
+        {messages.length === 0 ? (
+          <View style={{ paddingVertical: 8 }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 16 }}>
+              <View style={{ width: 36, height: 36, borderRadius: 18, backgroundColor: theme.accent, alignItems: 'center', justifyContent: 'center' }}>
+                <IconSparkle size={18} color="#fff"/>
+              </View>
+              <View style={{ flex: 1 }}>
+                <Text style={{ fontSize: 16, fontWeight: '600', color: theme.ink }}>AI-rådgiver</Text>
+                <Text style={{ fontSize: 12, color: theme.muted }}>Bygget på WADA 2026 + ADNO-veiledning</Text>
+              </View>
             </View>
-            <Text style={{ fontFamily: theme.displayFont, fontSize: 26, color: theme.ink, letterSpacing: -0.3 }}>Takk!</Text>
-            <Text style={{ fontSize: 14, color: theme.muted, marginTop: 8 }}>Vi svarer innen 24 timer.</Text>
+            <Text style={{ fontSize: 14, color: theme.ink2, lineHeight: 22, marginBottom: 18 }}>
+              Spør om legemidler, fritak, kosttilskudd eller WADA-regler. Jeg svarer basert på offisiell informasjon, men endelig ansvar ligger hos deg.
+            </Text>
+            <Text style={{ fontFamily: theme.monoFont, fontSize: 11, color: theme.muted, letterSpacing: 0.8, marginBottom: 10 }}>FORSLAG</Text>
+            <View style={{ gap: 8 }}>
+              {SUGGESTED_QUESTIONS.map((q) => (
+                <Pressable key={q} onPress={() => send(q)} style={{ backgroundColor: theme.surface, borderWidth: 1.5, borderColor: theme.line, borderRadius: 14, padding: 14, flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+                  <IconSearch size={16} color={theme.muted}/>
+                  <Text style={{ flex: 1, fontSize: 14, color: theme.ink, lineHeight: 20 }}>{q}</Text>
+                </Pressable>
+              ))}
+            </View>
           </View>
         ) : (
-          <>
-            <View style={{ marginTop: 22, gap: 14 }}>
-              {field(t.form_name, name, setName, 'Emma Berg')}
-              {field(t.form_email, email, setEmail, 'emma@idrett.no')}
-              {field(t.form_message, msg, setMsg, 'Skriv meldingen din her…', true)}
-            </View>
-            <View style={{ marginTop: 18 }}>
-              <Button theme={theme} onPress={() => setSent(true)} disabled={!name || !email || !msg}>{t.send}</Button>
-            </View>
-          </>
+          <View style={{ gap: 12 }}>
+            {messages.map((m, i) => (
+              <Bubble key={i} theme={theme} role={m.role} content={m.content}/>
+            ))}
+            {streaming && messages[messages.length - 1]?.role === 'user' && (
+              <View style={{ alignSelf: 'flex-start', flexDirection: 'row', gap: 6, padding: 12 }}>
+                <ActivityIndicator size="small" color={theme.muted}/>
+                <Text style={{ fontSize: 13, color: theme.muted }}>tenker…</Text>
+              </View>
+            )}
+          </View>
+        )}
+
+        {error && (
+          <View style={{ marginTop: 14, padding: 14, backgroundColor: theme.badBg, borderRadius: 12, flexDirection: 'row', gap: 10 }}>
+            <IconAlert size={18} color={theme.bad}/>
+            <Text style={{ flex: 1, fontSize: 13, color: theme.bad, lineHeight: 19 }}>{error}</Text>
+          </View>
         )}
       </ScrollView>
+
+      <View style={{ paddingHorizontal: 16, paddingTop: 8, paddingBottom: 12, borderTopWidth: 1, borderColor: theme.line2, backgroundColor: theme.bg }}>
+        <View style={{ flexDirection: 'row', gap: 8, alignItems: 'flex-end' }}>
+          <TextInput
+            value={input}
+            onChangeText={setInput}
+            placeholder="Skriv et spørsmål…"
+            placeholderTextColor={theme.muted}
+            multiline
+            onSubmitEditing={() => send(input)}
+            blurOnSubmit
+            editable={!streaming}
+            style={{
+              flex: 1, backgroundColor: theme.surface, borderWidth: 1.5, borderColor: theme.line,
+              borderRadius: 18, paddingHorizontal: 14, paddingVertical: 10, fontSize: 15, color: theme.ink,
+              maxHeight: 120,
+            }}
+          />
+          <Pressable
+            onPress={() => send(input)}
+            disabled={!input.trim() || streaming}
+            style={{
+              width: 44, height: 44, borderRadius: 22,
+              backgroundColor: input.trim() && !streaming ? theme.ink : theme.line,
+              alignItems: 'center', justifyContent: 'center',
+            }}
+          >
+            <Text style={{ color: theme.surface, fontSize: 18, fontWeight: '600' }}>↑</Text>
+          </Pressable>
+        </View>
+        <Text style={{ fontSize: 10, color: theme.muted, textAlign: 'center', marginTop: 6, fontFamily: theme.monoFont, letterSpacing: 0.5 }}>
+          AI-GENERERT · DOBBELTSJEKK MED ADNO VED TVIL
+        </Text>
+      </View>
     </Screen>
+  );
+};
+
+const Bubble: React.FC<{ theme: Theme; role: 'user' | 'assistant'; content: string }> = ({ theme, role, content }) => {
+  const isUser = role === 'user';
+  return (
+    <View style={{ alignSelf: isUser ? 'flex-end' : 'flex-start', maxWidth: '88%' }}>
+      {!isUser && (
+        <Text style={{ fontFamily: theme.monoFont, fontSize: 10, color: theme.muted, letterSpacing: 0.8, marginBottom: 4, marginLeft: 4 }}>ADNO RÅDGIVER</Text>
+      )}
+      <View style={{
+        backgroundColor: isUser ? theme.ink : theme.surface,
+        borderWidth: isUser ? 0 : 1.5,
+        borderColor: theme.line,
+        borderRadius: 18,
+        paddingHorizontal: 14,
+        paddingVertical: 10,
+      }}>
+        <Text style={{
+          fontSize: 14,
+          lineHeight: 21,
+          color: isUser ? theme.surface : theme.ink,
+        }}>
+          {content || ' '}
+        </Text>
+      </View>
+    </View>
   );
 };
 
 export const Settings: React.FC<NavProps> = ({ theme, nav, lang, setLang, dark, setDark }) => {
   const t = STRINGS[lang].settings;
+  const [pushOn, setPushOn] = useState<boolean>(() => storage.get('push-on', true));
+  const [pushPerm, setPushPerm] = useState(getPermission());
+  useEffect(() => { storage.set('push-on', pushOn); }, [pushOn]);
+
+  const togglePush = async (next: boolean) => {
+    setPushOn(next);
+    if (next) {
+      const status = await requestPermission();
+      setPushPerm(status);
+      if (status === 'granted') {
+        showNotification({
+          title: 'Push-varsler aktivert',
+          body: 'Du får varsel ved hastevarsel og regelendringer fra ADNO.',
+          tag: 'adno-permission-granted',
+        });
+      }
+    }
+  };
+
+  const sendTestNotification = () => {
+    const ok = showNotification({
+      title: 'Antidoping Norge · Hastevarsel',
+      body: 'Pure Mass XL fra musclezone.com testet positivt for stanozolol. Slutt å bruke umiddelbart.',
+      tag: 'adno-test',
+    });
+    if (!ok) {
+      RNAlert.alert('Push-varsler', 'Aktiver push-varsler først, og gi nettleseren tillatelse.');
+    }
+  };
+
+  const downloadMyData = () => {
+    const data = {
+      profile: { name: 'Emma Berg', email: 'emma@idrett.no', role: 'Utøver' },
+      darkMode: dark,
+      language: lang,
+      pushNotifications: pushOn,
+      favorites: storage.get<string[]>('favorites', []),
+      searchHistory: storage.get<string[]>('search-history', []),
+      chatHistory: storage.get<unknown[]>('chat-history', []),
+      exportedAt: new Date().toISOString(),
+    };
+    if (Platform.OS === 'web' && typeof window !== 'undefined') {
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `adno-data-${new Date().toISOString().split('T')[0]}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+    } else {
+      RNAlert.alert('Mine data', JSON.stringify(data, null, 2));
+    }
+  };
+
+  const signOut = () => {
+    const doSignOut = () => {
+      ['onboarding-done', 'favorites', 'search-history', 'chat-history', 'push-on'].forEach((k) =>
+        storage.remove(k),
+      );
+      if (Platform.OS === 'web' && typeof window !== 'undefined') window.location.reload();
+    };
+    if (Platform.OS === 'web') {
+      if (typeof window !== 'undefined' && window.confirm('Er du sikker på at du vil logge ut? All lagret data slettes.')) {
+        doSignOut();
+      }
+    } else {
+      RNAlert.alert('Logg ut', 'Er du sikker? All lagret data slettes.', [
+        { text: 'Avbryt', style: 'cancel' },
+        { text: 'Logg ut', style: 'destructive', onPress: doSignOut },
+      ]);
+    }
+  };
+
   return (
     <Screen theme={theme}>
       <AppBar theme={theme} onBack={() => nav('home')} title={t.title}/>
@@ -281,7 +608,27 @@ export const Settings: React.FC<NavProps> = ({ theme, nav, lang, setLang, dark, 
 
         <Section theme={theme} label="Preferanser">
           <View style={{ backgroundColor: theme.surface, borderWidth: 1, borderColor: theme.line, borderRadius: 16 }}>
-            <ListRow theme={theme} icon={<IconBell size={18} color={theme.ink2}/>} title={t.push} sub="Hastevarsler, regelendringer, nyheter" onPress={() => {}}/>
+            <ListRow
+              theme={theme}
+              icon={<IconBell size={18} color={theme.ink2}/>}
+              title={t.push}
+              sub={
+                pushPerm === 'granted' ? 'Aktive · Hastevarsler og regelendringer' :
+                pushPerm === 'denied' ? 'Blokkert i nettleseren — endre i sideinnstillinger' :
+                pushPerm === 'unsupported' ? 'Krever native bygg (iOS/Android)' :
+                'Hastevarsler, regelendringer, nyheter'
+              }
+              right={<Switch theme={theme} value={pushOn} onChange={togglePush}/>}
+            />
+            {pushOn && pushPerm === 'granted' && (
+              <ListRow
+                theme={theme}
+                icon={<IconAlert size={18} color={theme.ink2}/>}
+                title="Send testvarsel"
+                sub="Verifiser at varsler fungerer på enheten din"
+                onPress={sendTestNotification}
+              />
+            )}
             <ListRow theme={theme} icon={<IconGlobe size={18} color={theme.ink2}/>} title={t.language} right={
               <View style={{ flexDirection: 'row', gap: 4 }}>
                 {(['nb', 'en'] as const).map(l => (
@@ -297,14 +644,33 @@ export const Settings: React.FC<NavProps> = ({ theme, nav, lang, setLang, dark, 
 
         <Section theme={theme} label="Personvern og data">
           <View style={{ backgroundColor: theme.surface, borderWidth: 1, borderColor: theme.line, borderRadius: 16 }}>
-            <ListRow theme={theme} icon={<IconLock size={18} color={theme.ink2}/>} title="Personvern" sub="WADA ISPPPI-kompatibel" onPress={() => {}}/>
-            <ListRow theme={theme} icon={<IconFileText size={18} color={theme.ink2}/>} title="Last ned mine data" onPress={() => {}}/>
-            <ListRow theme={theme} icon={<IconInfo size={18} color={theme.ink2}/>} title={t.about} sub={t.version} onPress={() => {}} divider={false}/>
+            <ListRow
+              theme={theme}
+              icon={<IconLock size={18} color={theme.ink2}/>}
+              title="Personvernerklæring"
+              sub="WADA ISPPPI-kompatibel · antidoping.no"
+              onPress={() => Linking.openURL('https://www.antidoping.no/personvern')}
+            />
+            <ListRow
+              theme={theme}
+              icon={<IconDownload size={18} color={theme.ink2}/>}
+              title="Last ned mine data"
+              sub="JSON-eksport av alt appen har lagret om deg"
+              onPress={downloadMyData}
+            />
+            <ListRow
+              theme={theme}
+              icon={<IconInfo size={18} color={theme.ink2}/>}
+              title={t.about}
+              sub={t.version}
+              onPress={() => Linking.openURL('https://www.antidoping.no/om-oss')}
+              divider={false}
+            />
           </View>
         </Section>
 
         <View style={{ paddingHorizontal: 4, paddingTop: 18 }}>
-          <Button theme={theme} variant="secondary">{t.signout}</Button>
+          <Button theme={theme} variant="secondary" onPress={signOut}>{t.signout}</Button>
         </View>
         <Text style={{ fontFamily: theme.monoFont, fontSize: 10, color: theme.muted, letterSpacing: 0.8, textAlign: 'center', marginTop: 16 }}>
           ANTIDOPING NORGE · {t.version.toUpperCase()}
@@ -314,41 +680,72 @@ export const Settings: React.FC<NavProps> = ({ theme, nav, lang, setLang, dark, 
   );
 };
 
+type Course = { ix: string; title: string; sub: string; url: string; done: boolean; progress?: number };
+
+const COURSES: Course[] = [
+  { ix: '01', title: 'Grunnkurs Ren Utøver', sub: '6 moduler · 45 min', url: 'https://www.renutover.no/grunnkurs', done: false },
+  { ix: '02', title: 'Kosttilskudd og risiko', sub: '3 moduler · 20 min', url: 'https://www.renutover.no/kosttilskudd', done: false },
+  { ix: '03', title: 'Whereabouts', sub: '4 moduler · 30 min', url: 'https://www.renutover.no/whereabouts', done: false },
+  { ix: '04', title: 'Medisinsk fritak', sub: '2 moduler · 15 min', url: 'https://www.renutover.no/fritak', done: false },
+];
+
 export const Learn: React.FC<NavProps> = ({ theme, nav }) => {
-  const courses = [
-    { ix: '01', title: 'Grunnkurs Ren Utøver', sub: '6 moduler · 45 min', done: true },
-    { ix: '02', title: 'Kosttilskudd og risiko', sub: '3 moduler · 20 min', done: true },
-    { ix: '03', title: 'Whereabouts', sub: '4 moduler · 30 min', done: false, progress: 0.4 },
-    { ix: '04', title: 'Medisinsk fritak', sub: '2 moduler · 15 min', done: false, progress: 0 },
-  ];
+  const [completed, setCompleted] = useState<Record<string, number>>(() => storage.get('completed-courses', {} as Record<string, number>));
+
+  const openCourse = (c: Course) => {
+    Linking.openURL(c.url);
+    // Mark as visited (50% if not started, otherwise leave alone)
+    setCompleted((prev) => {
+      const next = { ...prev };
+      if (next[c.ix] === undefined) next[c.ix] = 0.5;
+      else if (next[c.ix] < 1) next[c.ix] = Math.min(1, (next[c.ix] || 0) + 0.25);
+      storage.set('completed-courses', next);
+      return next;
+    });
+  };
+
   return (
     <Screen theme={theme}>
       <AppBar theme={theme} onBack={() => nav('home')}/>
       <ScrollView contentContainerStyle={{ paddingHorizontal: 20, paddingBottom: 30 }}>
-        <LargeTitle theme={theme} sub="Offisiell e-læring for norske utøvere. Ca. 90 minutter.">Ren Utøver</LargeTitle>
+        <LargeTitle theme={theme} sub="Offisiell e-læring fra Antidoping Norge. Ca. 110 minutter totalt.">Ren Utøver</LargeTitle>
         <View style={{ gap: 10 }}>
-          {courses.map((c, i) => (
-            <View key={i} style={{ backgroundColor: theme.surface, borderWidth: 1, borderColor: theme.line, borderRadius: 16, padding: 18, flexDirection: 'row', alignItems: 'center', gap: 14 }}>
-              <Text style={{ fontFamily: theme.displayFont, fontSize: 28, color: theme.muted, minWidth: 40 }}>{c.ix}</Text>
-              <View style={{ flex: 1 }}>
-                <Text style={{ fontSize: 15, color: theme.ink, fontWeight: '500' }}>{c.title}</Text>
-                <Text style={{ fontSize: 12, color: theme.muted, marginTop: 2 }}>{c.sub}</Text>
-                {c.progress !== undefined && c.progress > 0 && c.progress < 1 && (
-                  <View style={{ marginTop: 8, height: 3, backgroundColor: theme.line2, borderRadius: 2, overflow: 'hidden' }}>
-                    <View style={{ height: '100%', width: `${c.progress * 100}%`, backgroundColor: theme.accent }}/>
-                  </View>
-                )}
-              </View>
-              {c.done ? (
-                <View style={{ width: 28, height: 28, borderRadius: 14, backgroundColor: theme.okBg, alignItems: 'center', justifyContent: 'center' }}>
-                  <IconCheck size={15} stroke={2.4} color={theme.ok}/>
+          {COURSES.map((c) => {
+            const progress = completed[c.ix] ?? 0;
+            const done = progress >= 1;
+            return (
+              <Pressable
+                key={c.ix}
+                onPress={() => openCourse(c)}
+                style={({ hovered }: any) => [
+                  { backgroundColor: theme.surface, borderWidth: 1, borderColor: theme.line, borderRadius: 16, padding: 18, flexDirection: 'row', alignItems: 'center', gap: 14 },
+                  Platform.OS === 'web' && hovered && { borderColor: theme.ink2 },
+                ]}
+              >
+                <Text style={{ fontFamily: theme.displayFont, fontSize: 28, color: theme.muted, minWidth: 40 }}>{c.ix}</Text>
+                <View style={{ flex: 1 }}>
+                  <Text style={{ fontSize: 15, color: theme.ink, fontWeight: '500' }}>{c.title}</Text>
+                  <Text style={{ fontSize: 12, color: theme.muted, marginTop: 2 }}>{c.sub} · renutover.no</Text>
+                  {progress > 0 && progress < 1 && (
+                    <View style={{ marginTop: 8, height: 3, backgroundColor: theme.line2, borderRadius: 2, overflow: 'hidden' }}>
+                      <View style={{ height: '100%', width: `${progress * 100}%`, backgroundColor: theme.accent }}/>
+                    </View>
+                  )}
                 </View>
-              ) : (
-                <IconPlay size={18} color={theme.accent}/>
-              )}
-            </View>
-          ))}
+                {done ? (
+                  <View style={{ width: 28, height: 28, borderRadius: 14, backgroundColor: theme.okBg, alignItems: 'center', justifyContent: 'center' }}>
+                    <IconCheck size={15} stroke={2.4} color={theme.ok}/>
+                  </View>
+                ) : (
+                  <IconExternal size={18} color={theme.accent}/>
+                )}
+              </Pressable>
+            );
+          })}
         </View>
+        <Text style={{ fontFamily: theme.monoFont, fontSize: 10, color: theme.muted, letterSpacing: 0.8, textAlign: 'center', marginTop: 24 }}>
+          KILDE · ANTIDOPING NORGE / RENUTOVER.NO
+        </Text>
       </ScrollView>
     </Screen>
   );

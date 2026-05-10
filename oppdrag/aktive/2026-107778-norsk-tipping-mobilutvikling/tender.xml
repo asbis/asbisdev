@@ -1,0 +1,899 @@
+<?xml version="1.0" encoding="UTF-8"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <ext:UBLExtensions>
+       <ext:UBLExtension>
+          <ext:ExtensionContent>
+             <efext:EformsExtension>
+                <efac:NoticeSubType>
+                   <cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+                </efac:NoticeSubType>
+                <efac:Organizations>
+                  <efac:Organization>
+        
+         <efac:Company>
+          <cbc:WebsiteURI>https://www.norsk-tipping.no</cbc:WebsiteURI>
+          <cac:PartyIdentification>
+             <cbc:ID schemeName="organization">ORG-0001</cbc:ID>
+          </cac:PartyIdentification>
+          <cac:PartyName><cbc:Name languageID="NOR">Norsk Tipping</cbc:Name></cac:PartyName><cac:PartyName><cbc:Name languageID="ENG">Norsk Tipping</cbc:Name></cac:PartyName>
+          <cac:PostalAddress>
+             <cbc:StreetName>Postboks 4414</cbc:StreetName>
+             <cbc:CityName>HAMAR</cbc:CityName>
+             <cbc:PostalZone>2325</cbc:PostalZone>
+             <cbc:CountrySubentityCode listName="nuts">NO020</cbc:CountrySubentityCode>
+             <cac:Country>
+                <cbc:IdentificationCode listName="country">NOR</cbc:IdentificationCode>
+             </cac:Country>
+          </cac:PostalAddress>
+          <cac:PartyLegalEntity>
+             <cbc:CompanyID>925836613</cbc:CompanyID>
+          </cac:PartyLegalEntity>
+          <cac:Contact>
+             <cbc:Name>Erik Johannesen</cbc:Name>
+             <cbc:Telephone>+47 62514000</cbc:Telephone>
+             <cbc:ElectronicMail>erik.johannesen@norsk-tipping.no</cbc:ElectronicMail>
+          </cac:Contact>
+         </efac:Company>
+        </efac:Organization>
+      <efac:Organization>
+       <efac:Company>
+           <cbc:WebsiteURI>https://www.domstol.no/no/domstoler/tingrett/hedmarken-og-osterdal-tingrett/</cbc:WebsiteURI>
+           <cac:PartyIdentification>
+               <cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+           </cac:PartyIdentification>
+           <cac:PartyName>
+               <cbc:Name languageID="NOR">Hedmarken og Østerdal tingrett</cbc:Name>
+           </cac:PartyName><cac:PartyName>
+               <cbc:Name languageID="ENG">Hedmarken og Østerdal tingrett</cbc:Name>
+           </cac:PartyName>
+           <cac:PostalAddress>
+               <cbc:StreetName>Postboks 4450</cbc:StreetName>
+               <cbc:CityName>Hamar</cbc:CityName>
+               <cbc:PostalZone>2326</cbc:PostalZone>
+               <cbc:CountrySubentityCode listName="nuts">NO020</cbc:CountrySubentityCode>
+               <cac:Country>
+                   <cbc:IdentificationCode listName="country">NOR</cbc:IdentificationCode>
+               </cac:Country>
+           </cac:PostalAddress>
+           <cac:PartyLegalEntity>
+               <cbc:CompanyID>935364892</cbc:CompanyID>
+           </cac:PartyLegalEntity>
+           <cac:Contact>
+               <cbc:Telephone>+47 62550650</cbc:Telephone>
+               <cbc:ElectronicMail>toinpost@domstol.no</cbc:ElectronicMail>
+           </cac:Contact>
+       </efac:Company>
+      </efac:Organization>
+      <efac:Organization>
+       <efac:Company>
+           <cbc:WebsiteURI>https://artifik.no</cbc:WebsiteURI>
+           <cac:PartyIdentification>
+               <cbc:ID schemeName="organization">ORG-0003</cbc:ID>
+           </cac:PartyIdentification>
+           <cac:PartyName>
+               <cbc:Name languageID="NOR">Artifik AS</cbc:Name>
+           </cac:PartyName><cac:PartyName>
+               <cbc:Name languageID="ENG">Artifik AS</cbc:Name>
+           </cac:PartyName>
+           <cac:PostalAddress>
+               <cbc:StreetName>Stortingsgata 12</cbc:StreetName>
+               <cbc:CityName>Oslo</cbc:CityName>
+               <cbc:PostalZone>0161</cbc:PostalZone>
+               <cbc:CountrySubentityCode listName="nuts">NO081</cbc:CountrySubentityCode>
+               <cac:Country>
+                   <cbc:IdentificationCode listName="country">NOR</cbc:IdentificationCode>
+               </cac:Country>
+           </cac:PostalAddress>
+           <cac:PartyLegalEntity>
+               <cbc:CompanyID>925364967</cbc:CompanyID>
+           </cac:PartyLegalEntity>
+           <cac:Contact>
+               <cbc:ElectronicMail>support@artifik.no</cbc:ElectronicMail>
+           </cac:Contact>
+       </efac:Company>
+      </efac:Organization>
+                </efac:Organizations>
+             </efext:EformsExtension>
+          </ext:ExtensionContent>
+       </ext:UBLExtension>
+    </ext:UBLExtensions>
+    <cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+    <cbc:CustomizationID>eforms-sdk-1.13#extended#urn:fdc:anskaffelser.no:2023:eforms:eu</cbc:CustomizationID>
+    <cbc:ID schemeName="notice-id">db26c9ed-0b0c-433f-a4ac-da964b0569ef</cbc:ID>
+    <cbc:ContractFolderID>c2a8673f-aea5-47d9-b25a-881a76d6a0ea</cbc:ContractFolderID>
+    <cbc:IssueDate>2026-04-29Z</cbc:IssueDate>
+    <cbc:IssueTime>05:32:05.939Z</cbc:IssueTime>
+    <cbc:VersionID>01</cbc:VersionID>
+    <cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+    <cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+    <cbc:NoticeLanguageCode listName="language">ENG</cbc:NoticeLanguageCode>
+    <cac:AdditionalNoticeLanguage><cbc:ID>NOR</cbc:ID></cac:AdditionalNoticeLanguage>
+    <cac:ContractingParty>
+        <cbc:BuyerProfileURI>https://www.norsk-tipping.no</cbc:BuyerProfileURI>
+        <cac:ContractingPartyType><cbc:PartyTypeCode listName="buyer-legal-type">body-pl</cbc:PartyTypeCode></cac:ContractingPartyType>
+        <cac:ContractingActivity>
+          <cbc:ActivityTypeCode listName="authority-activity">gen-pub</cbc:ActivityTypeCode>
+        </cac:ContractingActivity>
+        <cac:Party>
+           <cac:PartyIdentification>
+              <cbc:ID schemeName="organization">ORG-0001</cbc:ID>
+           </cac:PartyIdentification>
+           <cac:ServiceProviderParty>
+      <cbc:ServiceTypeCode listName="organisation-role">serv-prov</cbc:ServiceTypeCode>
+        <cac:Party>
+          <cac:PartyIdentification>
+            <cbc:ID schemeName="organization">ORG-0003</cbc:ID>
+          </cac:PartyIdentification>
+        </cac:Party>
+     </cac:ServiceProviderParty>
+        </cac:Party>
+    </cac:ContractingParty>
+    <cac:TenderingTerms>
+    <cac:TendererQualificationRequest>
+      <cac:SpecificTendererRequirement>
+             <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-other</cbc:TendererRequirementTypeCode>
+             <cbc:Description languageID="NOR">Er leverandøren i en konkurssituasjon? Angi hvorfor man under nevnte omstendigheter likevel er i stand til å utføre kontrakten, tatt i betraktning gjeldende nasjonale bestemmelser og tiltak vedrørende fortsettelse av forretningsaktivitetene? Det er ikke nødvendig å angi disse opplysningene hvis avvisning av leverandører, som befinner seg i en slik situasjon, er gjort obligatorisk i henhold til gjeldende nasjonal rett uten mulighet for unntak, når leverandør likevel er i stand til å utføre kontrakten.</cbc:Description><cbc:Description languageID="ENG">Is the tenderer in a bankruptcy situation? Specify why, under the mentioned circumstances, one is able to carry out the contract, considering the current national provisions and measures for continuing the business activities? It is not necessary to provide this information if rejection of tenderers in such a situation is obligatory in accordance with the current national law with no exceptions, when the tenderer is still able to carry out the contract.</cbc:Description>
+          </cac:SpecificTendererRequirement>
+<cac:SpecificTendererRequirement>
+             <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-bankr</cbc:TendererRequirementTypeCode>
+             <cbc:Description languageID="NOR">Er leverandøren i en konkurssituasjon? Angi hvorfor man under nevnte omstendigheter likevel er i stand til å utføre kontrakten, tatt i betraktning gjeldende nasjonale bestemmelser og tiltak vedrørende fortsettelse av forretningsaktivitetene? Det er ikke nødvendig å angi disse opplysningene hvis avvisning av leverandører, som befinner seg i en slik situasjon, er gjort obligatorisk i henhold til gjeldende nasjonal rett uten mulighet for unntak, når leverandør likevel er i stand til å utføre kontrakten.</cbc:Description><cbc:Description languageID="ENG">Is the tenderer in a bankruptcy situation? Specify why, under the mentioned circumstances, one is able to carry out the contract, considering the current national provisions and measures for continuing the business activities? It is not necessary to provide this information if rejection of tenderers in such a situation is obligatory in accordance with the current national law with no exceptions, when the tenderer is still able to carry out the contract.</cbc:Description>
+          </cac:SpecificTendererRequirement>
+<cac:SpecificTendererRequirement>
+             <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-corrpt</cbc:TendererRequirementTypeCode>
+             <cbc:Description languageID="NOR">Er leverandøren selv eller en person, som er medlem av leverandørens administrasjons-, ledelses- eller kontrollorgan eller har kompetanse til å representere eller kontrollere eller treffe beslutninger i slike organer, ved rettskraftig dom blitt dømt for korrupsjon ved en dom avsagt for ikke mer enn fem år siden, eller en avvisningsperiode fastsatt direkte i dommen som fortsatt gjelder? Korrupsjon som definert i artikkel 3 i konvensjonen om bekjempelse av korrupsjon, som involverer tjenestemenn i De Europeiske Fellesskapene eller i Den Europeiske Unions medlemsstater (EUT C 195 av 25.6.1997, s. 1), og i artikkel 2, stk. 1, i Rådets rammeavgjørelse 2003/568/RIA av 22. juli 2003 om bekjempelse av korrupsjon i den private sektor (EUT L 192 av 31.7.2003, s. 54). Denne avvisningsgrunnen omfatter også korrupsjon som definert i nasjonal rett for oppdragsgiveren eller leverandøren.</cbc:Description><cbc:Description languageID="ENG">Is the tenderer himself or a person, who is a member of the tenderer's administration, management or supervisory body or has the competence to represent or control or make decisions in such bodies, in the event a enforceable verdict has been convicted of corruption by a verdict handed down not more than five years ago, or a rejection period determined directly in the judgement that still applies? Corruption as defined in Article 3 of the Convention on Combating Corruption, Involving European Communities or European Union Member States (EUT C 195 of 25.6.1997, s. 1), and in Article 2, point 1, in the Council ́s framework decision 2003/568/RIA of 22 July 2003 on combating corruption in the private sector (EUT L 192 of 31.7.2003,  p. 54). This rejection reason also includes corruption as defined in national law for the contracting authority or supplier.</cbc:Description>
+          </cac:SpecificTendererRequirement>
+<cac:SpecificTendererRequirement>
+             <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-cred-arran</cbc:TendererRequirementTypeCode>
+             <cbc:Description languageID="NOR">Er leverandøren i en situasjon hvor han har fått tvungen gjeldsordning? Angi hvorfor man under nevnte omstendigheter likevel er i stand til å utføre kontrakten, tatt i betraktning gjeldende nasjonale bestemmelser og tiltak vedrørende fortsettelse av forretningsaktivitetene? Det er ikke nødvendig å angi disse opplysningene hvis avvisning av leverandører, som befinner seg i en slik situasjon, er gjort obligatorisk i henhold til gjeldende nasjonal rett uten mulighet for unntak, når leverandør likevel er i stand til å utføre kontrakten.</cbc:Description><cbc:Description languageID="ENG">Is the supplier in a situation where he has been forced debt arrangement? Specify why, under the mentioned circumstances, one is able to carry out the contract, considering the current national provisions and measures for continuing the business activities? It is not necessary to provide this information if rejection of tenderers in such a situation is obligatory in accordance with the current national law with no exceptions, when the tenderer is still able to carry out the contract.</cbc:Description>
+          </cac:SpecificTendererRequirement>
+<cac:SpecificTendererRequirement>
+             <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-part</cbc:TendererRequirementTypeCode>
+             <cbc:Description languageID="NOR">Er leverandøren selv eller en person, som er medlem av leverandørens administrasjons-, ledelses- eller kontrollorgan eller har kompetanse til å representere eller kontrollere eller treffe beslutninger i slike organer, ved rettskraftig dom blitt dømt for deltakelse i en kriminell organisasjon ved en dom avsagt for ikke mer enn fem år siden, eller en avvisningsperiode fastsatt direkte i dommen som fortsatt gjelder? Deltakelse i en kriminell organisasjon som definert i artikkel 2 i Rådets rammeavgjørelse 2008/841/RIA av 24. oktober 2008 om bekjempelse av organisert kriminalitet (EUT L 300 av 11.11.2008, s. 42).</cbc:Description><cbc:Description languageID="ENG">Is the tenderer himself or a person, who is a member of the tenderer's administration, management or supervisory body or has the competence to represent or control or make decisions in such bodies, at the time a legally convicted verdict of participation in a criminal organisation by a verdict handed down no more than five years ago, or a rejection period set out directly in the judgement that still applies? Participation in a criminal organisation as defined in Article 2 of the Council ́s framework decision 2008/841/RIA of 24 October 2008 on combating organised crime (EUT L 300 of 11.11.2008, p. 42).</cbc:Description>
+          </cac:SpecificTendererRequirement>
+<cac:SpecificTendererRequirement>
+             <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-distortion</cbc:TendererRequirementTypeCode>
+             <cbc:Description languageID="NOR">Har leverandør inngått avtale(r) med andre leverandører med hensikt å vri konkurransen?</cbc:Description><cbc:Description languageID="ENG">Has the tenderer entered into agreement(s) with other tenderers with the intention of turning the competition?</cbc:Description>
+          </cac:SpecificTendererRequirement>
+<cac:SpecificTendererRequirement>
+             <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-env-law</cbc:TendererRequirementTypeCode>
+             <cbc:Description languageID="NOR">Er leverandøren kjent med å ha begått brudd på bestemmelser om miljø slik som de fremgår av nasjonal rett, den relevante kunngjøringen eller anskaffelsesdokumentene eller artikkel 18 (2) i direktiv 2014/24/EU.</cbc:Description><cbc:Description languageID="ENG">Is the tenderer aware of breaches of environmental provisions as stated in national law, the relevant notice or procurement documents or Article 18 (2) of Directive 2014/24/EU.</cbc:Description>
+          </cac:SpecificTendererRequirement>
+<cac:SpecificTendererRequirement>
+             <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-laund</cbc:TendererRequirementTypeCode>
+             <cbc:Description languageID="NOR">Er leverandøren selv eller en person, som er medlem av leverandørens administrasjons-, ledelses- eller kontrollorgan eller har kompetanse til å representere eller kontrollere eller treffe beslutninger i slike organer, ved rettskraftig dom blitt dømt for hvitvasking av penger eller finansiering av terrorisme ved en dom avsagt for ikke mer enn fem år siden, eller en avvisningsperiode fastsatt direkte i dommen som fortsatt gjelder? Hvitvasking av penger eller finansiering av terrorismeSom definert i artikkel 1 i Europaparlamentets og Rådets direktiv 2005/60/EF av 26. oktober 2005 om forebyggende tiltak mot bruk av det finansielle system til hvitvasking av penger og finansiering av terrorisme (EUT L 309 av 25.11.2005, s. 15).</cbc:Description><cbc:Description languageID="ENG">Is the tenderer himself or a person, who is a member of the tenderer's administration, management or supervisory body or has the competence to represent or control or make decisions in such bodies, in the event a legal verdict has been convicted of money laundering or financing terrorism by a verdict handed down no more than five years ago, or a rejection period set out directly in the judgement that still applies? Money laundering or financing terrorism As defined in Article 1 of the European Parliament and Council Directive 2005/60/EF of 26 October 2005 on preventive measures against the use of the financial system for money laundering and financing terrorism (EUT L 309 of 25.11.2005, p. 15).</cbc:Description>
+          </cac:SpecificTendererRequirement>
+<cac:SpecificTendererRequirement>
+             <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-fraud</cbc:TendererRequirementTypeCode>
+             <cbc:Description languageID="NOR">Er leverandøren selv eller en person, som er medlem av leverandørens administrasjons-, ledelses- eller kontrollorgan eller har kompetanse til å representere eller kontrollere eller treffe beslutninger i slike organer, ved rettskraftig dom blitt dømt for bedrageri ved en dom avsagt for ikke mer enn fem år siden, eller en avvisningsperiode fastsatt direkte i dommen som fortsatt gjelder? Bedrageri som omhandlet i artikkel 1 i konvensjonen om beskyttelse av De Europeiske Fellesskapenes finansielle interesser (EFT C 316 av 27.11.1995, s. 48).</cbc:Description><cbc:Description languageID="ENG">Is the tenderer himself or a person, who is a member of the tenderer's administration, management or supervisory body or has the competence to represent or control or make decisions in such bodies, at the time a legally convicted of fraud has been convicted of fraud by a verdict handed down not more than five years ago, or a rejection period determined directly in the judgement that still applies? Fraud included in Article 1 of the Convention on protection of the Financial Interests of the European Communities (EFT C 316 of 27.11.1995, p. 48).</cbc:Description>
+          </cac:SpecificTendererRequirement>
+<cac:SpecificTendererRequirement>
+             <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-traffick</cbc:TendererRequirementTypeCode>
+             <cbc:Description languageID="NOR">Er leverandøren selv eller en person, som er medlem av leverandørens administrasjons-, ledelses- eller kontrollorgan eller har kompetanse til å representere eller kontrollere eller treffe beslutninger i slike organer, ved rettskraftig dom blitt dømt for barnearbeid og andre former for menneskehandel ved en dom avsagt for ikke mer enn fem år siden, eller en avvisningsperiode fastsatt direkte i dommen som fortsatt gjelder? Barnearbeid og andre former for menneskehandel som definert i artikkel 2 i Europaparlamentets og Rådets direktiv 2011/36/EU av 5. april 2011 om forebygging og bekjempelse av menneskehandel og beskyttelse av dets ofre, og om erstatning av Rådets rammeavgjørelse 2002/629/RIA (EUT L 101 av 15.4.2011, s. 1).</cbc:Description><cbc:Description languageID="ENG">Is the tenderer himself or a person, who is a member of the tenderer's administration, management or supervisory body or has the competence to represent or control or make decisions in such bodies, in the event a legal verdict has been convicted of child labour and other forms of human trafficking by a verdict handed down no more than five years ago, or a rejection period determined directly in the judgement that still applies? Child labour and other forms of human trafficking as defined in Article 2 of the European Parliament and council directive 2011/36/EU of 5. 1 April 2011 on the prevention and control of human trafficking and the protection of its victims and for compensation of the Council ́s framework decision 2002/629/RIA (EUT L 101 of 15.4.2011, p. 1).</cbc:Description>
+          </cac:SpecificTendererRequirement>
+<cac:SpecificTendererRequirement>
+             <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-insolvency</cbc:TendererRequirementTypeCode>
+             <cbc:Description languageID="NOR">Er leverandøren i en insolvenssituasjon? Angi hvorfor man under nevnte omstendigheter likevel er i stand til å utføre kontrakten, tatt i betraktning gjeldende nasjonale bestemmelser og tiltak vedrørende fortsettelse av forretningsaktivitetene? Det er ikke nødvendig å angi disse opplysningene hvis avvisning av leverandører, som befinner seg i en slik situasjon, er gjort obligatorisk i henhold til gjeldende nasjonal rett uten mulighet for unntak, når leverandør likevel er i stand til å utføre kontrakten.</cbc:Description><cbc:Description languageID="ENG">Is the tenderer in an insolvency situation? Specify why, under the mentioned circumstances, one is able to carry out the contract, considering the current national provisions and measures for continuing the business activities? It is not necessary to provide this information if rejection of tenderers in such a situation is obligatory in accordance with the current national law with no exceptions, when the tenderer is still able to carry out the contract.</cbc:Description>
+          </cac:SpecificTendererRequirement>
+<cac:SpecificTendererRequirement>
+             <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-lab-law</cbc:TendererRequirementTypeCode>
+             <cbc:Description languageID="NOR">Er leverandøren kjent med å ha begått brudd på bestemmelser om arbeidsforhold slik som de fremgår av nasjonal rett, den relevante kunngjøringen eller anskaffelsesdokumentene eller artikkel 18 (2) i direktiv 2014/24/EU.</cbc:Description><cbc:Description languageID="ENG">Is the tenderer aware of breaches of provisions on working conditions as stated in national law, the relevant notice or procurement documents or Article 18 (2) of Directive 2014/24/EU.</cbc:Description>
+          </cac:SpecificTendererRequirement>
+<cac:SpecificTendererRequirement>
+             <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-liq-admin</cbc:TendererRequirementTypeCode>
+             <cbc:Description languageID="NOR">Angi hvorfor man under nevnte omstendigheter likevel er i stand til å utføre kontrakten, tatt i betraktning gjeldende nasjonale bestemmelser og tiltak vedrørende fortsettelse av forretningsaktivitetene? Det er ikke nødvendig å angi disse opplysningene hvis avvisning av leverandører, som befinner seg i en slik situasjon, er gjort obligatorisk i henhold til gjeldende nasjonal rett uten mulighet for unntak, når leverandør likevel er i stand til å utføre kontrakten.</cbc:Description><cbc:Description languageID="ENG">Specify why, under the mentioned circumstances, one is able to carry out the contract, considering the current national provisions and measures for continuing the business activities? It is not necessary to provide this information if rejection of tenderers in such a situation is obligatory in accordance with the current national law with no exceptions, when the tenderer is still able to carry out the contract.</cbc:Description>
+          </cac:SpecificTendererRequirement>
+<cac:SpecificTendererRequirement>
+             <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misrepresent</cbc:TendererRequirementTypeCode>
+             <cbc:Description languageID="NOR">Har leverandøren: a) gitt grovt uriktige opplysninger ved meddelelsen av opplysningene som kreves for å kontrollere at det ikke er grunnlag for avvisning, eller av at kvalifikasjonskravene er oppfylt, b) unnlatt å gi slike opplysninger, c) tatt forbehold om straks å fremlegge de støttedokumenter som oppdragsgiver anmoder om, eller d) urettmessig påvirket oppdragsgivers beslutningsprosess for å tilegne seg konfidensiell informasjon som kan gi denne en urettmessig fordel i forbindelse med konkurransen, eller uaktsomt har gitt misvisende opplysninger som kan få vesentlig innflytelse på beslutninger om avvisning, utvelgelse eller tildeling?</cbc:Description><cbc:Description languageID="ENG">Has the tenderer: a) given grossly incorrect information with the notification of the information required to verify that there is no basis for rejection, or of the qualification requirements being fulfilled, b) failed to provide such information, c) made reservations immediately to present the supporting documents requested by the contracting authority, or d) improperly affected the contracting authority ́s decision process to acquire confidential information that could give this an unlawful advantage in connection with competition, or negligently has given misleading information that can have a significant influence on decisions on rejection, selection or award?</cbc:Description>
+          </cac:SpecificTendererRequirement>
+<cac:SpecificTendererRequirement>
+             <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-partic-confl</cbc:TendererRequirementTypeCode>
+             <cbc:Description languageID="NOR">Er leverandør oppmerksom på en interessekonflikt som angitt i nasjonal rett, den relevante kunngjøring eller anskaffelsesdokumentene?</cbc:Description><cbc:Description languageID="ENG">Is the tenderer aware of a conflict of interest as stated in national law, the relevant notice or procurement documents?</cbc:Description>
+          </cac:SpecificTendererRequirement>
+<cac:SpecificTendererRequirement>
+             <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-prep-confl</cbc:TendererRequirementTypeCode>
+             <cbc:Description languageID="NOR">Har leverandør eller en virksomhet tilknyttet leverandøren gitt råd til oppdragsgiver eller på annen måte vært involvert i planleggingen av konkurransen?</cbc:Description><cbc:Description languageID="ENG">Has the tenderer or an entity associated with the supplier advised the contracting authority or in another way been involved in the planning of the competition?</cbc:Description>
+          </cac:SpecificTendererRequirement>
+<cac:SpecificTendererRequirement>
+             <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misconduct</cbc:TendererRequirementTypeCode>
+             <cbc:Description languageID="NOR">Har leverandøren begått alvorlige feil i yrkesutøvelsen? Hvis det er relevant, se definisjoner i nasjonal rett, den relevante kunngjøring eller anskaffelsesdokumentene.</cbc:Description><cbc:Description languageID="ENG">Has the tenderer committed serious errors in professional practice? If relevant, see the definitions in national law, the relevant notice or procurement documents.</cbc:Description>
+          </cac:SpecificTendererRequirement>
+<cac:SpecificTendererRequirement>
+             <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-sanction</cbc:TendererRequirementTypeCode>
+             <cbc:Description languageID="NOR">Har leverandør begått vesentlig kontraktsbrudd i forbindelse med oppfyllelsen av en tidligere offentlig kontrakt, en tidligere kontrakt med en offentlig oppdragsgiver eller en tidligere konsesjonskontrakt, der bruddet har ført til heving av kontrakten, erstatning eller andre lignende sanksjoner?</cbc:Description><cbc:Description languageID="ENG">Has the tenderer committed significant breaches of contract in connection with the fulfilment of a previous public contract, a previous contract with a public contracting authority or a previous concession contract, where the breach has led to the cancellation of the contract, compensation or other similar sanctions?</cbc:Description>
+          </cac:SpecificTendererRequirement>
+<cac:SpecificTendererRequirement>
+             <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-soc-law</cbc:TendererRequirementTypeCode>
+             <cbc:Description languageID="NOR">Er leverandøren kjent med å ha begått brudd på bestemmelser om sosiale forhold slik som de fremgår av nasjonal rett, den relevante kunngjøringen eller anskaffelsesdokumentene eller artikkel 18 (2) i direktiv 2014/24/EU.</cbc:Description><cbc:Description languageID="ENG">Is the tenderer aware of breaches of provisions on social conditions as stated in national law, the relevant notice or procurement documents or Article 18 (2) of Directive 2014/24/EU.</cbc:Description>
+          </cac:SpecificTendererRequirement>
+<cac:SpecificTendererRequirement>
+             <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-ssc</cbc:TendererRequirementTypeCode>
+             <cbc:Description languageID="NOR">Har leverandør unnlatt å oppfylle alle sine forpliktelser til å betale trygdeavgifter både i det land han er etablert i, og i oppdragsgivers medlemsstat, hvis dette er et annet land enn det han er etablert i?</cbc:Description><cbc:Description languageID="ENG">Have tenderers failed to fulfil all their social security obligations in the country where they are established and in their member state, if this is a different country than what he is established in?</cbc:Description>
+          </cac:SpecificTendererRequirement>
+<cac:SpecificTendererRequirement>
+             <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-as-susp</cbc:TendererRequirementTypeCode>
+             <cbc:Description languageID="NOR">Angi hvorfor man under nevnte omstendigheter likevel er i stand til å utføre kontrakten, tatt i betraktning gjeldende nasjonale bestemmelser og tiltak vedrørende fortsettelse av forretningsaktivitetene? Det er ikke nødvendig å angi disse opplysningene hvis avvisning av leverandører, som befinner seg i en slik situasjon, er gjort obligatorisk i henhold til gjeldende nasjonal rett uten mulighet for unntak, når leverandør likevel er i stand til å utføre kontrakten.</cbc:Description><cbc:Description languageID="ENG">Specify why, under the mentioned circumstances, one is able to carry out the contract, considering the current national provisions and measures for continuing the business activities? It is not necessary to provide this information if rejection of tenderers in such a situation is obligatory in accordance with the current national law with no exceptions, when the tenderer is still able to carry out the contract.</cbc:Description>
+          </cac:SpecificTendererRequirement>
+<cac:SpecificTendererRequirement>
+             <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-tax</cbc:TendererRequirementTypeCode>
+             <cbc:Description languageID="NOR">Har leverandøren unnlatt å oppfylle alle sine forpliktelser til å betale skatter og avgifter både i det land han er etablert i, og i oppdragsgivers medlemsstat, hvis dette er et annet land enn det han er etablert i?</cbc:Description><cbc:Description languageID="ENG">Has the tenderer not fulfilled all of his tax and duty obligations in both the country where he is established and in the contracting authority's member state, if this is a different country than what he is established in?</cbc:Description>
+          </cac:SpecificTendererRequirement>
+<cac:SpecificTendererRequirement>
+             <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-terror</cbc:TendererRequirementTypeCode>
+             <cbc:Description languageID="NOR">Er leverandøren selv eller en person, som er medlem av leverandørens administrasjons-, ledelses- eller kontrollorgan eller har kompetanse til å representere eller kontrollere eller treffe beslutninger i slike organer, ved rettskraftig dom blitt dømt for terrorhandlinger eller straffbare handlinger med forbindelse til terroraktivitetved en dom avsagt for ikke mer enn fem år siden, eller en avvisningsperiode fastsatt direkte i dommen som fortsatt gjelder? Terrorhandlinger eller straffbare handlinger med forbindelse til terroraktivitet som definert i artikkel 1 og 3 i Rådets rammeavgjørelse 2002/475/RIA av 13. juni 2002 om bekjempelse av terrorisme (EFT L 164 af 22.6.2002, s. 3). Denne avvisningsgrunnen omfatter også oppfordring til, medvirkning til eller forsøk på å begå slike handlinger som omhandlet i artikkel 4 i nevnte rammeavgjørelse.</cbc:Description><cbc:Description languageID="ENG">Is the tenderer himself or a person, who is a member of the tenderer's administration, management or supervisory body, or has the competence to represent or control or make decisions in such bodies, in the event a legal verdict has been convicted of acts of terrorism or criminal acts connected to terrorist activities by a verdict handed down no more than five years ago, or a rejection period set out directly in the judgement that still applies? Acts of terrorism or criminal acts relating to terrorist activity as defined in Article 1 and 3 of the Council ́s framework decision 2002/475/RIA of 13 June 2002 on combating terrorism (EFT L 164, af 22.6.2002, p. 3). This rejection reason also includes incitement to, participation or attempts to commit such actions as included in Article 4 in the mentioned framework decision.</cbc:Description>
+          </cac:SpecificTendererRequirement>
+<cac:SpecificTendererRequirement>
+             <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-off-cond</cbc:TendererRequirementTypeCode>
+             <cbc:Description languageID="NOR">Er leverandøren selv eller en person, som er medlem av leverandørens administrasjons-, ledelses- eller kontrollorgan eller har kompetanse til å representere eller kontrollere eller treffe beslutninger i slike organer, ved rettskraftig dom blitt dømt for lovbrudd vedrørende profesjonell atferd innen forsvarsanskaffelser?</cbc:Description><cbc:Description languageID="ENG">Is the tenderer himself or a person, who is a member of the tenderer's administration, management or supervisory body, or has the competence to represent or control or make decisions in such bodies, have been legally convicted of offences regarding professional behaviour in defence procurements?</cbc:Description>
+          </cac:SpecificTendererRequirement>
+<cac:SpecificTendererRequirement>
+             <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-unrel-sec</cbc:TendererRequirementTypeCode>
+             <cbc:Description languageID="NOR">Er leverandøren vurdert til å mangle pålitelighet som er nødvendig for å utelukke risiko for nasjonal sikkerhet?</cbc:Description><cbc:Description languageID="ENG">Is the tenderer assessed to lack reliability that is necessary to exclude the risk of national security?</cbc:Description>
+          </cac:SpecificTendererRequirement>
+
+    </cac:TendererQualificationRequest>
+    <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-notice</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+    </cac:TendererQualificationRequest>
+    
+  </cac:TenderingTerms>
+    <cac:TenderingProcess>
+      <cbc:ProcedureCode listName="procurement-procedure-type">open</cbc:ProcedureCode>
+      <cac:ProcessJustification><cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode></cac:ProcessJustification>
+    </cac:TenderingProcess>
+    <cac:ProcurementProject>
+  <cbc:ID>5224</cbc:ID>
+   <cbc:Name languageID="NOR">Mobilutviklingspartner</cbc:Name><cbc:Name languageID="ENG">Mobile development partner</cbc:Name>
+   <cbc:Description languageID="NOR">Formål
+
+Norsk Tipping ønsker mobilpartnere som skal bidra med nødvendig kompetanse og kapasitet til å utvikle attraktive og ansvarlige brukerreiser på en kvalitetsmessig god måte. Mobilpartnerne skal i tillegg bidra til å bygge den kompetansen Norsk Tipping trenger for fremtiden.
+
+Mobil er selskapets viktigste kundekanal. Norsk Tipping har ca. 2,4 millioner kunder, Hvorav nesten 90 prosent bruker mobil, hovedsakelig via apper distribuert i App Store og Google Play. De er dermed en sentral forutsetning for at Norsk Tipping skal kunne oppfylle sitt samfunnsoppdrag: «… med å legge til rette for et ansvarlig pengespilltilbud og forebygge negative konsekvenser av pengespill. Effektiv drift skal sikre at mest mulig av inntektene går til gode formål». Partnerne til Norsk Tipping må derfor bidra til at selskapet utvikler seg i en bærekraftig retning, gjennom aktiv kompetanseoverføring og ved å styrke produktmodellen fra et mobil-perspektiv.
+
+ 
+
+Styrke evnen til å levere innen produktutviklingsmodellen
+
+Norsk Tipping jobber smidig for å redusere risiko gjennom tidlig læring, kontinuerlige tilbakemeldinger fra brukere og drift, og mulighet til å justere kurs før store investeringer gjøres. Arbeidet er organisert gjennom produktutviklingsområder med tverrfaglige produktteam som har ansvar for både verdi og risiko knyttet til definerte produkter og brukerreiser.
+
+ 
+
+Produktutviklingsområdene skal ha kompetanse og ansvar for å definere løsninger på problemer, utvikle dem og videreutvikle dem slik at de leverer verdi for selskap og kunde. For å få til dette har Norsk Tipping en blanding av produktutviklingsområder bestående av det som kan defineres som «verdistrøm-team» (eksempelvis produktutviklingsområdet for sport), og områder med «plattform»- og «enablement-team» (eksempelvis Plattform: Helhet og Frontend). Tverrfagligheten i områdene skal være tilstrekkelig til å definere problemer/muligheter og løsninger, utvikle og videreutvikle dem, for å heve verdien og kvaliteten av sitt produkt. For å styrke fagene benyttes praksisfellesskap, og det oppfordres til å dele utfordringer og løsninger på fagrelaterte spørsmål med andre innen sitt fag. Slik skaper Norsk Tipping verdi gjennom tverrfaglighet og fagkompetanse, og bidrar til at fagmiljøene utvikler seg over tid.
+
+For å sikre et nødvendig minimum av samsyn og koordinering mellom produktutviklingsområder og andre omgivelser, har vi fellesritualer som;
+
+·         Fellesplanlegging for tertial. Den foregår over fem dager, hvor produktutviklingsområdene analyse og forståelse av effektene produkter og tjenester skaper, kobles sammen med selskapets retning og behov.
+
+·         Del og lær. En månedlig showcase, hvor ulike produktutviklingsområder deler ting de har lært i perioden.
+
+·         Måldemo. En tertialvis demo, hvor produktutviklingsområdene beskriver måloppnåelse, deler kunnskap og et utvalg av tingene de har skapt.
+
+·         Praksisfellesskap for ulike fagområder
+
+·         Synkronisering for produktutviklingsområder. Produktutviklingsledere deler blokkere for måloppnåelse og avklarer hvem de må snakke med for å komme videre
+
+·         Ritualer på produktutviklingsområde/teamnivå: Sprintplanlegging, synk (standup), retrospektiv og demo/Friday wins. Ulik frekvens i områder basert på behov
+
+ 
+
+Modellen skal styrke områdenes autonomi til å skape effekter, som muliggjøres av tydelig retning, nødvendige rammer og transparens for samsyn.
+
+
+
+Norsk Tipping har i dag et sterkt internt fagmiljø for mobilutvikling, med kompetanse på utvikling for iOS og Android, med hovedvekt på iOS. Erfaringen i miljøet spenner fra ett til over 15 år. Oppdragsgiver har også et sterkt internt UX-miljø med kompetanse på både web og mobil, hvorav web er fremtredende. I tillegg har selskapet testere og testutviklere. Kvalitet i Norsk Tipping skal være integrert i arbeidet, og gjelder for alle faser av produktutvikling. Oppdragsgiver må levere i henhold til ulike standarder.
+
+ 
+
+I Plattform: Helhet og Frontend (P:HF) har Norsk Tipping strategisk app-kompetanse gjennom områdets ledelse, med produktutviklingsleder, tech lead/teamarkitekter. Flere produktutviklingsområder har faste native-utviklere. Områder som ikke har egne native-utviklere, får bistand fra P:HF.
+
+
+
+Oppdragsgiver vil over tid utvikle en balansert ansvarsdeling mellom plattformen og de ulike produktutviklingsområdene, i takt med økt modenhet og større internt eierskap. Områder med egne native brukerreiser vil gradvis kunne jobbe mer selvstendig, men i overskuelig framtid vil det være felles behov knyttet til test, release og videreutvikling av plattformen. Fagutvikling og praksisfellesskap skal støtte dette på tvers.
+
+Følgende produktutviklingsområder har i dag native brukerreiser:
+
+·         Plattform: Helhet og Frontend (App-plattform, forside, appens rammeverk)
+
+ * Ansvarlighet
+
+ * Verdiøkende tjenester (noen fellestjenester, f.eks. Grasrot, varslinger)
+
+ * Kunde, ID og betaling
+
+ * Lotteri
+
+ * Sport
+
+ * Spille sammen
+
+ </cbc:Description><cbc:Description languageID="ENG">Purpose
+
+Norsk Tipping would like mobile partners who shall contribute with the necessary competence and capacity to develop attractive and responsible user journeys in a quality good way. The mobile partners shall also contribute to building the competence Norsk Tipping needs for the future.
+
+Mobile is the company's most important customer channel. Norsk Tipping has approx. 2.4 million customers, of which nearly 90 percent use mobile, mainly via apps distributed in the App Store and Google Play. They are, thus, a central prerequisite for Norsk Tipping being able to fulfil his social mission: "... facilitating responsible gambling offers and preventing negative consequences of gambling. Efficient operations shall ensure that as much of the revenues go to good causes". Norsk Tipping's partners must therefore contribute to the company developing in a sustainable direction, through active competence transfer and by strengthening the product model from a mobile perspective.
+
+Strengthen the ability to deliver within the product development model
+
+Norsk Tipping works smoothly to reduce risk through early learning, continual feedback from users and operations, and the possibility to adjust courses before major investments are made. The work is organised through product development areas with a multi-disciplinary product team who are responsible for both value and risk connected to defined products and user journeys.
+
+The product development areas shall have competence and responsibility to define systems for problems, develop them and further develop them so that they deliver value for companies and customers. In order to achieve this, Norsk Tipping has a mix of product development areas consisting of what can be defined as a "value stream team" (e.g. the product development area for sports), and areas with "platform" and "enablement-team" (for example Platform: Whole and Frontend). Multi-disciplinary skills in the areas shall be sufficient to define problems/possibilities and systems, develop and further develop them, in order to raise the value and quality of their product. In order to strengthen the disciplines, practice partnerships are used, and challenges and solutions are encouraged to share trade related questions with others within their profession. This is how Norsk Tipping creates value through cross-discipline and professional competence, and contributes to the professional environment developing over time.
+
+In order to ensure a necessary minimum of coordination and coordination between product development areas and other environments, we have common rituals such as;
+
+·         Joint planning for tertial. It takes place over five days, where the product development areas analysis and understanding of the effects products and services create are connected by the company ́s direction and needs.
+
+·         Lot and leather. A monthly showcase, where different product development areas share things they've learned in the period.
+
+·         Target demo. A tertial demo where the product development areas describe goal achievement, sharing knowledge and a selection of the things they have created.
+
+·         Practice partnerships for different disciplines.
+
+·         Synchronisation for product development areas. Product development managers share block to goal achievement and clarify who they need to talk to in order to move forward
+
+·         Rituals on product development area/team level: Sprint planning, sync (stand-up), retrospective and demo/Friday wins. Different frequency in areas based on need
+
+The model shall strengthen the areas ́ autonomy to create effects, which are made possible by clear direction, necessary frames and transparency for coordination.
+
+Norsk Tipping currently has a strong internal professional environment for mobile development, with competence in development for iOS and Android, with an emphasis on iOS. Experience in the environment spans from one to over 15 years. The contracting authority also has a strong internal UX environment with competence on both web and mobile, of which the web is prominent. In addition the company has testers and test developers. The quality in Norsk Tipping shall be integrated in the work and applies for all phases of product development. The contracting authority must deliver in accordance with different standards.
+
+In Platform: Hele og Frontend (P:HF) has Norsk Tipping strategic app competence through the area management, with product development manager, tech lead/team architects. Several product development areas have permanent native developers. Areas that do not have their own native developers will receive assistance from P:HF.
+
+The contracting authority will over time develop a balanced division of responsibility between the platform and the different product development areas, in line with increased maturity and greater internal ownership. Areas with separate native user journeys will gradually be able to work more independently, but for the foreseeable future there will be common need connected to testing, release and further development of the platform. Professional development and practice partnerships shall support this across.
+
+The following product development areas currently have native user journeys:
+
+·         Platform: Whole and Frontend (App platform, front page, app framework)
+
+*Accountability
+
+* Value-added services (some joint services, e.g. Grassroots, notifications)
+
+* Customer, ID and payment
+
+*Lottery
+
+*Sports
+
+* Playing together
+
+</cbc:Description>
+   <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+   <cac:RequestedTenderTotal>
+            <ext:UBLExtensions>
+      <ext:UBLExtension>
+        <ext:ExtensionContent>
+          <efext:EformsExtension>
+            <efbc:FrameworkMaximumAmount currencyID="NOK">320000000</efbc:FrameworkMaximumAmount>
+          </efext:EformsExtension>
+        </ext:ExtensionContent>
+      </ext:UBLExtension>
+    </ext:UBLExtensions>
+            <cbc:EstimatedOverallContractAmount currencyID="NOK">300000000</cbc:EstimatedOverallContractAmount>
+          </cac:RequestedTenderTotal>
+   <cac:MainCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">72212000</cbc:ItemClassificationCode>
+   </cac:MainCommodityClassification>
+   <cac:AdditionalCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+   </cac:AdditionalCommodityClassification>
+   <cac:RealizedLocation>
+        <cac:Address>
+          <cbc:CountrySubentityCode listName="nuts">NO020</cbc:CountrySubentityCode>
+          <cac:Country>
+            <cbc:IdentificationCode listName="country">NOR</cbc:IdentificationCode>
+          </cac:Country>
+        </cac:Address>
+      </cac:RealizedLocation>
+   <cac:PlannedPeriod><cbc:StartDate>2026-10-01Z</cbc:StartDate>
+    <cbc:EndDate>2030-09-30Z</cbc:EndDate></cac:PlannedPeriod>
+  </cac:ProcurementProject>
+    <cac:ProcurementProjectLot>
+       <cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+       <cac:TenderingTerms>
+          <ext:UBLExtensions>
+     <ext:UBLExtension>
+        <ext:ExtensionContent>
+           <efext:EformsExtension>
+              <efac:SelectionCriteria>
+             <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-trade</cbc:TendererRequirementTypeCode>
+             <cbc:Name languageID="NOR">Firmaattest</cbc:Name><cbc:Name languageID="ENG">Registration</cbc:Name>
+             <cbc:Description languageID="NOR">
+                Leverandøren skal være et lovlig etablert foretak.
+                Documentation requirements:
+                •              Norske selskaper: Firmaattest
+
+•              Utenlandske selskaper: Godtgjørelse på at selskapet er registrert i bransjeregister eller foretaksregister som foreskrevet i lovgivningen i det land hvor leverandøren er etablert.
+
+ 
+             </cbc:Description><cbc:Description languageID="ENG">
+The tenderer shall be a legally established company.
+                Documentation requirements:
+                • Norwegian companies: Company Registration Certificate.
+
+Foreign companies: Proof that the company is registered in a trade or business register as prescribed by the law of the country where the tenderer is established.
+
+</cbc:Description>
+             <cbc:CalculationExpressionCode listName="usage">used</cbc:CalculationExpressionCode>
+          </efac:SelectionCriteria><efac:SelectionCriteria>
+             <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-prof</cbc:TendererRequirementTypeCode>
+             <cbc:Name languageID="NOR">Skatteatest</cbc:Name><cbc:Name languageID="ENG">Tax certificate</cbc:Name>
+             <cbc:Description languageID="NOR">
+                Leverandøren skal ha ordnede forhold mht. innbetaling av skatt og merverdiavgift.
+                Documentation requirements:
+                ·         Norske selskaper: Skatteattest for skatt og merverdiavgift.
+
+ 
+
+Attest for skatt og merverdiavgift leveres av Skatteetaten og kan bestilles via Altinn.
+
+ 
+
+·         Utenlandske selskaper: Skal fremlegge attester fra tilsvarende myndigheter som de norske. Dersom deres myndigheter ikke utsteder slike dokumenter, skal leverandøren legge ved en erklæring om at skatter og merverdiavgift er betalt. Erklæringen skal være bekreftet og signert av bedriftens økonomiansvarlige og revisor.
+
+ 
+
+Dokumentene skal foreligge innen fristens utløp, og skal ikke være eldre enn 6 måneder fra tilbudsfristens utløp.
+
+Dersom leverandøren har dokumentert skatteattest via eBevis er det ikke nødvendig å legge ved dokumentasjon i pdf/tilsvarende.
+             </cbc:Description><cbc:Description languageID="ENG">
+Tenderers shall have their tax and VAT payments in order.
+                Documentation requirements:
+                ·         Norwegian companies: Tax certificate for tax and VAT.
+
+The tax and VAT certificate is delivered by the Norwegian Tax Administration and can be ordered via Altinn.
+
+·         Foreign companies: Must provide certificates from equivalent authorities to the Norwegian ones. If their authorities do not issue such documents, the tenderer shall enclose a declaration stating that taxes and VAT have been paid. The declaration shall be confirmed and signed by the company's financial manager and auditor.
+
+The documents must be presented before the tender deadline and must not be older than 6 months from the tender deadline.
+
+If a tenderer has documented a tax certificate via e-Certificate, documentation in pdf/equivalent must not be enclosed.
+             </cbc:Description>
+             <cbc:CalculationExpressionCode listName="usage">used</cbc:CalculationExpressionCode>
+          </efac:SelectionCriteria><efac:SelectionCriteria>
+             <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-ratio</cbc:TendererRequirementTypeCode>
+             <cbc:Name languageID="NOR">Leverandørens økonomiske og finansielle kapasitet</cbc:Name><cbc:Name languageID="ENG">The tenderer's economic and financial capacity</cbc:Name>
+             <cbc:Description languageID="NOR">
+                Leverandøren skal ha tilfredsstillende økonomi.
+                Documentation requirements:
+                ·         Resultatregnskap og balanse m/noter, samt årsberetning og revisors beretning for siste to år. I tillegg kreves kontantstrømoppstilling for de selskap som plikter å sette opp dette.
+
+·         Kredittvurdering/rating, ikke eldre enn 6 måneder fra tilbudsfristens utløp.
+
+·         Dersom det er mer enn 6 måneder siden balansedag for siste årsregnskap, skal delårsregnskap vedlegges.
+
+·         Eventuelle andre opplysninger som har relevans til foretakets regnskapstall.
+
+ 
+
+Dersom leverandøren av saklige grunner ikke kan fremlegge den dokumentasjon Norsk Tipping har anmodet om, kan han godtgjøre sin økonomiske og finansielle stiling med ethvert annet dokument som oppdragsgiver kan akseptere. Dersom leverandøren har slik saklig grunn, skal han ta skriftlig kontakt med Norsk Tipping for å få klarlagt hvilken annen dokumentasjon som kan aksepteres.
+             </cbc:Description><cbc:Description languageID="ENG">
+Tenderers shall have satisfactory finances.
+                Documentation requirements:
+                ·         Income statement and balance with notes, as well as annual report and auditor's report for the last two years. In addition a cash flow statement is required for the companies that are obliged to set this up.
+
+·         Credit evaluation/rating, not older than 6 months from the tender deadline.
+
+·         If it is more than 6 months since the balance sheet for the last annual accounts, the sub-year accounts must be enclosed.
+
+·         Any other information of relevance to the company's fiscal figures.
+
+If a tenderer, for a justifiable reason, cannot present the documentation that Norsk Tipping has requested, he can prove his economic and financial style with any other document that the contracting authority can accept. If the tenderer has such a justifiable reason, he may contact Norsk Tipping in writing in order to clarify which other documentation is acceptable.
+             </cbc:Description>
+             <cbc:CalculationExpressionCode listName="usage">used</cbc:CalculationExpressionCode>
+          </efac:SelectionCriteria><efac:SelectionCriteria>
+             <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-qual</cbc:TendererRequirementTypeCode>
+             <cbc:Name languageID="NOR">Leverandørens tekniske og faglige kvalifikasjoner</cbc:Name><cbc:Name languageID="ENG">The tenderer ́s technical and professional qualifications.</cbc:Name>
+             <cbc:Description languageID="NOR">
+                3.4.1    LEVERANDØRENS RELEVANTE ORGANISASJON, GJENNOMFØRINGSEVNE OG KAPASITET (3) – LEVERES MED TILBUDET
+
+
+
+Det anbefales å lese innledningen i Bilag 1 (Bilag 2) før man besvarer denne oppgaven.
+
+Leverandøren skal ha solid og god kompetanse, tilstrekkelig gjennomføringsevne og kapasitet innenfor de områdene som etterspørres.
+
+Leverandøren skal navngi dette dokumentet som «Vedlegg 1f – Organisasjon»
+                Documentation requirements:
+                Gi en kort beskrivelse av den relevante delen av organisasjon (inkl. organisasjonskart og geografisk lokasjoner), selskapsform, eierstruktur, visjon, forretningsidé og forretningsområder.
+
+Gi en kort redegjørelse for leverandørens kompetanse og kvalifikasjoner innenfor det som står beskrevet i Bilag 1 og 2 i «formål og behov». Selskapets kompetanse.
+
+Gi en oversikt over leverandørens totale bemanning samt kapasitet på alle typer roller som selskapet råder over innenfor de områdene som etterspørres.
+
+Dersom leverandøren støtter seg på kapasiteten til underleverandører skal følgende dokumenteres for hver underleverandør:
+
+Benytt «Vedlegg 1b – Forpliktelseserklæring»
+
+Navn på underleverandør med beskrivelse av underleverandørens organisasjon, selskapsform, eierstruktur og navn på daglig leder.
+
+Beskrivelse av underleverandørens antatte bidrag (prosentandel av totalt volum) i forbindelse med kontrakten.
+
+Forpliktelseserklæring signert av underleverandør som bekrefter at leverandøren reelt disponerer over ressursene som tilbys fra underleverandør.
+
+Beskrivelse av hvordan samarbeidsrelasjonen mellom leverandøren og underleverandøren er fundert og organisert, og om det dreier seg om en varig samarbeidsrelasjon og eventuelt tidsaspektet for forholdet.
+             </cbc:Description><cbc:Description languageID="ENG">
+3.4.1 THE TENDERER ́S RELEVANT ORGANISATION, IMPLEMENTATION ABILITY AND CAPACITY (3) - WILL BE ENCLOSED WITH THE TENDER.
+
+It is recommended to read the introduction in Annex 1 (Annex 2) before answering this task.
+
+Tenderers shall have solid and good competence, sufficient implementation ability and capacity within the requested areas.
+
+Tenderers shall name this document as "Annex 1f - Organisation".
+                Documentation requirements:
+                Give a short description of the relevant part of the organisation (including an organisation chart and geographical locations), company form, ownership structure, vision, business idea and business areas.
+
+Give a short account of the tenderer ́s competence and qualifications within what is described in Annexes 1 and 2 in "purpose and need". The company ́s competence.
+
+Give an overview of the tenderer ́s total manpower as well as capacity for all types of roles that the company has at its disposal within the requested areas.
+
+If a tenderer will use the capacity of sub-suppliers, the following shall be documented for each sub-supplier:
+
+Use 'Annex 1b - Commitment Statement'.
+
+Name of the sub-supplier with a description of the sub-provider's organisation, company form, ownership structure and the name of the general manager.
+
+Description of the sub-contractor's estimated contribution (percentage of total volume) in connection with the contract.
+
+Commitment statement signed by sub-suppliers who confirm that the tenderer really has access to the resources offered from the sub-supplier.
+
+A description of how the co-operation relationship between the tenderer and the sub-provider is based on and organised, and whether it involves long-term co-operation relation and any indication of the time aspect of the relationship.
+             </cbc:Description>
+             <cbc:CalculationExpressionCode listName="usage">used</cbc:CalculationExpressionCode>
+          </efac:SelectionCriteria><efac:SelectionCriteria>
+             <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-qual</cbc:TendererRequirementTypeCode>
+             <cbc:Name languageID="NOR">Leverandørens tekniske og faglige kvalifikasjoner</cbc:Name><cbc:Name languageID="ENG">The tenderer ́s technical and professional qualifications.</cbc:Name>
+             <cbc:Description languageID="NOR">
+                SELSKAPETS RELEVANTE REFERANSER
+
+
+
+Leverandøren skal ha erfaring fra minimum 3 tilsvarende oppdrag i løpet av de 3 siste årene.
+
+Benytt "Vedlegg 1a - referanser på selskapsnivå", til å besvare denne oppgaven, samt «Vedlegg 1d – Egenerklæring Interessekonflikt»
+
+Relevansen er viktig!
+                Documentation requirements:
+                Beskrivelse av leverandørens 3 mest relevante oppdrag i løpet av de siste 3 årene. Beskrivelsen må inkludere angivelse av oppdragets verdi, tidspunkt og mottaker (navn, telefon og e-post).
+
+Benytt «Vedlegg 1a – Referanser på selskapsnivå»
+
+Dersom leverandøren støtter seg på kapasiteten til underleverandører (støttende virksomheter) for å oppfylle kravene i Leverandørens tekniske og faglige kvalifikasjoner skal det for hver underleverandør legges ved dokumentasjon i henhold til dokumentasjonskravet nedenfor. Underleverandør(er) bør være en eller flere av referansene.
+
+Benytt «Vedlegg 1b – Forpliktelseserklæring»
+
+Kravet gjelder uavhengig av den rettslige forbindelsen mellom leverandør og underleverandør(er). Dette betyr også at et konsernselskap som støtter seg på andre selskaper i konsernet skal for hvert støttende selskap legge ved dokumentasjon i henhold til dokumentasjonskravet nedenfor.
+             </cbc:Description><cbc:Description languageID="ENG">
+THE COMPANY ́S RELEVANT REFERENCES
+
+Tenderers shall have experience from a minimum of three similar contracts during the last 3 years.
+
+Use &amp;quot;Annex 1a - references at company level&amp;quot; to respond to this assignment, as well as &amp;quot;Annex 1d - Self-Declaration of Interest&amp;quot;
+
+Relevance is important!
+                Documentation requirements:
+                Description of the tenderer's three most relevant contracts in the course of the last 3 years. The description must include a statement of the contract ́s value, date and recipient (name, telephone number and e-mail address).
+
+Use 'Annex 1a - References on company level'
+
+If a tenderer will use the capacity of sub-suppliers (supporting companies) to fulfil the requirements of the tenderer ́s technical and professional qualifications, documentation must be enclosed for each sub-supplier in accordance with the documentation requirement below. Sub-supplier(s) ought to be one or more of the references.
+
+Use 'Annex 1b - Commitment Statement'.
+
+The requirement applies regardless of the legal connection between the tenderer and sub-supplier(s). This also means that a group company that will use other companies in the group, for each supporting company, shall enclose documentation in accordance with the documentation requirement below.
+             </cbc:Description>
+             <cbc:CalculationExpressionCode listName="usage">used</cbc:CalculationExpressionCode>
+          </efac:SelectionCriteria>
+              
+           </efext:EformsExtension>
+        </ext:ExtensionContent>
+     </ext:UBLExtension>
+    </ext:UBLExtensions>
+          <cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+          <cac:RequiredFinancialGuarantee>
+            <cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+          </cac:RequiredFinancialGuarantee>
+          <cac:CallForTendersDocumentReference>
+             <cbc:ID>5224</cbc:ID>
+             <cbc:DocumentType>restricted-document</cbc:DocumentType>
+             <cac:Attachment>
+                <cac:ExternalReference>
+                   <cbc:URI>https://app.artifik.no/procurements/5224</cbc:URI>
+                </cac:ExternalReference>
+             </cac:Attachment>
+          </cac:CallForTendersDocumentReference>
+          <cac:PaymentTerms>
+            <cbc:Note languageID="NOR">N/A</cbc:Note><cbc:Note languageID="ENG">N/A</cbc:Note>
+          </cac:PaymentTerms>
+          <cac:TendererQualificationRequest>
+             <cac:SpecificTendererRequirement>
+                <cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+             </cac:SpecificTendererRequirement>
+          </cac:TendererQualificationRequest>
+          <cac:TendererQualificationRequest>
+            <cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+          </cac:TendererQualificationRequest>
+          <cac:TendererQualificationRequest>
+        <!-- Selection Criteria Source (BT-821) -->
+        <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+    </cac:TendererQualificationRequest>
+          
+          <cac:ContractExecutionRequirement>
+             <cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+          </cac:ContractExecutionRequirement>
+          <cac:ContractExecutionRequirement>
+             <cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+          </cac:ContractExecutionRequirement>
+          <cac:ContractExecutionRequirement>
+             <cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+          </cac:ContractExecutionRequirement>
+          <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+            <cbc:Description languageID="NOR">N/A</cbc:Description><cbc:Description languageID="ENG">N/A</cbc:Description>
+          </cac:ContractExecutionRequirement>
+          <cac:AwardingTerms>
+        
+        
+        
+      <cac:AwardingCriterion>
+        <cac:SubordinateAwardingCriterion>
+              <ext:UBLExtensions>
+          <ext:UBLExtension>
+            <ext:ExtensionContent>
+              <efext:EformsExtension>
+                <efac:AwardCriterionParameter>
+                  <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                  <efbc:ParameterNumeric>20</efbc:ParameterNumeric>
+                </efac:AwardCriterionParameter>
+              </efext:EformsExtension>
+            </ext:ExtensionContent>
+          </ext:UBLExtension>
+        </ext:UBLExtensions>
+              <cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+              <cbc:Description languageID="NOR">Priser</cbc:Description><cbc:Description languageID="ENG">Prices</cbc:Description>
+                 </cac:SubordinateAwardingCriterion><cac:SubordinateAwardingCriterion>
+              <ext:UBLExtensions>
+          <ext:UBLExtension>
+            <ext:ExtensionContent>
+              <efext:EformsExtension>
+                <efac:AwardCriterionParameter>
+                  <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                  <efbc:ParameterNumeric>80</efbc:ParameterNumeric>
+                </efac:AwardCriterionParameter>
+              </efext:EformsExtension>
+            </ext:ExtensionContent>
+          </ext:UBLExtension>
+        </ext:UBLExtensions>
+              <cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+              <cbc:Description languageID="NOR">Kvalitet</cbc:Description><cbc:Description languageID="ENG">Quality</cbc:Description>
+                 </cac:SubordinateAwardingCriterion><cac:SubordinateAwardingCriterion>
+              <ext:UBLExtensions>
+          <ext:UBLExtension>
+            <ext:ExtensionContent>
+              <efext:EformsExtension>
+                <efac:AwardCriterionParameter>
+                  <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                  <efbc:ParameterNumeric>0</efbc:ParameterNumeric>
+                </efac:AwardCriterionParameter>
+              </efext:EformsExtension>
+            </ext:ExtensionContent>
+          </ext:UBLExtension>
+        </ext:UBLExtensions>
+              <cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality-nor-env-none</cbc:AwardingCriterionTypeCode>
+              <cbc:Description languageID="NOR">Klima- og miljøhensyn
+
+Konsulenttjenester er etter sin art vurdert å ha et klimaavtrykk og en miljøbelastning som er uvesentlig, da vurderingselementer som inngår i typiske anskaffelser innen arten normalt sett enten ikke har et stort avtrykk eller ikke har tilstrekkelig tilknytning til leveransen av konsulenttjenesten.
+
+Med bakgrunn i overnevnte benytter oppdragsgiver unntaksbestemmelsen i anskaffelsesforskriftens (FOA) § 7-9 fjerde ledd, og erstatter tildelingskriterier med klima- og miljøkrav i kravspesifikasjonen, da det er klart at dette gir en bedre klima- og miljøeffekt. Oppdragsgiver er derfor unntatt forpliktelsene om å vekte miljø 30% eller å prioritere miljø blant de tre høyest prioriterte tildelingskriteriene.</cbc:Description><cbc:Description languageID="ENG">Climate and environmental considerations
+
+Consultancy services are considered to have a climate footprint and an immaterial environmental impact, as assessment elements included in typical procurements within the nature normally do not normally have a large footprint or do not have sufficient connection to the delivery of the consultancy service.
+
+Based on the above, the contracting authority uses the exclusionary provision in the procurement regulations (FOA) § 7-9 fourth paragraph, and replaces the award criteria with climate and environmental requirements in the requirement specification, as it is clear that this provides a better climate and environmental effect. The contracting authority is therefore exempt from the obligations to weight the environment 30% or to prioritise the environment among the three highest prioritised award criteria.</cbc:Description>
+                 </cac:SubordinateAwardingCriterion>
+      </cac:AwardingCriterion>
+    </cac:AwardingTerms>
+          <cac:AdditionalInformationParty>
+             <cac:PartyIdentification>
+                <cbc:ID schemeName="organization">ORG-0001</cbc:ID>
+             </cac:PartyIdentification>
+          </cac:AdditionalInformationParty>
+          <cac:TenderRecipientParty>
+             <cbc:EndpointID>https://app.artifik.no/procurements/5224</cbc:EndpointID>
+             <cac:PartyIdentification>
+                 <cbc:ID schemeName="organization">ORG-0003</cbc:ID>
+              </cac:PartyIdentification>
+           </cac:TenderRecipientParty>
+           
+           <cac:TenderValidityPeriod>
+              <cbc:DurationMeasure unitCode="DAY">11</cbc:DurationMeasure>
+           </cac:TenderValidityPeriod>
+           <cac:AppealTerms>
+                 <cac:AppealInformationParty>
+                    <cac:PartyIdentification>
+                        <cbc:ID schemeName="organization">ORG-0001</cbc:ID>
+                    </cac:PartyIdentification>
+                </cac:AppealInformationParty>
+              <cac:AppealReceiverParty>
+                 <cac:PartyIdentification>
+                    <cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+                 </cac:PartyIdentification>
+              </cac:AppealReceiverParty>
+           </cac:AppealTerms>
+           <cac:Language><cbc:ID>ENG</cbc:ID></cac:Language>
+           <cac:Language><cbc:ID>NOR</cbc:ID></cac:Language>
+           <cac:PostAwardProcess>
+              <cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+              <cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+           </cac:PostAwardProcess>
+        </cac:TenderingTerms>
+        <cac:TenderingProcess>
+           <ext:UBLExtensions>
+              <ext:UBLExtension>
+                 <ext:ExtensionContent>
+                    <efext:EformsExtension>
+                       <efbc:AccessToolName>e-Tendering</efbc:AccessToolName>
+                    </efext:EformsExtension>
+                 </ext:ExtensionContent>
+              </ext:UBLExtension>
+           </ext:UBLExtensions>
+           <cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+           
+           <cbc:GovernmentAgreementConstraintIndicator>false</cbc:GovernmentAgreementConstraintIndicator>
+           <cac:TenderSubmissionDeadlinePeriod>
+              <cbc:EndDate>2026-06-11Z</cbc:EndDate>
+              <cbc:EndTime>22:00:00.000Z</cbc:EndTime>
+           </cac:TenderSubmissionDeadlinePeriod>
+           <cac:AuctionTerms>
+              <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+           </cac:AuctionTerms>
+           <cac:FrameworkAgreement>
+        <cbc:MaximumOperatorQuantity>2</cbc:MaximumOperatorQuantity>
+        
+    </cac:FrameworkAgreement>
+           <cac:ContractingSystem>
+              <cbc:ContractingSystemTypeCode listName="framework-agreement">fa-mix</cbc:ContractingSystemTypeCode>
+           </cac:ContractingSystem>
+           <cac:ContractingSystem>
+              <cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+           </cac:ContractingSystem>
+        </cac:TenderingProcess>
+        <cac:ProcurementProject>
+          <cbc:ID>6824</cbc:ID>
+          <cbc:Name languageID="NOR">Mobilutviklingspartner</cbc:Name><cbc:Name languageID="ENG">Mobile development partner</cbc:Name>
+          <cbc:Description languageID="NOR">Formål
+
+Norsk Tipping ønsker mobilpartnere som skal bidra med nødvendig kompetanse og kapasitet til å utvikle attraktive og ansvarlige brukerreiser på en kvalitetsmessig god måte. Mobilpartnerne skal i tillegg bidra til å bygge den kompetansen Norsk Tipping trenger for fremtiden.
+
+Mobil er selskapets viktigste kundekanal. Norsk Tipping har ca. 2,4 millioner kunder, Hvorav nesten 90 prosent bruker mobil, hovedsakelig via apper distribuert i App Store og Google Play. De er dermed en sentral forutsetning for at Norsk Tipping skal kunne oppfylle sitt samfunnsoppdrag: «… med å legge til rette for et ansvarlig pengespilltilbud og forebygge negative konsekvenser av pengespill. Effektiv drift skal sikre at mest mulig av inntektene går til gode formål». Partnerne til Norsk Tipping må derfor bidra til at selskapet utvikler seg i en bærekraftig retning, gjennom aktiv kompetanseoverføring og ved å styrke produktmodellen fra et mobil-perspektiv.
+
+ 
+
+Styrke evnen til å levere innen produktutviklingsmodellen
+
+Norsk Tipping jobber smidig for å redusere risiko gjennom tidlig læring, kontinuerlige tilbakemeldinger fra brukere og drift, og mulighet til å justere kurs før store investeringer gjøres. Arbeidet er organisert gjennom produktutviklingsområder med tverrfaglige produktteam som har ansvar for både verdi og risiko knyttet til definerte produkter og brukerreiser.
+
+ 
+
+Produktutviklingsområdene skal ha kompetanse og ansvar for å definere løsninger på problemer, utvikle dem og videreutvikle dem slik at de leverer verdi for selskap og kunde. For å få til dette har Norsk Tipping en blanding av produktutviklingsområder bestående av det som kan defineres som «verdistrøm-team» (eksempelvis produktutviklingsområdet for sport), og områder med «plattform»- og «enablement-team» (eksempelvis Plattform: Helhet og Frontend). Tverrfagligheten i områdene skal være tilstrekkelig til å definere problemer/muligheter og løsninger, utvikle og videreutvikle dem, for å heve verdien og kvaliteten av sitt produkt. For å styrke fagene benyttes praksisfellesskap, og det oppfordres til å dele utfordringer og løsninger på fagrelaterte spørsmål med andre innen sitt fag. Slik skaper Norsk Tipping verdi gjennom tverrfaglighet og fagkompetanse, og bidrar til at fagmiljøene utvikler seg over tid.
+
+For å sikre et nødvendig minimum av samsyn og koordinering mellom produktutviklingsområder og andre omgivelser, har vi fellesritualer som;
+
+·         Fellesplanlegging for tertial. Den foregår over fem dager, hvor produktutviklingsområdene analyse og forståelse av effektene produkter og tjenester skaper, kobles sammen med selskapets retning og behov.
+
+·         Del og lær. En månedlig showcase, hvor ulike produktutviklingsområder deler ting de har lært i perioden.
+
+·         Måldemo. En tertialvis demo, hvor produktutviklingsområdene beskriver måloppnåelse, deler kunnskap og et utvalg av tingene de har skapt.
+
+·         Praksisfellesskap for ulike fagområder
+
+·         Synkronisering for produktutviklingsområder. Produktutviklingsledere deler blokkere for måloppnåelse og avklarer hvem de må snakke med for å komme videre
+
+·         Ritualer på produktutviklingsområde/teamnivå: Sprintplanlegging, synk (standup), retrospektiv og demo/Friday wins. Ulik frekvens i områder basert på behov
+
+ 
+
+Modellen skal styrke områdenes autonomi til å skape effekter, som muliggjøres av tydelig retning, nødvendige rammer og transparens for samsyn.
+
+
+
+Norsk Tipping har i dag et sterkt internt fagmiljø for mobilutvikling, med kompetanse på utvikling for iOS og Android, med hovedvekt på iOS. Erfaringen i miljøet spenner fra ett til over 15 år. Oppdragsgiver har også et sterkt internt UX-miljø med kompetanse på både web og mobil, hvorav web er fremtredende. I tillegg har selskapet testere og testutviklere. Kvalitet i Norsk Tipping skal være integrert i arbeidet, og gjelder for alle faser av produktutvikling. Oppdragsgiver må levere i henhold til ulike standarder.
+
+ 
+
+I Plattform: Helhet og Frontend (P:HF) har Norsk Tipping strategisk app-kompetanse gjennom områdets ledelse, med produktutviklingsleder, tech lead/teamarkitekter. Flere produktutviklingsområder har faste native-utviklere. Områder som ikke har egne native-utviklere, får bistand fra P:HF.
+
+
+
+Oppdragsgiver vil over tid utvikle en balansert ansvarsdeling mellom plattformen og de ulike produktutviklingsområdene, i takt med økt modenhet og større internt eierskap. Områder med egne native brukerreiser vil gradvis kunne jobbe mer selvstendig, men i overskuelig framtid vil det være felles behov knyttet til test, release og videreutvikling av plattformen. Fagutvikling og praksisfellesskap skal støtte dette på tvers.
+
+Følgende produktutviklingsområder har i dag native brukerreiser:
+
+·         Plattform: Helhet og Frontend (App-plattform, forside, appens rammeverk)
+
+ * Ansvarlighet
+
+ * Verdiøkende tjenester (noen fellestjenester, f.eks. Grasrot, varslinger)
+
+ * Kunde, ID og betaling
+
+ * Lotteri
+
+ * Sport
+
+ * Spille sammen
+
+ </cbc:Description><cbc:Description languageID="ENG">Purpose
+
+Norsk Tipping would like mobile partners who shall contribute with the necessary competence and capacity to develop attractive and responsible user journeys in a quality good way. The mobile partners shall also contribute to building the competence Norsk Tipping needs for the future.
+
+Mobile is the company's most important customer channel. Norsk Tipping has approx. 2.4 million customers, of which nearly 90 percent use mobile, mainly via apps distributed in the App Store and Google Play. They are, thus, a central prerequisite for Norsk Tipping being able to fulfil his social mission: "... facilitating responsible gambling offers and preventing negative consequences of gambling. Efficient operations shall ensure that as much of the revenues go to good causes". Norsk Tipping's partners must therefore contribute to the company developing in a sustainable direction, through active competence transfer and by strengthening the product model from a mobile perspective.
+
+Strengthen the ability to deliver within the product development model
+
+Norsk Tipping works smoothly to reduce risk through early learning, continual feedback from users and operations, and the possibility to adjust courses before major investments are made. The work is organised through product development areas with a multi-disciplinary product team who are responsible for both value and risk connected to defined products and user journeys.
+
+The product development areas shall have competence and responsibility to define systems for problems, develop them and further develop them so that they deliver value for companies and customers. In order to achieve this, Norsk Tipping has a mix of product development areas consisting of what can be defined as a "value stream team" (e.g. the product development area for sports), and areas with "platform" and "enablement-team" (for example Platform: Whole and Frontend). Multi-disciplinary skills in the areas shall be sufficient to define problems/possibilities and systems, develop and further develop them, in order to raise the value and quality of their product. In order to strengthen the disciplines, practice partnerships are used, and challenges and solutions are encouraged to share trade related questions with others within their profession. This is how Norsk Tipping creates value through cross-discipline and professional competence, and contributes to the professional environment developing over time.
+
+In order to ensure a necessary minimum of coordination and coordination between product development areas and other environments, we have common rituals such as;
+
+·         Joint planning for tertial. It takes place over five days, where the product development areas analysis and understanding of the effects products and services create are connected by the company ́s direction and needs.
+
+·         Lot and leather. A monthly showcase, where different product development areas share things they've learned in the period.
+
+·         Target demo. A tertial demo where the product development areas describe goal achievement, sharing knowledge and a selection of the things they have created.
+
+·         Practice partnerships for different disciplines.
+
+·         Synchronisation for product development areas. Product development managers share block to goal achievement and clarify who they need to talk to in order to move forward
+
+·         Rituals on product development area/team level: Sprint planning, sync (stand-up), retrospective and demo/Friday wins. Different frequency in areas based on need
+
+The model shall strengthen the areas ́ autonomy to create effects, which are made possible by clear direction, necessary frames and transparency for coordination.
+
+Norsk Tipping currently has a strong internal professional environment for mobile development, with competence in development for iOS and Android, with an emphasis on iOS. Experience in the environment spans from one to over 15 years. The contracting authority also has a strong internal UX environment with competence on both web and mobile, of which the web is prominent. In addition the company has testers and test developers. The quality in Norsk Tipping shall be integrated in the work and applies for all phases of product development. The contracting authority must deliver in accordance with different standards.
+
+In Platform: Hele og Frontend (P:HF) has Norsk Tipping strategic app competence through the area management, with product development manager, tech lead/team architects. Several product development areas have permanent native developers. Areas that do not have their own native developers will receive assistance from P:HF.
+
+The contracting authority will over time develop a balanced division of responsibility between the platform and the different product development areas, in line with increased maturity and greater internal ownership. Areas with separate native user journeys will gradually be able to work more independently, but for the foreseeable future there will be common need connected to testing, release and further development of the platform. Professional development and practice partnerships shall support this across.
+
+The following product development areas currently have native user journeys:
+
+·         Platform: Whole and Frontend (App platform, front page, app framework)
+
+*Accountability
+
+* Value-added services (some joint services, e.g. Grassroots, notifications)
+
+* Customer, ID and payment
+
+*Lottery
+
+*Sports
+
+* Playing together
+
+</cbc:Description>
+          <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+          
+          <cac:MainCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">72212000</cbc:ItemClassificationCode>
+   </cac:MainCommodityClassification>
+   <cac:AdditionalCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+   </cac:AdditionalCommodityClassification>
+          <cac:RealizedLocation>
+        <cac:Address>
+          <cbc:CountrySubentityCode listName="nuts">NO020</cbc:CountrySubentityCode>
+          <cac:Country>
+            <cbc:IdentificationCode listName="country">NOR</cbc:IdentificationCode>
+          </cac:Country>
+        </cac:Address>
+      </cac:RealizedLocation>
+          <cac:PlannedPeriod><cbc:StartDate>2026-10-01Z</cbc:StartDate>
+    <cbc:EndDate>2030-09-30Z</cbc:EndDate></cac:PlannedPeriod>
+          
+        </cac:ProcurementProject>
+      </cac:ProcurementProjectLot>
+  </ContractNotice>

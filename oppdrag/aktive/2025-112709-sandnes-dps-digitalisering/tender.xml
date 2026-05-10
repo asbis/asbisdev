@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="UTF-8"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">
+  <ext:UBLExtensions>
+    <ext:UBLExtension>
+      <ext:ExtensionContent>
+        <efext:EformsExtension>
+          <efbc:TransmissionDate>2025-09-04+00:00</efbc:TransmissionDate>
+          <efbc:TransmissionTime>08:31:58+00:00</efbc:TransmissionTime>
+          <efac:Changes>
+            <efbc:ChangedNoticeIdentifier>3ed898bd-990f-45ae-b996-f996c769be78-01</efbc:ChangedNoticeIdentifier>
+            <efac:Change>
+              <efac:ChangedSection>
+                <efbc:ChangedSectionIdentifier>ORG-0001</efbc:ChangedSectionIdentifier>
+              </efac:ChangedSection>
+            </efac:Change>
+            <efac:Change>
+              <efac:ChangedSection>
+                <efbc:ChangedSectionIdentifier>ORG-0002</efbc:ChangedSectionIdentifier>
+              </efac:ChangedSection>
+            </efac:Change>
+            <efac:Change>
+              <efac:ChangedSection>
+                <efbc:ChangedSectionIdentifier>PROCEDURE</efbc:ChangedSectionIdentifier>
+              </efac:ChangedSection>
+            </efac:Change>
+            <efac:Change>
+              <efac:ChangedSection>
+                <efbc:ChangedSectionIdentifier>LOT-0000</efbc:ChangedSectionIdentifier>
+              </efac:ChangedSection>
+            </efac:Change>
+            <efac:ChangeReason>
+              <cbc:ReasonCode listName="change-corrig-justification">cancel</cbc:ReasonCode>
+              <efbc:ReasonDescription languageID="NOR">Oppdragsgiver beklager å meddele at den ser seg nødt til å avslutte/avlyse den dynamiske innkjøpsordningen grunnet manglende behov. I perioden siden ordningen ble kunngjort har det blitt klart for oppdragsgiver at behovet for bistand som listet opp under ordningens kategorier er betydelig mindre enn oppdragsgiver først vurderte. Det har ikke blitt gjennomført noen konkurranser på noen av ordningens kategorier. Dette i hovedsak fordi behovet for bistand, som opplyst i ordningens konkurransedokumenter, avgjøres av det enkelte prosjekt ute i oppdragivers organisasjon. Det har ikke vært prosjekter med behov for slik bistand så langt, og det er heller ikke meldt om behov for slik bistand fremover.</efbc:ReasonDescription>
+              <efbc:ReasonDescription languageID="ENG">The contracting authority apologises for giving notice that it will have to cancel/cancel the dynamic purchasing system due to a lack of need. In the period since the scheme was announced, it has become clear to the contracting authority that the need for assistance listed under the scheme's categories is significantly less than the contracting authority first considered. No competitions have been held for any of the scheme ́s categories. This is mainly because the need for assistance, as stated in the scheme ́s competition documents, is decided by each project in the contracting authority ́s organisation. There have not been projects with a need for such assistance so far, nor have there been reports of a need for such assistance in the future.</efbc:ReasonDescription>
+            </efac:ChangeReason>
+          </efac:Changes>
+          <efac:NoticeSubType>
+            <cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+          </efac:NoticeSubType>
+          <efac:Organizations>
+            <efac:Organization>
+              <efac:Company>
+                <cac:PartyIdentification>
+                  <cbc:ID schemeName="organization">ORG-0001</cbc:ID>
+                </cac:PartyIdentification>
+                <cac:PartyName>
+                  <cbc:Name languageID="NOR">Sandnes kommune</cbc:Name>
+                </cac:PartyName>
+                <cac:PartyName>
+                  <cbc:Name languageID="ENG">Sandnes kommune</cbc:Name>
+                </cac:PartyName>
+                <cac:PostalAddress>
+                  <cbc:StreetName>Rådhusgata 1</cbc:StreetName>
+                  <cbc:CityName>Sandnes</cbc:CityName>
+                  <cbc:PostalZone>4306</cbc:PostalZone>
+                  <cbc:CountrySubentityCode listName="nuts">NO0A1</cbc:CountrySubentityCode>
+                  <cac:Country>
+                    <cbc:IdentificationCode listName="country">NOR</cbc:IdentificationCode>
+                  </cac:Country>
+                </cac:PostalAddress>
+                <cac:PartyLegalEntity>
+                  <cbc:CompanyID schemeID="002">964965137</cbc:CompanyID>
+                </cac:PartyLegalEntity>
+                <cac:Contact>
+                  <cbc:Name>Bård Krane Alander</cbc:Name>
+                  <cbc:Telephone>+47 40900860</cbc:Telephone>
+                  <cbc:ElectronicMail>bard.krane.alander@sandnes.kommune.no</cbc:ElectronicMail>
+                </cac:Contact>
+              </efac:Company>
+            </efac:Organization>
+            <efac:Organization>
+              <efac:Company>
+                <cac:PartyIdentification>
+                  <cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+                </cac:PartyIdentification>
+                <cac:PartyName>
+                  <cbc:Name languageID="NOR">Sør-Rogaland Tingrett</cbc:Name>
+                </cac:PartyName>
+                <cac:PartyName>
+                  <cbc:Name languageID="ENG">Sør-Rogaland Tingrett</cbc:Name>
+                </cac:PartyName>
+                <cac:PostalAddress>
+                  <cbc:CityName>Sandnes</cbc:CityName>
+                  <cbc:PostalZone>4306</cbc:PostalZone>
+                  <cbc:CountrySubentityCode listName="nuts">NO0A1</cbc:CountrySubentityCode>
+                  <cac:Country>
+                    <cbc:IdentificationCode listName="country">NOR</cbc:IdentificationCode>
+                  </cac:Country>
+                </cac:PostalAddress>
+                <cac:PartyLegalEntity>
+                  <cbc:CompanyID schemeID="002">926723448</cbc:CompanyID>
+                </cac:PartyLegalEntity>
+                <cac:Contact>
+                  <cbc:Telephone>52004600</cbc:Telephone>
+                  <cbc:ElectronicMail>sor-rogaland.tingrett@domstol.no</cbc:ElectronicMail>
+                </cac:Contact>
+              </efac:Company>
+            </efac:Organization>
+          </efac:Organizations>
+        </efext:EformsExtension>
+      </ext:ExtensionContent>
+    </ext:UBLExtension>
+  </ext:UBLExtensions>
+  <cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+  <cbc:CustomizationID>eforms-sdk-1.13#extended#urn:fdc:anskaffelser.no:2023:eforms:eu</cbc:CustomizationID>
+  <cbc:ID schemeName="notice-id">a1c5b7af-3058-4cf8-915b-dd4d567b74e4</cbc:ID>
+  <cbc:ContractFolderID>53f57476-0532-42a2-9639-ddc515a05d26</cbc:ContractFolderID>
+  <cbc:IssueDate>2025-09-04+00:00</cbc:IssueDate>
+  <cbc:IssueTime>08:19:10+00:00</cbc:IssueTime>
+  <cbc:VersionID>01</cbc:VersionID>
+  <cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+  <cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+  <cbc:NoticeLanguageCode>NOR</cbc:NoticeLanguageCode>
+  <cac:AdditionalNoticeLanguage>
+    <cbc:ID>ENG</cbc:ID>
+  </cac:AdditionalNoticeLanguage>
+  <cac:ContractingParty>
+    <cbc:BuyerProfileURI>https://eu.eu-supply.com/ctm/company/companyinformation/index/306369</cbc:BuyerProfileURI>
+    <cac:ContractingPartyType>
+      <cbc:PartyTypeCode listName="buyer-legal-type">body-pl-la</cbc:PartyTypeCode>
+    </cac:ContractingPartyType>
+    <cac:ContractingActivity>
+      <cbc:ActivityTypeCode listName="authority-activity">gen-pub</cbc:ActivityTypeCode>
+    </cac:ContractingActivity>
+    <cac:Party>
+      <cac:PartyIdentification>
+        <cbc:ID schemeName="organization">ORG-0001</cbc:ID>
+      </cac:PartyIdentification>
+    </cac:Party>
+  </cac:ContractingParty>
+  <cac:TenderingTerms>
+    <cac:TendererQualificationRequest>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+      </cac:SpecificTendererRequirement>
+    </cac:TendererQualificationRequest>
+  </cac:TenderingTerms>
+  <cac:TenderingProcess>
+    <cbc:Description languageID="NOR">Dette er en dynamisk innkjøpsordning, og den kunngjøres derfor som en begrenset anbudskonkurranse som vil være åpen for leverandører som søker kvalifisering i perioden ordningen gjelder for.</cbc:Description>
+    <cbc:Description languageID="ENG">This is a dynamic purchasing system and it is therefore announced as a restricted tender contest, which will be open for suppliers seeking qualification in the period that the scheme applies to.</cbc:Description>
+    <cbc:ProcedureCode listName="procurement-procedure-type">restricted</cbc:ProcedureCode>
+    <cac:ProcessJustification>
+      <cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+    </cac:ProcessJustification>
+  </cac:TenderingProcess>
+  <cac:ProcurementProject>
+    <cbc:ID>24/13872</cbc:ID>
+    <cbc:Name languageID="NOR">Dynamisk innkjøpsordning for bistand, rådgivning og prosjektledelse</cbc:Name>
+    <cbc:Name languageID="ENG">Dynamic purchasing system for assistance, consultancy and project management.</cbc:Name>
+    <cbc:Description languageID="NOR">Sandnes kommune, heretter benevnt Oppdragsgiver, innbyr med dette til begrenset anbudskonkurranse for etablering av dynamisk innkjøpsordning (DPS-ordning) for rådgivning, bistand og/eller prosjektledelse innen digitalisering og IT innenfor områdene konseptutvikling, teknologirådgivning, automatisering, integrasjoner, virksomhetsarkitektur, og prosjektledelse. 
+
+Ordningen skal omfatte rådgivning, bistand og/eller prosjektledelse innen de følgende områdene:
+
+
+• Konseptutvikling 
+• Teknologirådgivning 
+• Automatisering 
+• Integrasjoner
+• Virksomhetsarkitektur
+• Prosjektledelse
+
+Hvert område i listen over er en egen kategori under ordningen, med tilhørende egne kvalifikasjonskrav. 
+
+Oppdragsgivers behov kan omfatte alt fra mindre prosjekter hvor den som blir etterspurt er ansvarlig for en del av prosjektet, til større prosjekter med fullt prosjektlederansvar. Videre vil behovet omfatte rådgivning i forbindelse med prosjekter, og kan også omfatte oppdrag forbundet med team- og prosjektoppbygging, og/eller kulturutvikling, innen digitalisering og IT. 
+
+Leverandører vil kunne søke om å kvalifisere seg for en eller flere av kategoriene. Kun når en søknad er godkjent vil leverandøren kunne delta i konkurranser under den enkelte kategori den er kvalifisert for. Felles kvalifikasjonskrav, samt kvalifikasjonskravene for den enkelte kategori, vil fremgå tydelig av det vedlagte kvalifikasjonsgrunnlaget.</cbc:Description>
+    <cbc:Description languageID="ENG">Sandnes municipality, hereafter called the Contracting Authority, invites tenderers to a restricted tender contest for the establishment of a dynamic procurement scheme (DPS scheme) for consultancy, assistance and/or project management within digitalisation and IT within concept development, technology consultancy, automation, integrations, enterprise architecture and project management. 
+
+The scheme shall include consultancy, assistance and/or project management in the following areas:
+
+• Concept development 
+• Technology consultancy services 
+•Automation 
+•Integrations
+• Enterprise architecture
+• Project management
+
+Each area in the list above is a separate category under the scheme, with the accompanying separate qualification requirements. 
+
+The contracting authority ́s need can include everything from minor projects where the requested person is responsible for a part of the project, to major projects with full project responsibility. Furthermore, the need will include consultancy for projects and can also include assignments connected with team and project development, and/or cultural development, within digitalisation and IT. 
+
+Tenderers will be able to apply to qualify for one or several of the categories. Only when an application is approved will the tenderer be able to participate in competitions under each category for which it is qualified. Joint qualification requirements, as well as the qualification requirements for each category, will be clearly stated in the attached qualification documentation.</cbc:Description>
+    <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+    <cac:RequestedTenderTotal>
+      <cbc:EstimatedOverallContractAmount currencyID="NOK">20000000</cbc:EstimatedOverallContractAmount>
+    </cac:RequestedTenderTotal>
+    <cac:MainCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+    </cac:MainCommodityClassification>
+    <cac:AdditionalCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">72200000</cbc:ItemClassificationCode>
+    </cac:AdditionalCommodityClassification>
+    <cac:AdditionalCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">72220000</cbc:ItemClassificationCode>
+    </cac:AdditionalCommodityClassification>
+    <cac:AdditionalCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">72222000</cbc:ItemClassificationCode>
+    </cac:AdditionalCommodityClassification>
+    <cac:AdditionalCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">72222100</cbc:ItemClassificationCode>
+    </cac:AdditionalCommodityClassification>
+    <cac:AdditionalCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">72223000</cbc:ItemClassificationCode>
+    </cac:AdditionalCommodityClassification>
+    <cac:AdditionalCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">72224000</cbc:ItemClassificationCode>
+    </cac:AdditionalCommodityClassification>
+    <cac:AdditionalCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">72225000</cbc:ItemClassificationCode>
+    </cac:AdditionalCommodityClassification>
+    <cac:AdditionalCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">72226000</cbc:ItemClassificationCode>
+    </cac:AdditionalCommodityClassification>
+    <cac:AdditionalCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">72227000</cbc:ItemClassificationCode>
+    </cac:AdditionalCommodityClassification>
+    <cac:AdditionalCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">72240000</cbc:ItemClassificationCode>
+    </cac:AdditionalCommodityClassification>
+    <cac:AdditionalCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">72243000</cbc:ItemClassificationCode>
+    </cac:AdditionalCommodityClassification>
+    <cac:AdditionalCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">72250000</cbc:ItemClassificationCode>
+    </cac:AdditionalCommodityClassification>
+    <cac:AdditionalCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">72260000</cbc:ItemClassificationCode>
+    </cac:AdditionalCommodityClassification>
+    <cac:AdditionalCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">72262000</cbc:ItemClassificationCode>
+    </cac:AdditionalCommodityClassification>
+    <cac:AdditionalCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">72263000</cbc:ItemClassificationCode>
+    </cac:AdditionalCommodityClassification>
+    <cac:AdditionalCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">72300000</cbc:ItemClassificationCode>
+    </cac:AdditionalCommodityClassification>
+    <cac:AdditionalCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">72313000</cbc:ItemClassificationCode>
+    </cac:AdditionalCommodityClassification>
+    <cac:AdditionalCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">72314000</cbc:ItemClassificationCode>
+    </cac:AdditionalCommodityClassification>
+    <cac:AdditionalCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">72316000</cbc:ItemClassificationCode>
+    </cac:AdditionalCommodityClassification>
+    <cac:AdditionalCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">72400000</cbc:ItemClassificationCode>
+    </cac:AdditionalCommodityClassification>
+    <cac:AdditionalCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">72800000</cbc:ItemClassificationCode>
+    </cac:AdditionalCommodityClassification>
+    <cac:AdditionalCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">72900000</cbc:ItemClassificationCode>
+    </cac:AdditionalCommodityClassification>
+    <cac:RealizedLocation>
+      <cbc:Description languageID="NOR">Konkurranser under ordningens kategorier vil gå ut til alle leverandørene som er kvalifisert på ordningen, uavhengig av hvor de er lokalisert. Den enkelte konkurranse kan inneholde krav om gjennomføring på oppdragsgivers lokasjon, mens det i andre konkurranser ikke vil være slikt krav.</cbc:Description>
+      <cbc:Description languageID="ENG">Competitions under the scheme ́s categories will go out to all tenderers who are qualified for the scheme, regardless of where they are located. Each competition can include requirements for execution at the contracting authority ́s location, whilst other competitions will not be such a requirement.</cbc:Description>
+      <cac:Address>
+        <cbc:Region>anyw-eea</cbc:Region>
+      </cac:Address>
+    </cac:RealizedLocation>
+  </cac:ProcurementProject>
+  <cac:ProcurementProjectLot>
+    <cbc:ID schemeName="Lot">LOT-0000</cbc:ID>
+    <cac:TenderingTerms>
+      <cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+      <cbc:RequiredCurriculaCode listName="requirement-stage">par-requ</cbc:RequiredCurriculaCode>
+      <cac:CallForTendersDocumentReference>
+        <cbc:ID>Anskaffelsesdokumenter</cbc:ID>
+        <cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+        <cac:Attachment>
+          <cac:ExternalReference>
+            <cbc:URI>https://eu.eu-supply.com/app/rfq/rwlentrance_s.asp?PID=416172&amp;B=</cbc:URI>
+          </cac:ExternalReference>
+        </cac:Attachment>
+      </cac:CallForTendersDocumentReference>
+      <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="nda">true</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:TenderRecipientParty>
+        <cbc:EndpointID>https://eu.eu-supply.com/app/rfq/rwlentrance_s.asp?PID=416172&amp;B=</cbc:EndpointID>
+      </cac:TenderRecipientParty>
+      <cac:AppealTerms>
+        <cac:PresentationPeriod>
+          <cbc:Description languageID="NOR">Fristen for å sette frem en begjæring om midlertidig forføyning mot Oppdragsgivers eventuelle beslutning om å avvise en søknad om å delta i konkurransen, er 15 dager fra dagen etter at Oppdragsgiver har sendt meddelelse om beslutningen til leverandøren.</cbc:Description>
+          <cbc:Description languageID="ENG">The deadline for submitting a petition for a temporary injunction against the Contracting Authority's eventual decision to reject an application for participation in the competition is 15 days from the day after the Contracting Authority has sent notification of the decision to the tenderer.</cbc:Description>
+        </cac:PresentationPeriod>
+        <cac:AppealInformationParty>
+          <cac:PartyIdentification>
+            <cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+          </cac:PartyIdentification>
+        </cac:AppealInformationParty>
+        <cac:AppealReceiverParty>
+          <cac:PartyIdentification>
+            <cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+          </cac:PartyIdentification>
+        </cac:AppealReceiverParty>
+      </cac:AppealTerms>
+      <cac:Language>
+        <cbc:ID>NOR</cbc:ID>
+      </cac:Language>
+      <cac:PostAwardProcess>
+        <cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+        <cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+      </cac:PostAwardProcess>
+      <cac:SecurityClearanceTerm>
+        <cbc:Code listName="required">false</cbc:Code>
+      </cac:SecurityClearanceTerm>
+    </cac:TenderingTerms>
+    <cac:TenderingProcess>
+      <cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+      <cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+      <cac:ParticipationRequestReceptionPeriod>
+        <cbc:EndDate>2030-01-01+00:00</cbc:EndDate>
+        <cbc:EndTime>11:00:00+00:00</cbc:EndTime>
+      </cac:ParticipationRequestReceptionPeriod>
+      <cac:EconomicOperatorShortList>
+        <cbc:LimitationDescription>false</cbc:LimitationDescription>
+        <cbc:MinimumQuantity>0</cbc:MinimumQuantity>
+      </cac:EconomicOperatorShortList>
+      <cac:AuctionTerms>
+        <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+      </cac:AuctionTerms>
+      <cac:ContractingSystem>
+        <cbc:ContractingSystemTypeCode listName="dps-usage">dps-list</cbc:ContractingSystemTypeCode>
+      </cac:ContractingSystem>
+      <cac:ContractingSystem>
+        <cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+      </cac:ContractingSystem>
+    </cac:TenderingProcess>
+    <cac:ProcurementProject>
+      <cbc:ID>24/13872</cbc:ID>
+      <cbc:Name languageID="NOR">Dynamisk innkjøpsordning for bistand, rådgivning og prosjektledelse</cbc:Name>
+      <cbc:Name languageID="ENG">Dynamic purchasing system for assistance, consultancy and project management.</cbc:Name>
+      <cbc:Description languageID="NOR">Sandnes kommune, heretter benevnt Oppdragsgiver, innbyr med dette til begrenset anbudskonkurranse for etablering av dynamisk innkjøpsordning (DPS-ordning) for rådgivning, bistand og/eller prosjektledelse innen digitalisering og IT innenfor områdene konseptutvikling, teknologirådgivning, automatisering, integrasjoner, virksomhetsarkitektur, og prosjektledelse. 
+
+Ordningen skal omfatte rådgivning, bistand og/eller prosjektledelse innen de følgende områdene:
+
+
+• Konseptutvikling 
+• Teknologirådgivning 
+• Automatisering 
+• Integrasjoner
+• Virksomhetsarkitektur
+• Prosjektledelse
+
+Hvert område i listen over er en egen kategori under ordningen, med tilhørende egne kvalifikasjonskrav. 
+
+Oppdragsgivers behov kan omfatte alt fra mindre prosjekter hvor den som blir etterspurt er ansvarlig for en del av prosjektet, til større prosjekter med fullt prosjektlederansvar. Videre vil behovet omfatte rådgivning i forbindelse med prosjekter, og kan også omfatte oppdrag forbundet med team- og prosjektoppbygging, og/eller kulturutvikling, innen digitalisering og IT. 
+
+Leverandører vil kunne søke om å kvalifisere seg for en eller flere av kategoriene. Kun når en søknad er godkjent vil leverandøren kunne delta i konkurranser under den enkelte kategori den er kvalifisert for. Felles kvalifikasjonskrav, samt kvalifikasjonskravene for den enkelte kategori, vil fremgå tydelig av det vedlagte kvalifikasjonsgrunnlaget.</cbc:Description>
+      <cbc:Description languageID="ENG">Sandnes municipality, hereafter called the Contracting Authority, invites tenderers to a restricted tender contest for the establishment of a dynamic procurement scheme (DPS scheme) for consultancy, assistance and/or project management within digitalisation and IT within concept development, technology consultancy, automation, integrations, enterprise architecture and project management. 
+
+The scheme shall include consultancy, assistance and/or project management in the following areas:
+
+• Concept development 
+• Technology consultancy services 
+•Automation 
+•Integrations
+• Enterprise architecture
+• Project management
+
+Each area in the list above is a separate category under the scheme, with the accompanying separate qualification requirements. 
+
+The contracting authority ́s need can include everything from minor projects where the requested person is responsible for a part of the project, to major projects with full project responsibility. Furthermore, the need will include consultancy for projects and can also include assignments connected with team and project development, and/or cultural development, within digitalisation and IT. 
+
+Tenderers will be able to apply to qualify for one or several of the categories. Only when an application is approved will the tenderer be able to participate in competitions under each category for which it is qualified. Joint qualification requirements, as well as the qualification requirements for each category, will be clearly stated in the attached qualification documentation.</cbc:Description>
+      <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+      <cac:RequestedTenderTotal>
+        <cbc:EstimatedOverallContractAmount currencyID="NOK">20000000</cbc:EstimatedOverallContractAmount>
+      </cac:RequestedTenderTotal>
+      <cac:MainCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+      </cac:MainCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">72200000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">72220000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">72222000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">72222100</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">72223000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">72224000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">72225000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">72226000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">72227000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">72240000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">72243000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">72250000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">72260000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">72262000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">72263000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">72300000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">72313000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">72314000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">72316000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">72400000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">72800000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">72900000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:RealizedLocation>
+        <cbc:Description languageID="NOR">Konkurranser under ordningens kategorier vil gå ut til alle leverandørene som er kvalifisert på ordningen, uavhengig av hvor de er lokalisert. Den enkelte konkurranse kan inneholde krav om gjennomføring på oppdragsgivers lokasjon, mens det i andre konkurranser ikke vil være slikt krav.</cbc:Description>
+        <cbc:Description languageID="ENG">Competitions under the scheme ́s categories will go out to all tenderers who are qualified for the scheme, regardless of where they are located. Each competition can include requirements for execution at the contracting authority ́s location, whilst other competitions will not be such a requirement.</cbc:Description>
+        <cac:Address>
+          <cbc:Region>anyw-eea</cbc:Region>
+        </cac:Address>
+      </cac:RealizedLocation>
+      <cac:PlannedPeriod>
+        <cbc:StartDate>2025-01-01Z</cbc:StartDate>
+        <cbc:EndDate>2030-01-01Z</cbc:EndDate>
+      </cac:PlannedPeriod>
+    </cac:ProcurementProject>
+  </cac:ProcurementProjectLot>
+</ContractNotice>

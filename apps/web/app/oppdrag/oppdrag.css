@@ -172,3 +172,322 @@
     border-bottom-right-radius: 22px;
   }
 }
+
+/* ---------- Print (PDF export via Cmd+P → Lagre som PDF) ---------- */
+
+.print-only { display: none; }
+
+@media print {
+  /* Chrome ignores @page margin boxes (@bottom-left/center/right) in
+     practice and sometimes miscalculates margins when they're declared.
+     Use a plain @page margin rule for maximum reliability across print
+     dialog settings. */
+  /* Page margin 0 → html bg reaches every sheet edge. Per-page top/bottom
+     padding is supplied by the <thead>/<tfoot> inside .print-frame which
+     Chrome repeats on every paginated page. */
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  .print-frame {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .print-frame td { padding: 0; }
+  .print-frame-gutter {
+    height: 22mm;
+  }
+  .print-frame thead { display: table-header-group; }
+  .print-frame tfoot { display: table-footer-group; }
+
+
+  /* Paint creme on every printed page all the way to the sheet edges.
+     `position: fixed` elements repeat on every paginated page. Aggressive
+     negative insets push past the @page margin area into the page margin
+     zone. */
+  html {
+    background: #f5f1ea !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  body {
+    background: transparent !important;
+    color: #1a1814 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Hide everything chrome-related */
+  .print-hide,
+  nav,
+  aside,
+  header.site-header,
+  footer,
+  .grain {
+    display: none !important;
+  }
+
+  .print-only { display: block; }
+
+  /* Full width article when printing */
+  .oppdrag-layout {
+    display: block !important;
+  }
+
+  .oppdrag-prose {
+    max-width: 100% !important;
+    font-size: 10.5pt;
+    line-height: 1.6;
+    color: #111 !important;
+  }
+
+  .oppdrag-prose a {
+    color: #111 !important;
+    text-decoration: none;
+  }
+
+  /* Heading hierarchy for print */
+  .oppdrag-prose h1 {
+    font-family: var(--font-display), "Times New Roman", Georgia, serif;
+    font-size: 20pt;
+    font-weight: 400;
+    margin: 0 0 6mm;
+    letter-spacing: -0.01em;
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+  .oppdrag-prose h2 {
+    font-family: var(--font-display), "Times New Roman", Georgia, serif;
+    font-size: 14pt;
+    font-weight: 400;
+    margin: 9mm 0 3mm;
+    padding-bottom: 1.5mm;
+    border-bottom: 0.5pt solid #ccc;
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+  .oppdrag-prose h3 {
+    font-size: 11pt;
+    font-weight: 600;
+    margin: 6mm 0 2mm;
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+  .oppdrag-prose h4 {
+    font-size: 10pt;
+    font-weight: 600;
+    margin: 4mm 0 1mm;
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+  .oppdrag-prose p,
+  .oppdrag-prose li {
+    orphans: 3;
+    widows: 3;
+  }
+  .oppdrag-prose ul, .oppdrag-prose ol { margin: 2mm 0 3mm; }
+  .oppdrag-prose li { margin: 0.8mm 0; }
+
+  .oppdrag-prose table {
+    page-break-inside: auto;
+    font-size: 9pt;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 3mm 0 4mm;
+  }
+  .oppdrag-prose th,
+  .oppdrag-prose td {
+    padding: 1.5mm 2.5mm;
+    border-bottom: 0.4pt solid #ddd;
+    vertical-align: top;
+  }
+  .oppdrag-prose th {
+    background: #f4f0e8;
+    font-weight: 600;
+    border-bottom: 0.8pt solid #999;
+  }
+  .oppdrag-prose tr {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  .oppdrag-prose thead { display: table-header-group; }
+  .oppdrag-prose pre,
+  .oppdrag-prose blockquote {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  .oppdrag-prose pre {
+    background: #f6f3ee !important;
+    border: 0.4pt solid #d9d4c8;
+    padding: 3mm;
+    font-size: 8.5pt;
+  }
+  .oppdrag-prose code {
+    background: #f4f0e8 !important;
+    font-size: 9pt;
+    padding: 0.3mm 1mm;
+  }
+  .oppdrag-prose hr {
+    border: 0;
+    border-top: 0.5pt solid #ccc;
+    margin: 8mm 0;
+  }
+
+  /* The first markdown h1 is redundant with the cover — hide it */
+  .oppdrag-prose > h1:first-child {
+    display: none;
+  }
+
+  /* Cover page — fills the printable area (between @page margins).
+     Since body is creme too, the 18/16 mm margins around the cover look
+     like one continuous creme sheet. No bleed hack needed. */
+  .print-cover {
+    display: grid !important;
+    grid-template-rows: auto 1fr auto;
+    box-sizing: border-box;
+    width: 210mm;                  /* full A4 — @page :first has 0 margin */
+    min-height: 297mm;
+    height: 297mm;
+    margin: 0 !important;
+    padding: 28mm 24mm;            /* all of the cover's visual padding */
+    background: #f5f1ea;
+    color: #1a1814;
+    page-break-after: always;
+    break-after: page;
+    string-set: doctitle attr(data-doctitle);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Top section: eyebrow + small rule */
+  .print-cover .cover-top {
+    align-self: start;
+  }
+  .print-cover .eyebrow {
+    font-size: 9pt;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #3c3a36;
+    font-weight: 500;
+  }
+  .print-cover .rule {
+    height: 0.6pt;
+    background: #2b5d4f;
+    width: 28mm;
+    margin: 8mm 0 0;
+  }
+
+  /* Middle section: kicker + big title + sub. Vertically centered. */
+  .print-cover .cover-mid {
+    align-self: center;
+    max-width: 180mm;
+  }
+  .print-cover .kicker {
+    font-size: 10pt;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #2b5d4f;
+    font-weight: 600;
+    margin-bottom: 5mm;
+  }
+  .print-cover .doc-title {
+    font-family: var(--font-display), "Times New Roman", Georgia, serif;
+    font-size: 56pt;
+    line-height: 1.05;
+    margin: 0 0 8mm;
+    font-weight: 400;
+    color: #1a1814;
+    letter-spacing: -0.02em;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+  }
+  .print-cover .doc-title.long {
+    font-size: 42pt;
+  }
+  .print-cover .doc-sub {
+    font-size: 15pt;
+    line-height: 1.35;
+    color: #3c3a36;
+    font-family: var(--font-display), "Times New Roman", Georgia, serif;
+  }
+
+  /* Bottom: meta grid + signature */
+  .print-cover .cover-bottom {
+    align-self: end;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6mm 10mm;
+    padding-top: 10mm;
+    border-top: 0.5pt solid rgba(26,24,20,0.25);
+  }
+  .print-cover .meta-block dt {
+    font-size: 7.5pt;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #6b6257;
+    margin-bottom: 1.5mm;
+  }
+  .print-cover .meta-block dd {
+    font-size: 10pt;
+    margin: 0 0 3mm;
+    color: #1a1814;
+    line-height: 1.45;
+  }
+  .print-cover .signature {
+    grid-column: 1 / -1;
+    margin-top: 6mm;
+    font-size: 8.5pt;
+    color: #6b6257;
+    letter-spacing: 0.08em;
+  }
+
+  /* --- Body: tighter for better page fit, with explicit inner padding
+     so content has breathing room even if @page margin is overridden by
+     the user's print dialog ("None"/"Minimum"). --- */
+  /* IMPORTANT: padding-top on the prose wrapper only affects the FIRST flow
+     page (page 2 of the PDF). Subsequent pages (3, 4…) flow from the top of
+     the content box and get their top breathing room from @page margin only.
+     So we keep padding-top small here and rely on @page for per-page top
+     margin on every content page. */
+  /* Horizontal page padding (applies to every page). Vertical padding is
+     provided per-page by the print-frame thead/tfoot. */
+  .oppdrag-prose {
+    font-size: 10pt;
+    line-height: 1.4;
+    padding: 0 18mm;
+  }
+  .oppdrag-prose > h1:first-child + p,
+  .oppdrag-prose > h2:first-of-type {
+    margin-top: 0;
+  }
+  .oppdrag-prose h1 { margin: 0 0 4mm; }
+  .oppdrag-prose h2 { margin: 6mm 0 2.5mm; }
+  .oppdrag-prose h3 { margin: 4mm 0 1.5mm; }
+  .oppdrag-prose p { margin: 2mm 0; }
+  .oppdrag-prose ul, .oppdrag-prose ol { margin: 1.5mm 0 2.5mm; }
+  .oppdrag-prose li { margin: 0.4mm 0; }
+  .oppdrag-prose table { margin: 2mm 0 3mm; font-size: 8.5pt; }
+  .oppdrag-prose th, .oppdrag-prose td { padding: 1.2mm 2mm; }
+  .oppdrag-prose hr { margin: 5mm 0; }
+
+  /* Keep the closing signature block together so it doesn't orphan */
+  .oppdrag-prose hr + p,
+  .oppdrag-prose hr + p + p,
+  .oppdrag-prose hr + p + p + p {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    page-break-before: avoid;
+    break-before: avoid;
+  }
+  .oppdrag-prose hr:last-of-type {
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+}

@@ -1,6 +1,7 @@
 ---
-title: Bilag 2 — Seksjon 4: Service, support og vedlikehold
+title: "Bilag 2 — Seksjon 4: Service, support og vedlikehold"
 tender: 2026-107028
+oppdragsgiver: Antidoping Norge (ADNO)
 status: UTKAST
 ---
 
@@ -8,18 +9,18 @@ status: UTKAST
 
 Tildelingskriteriet ber om tre ting: tilbudt service-/support-/vedlikeholds­modell, tilgjengelighet for Antidoping Norge (ADNO) underveis i utviklingen, og responstid på support og service i etterkant. Dette kapittelet svarer på alle tre, med konkrete tall, kanaler og SLA-er — ikke generelle formuleringer om å være "fleksibel og responsiv".
 
-Grunnprinsippet i vår modell er at ADNO får **direkte tilgang til utvikleren**. Det er ingen account manager, ingen ticket-kø og ingen eskaleringsmatrise mellom ADNO og den som skriver koden. Det gjør oss raskere enn et stort hus i alle ledd, og det er den konkrete fordelen vi tilbyr som enmannsleverandør.
+Grunnprinsippet i min modell er at ADNO får **direkte tilgang til utvikleren**. Det er ingen account manager, ingen ticket-kø og ingen eskaleringsmatrise mellom ADNO og den som skriver koden. Det gjør meg raskere enn et stort hus i alle ledd, og det er den konkrete fordelen jeg tilbyr som enmannsleverandør.
 
 ---
 
 ## 4.1 Tilgjengelighet for ADNO underveis i utviklingen
 
-Kravspesifikasjonen (Bilag 1) krever workshops, pilotversjon og løpende demoer. Vår samhandlings­modell er bygget for å gi ADNO kontinuerlig innsyn og påvirknings­mulighet gjennom hele utviklings­perioden (juli–desember 2026).
+Kravspesifikasjonen (Bilag 1) krever workshops, pilotversjon og løpende demoer. Min samhandlings­modell er bygget for å gi ADNO kontinuerlig innsyn og påvirknings­mulighet gjennom hele utviklings­perioden (juli–desember 2026).
 
 **Faste samhandlings­kanaler:**
 
 - **Dedikert Slack- eller Teams-kanal** med ADNOs prosjekt­team, opprettet ved kontrakts­signering. All daglig dialog foregår her — ikke e-post-tråder som drukner.
-- **Ukentlig demo (30 min, fredager 10:00)** hvor vi viser ny funksjonalitet kjørende på iOS- og Android-bygg. ADNO får TestFlight-/Firebase App Distribution-lenke samme dag.
+- **Ukentlig demo (30 min, fredager 10:00)** hvor jeg viser ny funksjonalitet kjørende på iOS- og Android-bygg. ADNO får TestFlight-/Firebase App Distribution-lenke samme dag.
 - **Synlig sprint-tavle** i Linear eller GitHub Projects, hvor ADNO kan følge alle oppgaver live — planlagt, under arbeid, testet, ferdig.
 - **Månedlig styringsmøte (60 min)** med prosjekt­eier hos ADNO for scope, prioritet og risiko.
 - **Tre formelle workshops** (oppstart, etter pilotlevering, før go-live) som dekker kravspesifikasjonens workshop-krav.
@@ -38,14 +39,14 @@ Kravspesifikasjonen (Bilag 1) krever workshops, pilotversjon og løpende demoer.
 
 ## 4.2 Pilotversjon og brukertesting
 
-Bilag 1 §8 krever en pilotversjon underveis. Vi leverer pilot i **måned 3 av 6** (september 2026) med minst de fire viktigste funksjonene kjørende mot reell backend: risikosjekk av kosttilskudd, legemiddelsøk (Felleskatalogen), søk i dopinglista (WADA), og meldings­senter.
+Bilag 1 §8 krever en pilotversjon underveis. Jeg leverer pilot i **måned 3 av 6** med minst de fire viktigste funksjonene kjørende mot reell backend: risikosjekk av kosttilskudd, legemiddelsøk (Felleskatalogen), søk i ADNOs norske dopingliste, og meldings­senter.
 
 **Strukturert brukertesting som del av piloten:**
 
-- **8–12 reelle brukertester** fasilitert av oss, fordelt på fire målgrupper: toppidrettsutøvere med meldeplikt, breddeutøvere, trenere/støtte­apparat, og foreldre.
+- **8–12 reelle brukertester** jeg fasiliterer, fordelt på fire målgrupper: toppidrettsutøvere med meldeplikt, breddeutøvere, trenere/støtte­apparat, og foreldre.
 - Tester kjøres remote via Zoom + TestFlight, hver sesjon 45 min, med tenke-høyt-metodikk.
 - Alle funn logges åpent i prosjekt­tavlen og prioriteres sammen med ADNO i påfølgende styringsmøte.
-- ADNO fasiliteres hvis dere selv ønsker å invitere deltakere fra eget utøver­register — vi håndterer det tekniske og moderering.
+- ADNO fasiliteres hvis dere selv ønsker å invitere deltakere fra eget utøver­register — jeg håndterer det tekniske og moderering.
 
 Rapport med prioriterte funn leveres innen 5 virkedager etter siste test­sesjon.
 
@@ -63,21 +64,26 @@ Aksepttest kjøres av ADNO i inntil 10 virkedager etter levering av hver milepæ
 
 ## 4.4 Garantiperiode — 12 måneder, inkludert i fastpris
 
-Fastprisen inkluderer **12 måneders garantiperiode** fra og med dagen appen er lansert i App Store og Google Play. I hele garantiperioden dekker vi følgende uten ekstra kostnad:
+Fastprisen inkluderer **12 måneders garantiperiode** fra og med dagen appen er lansert i App Store og Google Play. Garantiens omfang er avgrenset i tråd med ADNOs avklaringer i Q&A (Spørsmål 13/14): **feilretting og mindre justeringer/forbedringer**, ikke videreutvikling, ikke større tilpasninger som følge av endringer hos eksterne samarbeidspartnere, og ikke løpende drift.
 
-**Innhold i garanti:**
+**Hva som inngår uten ekstra kostnad:**
 
-- **Feilretting** av alle feil og mangler som skyldes leveransen — funksjonelle, sikkerhets­messige og ytelses­messige.
-- **Teknisk support** til ADNOs prosjekt­ansvarlige og CMS-administrator.
-- **Driftsavvik-håndtering** — hvis appen eller backend er nede, varsler vi og retter.
-- **Plattform-oppdateringer** i garantiperioden: tilpasning til nye iOS- og Android-versjoner (iOS 19, Android 16 forventet i 2027), samt obligatoriske App Store-/Play-policy-endringer.
-- **Tredjeparts­biblioteks-sikkerhets­oppdateringer** (React Native, npm-pakker, Sentry) når CVE-er publiseres med score ≥ 7.0.
+- **Feilretting** av avdekkede feil og mangler som skyldes leveransen — funksjonelle, sikkerhets­messige og ytelses­messige.
+- **Mindre justeringer og forbedringer** basert på tilbakemeldinger på funksjonalitet eller brukervennlighet.
+- **Teknisk support** til ADNOs prosjekt­ansvarlige og innholds­administrator.
+- **Obligatoriske sikkerhets­oppdateringer** av React Native og avhengigheter når kritiske CVE-er (score ≥ 7.0) publiseres, og når dette er nødvendig for å beholde butikk-godkjenning i App Store og Google Play.
+
+**Hva som ikke inngår** (jf. Spørsmål 13/14):
+
+- Løpende drift av backend etter levering — driftsavtale tegnes separat hvis ADNO ønsker at jeg skal drifte. Appen utvikles slik at ADNO eller en tredjepart enkelt kan drifte den selv.
+- Større tilpasninger som følge av endringer hos eksterne samarbeidspartnere (TASK, Feed/Craft, Felleskatalogen, EQS) eller større endringer i operativ­systemene til Apple eller Android. Appen utvikles slik at normal OS-oppdatering ikke utløser omfattende vedlikeholds­behov.
+- Videreutvikling og ny funksjonalitet — prises etter timepris, jf. § 4.6.
 
 **Support-kanaler og åpningstid:**
 
 | Kanal | Åpningstid |
 |---|---|
-| E-post (hey@asbjornrorvik.dev) | Ordinær arbeidstid, mandag–fredag 08–16 |
+| E-post (hei@asbjornrorvik.dev) | Ordinær arbeidstid, mandag–fredag 08–16 |
 | Telefon (direkte til Asbjørn) | Ordinær arbeidstid 08–16 |
 | Slack/Teams (samme kanal som under utvikling, videreføres) | Ordinær arbeidstid 08–16 |
 
@@ -91,7 +97,7 @@ Fastprisen inkluderer **12 måneders garantiperiode** fra og med dagen appen er 
 
 Feilretting igangsettes **uten ugrunnet opphold** iht. SSA-O §7. Utenfor arbeidstid kan kritiske hendelser meldes på e-post/Slack; disse plukkes opp senest førstkommende arbeidsdag kl. 08:00, men håndteres i praksis raskere hvis det observeres.
 
-**Rapportering i garantiperioden:** De første 6 månedene etter lansering leverer vi månedlig **status­rapport** med: oppetid for backend, antall aktive brukere (fra analytics), crash-rate fra Crashlytics, åpne og løste support-saker, samt anbefalte forbedringer.
+**Rapportering i garantiperioden:** De første 6 månedene etter lansering leverer jeg månedlig **status­rapport** med: oppetid for backend, antall aktive brukere (fra analytics), crash-rate fra Crashlytics, åpne og løste support-saker, samt anbefalte forbedringer.
 
 ---
 
@@ -99,10 +105,10 @@ Feilretting igangsettes **uten ugrunnet opphold** iht. SSA-O §7. Utenfor arbeid
 
 Et av målene i garantiperioden er at ADNO selv skal kunne drifte og vedlikeholde innhold i appen, og at en eventuell fremtidig leverandør raskt kan overta. Følgende leveres **ved oppstart av garantiperioden**:
 
-- **Teknisk dokumentasjon**: arkitektur­diagram, integrasjons­oversikt (Felleskatalogen, WADA, TASK/e-læring, Firebase Cloud Messaging), deploy-prosess (GitHub Actions → App Store Connect + Google Play Console), miljø­variabler og hemmeligheter (kryptert i 1Password eller tilsvarende).
+- **Teknisk dokumentasjon**: arkitektur­diagram, integrasjons­oversikt (Felleskatalogen, ADNOs nettside / Crafts API levert av Feed, EQS Compliance Cockpit som lenke, Firebase Cloud Messaging), deploy-prosess (GitHub Actions → App Store Connect + Google Play Console — begge eid av ADNO), miljø­variabler og hemmeligheter (kryptert i 1Password eller tilsvarende).
 - **Driftshåndbok**: hvordan se logger i Sentry, hvordan rulle ut ny versjon, hvordan rulle tilbake, hvordan rotere API-nøkler.
-- **Video-opplæring (3–5 korte videoer à 5–10 min)** for ADNO-administrator: redigere kosttilskudd-spørsmål og vekting i CMS, sende push-varsel, redigere veileder-tekster (medisinsk fritak, astma), se statistikk.
-- **2-timers onboarding-workshop** med ADNOs CMS-administrator(er) ved oppstart av garantiperioden, samt en repetisjons­økt på 1 time 3 måneder senere.
+- **Video-opplæring (3–5 korte videoer à 5–10 min)** for ADNO-administrator: redigere kosttilskudd-spørsmål og vekting i app-admin, **sende push-varsler og styre målgruppe** (jf. Sp.18 — ADNO skal kunne betjene løsningen selv), **besvare innkommende meldinger fra utøvere i toveis meldings­tråden** (jf. Sp.17), redigere veileder-tekster (medisinsk fritak, astma — sistnevnte med gjenbruk av eksisterende kalkulator-logikk, jf. Sp.15), se statistikk. Opplæringen dekker også grensesnittet mot Craft (Feed) der det er relevant.
+- **2-timers onboarding-workshop** med ADNOs innholds­administrator(er) ved oppstart av garantiperioden, samt en repetisjons­økt på 1 time 3 måneder senere.
 
 All dokumentasjon vedlikeholdes i repoet (Markdown) og oppdateres ved hver release.
 
@@ -122,11 +128,11 @@ Dette inkluderer:
 **Bestillings- og estimerings­prosess:**
 
 1. ADNO sender ønsket oppdrag skriftlig (e-post eller Slack) med kort beskrivelse.
-2. Vi svarer innen **5 virkedager** med estimat (timer eller fastpris), plan og foreslått leverings­dato.
+2. Jeg svarer innen **5 virkedager** med estimat (timer eller fastpris), plan og foreslått leverings­dato.
 3. ADNO godkjenner skriftlig før arbeid starter. Ingen arbeid faktureres uten godkjent bestilling.
 4. Ferdig arbeid leveres mot tilsvarende aksepttest som i hoved­prosjektet.
 
-**Prioritet:** ADNO er en fast kunde i vår portefølje etter oppstart. Hvis Asbjørn er allokert til andre oppdrag når en bestilling kommer, gjelder følgende:
+**Prioritet:** ADNO er en fast kunde i min portefølje etter oppstart. Hvis jeg er allokert til andre oppdrag når en bestilling kommer, gjelder følgende:
 - Kritiske saker (SLA A) prioriteres foran alt annet arbeid.
 - Alvorlige saker (SLA B) starter innen 5 virkedager.
 - Videreutvikling planlegges inn i nærmeste ledige 2-ukers sprint — normalt innen 2–4 uker.
@@ -137,14 +143,14 @@ Dette inkluderer:
 
 ## 4.7 Monitorering og driftsovervåking
 
-For at support skal være proaktiv, ikke reaktiv, inngår følgende overvåkings­verktøy i leveransen:
+For at support skal være proaktiv, ikke reaktiv, settes følgende overvåkings­verktøy opp som del av leveransen — på ADNOs egne kontoer eller i ADNOs navn, slik at ADNO eier konfigurasjon og data:
 
-- **Sentry** for fanging av crashes og feil fra produksjon (iOS, Android, backend). Alle nye crash-grupper varsler utvikler automatisk.
+- **Sentry** for fanging av crashes og feil fra produksjon (iOS, Android, backend). Alle nye crash-grupper varsler utvikler automatisk i garantiperioden.
 - **Firebase Crashlytics** som sekundær crash-reporting for app-stabilitet (iOS + Android).
-- **Uptime-monitor** (Better Stack eller tilsvarende) som sjekker backend hvert minutt. Nedetid varsler Asbjørn på SMS.
-- **Månedlig health-rapport** til ADNO: crash-free rate (mål: ≥ 99.5 %), p95 API-respons­tid, oppetid backend (mål: ≥ 99.8 %), top 5 feil siste 30 dager med status.
+- **Uptime-monitor** (Better Stack eller tilsvarende) som sjekker backend hvert minutt. Nedetid varsler leverandør på SMS i garantiperioden.
+- **Månedlig health-rapport** til ADNO de første 6 månedene etter lansering: crash-free rate (mål: ≥ 99.5 %), p95 API-respons­tid, oppetid backend (mål: ≥ 99.8 %), top 5 feil siste 30 dager med status.
 
-Alt verktøy-kostnad er inkludert i fastpris under utvikling og garantiperiode. Etter garantiperiode estimeres løpende SaaS-kostnader til ca. 400–600 NOK/mnd samlet, som viderefaktureres ADNO til selvkost eller settes opp på ADNOs egne kontoer.
+**Verktøy-kostnader:** Sentry, Crashlytics og uptime-monitor settes opp på ADNOs egne kontoer fra dag 1 (free-tier dekker normalt behovet i utviklings- og garantifase). Eventuelle løpende SaaS-kostnader (ca. 400–600 NOK/mnd samlet ved skalering ut over free-tier) faktureres ADNO direkte fra leverandørene, slik at ADNO eier abonnementene og ikke blir avhengig av meg for tilgang til egne drifts­data.
 
 ---
 

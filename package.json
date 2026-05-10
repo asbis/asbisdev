@@ -8,5 +8,8 @@
     "lint": "pnpm -r lint",
     "mcp:doffin": "pnpm --filter @asbisdev/doffin-mcp start"
   },
-  "packageManager": "pnpm@9.0.0"
+  "packageManager": "pnpm@9.0.0",
+  "devDependencies": {
+    "playwright-core": "^1.59.1"
+  }
 }

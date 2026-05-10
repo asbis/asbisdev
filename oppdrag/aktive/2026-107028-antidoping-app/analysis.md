@@ -4,7 +4,8 @@ title: Antidoping-app — vinnerstrategi
 status: Tier 1 — høyeste prioritet
 deadline: 2026-05-11 12:00
 questionsDeadline: 2026-05-04 12:00
-budget: 1.8M NOK
+budget: 1.6M NOK inkl. mva (fastpris) — maks 1.8M inkl. mva (jf. Q&A 1)
+evaluation: 100% kvalitet (jf. KGL pkt. 7.3 — pris er IKKE tildelingskriterium)
 contract: SSA-O (utvikling)
 ---
 

@@ -1,0 +1,101 @@
+============================================================
+MERCELL — KVALIFIKASJONSKRAV — SVAR TIL KOPIERING
+Antidoping-app (Doffin 2026-107028)
+Tilbudsfrist: 2026-05-11 kl. 12:00
+============================================================
+
+
+------------------------------------------------------------
+1. KRAV TIL SKATTEATTEST
+------------------------------------------------------------
+Kvalifisert: Ja
+
+Kommentar:
+Vedlagt skatteattest for skatt og merverdiavgift utstedt av Skatteetaten 24.04.2026 via Altinn — innenfor 6 måneders gyldighet fra tilbudsfristen.
+
+Fil:
+Skatteattest — Asbjørn Rørvik — 2026-04-24.pdf
+
+
+------------------------------------------------------------
+2. KRAV TIL LEVERANDØRENS REGISTRERING
+------------------------------------------------------------
+Kvalifisert: Ja
+
+Kommentar:
+Tilbyder er enkeltpersonforetak (org.nr 820 252 632) og ikke registreringspliktig i Foretaksregisteret jf. foretaksregisterloven § 2-1. Vedlagt registerutskrift fra Enhetsregisteret er tilsvarende dokumentasjon for ENK og oppfyller kravet om bekreftelse på lovlig etablert foretak.
+
+Fil:
+820252632_full-visning_SIGNERT.pdf
+
+
+------------------------------------------------------------
+3. KRAV TIL ØKONOMISK OG FINANSIELL KAPASITET
+------------------------------------------------------------
+Kvalifisert: Ja
+
+Kommentar:
+Tilbyder er enkeltpersonforetak og er ikke regnskapspliktig etter regnskapsloven, og har derfor ikke årsregnskap med styre-/revisjonsberetning. Som tilsvarende dokumentasjon vedlegges egenerklæring om finansiell og økonomisk kapasitet, sammen med rolleoversikt fra Brønnøysundregistrene og bekreftelse fra Konkursregisteret. Tilbyder samtykker uttrykkelig til at oppdragsgiver innhenter kredittvurdering fra anerkjent kredittvurderingsselskap dersom dette er ønskelig som del av kvalifikasjonsvurderingen. Tilbyder har ingen forfalte skatter/avgifter (jf. vedlagt skatteattest under krav 1) og ingen personlig konkurs/konkurskarantene (jf. vedlagt bekreftelse fra Konkursregisteret).
+
+Filer:
+1. Egenerklæring — finansiell kapasitet.pdf
+2. Bekreftelse fra Konkursregisteret — 2026-05-01.pdf
+3. Rolleoversikt næring — Asbjørn Rørvik — 2026-05-01.pdf
+
+
+------------------------------------------------------------
+4. KRAV TIL GJENNOMFØRINGSEVNE
+------------------------------------------------------------
+Kvalifisert: Ja
+
+Kommentar:
+Vedlagt Vedlegg 4 — Leverandørens gjennomføringsevne, utfylt etter oppdragsgivers mal. Beskriver arbeidsstyrke, kjernekompetanse, andel underleverandør (ingen — UU-revisjon kjøpes som ekstern tjeneste, ikke underleverandør) og organisering for denne kontrakten.
+
+Fil:
+Vedlegg 4 — Gjennomføringsevne (utfylt).docx
+
+
+------------------------------------------------------------
+5. KRAV TIL KVALITETSSIKRINGS-/LEDELSESSYSTEM
+------------------------------------------------------------
+Kvalifisert: Ja
+
+Kommentar:
+Tilbyder er ikke ISO 9001-sertifisert, men har et dokumentert og implementert kvalitetssikringssystem tilpasset enkeltpersonforetakets størrelse og leveransemodell. Vedlagt beskrivelse dekker prosesser for kravhåndtering, kodekvalitet (code review, automatiserte tester, CI), leveranseoppfølging, dokumentasjon og avvikshåndtering. Beskrivelsen er felles dokument for KS- og informasjonssikkerhetssystem.
+
+Fil:
+KS- og informasjonssikkerhetssystem.pdf
+
+
+------------------------------------------------------------
+6. KRAV TIL STYRINGSSYSTEM FOR INFORMASJONSSIKKERHET
+------------------------------------------------------------
+Kvalifisert: Ja
+
+Kommentar:
+Tilbyder er ikke ISO 27001-sertifisert, men har et dokumentert og implementert styringssystem for informasjonssikkerhet tilpasset virksomhetens størrelse og leveransemodell. Systemet dekker tilgangsstyring, hemmeligheter (1Password/Vault), kryptering i transit og at rest, sertifikat-pinning, sikker utviklingspraksis (OWASP), backup, og hendelseshåndtering. Beskrivelsen leveres som felles dokument med KS-/ledelsessystem.
+
+Fil:
+KS- og informasjonssikkerhetssystem.pdf  (samme fil som krav 5)
+
+
+------------------------------------------------------------
+7. KRAV TIL ERFARING
+------------------------------------------------------------
+Kvalifisert: Ja
+
+Kommentar:
+Vedlagt Vedlegg 5 — Referansebeskrivelser, utfylt etter oppdragsgivers mal med tre relevante og sammenlignbare leveranser fra de tre siste årene: TryggDrift (Norsk Landbruksrådgiving — regelverksnær HMS-app i React Native, App Store + Google Play), Kolumbus-appen (Rogaland fylkeskommune — 142 000+ månedlige brukere, vinner av Nordic Public Transport Design Award 2025), og offshore-kritiske Equinor-apper (Notifications + Workorders, React Native i regulert miljø). Alle leveranser er komplett utført til offentlig/halvstatlig/større aktør. Kontaktreferanser er oppgitt i vedlegget.
+
+Fil:
+Vedlegg 5 — Referansebeskrivelser (utfylt).docx
+
+
+============================================================
+SJEKK FØR INNSENDING
+============================================================
+[x] Egenerklæring — finansiell kapasitet.pdf eksportert fra markdown
+[x] KS- og informasjonssikkerhetssystem.pdf eksportert fra markdown
+[ ] Alle 7 krav besvart med Ja + kommentar + fil i Mercell
+[ ] Signert med BankID
+[ ] Sendt FØR mandag 11. mai kl. 12:00

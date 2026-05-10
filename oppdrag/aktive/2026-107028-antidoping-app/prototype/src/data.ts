@@ -1,3 +1,6 @@
+import { MEDICINES_FK } from './data.generated';
+import { WADA_LIST_FK } from './wada.generated';
+
 export type Status = 'allowed' | 'incomp' | 'tue' | 'banned';
 
 export const RISK_QUESTIONS = [
@@ -11,29 +14,23 @@ export const RISK_QUESTIONS = [
   { q: 'Er prisen mistenkelig lav sammenlignet med sertifiserte alternativer?', yesLow: false, help: 'Rabatterte produkter er oftere forurenset.' },
 ];
 
-export const MEDICINES = [
-  { id: 'paracet', name: 'Paracet', strength: '500 mg tabletter', active: 'Paracetamol', status: 'allowed' as Status, brand: 'Weifa', note: 'Ingen kjente forbudte stoffer. Tillatt i og utenfor konkurranse.' },
-  { id: 'ibux', name: 'Ibux', strength: '400 mg tabletter', active: 'Ibuprofen', status: 'allowed' as Status, brand: 'Weifa', note: 'Betennelsesdempende. Tillatt i og utenfor konkurranse.' },
-  { id: 'ventoline', name: 'Ventoline', strength: '0,1 mg/dose inhalasjon', active: 'Salbutamol', status: 'incomp' as Status, brand: 'GSK', note: 'Tillatt inntil 1600 µg per 24 timer ved inhalasjon. Over grensen: krever fritak.' },
-  { id: 'pulmicort', name: 'Pulmicort Turbuhaler', strength: '400 µg/dose', active: 'Budesonid', status: 'allowed' as Status, brand: 'AstraZeneca', note: 'Inhalert glukokortikoid. Tillatt uten fritak.' },
-  { id: 'prednisolon', name: 'Prednisolon', strength: '5 mg tabletter', active: 'Prednisolon', status: 'incomp' as Status, brand: 'Takeda', note: 'Forbudt i konkurranse ved oral bruk. Krever fritak.' },
-  { id: 'ritalin', name: 'Ritalin', strength: '10 mg tabletter', active: 'Metylfenidat', status: 'tue' as Status, brand: 'Novartis', note: 'Stimulerende. Krever medisinsk fritak for konkurranse.' },
-  { id: 'paralgin', name: 'Paralgin Forte', strength: 'tabletter', active: 'Paracetamol + kodein', status: 'tue' as Status, brand: 'Karo Pharma', note: 'Kodein omdannes til morfin. Krever fritak i konkurranse.' },
-  { id: 'testogel', name: 'Testogel', strength: '16,2 mg/g gel', active: 'Testosteron', status: 'banned' as Status, brand: 'Besins', note: 'Anabol androgen steroid. Forbudt til enhver tid.' },
-];
+// Real medicines scraped from Felleskatalogen. See scripts/scrape-felleskatalogen.mjs.
+// Status auto-derived from ATC code via WADA 2026 Prohibited List rules.
+export const MEDICINES = MEDICINES_FK.map((m) => ({
+  id: m.url.split('/').pop() || m.name,
+  name: m.name,
+  strength: m.atc,
+  active: m.substance,
+  status: m.status,
+  brand: m.manufacturer.replace(/\s*\([^)]*\)\s*$/, ''),
+  note: m.note,
+  cat: m.cat,
+  url: m.url,
+}));
 
-export const WADA_LIST = [
-  { id: 'testosteron', name: 'Testosteron', cat: 'S1 — Anabole stoffer', status: 'banned' as Status, note: 'Forbudt til enhver tid. Gjelder alle former: injeksjon, gel, tabletter.' },
-  { id: 'stanozolol', name: 'Stanozolol (Winstrol)', cat: 'S1 — Anabole stoffer', status: 'banned' as Status, note: 'Syntetisk anabol steroid. Forbudt til enhver tid.' },
-  { id: 'epo', name: 'Erytropoietin (EPO)', cat: 'S2 — Peptidhormoner', status: 'banned' as Status, note: 'Øker røde blodceller. Forbudt til enhver tid.' },
-  { id: 'hgh', name: 'Veksthormon (hGH)', cat: 'S2 — Peptidhormoner', status: 'banned' as Status, note: 'Forbudt til enhver tid.' },
-  { id: 'salbutamol', name: 'Salbutamol', cat: 'S3 — Beta-2-agonister', status: 'incomp' as Status, note: 'Tillatt inhalert inntil 1600 µg/24t. Ellers forbudt.' },
-  { id: 'ephedrin', name: 'Efedrin', cat: 'S6 — Stimulerende midler', status: 'incomp' as Status, note: 'Forbudt i konkurranse over 10 µg/ml i urin.' },
-  { id: 'cannabis', name: 'Cannabis (THC)', cat: 'S8 — Cannabinoider', status: 'incomp' as Status, note: 'Forbudt i konkurranse. Tillatt utenfor.' },
-  { id: 'kokain', name: 'Kokain', cat: 'S6 — Stimulerende midler', status: 'incomp' as Status, note: 'Forbudt i konkurranse.' },
-  { id: 'modafinil', name: 'Modafinil', cat: 'S6 — Stimulerende midler', status: 'incomp' as Status, note: 'Forbudt i konkurranse.' },
-  { id: 'metylfenidat', name: 'Metylfenidat', cat: 'S6 — Stimulerende midler', status: 'incomp' as Status, note: 'Forbudt i konkurranse. Krever fritak ved ADHD.' },
-];
+// Full WADA 2026 Prohibited List (~70 substanser med aliaser).
+// Kilde: wada-ama.org. Se src/wada.generated.ts for full struktur.
+export const WADA_LIST = WADA_LIST_FK as readonly { id: string; name: string; cat: string; status: Status; note: string; aliases?: string[] }[];
 
 export const MESSAGES = [
   { id: 1, unread: true, cat: 'Regelendring', date: '22.04.2026',

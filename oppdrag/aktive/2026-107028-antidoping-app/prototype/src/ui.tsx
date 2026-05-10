@@ -185,11 +185,19 @@ export const RiskDisplay: React.FC<{ theme: Theme; level: number; title: string;
   );
 };
 
-export const SearchField: React.FC<{ theme: Theme; value: string; onChange: (v: string) => void; placeholder?: string; autoFocus?: boolean }> = ({ theme, value, onChange, placeholder, autoFocus }) => (
+export const SearchField: React.FC<{ theme: Theme; value: string; onChange: (v: string) => void; placeholder?: string; autoFocus?: boolean; onSubmit?: () => void }> = ({ theme, value, onChange, placeholder, autoFocus, onSubmit }) => (
   <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, backgroundColor: theme.surface, borderWidth: 1.5, borderColor: theme.line, borderRadius: 16, paddingHorizontal: 16, paddingVertical: 14 }}>
     <IconSearch size={20} stroke={2} color={theme.muted}/>
-    <TextInput value={value} onChangeText={onChange} placeholder={placeholder} placeholderTextColor={theme.muted} autoFocus={autoFocus}
-      style={{ flex: 1, fontSize: 16, color: theme.ink, paddingVertical: 0 }}/>
+    <TextInput
+      value={value}
+      onChangeText={onChange}
+      placeholder={placeholder}
+      placeholderTextColor={theme.muted}
+      autoFocus={autoFocus}
+      onSubmitEditing={onSubmit}
+      returnKeyType={onSubmit ? 'search' : 'default'}
+      style={{ flex: 1, fontSize: 16, color: theme.ink, paddingVertical: 0 }}
+    />
     {value.length > 0 && (
       <Pressable onPress={() => onChange('')} style={{ padding: 4 }}><IconX size={18} color={theme.muted}/></Pressable>
     )}

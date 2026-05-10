@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { listDocs, readDoc } from "@/lib/oppdrag";
+import { PrintButton } from "./PrintButton";
 import "../oppdrag.css";
 
 export const dynamic = "force-dynamic";
@@ -30,6 +31,12 @@ export default async function TenderPage({
   if (!loaded) notFound();
 
   const fm = loaded.frontmatter;
+  const docTitle = loaded.title ?? fm.title ?? id;
+  const today = new Date().toLocaleDateString("nb-NO", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+  });
 
   // Group docs by section
   const grouped = docs.reduce<Record<string, typeof docs>>((acc, d) => {
@@ -43,13 +50,77 @@ export default async function TenderPage({
 
   return (
     <div className="mx-auto max-w-[1100px] px-6 py-10 sm:px-10 sm:py-14">
-      <nav className="mb-6 text-xs uppercase tracking-[0.15em] text-[color:color-mix(in_srgb,var(--foreground)_55%,transparent)]">
+      <nav className="print-hide mb-6 flex items-center justify-between gap-4 text-xs uppercase tracking-[0.15em] text-[color:color-mix(in_srgb,var(--foreground)_55%,transparent)]">
         <Link href="/oppdrag" className="hover:underline underline-offset-4">
           ← Alle oppdrag
         </Link>
+        <PrintButton />
       </nav>
 
-      <header className="mb-6 border-b border-[color:var(--hairline)] pb-5">
+      {/* Print-only cover page — shown only when printing */}
+      <section
+        className="print-cover print-only"
+        data-doctitle={docTitle}
+      >
+        <div className="cover-top">
+          <div className="eyebrow">Tilbud · offentlig anskaffelse</div>
+          <div className="rule" />
+        </div>
+
+        <div className="cover-mid">
+          <div className="kicker">
+            {fm.tender ? `Sak ${fm.tender}` : `Sak ${id}`}
+          </div>
+          <h1 className={`doc-title${docTitle.length > 30 ? " long" : ""}`} lang="nb">{docTitle}</h1>
+          {fm.contract && (
+            <p className="doc-sub">{fm.contract}</p>
+          )}
+        </div>
+
+        <div className="cover-bottom">
+          <div className="meta-block">
+            <dt>Leverandør</dt>
+            <dd>
+              Asbjørn Rørvik
+              <br />
+              Enkeltpersonforetak · org.nr 820 252 632
+              <br />
+              Vipeveien 7B, 4323 Sandnes
+              <br />
+              hei@asbjornrorvik.dev
+            </dd>
+          </div>
+          <div className="meta-block">
+            <dt>Oppdragsgiver</dt>
+            <dd>
+              {fm.oppdragsgiver
+                ? String(fm.oppdragsgiver).split("\n").map((line, i, arr) => (
+                    <span key={i}>
+                      {line}
+                      {i < arr.length - 1 && <br />}
+                    </span>
+                  ))
+                : "—"}
+            </dd>
+            {fm.deadline && (
+              <>
+                <dt style={{ marginTop: "4mm" }}>Tilbudsfrist</dt>
+                <dd>{fm.deadline}</dd>
+              </>
+            )}
+            <dt style={{ marginTop: "4mm" }}>Dato</dt>
+            <dd>{today}</dd>
+          </div>
+          <div
+            className="signature"
+            style={{ gridColumn: "1 / -1", paddingTop: "4mm" }}
+          >
+            asbjornrorvik.dev
+          </div>
+        </div>
+      </section>
+
+      <header className="print-hide mb-6 border-b border-[color:var(--hairline)] pb-5">
         <p className="text-xs uppercase tracking-[0.15em] text-[color:color-mix(in_srgb,var(--foreground)_55%,transparent)]">
           {id}
         </p>
@@ -68,8 +139,8 @@ export default async function TenderPage({
         )}
       </header>
 
-      <div className="grid gap-8 lg:grid-cols-[220px_1fr]">
-        <aside className="text-sm">
+      <div className="oppdrag-layout grid gap-8 lg:grid-cols-[220px_1fr]">
+        <aside className="print-hide text-sm">
           {orderedSections.map((s) => {
             const label = s === "_root" ? null : SECTION_LABELS[s] ?? s;
             return (
@@ -104,7 +175,27 @@ export default async function TenderPage({
         </aside>
 
         <article className="oppdrag-prose min-w-0">
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>{loaded.content}</ReactMarkdown>
+          {/* Wrap content in a table so thead/tfoot provide per-page top/bottom
+              padding via browser's automatic table-header repetition in print. */}
+          <table className="print-frame">
+            <thead>
+              <tr>
+                <td className="print-frame-gutter" />
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>{loaded.content}</ReactMarkdown>
+                </td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td className="print-frame-gutter" />
+              </tr>
+            </tfoot>
+          </table>
         </article>
       </div>
     </div>
