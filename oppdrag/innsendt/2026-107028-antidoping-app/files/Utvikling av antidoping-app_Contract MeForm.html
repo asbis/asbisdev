@@ -1,0 +1,675 @@
+<!doctype html>
+<html xmlns:contract_notice="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:prior_notice="urn:oasis:names:specification:ubl:schema:xsd:PriorInformationNotice-2" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:ns6="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:contract_award_notice="urn:oasis:names:specification:ubl:schema:xsd:ContractAwardNotice-2" xmlns:ns5="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:ns4="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:ns3="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ns2="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <style>
+          .subtitle {
+            position: relative;
+            left: 60px;
+          }
+        </style>
+  <title></title>
+  <style>body {
+    background-color: lightgray;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    font-family: Helvetica;
+    font-size: small;
+}
+
+.data{
+    align-self: center;
+    background-color: #fff;
+    margin-top: 8px;
+    padding: 30px;
+    width: 60%;
+    min-height: 90%;
+}
+
+
+h1:first-of-type {
+    display: block;
+    text-align: left;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    position: relative;
+    left: 10px;
+    margin: 3px;
+}
+
+h1:first-of-type span {
+    display: block;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    line-height: 20px;
+    font-size: 12px;
+    color: black;
+    font-weight: 900;
+}
+
+a {
+    font-size: 12px;
+    color: #295ba8;
+}
+
+/* h1 - Form name */
+/* h2 - Section title */
+/* h3 - Form description */
+/* h4 - Field title */
+/* h5 - Numbering  */
+/* h6 - Correction heading */
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+h1, h2, h3, h4, h6, .title {
+    font-weight: bold;
+}
+
+h2 {
+    margin-top: 18px;
+}
+
+h4 {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+h5 {
+    font-weight: normal;
+    margin-top: 10px;
+}
+
+h6 {
+    margin-top: 5px;
+}
+
+table, th, td {
+    border-width: 0;
+}
+
+.innerLeftColumn {
+    width: 10px;
+}
+
+.comment {
+    font-style: italic;
+    color: grey;
+}
+
+h2, .section, .sectionTitle {
+    font-size: 12px;
+    color: #0d5d98;
+    font-weight: bolder;
+    width: 100%;
+    top: -5px;
+    height: 20px;
+    padding: 2px;
+    border-color: white white #0d5d98 white;
+    display: table;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    position: relative;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.formDescription {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+.div_section {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    position: relative;
+    left: 10px;
+    border-style: solid;
+    border-color: white;
+}
+
+.div_subsection {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    position: relative;
+    left: 10px;
+}
+
+.leftColumn + td:first-of-type {
+    position: relative;
+    word-wrap: break-word;
+    line-break: strict;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.leftColumn > span, .leftColumn > h5 > span {
+    font-weight: bold;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: black;
+}
+
+table {
+    width: 100%;
+}
+
+tr td:nth-child(2) {
+    width: 300px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-weight:normal;
+    font-size: 12px;
+}
+
+.leftColumn {
+    text-align: right;
+    margin-right: 25px;
+    width: 60px;
+}
+
+.subsection {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: black;
+    font-weight: bold;
+    width: 100%;
+    margin-top: 7px;
+    margin-bottom: 7px;
+}
+
+.modified {
+    font-family: Tahoma;
+    font-weight: bold;
+}
+
+.title {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    line-height: 20px;
+    font-size: 12px;
+    color: black;
+    font-weight: 900;
+}
+
+.value {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: black;
+    position: relative;
+    word-wrap: break-word;
+    line-break: strict;
+    margin-top: 7px;
+    margin-bottom: 7px;
+    font-weight: normal;
+}
+
+div.value {
+    left: 70px;
+    margin-right: 60px;
+}
+
+.nomark {
+    position: absolute;
+    left: 5px;
+    font-weight: bold;
+}
+
+.timark {
+    position: relative;
+    left: 70px;
+    margin-right: 60px;
+    word-wrap: break-word;
+    line-break: strict;
+    font-weight: bold;
+}
+
+.cpv_title {
+    color: #B0B0B0;
+}</style>
+ </head>
+ <body>
+  <div class="data"><img src="https://docs.opic.com/images/logo.png">
+   <div id="languagePicker" style="height:30px;">
+    <select style="float:right;" id="languageSelect"><option value="http://notice-viewer.coredatacollectors.app.mercell.com/notices?s3Url=s3://old-dc-import-notices-prod/Mercell/10679140_attachments/350adfed8a5e41ac5db1338a8b3586e4_Originalkunngj%C3%B8ring.xml&amp;lang=DA">Danish</option><option value="http://notice-viewer.coredatacollectors.app.mercell.com/notices?s3Url=s3://old-dc-import-notices-prod/Mercell/10679140_attachments/350adfed8a5e41ac5db1338a8b3586e4_Originalkunngj%C3%B8ring.xml&amp;lang=NL">Dutch</option><option value="http://notice-viewer.coredatacollectors.app.mercell.com/notices?s3Url=s3://old-dc-import-notices-prod/Mercell/10679140_attachments/350adfed8a5e41ac5db1338a8b3586e4_Originalkunngj%C3%B8ring.xml&amp;lang=EN">English*</option><option value="http://notice-viewer.coredatacollectors.app.mercell.com/notices?s3Url=s3://old-dc-import-notices-prod/Mercell/10679140_attachments/350adfed8a5e41ac5db1338a8b3586e4_Originalkunngj%C3%B8ring.xml&amp;lang=DE">German</option><option value="http://notice-viewer.coredatacollectors.app.mercell.com/notices?s3Url=s3://old-dc-import-notices-prod/Mercell/10679140_attachments/350adfed8a5e41ac5db1338a8b3586e4_Originalkunngj%C3%B8ring.xml&amp;lang=LT">Lithuanian</option><option value="http://notice-viewer.coredatacollectors.app.mercell.com/notices?s3Url=s3://old-dc-import-notices-prod/Mercell/10679140_attachments/350adfed8a5e41ac5db1338a8b3586e4_Originalkunngj%C3%B8ring.xml&amp;lang=NO">Norwegian</option><option value="http://notice-viewer.coredatacollectors.app.mercell.com/notices?s3Url=s3://old-dc-import-notices-prod/Mercell/10679140_attachments/350adfed8a5e41ac5db1338a8b3586e4_Originalkunngj%C3%B8ring.xml&amp;lang=SV">Swedish</option></select>
+   </div>
+   <script>document.getElementById('languageSelect').addEventListener('change', function() {      if (window.self !== window.top) {
+        const url = new URL(this.value);
+        const langValue = url.searchParams.get("lang");
+        window.top.postMessage({ type: 'language_change', language: langValue });
+      } else {
+        window.location = this.value;
+      }});</script>
+   <div class="div_section">
+    <div class="title">
+     Contract Notice
+    </div>
+   </div>
+   <div class="eforms_content">
+    <div class="div_section">
+     <div class="section">
+      I. Buyer
+     </div>
+     <ul>
+      <div class="div_subsection">
+       <div class="subsection"><span class="nomark">I.1)</span><span class="timark">Buyer</span>
+       </div>
+       <div class="value">
+        <p><entry key="field|name|BT-500-Organization-Company">
+          Official name
+         </entry> : Antidoping Norge</p>
+        <p><entry key="field|name|BT-11-Procedure-Buyer">
+          Legal type of the buyer
+         </entry> : Body governed by public law</p>
+        <p><entry key="field|name|BT-10-Procedure-Buyer">
+          Activity of the contracting authority
+         </entry> : Recreation, culture and religion</p>
+       </div>
+      </div>
+     </ul>
+    </div>
+    <div class="div_section">
+     <div class="section">
+      II. <entry key="auxiliary|text|procedure">
+       Procedure
+      </entry>
+     </div>
+     <ul>
+      <div class="div_subsection">
+       <div class="subsection"><span class="nomark">II.1)</span><span class="timark">
+         <entry key="auxiliary|text|procedure">
+          Procedure
+         </entry> </span>
+       </div>
+       <div class="value">
+        <p><entry key="field|name|BT-21-Procedure">
+          Title
+         </entry> : Utvikling av antidoping-app</p>
+        <p><entry key="field|name|BT-24-Procedure">
+          Description
+         </entry> : Antidoping Norge er en uavhengig stiftelse opprettet for å sikre at kontroll og påtalevirksomheten av dopingsaker organiseres uavhengig av NIF og staten.Det ønskes nå en leverandør som kan bistå med utvikling av en antidoping-app. Appen skal bli et hjelpemiddel med mange verktøy og ressurser som skal gjøre det enklere for utøvere å gjøre riktige valg og være et sted utøvere enkelt kan finne de ressursene de trenger.For ytterligere informasjon om anskaffelsens formål og omfang, se konkurransedokumentene.</p>
+        <p><entry key="field|name|BT-04-notice">
+          Procedure identifier
+         </entry> : 7c2ebe50-1b0c-413e-97fe-18ae7a9c402d</p>
+        <p><entry key="field|name|BT-22-Procedure">
+          Internal identifier
+         </entry> : 1111</p>
+        <p><entry key="field|name|BT-105-Procedure">
+          Type of procedure
+         </entry> : Open</p>
+        <p><entry key="field|name|BT-106-Procedure">
+          The procedure is accelerated
+         </entry> : no</p> <entry key="field|name|BT-88-Procedure">
+         Main features of the procedure
+        </entry> : Denne anskaffelsen gjennomføres i henhold til lov om offentlige anskaffelser av 17. juni 2016 (LOA) og forskrift 12. august 2016 nr. 974 om offentlige anskaffelser (FOA).Anskaffelsen gjennomføres som en åpen tilbudskonkurranse i henhold til FOA del I og II. Denne prosedyren gir alle interesserte leverandører mulighet til å levere tilbud.
+       </div>
+       <div class="subsection"><span class="nomark">II.1.1) </span><span class="timark">
+         <entry key="auxiliary|text|purpose">
+          Purpose
+         </entry> </span>
+       </div>
+       <div class="value">
+        <p><entry key="field|name|BT-23-Procedure">
+          Main nature of the contract
+         </entry> : Services</p>
+        <p><span class="cpv_title">
+          <entry key="field|name|BT-262-Procedure">
+           Main classification
+          </entry> </span><span>(cpv):</span>IT services: consulting, software development, Internet and support</p>
+        <p><span class="cpv_title">
+          <entry key="field|name|BT-263-Procedure">
+           Additional classification
+          </entry> </span><span>(cpv): </span>Software programming and consultancy services</p>
+        <p><span class="cpv_title">
+          <entry key="field|name|BT-263-Procedure">
+           Additional classification
+          </entry> </span><span>(cpv): </span>Custom software development services</p>
+        <p><span class="cpv_title">
+          <entry key="field|name|BT-263-Procedure">
+           Additional classification
+          </entry> </span><span>(cpv): </span>Software-related services</p>
+        <p><span class="cpv_title">
+          <entry key="field|name|BT-263-Procedure">
+           Additional classification
+          </entry> </span><span>(cpv): </span>Software development services</p>
+        <p><span class="cpv_title">
+          <entry key="field|name|BT-263-Procedure">
+           Additional classification
+          </entry> </span><span>(cpv): </span>Software consultancy services</p>
+       </div>
+       <div class="subsection"><span class="nomark">II.1.2) </span><span class="timark">
+         <entry key="auxiliary|text|place-performance">
+          Place of performance
+         </entry> </span>
+       </div>
+       <div class="value">
+        <p><entry key="field|name|BT-5071-Procedure">
+          Country subdivision (NUTS)
+         </entry> : Oslo</p>
+        <p><entry key="field|name|BT-5141-Procedure">
+          Country
+         </entry> : Norway</p>
+       </div>
+       <div class="subsection"><span class="nomark">II.1.3)</span><span class="timark">
+         <entry key="auxiliary|text|value">
+          Value
+         </entry> </span>
+       </div>
+       <div class="value">
+        <p><entry key="field|name|BT-27-Procedure">
+          Estimated value excluding VAT
+         </entry> :1800000.00&nbsp; NOK</p>
+       </div>
+       <div class="subsection"><span class="nomark">II.1.4)</span><span class="timark">
+         <entry key="auxiliary|text|general-information">
+          General information
+         </entry> </span>
+       </div>
+       <div class="value">
+        <p><entry key="auxiliary|text|legal-basis">
+          Legal basis
+         </entry> : Other</p>
+       </div>
+       <div class="value"></div>
+       <div class="value"></div>
+      </div>
+     </ul>
+    </div>
+    <div class="div_section">
+     <div class="section">
+      V. <entry key="auxiliary|text|lot">
+       Lot
+      </entry>
+     </div>
+     <ul>
+      <div class="div_subsection">
+       <div class="subsection"><span class="nomark"> V.1) </span><span class="timark">
+         <entry key="field|name|BT-137-Lot-Scheme">
+          Lot
+         </entry> : LOT-0000</span>
+       </div>
+       <div class="value">
+        <p><entry key="field|name|BT-21-Lot">
+          Title
+         </entry> : Utvikling av antidoping-app</p>
+        <p><entry key="field|name|BT-24-Lot">
+          Description
+         </entry> : Antidoping Norge er en uavhengig stiftelse opprettet for å sikre at kontroll og påtalevirksomheten av dopingsaker organiseres uavhengig av NIF og staten.Det ønskes nå en leverandør som kan bistå med utvikling av en antidoping-app. Appen skal bli et hjelpemiddel med mange verktøy og ressurser som skal gjøre det enklere for utøvere å gjøre riktige valg og være et sted utøvere enkelt kan finne de ressursene de trenger.For ytterligere informasjon om anskaffelsens formål og omfang, se konkurransedokumentene.</p>
+        <p><entry key="field|name|BT-22-Lot">
+          Internal identifier
+         </entry> : 1111</p>
+       </div>
+       <div class="subsection"><span class="nomark"> V.1.1)</span><span class="timark">
+         <entry key="auxiliary|text|purpose">
+          Purpose
+         </entry> </span>
+       </div>
+       <div class="value">
+        <p><entry key="field|name|BT-23-Lot">
+          Main nature of the contract
+         </entry> : Services</p>
+        <p><span class="cpv_title">
+          <entry key="field|name|BT-262-Lot">
+           Main classification
+          </entry> </span><span>(cpv): </span>IT services: consulting, software development, Internet and support</p>
+        <p><span class="cpv_title">
+          <entry key="field|name|BT-263-Lot">
+           Additional classification
+          </entry> </span><span>(cpv): </span>Software programming and consultancy services</p>
+        <p><span class="cpv_title">
+          <entry key="field|name|BT-263-Lot">
+           Additional classification
+          </entry> </span><span>(cpv): </span>Custom software development services</p>
+        <p><span class="cpv_title">
+          <entry key="field|name|BT-263-Lot">
+           Additional classification
+          </entry> </span><span>(cpv): </span>Software-related services</p>
+        <p><span class="cpv_title">
+          <entry key="field|name|BT-263-Lot">
+           Additional classification
+          </entry> </span><span>(cpv): </span>Software development services</p>
+        <p><span class="cpv_title">
+          <entry key="field|name|BT-263-Lot">
+           Additional classification
+          </entry> </span><span>(cpv): </span>Software consultancy services</p>
+       </div>
+       <div class="subsection"><span class="nomark">V.1.2)</span><span class="timark">
+         <entry key="auxiliary|text|place-performance">
+          Place of performance
+         </entry> </span>
+       </div>
+       <div class="value">
+        <p><entry key="field|name|BT-5071-Lot">
+          Country subdivision (NUTS)
+         </entry> : Oslo</p>
+        <p><entry key="field|name|BT-5141-Lot">
+          Country
+         </entry> : Norway</p>
+       </div>
+       <div class="subsection"><span class="nomark">V.1.3)</span><span class="timark">
+         <entry key="auxiliary|text|estimated-duration">
+          Estimated duration
+         </entry> </span>
+       </div>
+       <div class="value">
+        <p><entry key="field|name|BT-36-Lot">
+          Duration
+         </entry> :&nbsp;24&nbsp; Months</p>
+       </div>
+       <div class="value"></div>
+       <div class="subsection"><span class="nomark">V.1.5)</span><span class="timark">
+         <entry key="auxiliary|text|value">
+          Value
+         </entry> </span>
+       </div>
+       <div class="value">
+        <p><entry key="auxiliary|text|value">
+          Value
+         </entry> : 1800000.00&nbsp;NOK</p>
+       </div>
+       <div class="subsection"><span class="nomark">V.1.6)</span><span class="timark">
+         <entry key="auxiliary|text|general-information">
+          General information
+         </entry> </span>
+       </div>
+       <div class="value"><entry key="field|name|BT-71-Lot">
+         Reserved participation
+        </entry> : none 
+        <p><entry key="auxiliary|text|previous-planning">
+          Information about previous notices
+         </entry> :</p>
+       </div>
+       <div class="value"></div>
+       <div class="subsection"><span class="nomark">V.1.10)</span><span class="timark">
+         <entry key="auxiliary|text|award-criteria">
+          Award criteria
+         </entry> </span>
+       </div>
+       <div class="value">
+        <p><entry key="auxiliary|text|criterion">
+          Criterion
+         </entry> :</p>
+        <p class="subtitle"><entry key="field|name|BT-747-Lot">
+          Type
+         </entry> : 100</p>
+        <p class="subtitle"><entry key="field|name|BT-7531-Lot">
+          Number is a type of weight
+         </entry> : Quality</p>
+       </div>
+       <div class="subsection"><span class="nomark">V.1.11)</span><span class="timark">
+         <entry key="auxiliary|text|procurement-documents">
+          Procurement documents
+         </entry> </span>
+       </div>
+       <div class="value">
+        <p><entry key="field|name|BT-708-Lot">
+          Languages in which the procurement documents are officially available
+         </entry> :</p>
+        <p><entry key="field|name|BT-124-Lot">
+          URL
+         </entry> : https://permalink.mercell.com/281966101.aspx</p>
+        <p><entry key="auxiliary|text|adhoc-communication">
+          Ad hoc communication channel
+         </entry> :</p>
+        <p><entry key="field|name|BT-124-Lot">
+          URL
+         </entry> : https://permalink.mercell.com/281966101.aspx</p>
+       </div>
+       <div class="subsection"><span class="nomark">V.1.12)</span><span class="timark">
+         <entry key="auxiliary|text|procurement-terms">
+          Terms of procurement
+         </entry> </span>
+       </div>
+       <div class="value">
+        <p><entry key="auxiliary|text|submission-terms">
+          Terms of submission
+         </entry> :</p>
+        <p><entry key="field|name|BT-17-Lot">
+          Electronic submission
+         </entry> : Required</p>
+        <p><entry key="field|name|BT-18-Lot">
+          Address for submission
+         </entry> : https://permalink.mercell.com/281966101.aspx</p>
+        <p><entry key="field|name|BT-97-Lot">
+          Languages in which tenders or requests to participate may be submitted
+         </entry> : NOR</p>
+        <p><entry key="field|name|BT-764-Lot">
+          Electronic catalogue
+         </entry> :</p>
+        <p class="subtitle">einvoicing:&nbsp; required</p>
+        <p class="subtitle">reserved-execution:&nbsp; no</p>
+        <p class="subtitle">ecatalog-submission:&nbsp; not-allowed</p>
+        <p class="subtitle">esignature-submission:&nbsp; true</p>
+        <p><entry key="field|name|BT-63-Lot">
+          Variants
+         </entry> : not-allowed</p>
+        <p><entry key="field|name|BT-131(d)-Lot">
+          Deadline for receipt of tenders
+         </entry> : 2026-05-11+00:00&nbsp; 10:00:00+00:00</p>
+        <p><entry key="field|name|BT-98-Lot">
+          Deadline until which the tender must remain valid
+         </entry> :&nbsp;113&nbsp; Days</p>
+        <p><entry key="field|name|BT-132(d)-Lot">
+          Opening date
+         </entry> :2026-05-11+00:00&nbsp; 10:00:00+00:00</p>
+        <p><entry key="auxiliary|text|contract-terms">
+          Terms of contract
+         </entry> :</p>
+        <p><entry key="field|name|BT-743-Lot">
+          Electronic invoicing
+         </entry> : required no not-allowed true</p>
+        <p><entry key="field|name|BT-92-Lot">
+          Electronic ordering will be used
+         </entry></p>
+        <p><entry key="field|name|BT-93-Lot">
+          Electronic payment will be used
+         </entry></p>
+        <p><entry key="field|name|BT-99-Lot">
+          Information about review deadlines
+         </entry> : Anskaffelsen følger anskaffelsesforskriften del I og II med tilhørende frister.</p>
+       </div>
+       <div class="subsection"><span class="nomark">V.1.15)</span><span class="timark">
+         <entry key="auxiliary|text|techniques">
+          Techniques
+         </entry> </span>
+       </div>
+       <p></p>
+       <div class="value">
+        <p><entry key="auxiliary|text|dynamic-purchasing-system">
+          Information about the dynamic purchasing system
+         </entry> : &nbsp; No dynamic purchase system</p>
+       </div>
+       <div class="subsection"><span class="nomark">V.1.16)</span><span class="timark">
+         <entry key="auxiliary|text|further-info">
+          Further information, mediation and review
+         </entry> </span>
+       </div>
+       <div class="value">
+        <p>Intermediary organization: Antidoping Norge</p>
+        <p><entry key="auxiliary|text|organisation-review">
+          Review organisation
+         </entry> : Antidoping Norge</p>
+        <p>Organization that provides additional information about the procurement procedure: Inventura AS</p>
+       </div> <br>
+      </div>
+     </ul>
+    </div>
+    <div class="div_section"></div>
+    <div class="div_section"></div>
+    <div class="div_section">
+     <div class="section">
+      VIII.Organisations
+     </div>
+     <ul>
+      <div class="div_subsection">
+       <div class="subsection"><span class="nomark">VIII.1)</span><span class="timark">ORG-0001</span>
+       </div>
+       <div class="value">
+        <p>Party Name:Inventura AS</p>
+        <p>Street Name:Solheimsgaten 15</p>
+        <p>City Name:Bergen</p>
+        <p>Postal zone:5058</p>
+        <p>Country: Norway</p>
+        <p>Party Legal Entity: 983351417</p>
+        <p>Contact name: Dag Thomas Nybø-Sørensen (innkjøper)</p>
+        <p>Contact Telephone: +47 55134480</p>
+        <p>Contact Electronic Mail: dagthomas.nybo-sorensen@inventura.no</p>
+        <p>Website URI: https://www.inventura.no</p>
+       </div>
+       <div class="subsection"><span class="nomark">VIII.1)</span><span class="timark">ORG-0002</span>
+       </div>
+       <div class="value">
+        <p>Party Name:Antidoping Norge</p>
+        <p>City Name:Oslo</p>
+        <p>Postal zone:0855</p>
+        <p>Country: Norway</p>
+        <p>Party Legal Entity: 985 833 362</p>
+        <p>Contact Telephone: +47 55134480</p>
+        <p>Contact Electronic Mail: dagthomas.nybo-sorensen@inventura.no</p>
+       </div>
+       <div class="subsection"><span class="nomark">VIII.1)</span><span class="timark">ORG-0003</span>
+       </div>
+       <div class="value">
+        <p>Party Name:Oslo Tingrett</p>
+        <p>City Name:Oslo</p>
+        <p>Postal zone:0164</p>
+        <p>Country: Norway</p>
+        <p>Party Legal Entity: 926 725 939</p>
+        <p>Contact Telephone: 22 03 52 00</p>
+        <p>Contact Electronic Mail: oslo.tingrett@domstol.no</p>
+       </div>
+      </div>
+     </ul>
+    </div>
+    <div class="div_section">
+     <div class="section">
+      XI.Notice information
+     </div>
+     <ul>
+      <div class="div_subsection">
+       <div class="subsection"><span class="nomark">XI.1)</span><span class="timark">
+         <entry key="auxiliary|text|notice-information">
+          Notice information
+         </entry> </span>
+       </div>
+       <div class="value">
+        <p>Notice Identifier: 9cfb5bef-75ee-41cb-b7f4-237ca008b75d</p>
+        <p>Notice Language: Norwegian</p>
+        <p><entry key="field|name|BT-03-notice">
+          Form type
+         </entry> : Competition</p>
+        <p><entry key="field|name|BT-02-notice">
+          Notice type
+         </entry> : Contract or concession notice – standard regime</p>
+        <p><entry key="field|name|BT-05(a)-notice">
+          Notice dispatch date
+         </entry> :2026-04-17+00:00&nbsp;13:27:02+00:00</p>
+        <p>Message sending date : 2026-04-17+00:00&nbsp; 13:27:07+00:00</p>
+       </div>
+       <div class="value"></div>
+      </div>
+     </ul>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>
