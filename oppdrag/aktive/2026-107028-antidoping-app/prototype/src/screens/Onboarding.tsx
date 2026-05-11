@@ -17,7 +17,7 @@ export const OnbWelcome: React.FC<NavProps> = ({ theme, nav, lang }) => {
             <IllustShield color={theme.ink} accent={theme.accent}/>
           </View>
           <View style={{ marginBottom: 40 }}>
-            <MonoCaps theme={theme} style={{ marginBottom: 12 }}>Antidoping Norge</MonoCaps>
+            <MonoCaps theme={theme} style={{ marginBottom: 12 }}>{s.home_org}</MonoCaps>
             <Text style={{ fontFamily: theme.displayFont, fontSize: 44, color: theme.ink, letterSpacing: -1, lineHeight: 46 }}>
               {s.appName} <Text style={{ color: theme.accent, fontStyle: 'italic' }}>{s.tagline}</Text>
             </Text>
@@ -25,7 +25,7 @@ export const OnbWelcome: React.FC<NavProps> = ({ theme, nav, lang }) => {
           </View>
         </ScrollView>
         <View style={{ paddingTop: 12 }}>
-          <Button theme={theme} onPress={() => nav('onb-role')} icon={<IconArrowRight size={20}/>}>Kom i gang</Button>
+          <Button theme={theme} onPress={() => nav('onb-role')} icon={<IconArrowRight size={20}/>}>{t.continue}</Button>
         </View>
       </View>
     </Screen>
@@ -69,7 +69,7 @@ export const OnbRole: React.FC<NavProps> = ({ theme, nav, lang, state, setState 
           </View>
         </ScrollView>
         <View style={{ paddingTop: 12 }}>
-          <Button theme={theme} disabled={!sel} onPress={() => { setState({ ...state, role: sel }); nav('onb-consent'); }} icon={<IconArrowRight size={20}/>}>Neste</Button>
+          <Button theme={theme} disabled={!sel} onPress={() => { setState({ ...state, role: sel }); nav('onb-consent'); }} icon={<IconArrowRight size={20}/>}>{STRINGS[lang].common.next}</Button>
         </View>
       </View>
     </Screen>
@@ -94,7 +94,7 @@ export const OnbConsent: React.FC<NavProps> = ({ theme, nav, lang, state, setSta
           </View>
         </ScrollView>
         <View style={{ paddingTop: 12 }}>
-          <Button theme={theme} disabled={!privacy} onPress={() => nav('home')}>Fullfør</Button>
+          <Button theme={theme} disabled={!privacy} onPress={() => nav('home')}>{STRINGS[lang].common.finish}</Button>
         </View>
       </View>
     </Screen>

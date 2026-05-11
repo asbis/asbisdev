@@ -5,6 +5,7 @@ import { IconAlert, IconCheck, IconExternal, IconSearch, IconInfo, IconShield, I
 import { NavProps } from './types';
 import { WADA_LIST_FK } from '../wada.generated';
 import { storage } from '../storage';
+import { STRINGS } from '../strings';
 
 type OffProduct = {
   code: string;
@@ -68,7 +69,8 @@ async function searchByName(query: string): Promise<OffProduct[]> {
   return (json?.products || []) as OffProduct[];
 }
 
-export const ProductSearch: React.FC<NavProps> = ({ theme, nav }) => {
+export const ProductSearch: React.FC<NavProps> = ({ theme, nav, lang }) => {
+  const t = STRINGS[lang].product;
   const [q, setQ] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -87,7 +89,7 @@ export const ProductSearch: React.FC<NavProps> = ({ theme, nav }) => {
       if (isBarcode) {
         const p = await fetchByBarcode(query);
         if (!p) {
-          setError(`Fant ikke strekkode ${query} i Open Food Facts.`);
+          setError(t.barcode_not_found(query));
         } else {
           setResults([p]);
           // Auto-open the only result
@@ -96,14 +98,14 @@ export const ProductSearch: React.FC<NavProps> = ({ theme, nav }) => {
         }
       } else {
         const ps = await searchByName(query);
-        if (ps.length === 0) setError(`Ingen treff på «${query}».`);
+        if (ps.length === 0) setError(t.no_results_for(query));
         setResults(ps);
       }
       const next = [query, ...recents.filter((r) => r !== query)].slice(0, 6);
       setRecents(next);
       storage.set('product-history', next);
     } catch (e) {
-      setError(`Kunne ikke nå Open Food Facts: ${e instanceof Error ? e.message : 'ukjent feil'}`);
+      setError(t.off_unreachable(e instanceof Error ? e.message : t.unknown_error));
     } finally {
       setLoading(false);
     }
@@ -114,11 +116,11 @@ export const ProductSearch: React.FC<NavProps> = ({ theme, nav }) => {
   };
 
   return (
-    <Screen theme={theme} scroll={false} header={<AppBar theme={theme} onBack={() => nav('home')} title="Sjekk produkt"/>}>
+    <Screen theme={theme} scroll={false} header={<AppBar theme={theme} onBack={() => nav('home')} title={t.title}/>}>
       <ScrollView contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 24 }} keyboardShouldPersistTaps="handled">
         <View style={{ paddingHorizontal: 4, marginBottom: 14 }}>
           <Text style={{ fontSize: 13, color: theme.muted, lineHeight: 20 }}>
-            Skriv inn strekkode eller produktnavn. Vi henter ingredienser fra Open Food Facts og krysser mot WADA 2026.
+            {t.intro}
           </Text>
         </View>
 
@@ -126,14 +128,14 @@ export const ProductSearch: React.FC<NavProps> = ({ theme, nav }) => {
           theme={theme}
           value={q}
           onChange={setQ}
-          placeholder="Strekkode eller produktnavn"
+          placeholder={t.placeholder}
           onSubmit={performSearch}
         />
 
         <View style={{ flexDirection: 'row', gap: 10, marginTop: 12 }}>
           <View style={{ flex: 1 }}>
             <Button theme={theme} onPress={performSearch} disabled={!q.trim() || loading} icon={<IconSearch size={18}/>}>
-              {loading ? 'Søker…' : isBarcode ? 'Slå opp strekkode' : 'Søk produkt'}
+              {loading ? t.searching : isBarcode ? t.lookup_barcode : t.search_product}
             </Button>
           </View>
         </View>
@@ -142,7 +144,7 @@ export const ProductSearch: React.FC<NavProps> = ({ theme, nav }) => {
           <View style={{ marginTop: 14, padding: 14, backgroundColor: theme.surface, borderWidth: 1, borderColor: theme.line, borderRadius: 12, flexDirection: 'row', gap: 10 }}>
             <IconInfo size={18} color={theme.muted}/>
             <Text style={{ flex: 1, fontSize: 12, color: theme.muted, lineHeight: 18 }}>
-              På mobil scanner appen strekkode med kameraet. Her i web-prototypen tester du ved å lime inn strekkode (f.eks. <Text style={{ fontFamily: theme.monoFont, color: theme.ink2 }}>3017624010701</Text> for Nutella).
+              {t.web_hint_prefix}<Text style={{ fontFamily: theme.monoFont, color: theme.ink2 }}>3017624010701</Text>{t.web_hint_suffix}
             </Text>
           </View>
         )}
@@ -156,7 +158,7 @@ export const ProductSearch: React.FC<NavProps> = ({ theme, nav }) => {
 
         {!loading && results.length > 1 && (
           <View style={{ marginTop: 18 }}>
-            <MonoCaps theme={theme} style={{ marginBottom: 10 }}>{`${results.length} treff`}</MonoCaps>
+            <MonoCaps theme={theme} style={{ marginBottom: 10 }}>{t.results_count(results.length)}</MonoCaps>
             <View style={{ backgroundColor: theme.surface, borderWidth: 1.5, borderColor: theme.line, borderRadius: 18, overflow: 'hidden' }}>
               {results.map((p, i) => (
                 <Pressable
@@ -169,7 +171,7 @@ export const ProductSearch: React.FC<NavProps> = ({ theme, nav }) => {
                   </View>
                   <View style={{ flex: 1 }}>
                     <Text style={{ fontSize: 15, color: theme.ink, fontWeight: '500' }} numberOfLines={1}>
-                      {p.product_name || 'Uten navn'}
+                      {p.product_name || t.unnamed}
                     </Text>
                     <Text style={{ fontSize: 12, color: theme.muted, marginTop: 2 }} numberOfLines={1}>
                       {p.brands || p.code}
@@ -183,7 +185,7 @@ export const ProductSearch: React.FC<NavProps> = ({ theme, nav }) => {
         )}
 
         {q.trim() === '' && recents.length > 0 && (
-          <Section theme={theme} label="Nylige søk" style={{ paddingHorizontal: 0, paddingTop: 22 }}>
+          <Section theme={theme} label={t.recent} style={{ paddingHorizontal: 0, paddingTop: 22 }}>
             <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
               {recents.map((r) => (
                 <Pressable
@@ -199,19 +201,20 @@ export const ProductSearch: React.FC<NavProps> = ({ theme, nav }) => {
         )}
 
         <Text style={{ fontSize: 11, color: theme.muted, textAlign: 'center', marginTop: 30, fontFamily: theme.monoFont, letterSpacing: 0.5 }}>
-          KILDE · OPEN FOOD FACTS / WADA 2026
+          {t.source_off_wada}
         </Text>
       </ScrollView>
     </Screen>
   );
 };
 
-export const ProductDetail: React.FC<NavProps> = ({ theme, nav, state }) => {
+export const ProductDetail: React.FC<NavProps> = ({ theme, nav, state, lang }) => {
+  const t = STRINGS[lang].product;
   const p: OffProduct | undefined = state.product;
   if (!p) {
     return (
       <Screen theme={theme} scroll={false} header={<AppBar theme={theme} onBack={() => nav('product-search')}/>}>
-        <Text style={{ padding: 30, textAlign: 'center', color: theme.muted }}>Ingen produktdata.</Text>
+        <Text style={{ padding: 30, textAlign: 'center', color: theme.muted }}>{t.no_product_data}</Text>
       </Screen>
     );
   }
@@ -226,11 +229,11 @@ export const ProductDetail: React.FC<NavProps> = ({ theme, nav, state }) => {
   const offUrl = `https://world.openfoodfacts.org/product/${p.code}`;
 
   return (
-    <Screen theme={theme} scroll={false} header={<AppBar theme={theme} onBack={() => nav('product-search')} title={p.product_name || 'Produkt'}/>}>
+    <Screen theme={theme} scroll={false} header={<AppBar theme={theme} onBack={() => nav('product-search')} title={p.product_name || t.product_fallback}/>}>
       <ScrollView contentContainerStyle={{ paddingHorizontal: 20, paddingBottom: 30 }}>
-        <MonoCaps theme={theme} style={{ marginBottom: 8 }}>{`${p.brands || 'Produkt'} · OFF`}</MonoCaps>
+        <MonoCaps theme={theme} style={{ marginBottom: 8 }}>{`${p.brands || t.product_fallback} · OFF`}</MonoCaps>
         <Text style={{ fontFamily: theme.displayFont, fontSize: 30, color: theme.ink, letterSpacing: -0.5, lineHeight: 34 }}>
-          {p.product_name || 'Uten navn'}
+          {p.product_name || t.unnamed}
         </Text>
         <Text style={{ fontFamily: theme.monoFont, fontSize: 12, color: theme.muted, marginTop: 6 }}>{p.code}</Text>
 
@@ -248,10 +251,10 @@ export const ProductDetail: React.FC<NavProps> = ({ theme, nav, state }) => {
               worstStatus === 'tue' || worstStatus === 'incomp' ? theme.warn :
               theme.ok
             }}>
-              {worstStatus === 'allowed' ? 'Ingen WADA-treff' :
-               worstStatus === 'banned' ? 'Forbudt stoff i ingredienser' :
-               worstStatus === 'tue' ? 'Krever fritak' :
-               'Forbudt i konkurranse'}
+              {worstStatus === 'allowed' ? t.no_wada_match :
+               worstStatus === 'banned' ? t.banned_ingredient :
+               worstStatus === 'tue' ? t.requires_tue :
+               t.banned_in_comp}
             </Text>
           </View>
           <Text style={{ fontSize: 13, lineHeight: 19, color:
@@ -260,13 +263,13 @@ export const ProductDetail: React.FC<NavProps> = ({ theme, nav, state }) => {
             theme.ok, opacity: 0.92,
           }}>
             {worstStatus === 'allowed'
-              ? 'Vi fant ingen treff fra dopinglisten i ingredienslisten. Sjekk likevel om produktet er Informed Sport-sertifisert.'
-              : `Vi fant ${matches.length} stoff${matches.length === 1 ? '' : 'er'} som matcher WADA-listen. Se under.`}
+              ? t.allowed_note
+              : t.found_matches(matches.length)}
           </Text>
         </View>
 
         {matches.length > 0 && (
-          <Section theme={theme} label="WADA-treff" style={{ paddingHorizontal: 0, paddingTop: 24 }}>
+          <Section theme={theme} label={t.wada_matches} style={{ paddingHorizontal: 0, paddingTop: 24 }}>
             <View style={{ gap: 10 }}>
               {matches.map((m) => (
                 <Pressable
@@ -279,7 +282,7 @@ export const ProductDetail: React.FC<NavProps> = ({ theme, nav, state }) => {
                       <Text style={{ fontSize: 15, color: theme.ink, fontWeight: '600' }}>{m.substance}</Text>
                       <Text style={{ fontSize: 12, color: theme.muted, marginTop: 2 }}>{m.cat}</Text>
                     </View>
-                    <StatusBadge theme={theme} status={m.status} size="sm"/>
+                    <StatusBadge theme={theme} status={m.status} size="sm" lang={lang}/>
                   </View>
                   <Text style={{ fontSize: 12, color: theme.ink2, marginTop: 8, lineHeight: 17 }}>{m.note}</Text>
                 </Pressable>
@@ -288,22 +291,22 @@ export const ProductDetail: React.FC<NavProps> = ({ theme, nav, state }) => {
           </Section>
         )}
 
-        <Section theme={theme} label="Ingredienser" style={{ paddingHorizontal: 0, paddingTop: 24 }}>
+        <Section theme={theme} label={t.ingredients} style={{ paddingHorizontal: 0, paddingTop: 24 }}>
           <View style={{ backgroundColor: theme.surface, borderWidth: 1, borderColor: theme.line, borderRadius: 14, padding: 14 }}>
             <Text style={{ fontSize: 13, color: theme.ink2, lineHeight: 20 }}>
-              {ingredientsText || 'Open Food Facts har ikke ingrediensliste for dette produktet.'}
+              {ingredientsText || t.no_ingredients}
             </Text>
           </View>
         </Section>
 
         <View style={{ marginTop: 18 }}>
           <Button theme={theme} variant="secondary" icon={<IconExternal size={18}/>} onPress={() => Linking.openURL(offUrl)}>
-            Se på Open Food Facts
+            {t.view_on_off}
           </Button>
         </View>
 
         <Text style={{ fontSize: 11, color: theme.muted, textAlign: 'center', marginTop: 28, fontFamily: theme.monoFont, letterSpacing: 0.5 }}>
-          Ansvar ligger hos utøveren · WADA 2026 · OFF
+          {t.disclaimer}
         </Text>
       </ScrollView>
     </Screen>

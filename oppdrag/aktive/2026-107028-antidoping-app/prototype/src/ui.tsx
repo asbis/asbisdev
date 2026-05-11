@@ -116,17 +116,19 @@ export const statusColors = (theme: Theme, s: Status) => ({
   banned:  { bg: theme.badBg,  fg: theme.bad  },
 }[s]);
 
-export const statusLabel = (s: Status) => ({
+export const statusLabel = (s: Status, lang: 'nb' | 'en' = 'nb') => (lang === 'en' ? ({
+  allowed: 'Allowed', incomp: 'Prohibited in competition', tue: 'Requires TUE', banned: 'Prohibited'
+}) : ({
   allowed: 'Tillatt', incomp: 'Forbudt i konkurranse', tue: 'Krever fritak', banned: 'Forbudt'
-}[s]);
+}))[s];
 
-export const StatusBadge: React.FC<{ theme: Theme; status: Status; size?: 'sm' | 'md' }> = ({ theme, status, size = 'md' }) => {
+export const StatusBadge: React.FC<{ theme: Theme; status: Status; size?: 'sm' | 'md'; lang?: 'nb' | 'en' }> = ({ theme, status, size = 'md', lang = 'nb' }) => {
   const c = statusColors(theme, status);
   const p = size === 'sm' ? { fontSize: 12, px: 10, py: 4 } : { fontSize: 13, px: 12, py: 6 };
   return (
     <View style={{ flexDirection: 'row', alignItems: 'center', alignSelf: 'flex-start', gap: 6, backgroundColor: c.bg, borderRadius: 999, paddingHorizontal: p.px, paddingVertical: p.py }}>
       <View style={{ width: 7, height: 7, borderRadius: 4, backgroundColor: c.fg }}/>
-      <Text style={{ color: c.fg, fontSize: p.fontSize, fontWeight: '600' }}>{statusLabel(status)}</Text>
+      <Text style={{ color: c.fg, fontSize: p.fontSize, fontWeight: '600' }}>{statusLabel(status, lang)}</Text>
     </View>
   );
 };
@@ -144,7 +146,8 @@ export const RiskBar: React.FC<{ theme: Theme; level: number }> = ({ theme, leve
   );
 };
 
-export const RiskDisplay: React.FC<{ theme: Theme; level: number; title: string; sub?: string }> = ({ theme, level, title, sub }) => {
+export const RiskDisplay: React.FC<{ theme: Theme; level: number; title: string; sub?: string; lang?: 'nb' | 'en' }> = ({ theme, level, title, sub, lang = 'nb' }) => {
+  const lbl = lang === 'en' ? { low: 'Low', mid: 'Medium', high: 'High' } : { low: 'Lav', mid: 'Middels', high: 'Høy' };
   const zone = level < 0.34 ? 'low' : level < 0.67 ? 'mid' : 'high';
   const fg = zone === 'low' ? theme.ok : zone === 'mid' ? theme.warn : theme.bad;
   const R = 90;
@@ -175,9 +178,9 @@ export const RiskDisplay: React.FC<{ theme: Theme; level: number; title: string;
         </View>
       </View>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '100%', paddingHorizontal: 28, marginTop: 8 }}>
-        <MonoCaps theme={theme}>Lav</MonoCaps>
-        <MonoCaps theme={theme}>Middels</MonoCaps>
-        <MonoCaps theme={theme}>Høy</MonoCaps>
+        <MonoCaps theme={theme}>{lbl.low}</MonoCaps>
+        <MonoCaps theme={theme}>{lbl.mid}</MonoCaps>
+        <MonoCaps theme={theme}>{lbl.high}</MonoCaps>
       </View>
       <Text style={{ fontFamily: theme.displayFont, fontSize: 32, color: fg, letterSpacing: -0.6, marginTop: 20 }}>{title}</Text>
       {!!sub && <Text style={{ fontSize: 15, color: theme.muted, marginTop: 10, paddingHorizontal: 24, textAlign: 'center', lineHeight: 22 }}>{sub}</Text>}

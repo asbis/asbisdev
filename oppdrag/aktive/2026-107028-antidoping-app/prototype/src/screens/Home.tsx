@@ -46,7 +46,7 @@ export const Home: React.FC<NavProps> = ({ theme, nav, lang }) => {
       <View style={{ paddingTop: 20, paddingBottom: 24 }}>
         <View style={{ paddingHorizontal: 24, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
           <View>
-            <MonoCaps theme={theme} style={{ fontSize: 9, marginBottom: 2 }}>Antidoping Norge</MonoCaps>
+            <MonoCaps theme={theme} style={{ fontSize: 9, marginBottom: 2 }}>{t.home_org}</MonoCaps>
             <Text style={{ fontFamily: theme.displayFont, fontSize: 24, color: theme.ink, letterSpacing: -0.5 }}>
               {t.appName}<Text style={{ color: theme.accent, fontStyle: 'italic' }}>  {t.tagline}</Text>
             </Text>
@@ -71,7 +71,7 @@ export const Home: React.FC<NavProps> = ({ theme, nav, lang }) => {
 
         <View style={{ paddingTop: 40, paddingBottom: 16, paddingHorizontal: 32, alignItems: 'center' }}>
           <Text style={{ fontFamily: theme.displayFont, fontSize: 16, fontStyle: 'italic', color: theme.muted, textAlign: 'center', lineHeight: 24, opacity: 0.8 }}>
-            «Sjekk først. Konkurrer rent.»
+            {t.home_quote}
           </Text>
         </View>
       </View>

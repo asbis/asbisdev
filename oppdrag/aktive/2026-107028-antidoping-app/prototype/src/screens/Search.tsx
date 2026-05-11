@@ -8,16 +8,19 @@ import { NavProps } from './types';
 
 type SearchTab = 'meds' | 'wada';
 
-const SearchTabsBar: React.FC<{ theme: any; tab: SearchTab; setTab: (t: SearchTab) => void }> = ({ theme, tab, setTab }) => (
+const SearchTabsBar: React.FC<{ theme: any; tab: SearchTab; setTab: (t: SearchTab) => void; lang: any }> = ({ theme, tab, setTab, lang }) => {
+  const tw = STRINGS[lang].wada;
+  return (
   <View style={{ paddingHorizontal: 16, marginBottom: 8, flexDirection: 'row', gap: 8 }}>
     <Pressable onPress={() => setTab('meds')} style={{ flex: 1, paddingVertical: 10, borderBottomWidth: 2, borderColor: tab === 'meds' ? theme.ink : 'transparent', alignItems: 'center' }}>
-      <Text style={{ fontSize: 14, fontWeight: tab === 'meds' ? '700' : '500', color: tab === 'meds' ? theme.ink : theme.muted }}>Legemidler</Text>
+      <Text style={{ fontSize: 14, fontWeight: tab === 'meds' ? '700' : '500', color: tab === 'meds' ? theme.ink : theme.muted }}>{tw.tab_meds}</Text>
     </Pressable>
     <Pressable onPress={() => setTab('wada')} style={{ flex: 1, paddingVertical: 10, borderBottomWidth: 2, borderColor: tab === 'wada' ? theme.ink : 'transparent', alignItems: 'center' }}>
-      <Text style={{ fontSize: 14, fontWeight: tab === 'wada' ? '700' : '500', color: tab === 'wada' ? theme.ink : theme.muted }}>Dopinglisten</Text>
+      <Text style={{ fontSize: 14, fontWeight: tab === 'wada' ? '700' : '500', color: tab === 'wada' ? theme.ink : theme.muted }}>{tw.tab_label}</Text>
     </Pressable>
   </View>
-);
+  );
+};
 
 const MedsTab: React.FC<{ theme: any; nav: any; lang: any }> = ({ theme, nav, lang }) => {
   const t = STRINGS[lang].meds;
@@ -31,7 +34,7 @@ const MedsTab: React.FC<{ theme: any; nav: any; lang: any }> = ({ theme, nav, la
       </View>
       {q.trim() === '' ? (
         <>
-          <Section theme={theme} label="Forslag">
+          <Section theme={theme} label={t.suggestions}>
             <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10 }}>
               {suggested.map(s => (
                 <Pressable key={s} onPress={() => setQ(s)} style={({ hovered }: any) => [
@@ -53,7 +56,7 @@ const MedsTab: React.FC<{ theme: any; nav: any; lang: any }> = ({ theme, nav, la
       ) : (
         <View style={{ padding: 16 }}>
           {results.length === 0 ? (
-            <Text style={{ padding: 40, textAlign: 'center', color: theme.muted, fontSize: 16 }}>Ingen treff på «{q}»</Text>
+            <Text style={{ padding: 40, textAlign: 'center', color: theme.muted, fontSize: 16 }}>{t.no_results_for(q)}</Text>
           ) : (
             <View style={{ backgroundColor: theme.surface, borderWidth: 1.5, borderColor: theme.line, borderRadius: 18, overflow: 'hidden' }}>
               {results.map((m, i) => (
@@ -67,7 +70,7 @@ const MedsTab: React.FC<{ theme: any; nav: any; lang: any }> = ({ theme, nav, la
                     <Text style={{ fontSize: 16, color: theme.ink, fontWeight: '600' }}>{m.name}</Text>
                     <Text style={{ fontSize: 13, color: theme.muted, marginTop: 4 }}>{m.strength} · {m.active}</Text>
                   </View>
-                  <StatusBadge theme={theme} status={m.status} size="sm"/>
+                  <StatusBadge theme={theme} status={m.status} size="sm" lang={lang}/>
                   <IconChevronRight size={18} color={theme.muted}/>
                 </Pressable>
               ))}
@@ -88,7 +91,7 @@ export const MedsDetail: React.FC<NavProps> = ({ theme, nav, lang, state }) => {
   const [sent, setSent] = useState(false);
 
   const sharePill = async () => {
-    const text = `${med.name} (${med.active}) — ${statusLabel(med.status)}. Kilde: Felleskatalogen.`;
+    const text = `${med.name} (${med.active}) — ${statusLabel(med.status, lang)}. Kilde: Felleskatalogen.`;
     if (Platform.OS === 'web' && typeof navigator !== 'undefined' && (navigator as any).share) {
       try { await (navigator as any).share({ title: med.name, text, url: (med as any).url }); } catch { /* user cancelled */ }
     } else if (typeof navigator !== 'undefined' && navigator.clipboard) {
@@ -99,7 +102,7 @@ export const MedsDetail: React.FC<NavProps> = ({ theme, nav, lang, state }) => {
   return (
     <Screen theme={theme} header={<AppBar theme={theme} onBack={() => nav('meds-search')} right={<Pressable onPress={sharePill} style={{ width: 44, height: 44, alignItems: 'center', justifyContent: 'center', marginRight: -8 }}><IconShare size={22} color={theme.ink}/></Pressable>}/>}>
       <View style={{ paddingHorizontal: 20, paddingBottom: 10 }}>
-        <MonoCaps theme={theme} style={{ marginBottom: 10 }}>{`${med.brand} · Legemiddel`}</MonoCaps>
+        <MonoCaps theme={theme} style={{ marginBottom: 10 }}>{`${med.brand} · ${t.pharma_label}`}</MonoCaps>
         <Text style={{ fontFamily: theme.displayFont, fontSize: 36, color: theme.ink, letterSpacing: -1, lineHeight: 40 }}>{med.name}</Text>
         <Text style={{ fontSize: 16, color: theme.muted, marginTop: 8 }}>{med.strength}</Text>
 
@@ -108,21 +111,21 @@ export const MedsDetail: React.FC<NavProps> = ({ theme, nav, lang, state }) => {
             {med.status === 'allowed' ? <IconCheck size={20} stroke={2.5} color={theme.surface}/> : med.status === 'banned' ? <IconX size={20} stroke={2.5} color={theme.surface}/> : <IconAlert size={20} stroke={2.5} color={theme.surface}/>}
           </View>
           <View style={{ flex: 1 }}>
-            <Text style={{ fontSize: 18, fontWeight: '700', color: sc.fg }}>{statusLabel(med.status)}</Text>
+            <Text style={{ fontSize: 18, fontWeight: '700', color: sc.fg }}>{statusLabel(med.status, lang)}</Text>
             <Text style={{ fontSize: 15, color: sc.fg, marginTop: 8, lineHeight: 22, fontWeight: '500' }}>{med.note}</Text>
           </View>
         </View>
 
-        <Section theme={theme} label="Detaljer" style={{ paddingHorizontal: 0, paddingTop: 32 }}>
+        <Section theme={theme} label={t.details} style={{ paddingHorizontal: 0, paddingTop: 32 }}>
           <View style={{ backgroundColor: theme.surface, borderWidth: 1.5, borderColor: theme.line, borderRadius: 18 }}>
-            <ListRow theme={theme} title="Virkestoff" right={<Text style={{ fontSize: 15, color: theme.ink2, fontWeight: '500' }}>{med.active}</Text>}/>
-            <ListRow theme={theme} title="Produsent" right={<Text style={{ fontSize: 15, color: theme.ink2, fontWeight: '500' }}>{med.brand}</Text>}/>
-            <ListRow theme={theme} title="ATC-kode" right={<Text style={{ fontSize: 15, color: theme.ink2, fontWeight: '500', fontFamily: theme.monoFont }}>{med.strength}</Text>}/>
+            <ListRow theme={theme} title={t.active_ingredient} right={<Text style={{ fontSize: 15, color: theme.ink2, fontWeight: '500' }}>{med.active}</Text>}/>
+            <ListRow theme={theme} title={t.manufacturer} right={<Text style={{ fontSize: 15, color: theme.ink2, fontWeight: '500' }}>{med.brand}</Text>}/>
+            <ListRow theme={theme} title={t.atc_code} right={<Text style={{ fontSize: 15, color: theme.ink2, fontWeight: '500', fontFamily: theme.monoFont }}>{med.strength}</Text>}/>
             {(med as any).url && (
               <ListRow
                 theme={theme}
-                title="Felleskatalogen"
-                sub="Full preparatomtale"
+                title={t.felleskatalogen}
+                sub={t.full_monograph}
                 right={<Text style={{ fontSize: 15, color: theme.accent }}>↗</Text>}
                 onPress={() => Linking.openURL((med as any).url)}
                 divider={false}
@@ -136,7 +139,7 @@ export const MedsDetail: React.FC<NavProps> = ({ theme, nav, lang, state }) => {
             {sent ? t.confirm_sent : t.send_confirm}
           </Button>
           <Button theme={theme} variant="secondary" icon={<IconExternal size={18}/>} onPress={() => Linking.openURL(`https://www.globaldro.com/Search?country=NOR&substance=${encodeURIComponent(med.active)}`)}>
-            Sjekk i Global DRO
+            {t.check_global_dro}
           </Button>
         </View>
 
@@ -158,11 +161,11 @@ const WadaTab: React.FC<{ theme: any; nav: any; lang: any }> = ({ theme, nav, la
   return (
     <>
       <View style={{ paddingHorizontal: 16, marginBottom: 12, marginTop: 8 }}>
-        <SearchField theme={theme} value={q} onChange={setQ} placeholder="Søk på virkestoff eller kategori..."/>
+        <SearchField theme={theme} value={q} onChange={setQ} placeholder={t.placeholder_substance}/>
       </View>
       {q.trim() === '' ? (
         <>
-          <Section theme={theme} label="Populære søk">
+          <Section theme={theme} label={t.popular}>
             <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10 }}>
               {suggested.map(s => (
                 <Pressable key={s} onPress={() => setQ(s)} style={({ hovered }: any) => [
@@ -174,9 +177,9 @@ const WadaTab: React.FC<{ theme: any; nav: any; lang: any }> = ({ theme, nav, la
               ))}
             </View>
           </Section>
-          <Section theme={theme} label="WADA-kategorier">
+          <Section theme={theme} label={t.wada_categories}>
             <View style={{ backgroundColor: theme.surface, borderWidth: 1.5, borderColor: theme.line, borderRadius: 18, overflow: 'hidden' }}>
-              {['S0 — Ikke-godkjente substanser', 'S1 — Anabole stoffer', 'S2 — Peptidhormoner', 'S3 — Beta-2-agonister', 'S6 — Stimulerende midler', 'S8 — Cannabinoider'].map((c, i) => (
+              {[t.cat_s0, t.cat_s1, t.cat_s2, t.cat_s3, t.cat_s6, t.cat_s8].map((c, i) => (
                 <Pressable key={i} style={({ hovered }: any) => [
                   { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: 16, borderBottomWidth: i < 5 ? 1 : 0, borderColor: theme.line2 },
                   Platform.OS === 'web' && hovered && { backgroundColor: theme.line2 }
@@ -195,11 +198,11 @@ const WadaTab: React.FC<{ theme: any; nav: any; lang: any }> = ({ theme, nav, la
               <View style={{ width: 64, height: 64, borderRadius: 32, backgroundColor: theme.badBg, marginBottom: 20, alignItems: 'center', justifyContent: 'center' }}>
                 <IconAlert size={32} stroke={2.5} color={theme.bad}/>
               </View>
-              <Text style={{ fontFamily: theme.displayFont, fontSize: 22, color: theme.ink, textAlign: 'center' }}>Ingen treff i listen</Text>
+              <Text style={{ fontFamily: theme.displayFont, fontSize: 22, color: theme.ink, textAlign: 'center' }}>{t.no_match_title}</Text>
               <Text style={{ fontSize: 15, color: theme.muted, marginTop: 10, lineHeight: 22, textAlign: 'center', marginBottom: 24 }}>
-                Vi fant ikke «{q}» i den offisielle dopinglisten. Dette betyr ikke nødvendigvis at det er tillatt.
+                {t.no_match_sub(q)}
               </Text>
-              <Button theme={theme} variant="primary" icon={<IconMail size={20}/>} onPress={() => nav('contact')}>Spør en rådgiver</Button>
+              <Button theme={theme} variant="primary" icon={<IconMail size={20}/>} onPress={() => nav('contact')}>{t.ask_advisor}</Button>
             </Card>
           ) : (
             <View style={{ backgroundColor: theme.surface, borderWidth: 1.5, borderColor: theme.line, borderRadius: 18, overflow: 'hidden' }}>
@@ -214,7 +217,7 @@ const WadaTab: React.FC<{ theme: any; nav: any; lang: any }> = ({ theme, nav, la
                     <Text style={{ fontSize: 16, color: theme.ink, fontWeight: '600' }}>{w.name}</Text>
                     <Text style={{ fontSize: 13, color: theme.muted, marginTop: 4 }}>{w.cat}</Text>
                   </View>
-                  <StatusBadge theme={theme} status={w.status} size="sm"/>
+                  <StatusBadge theme={theme} status={w.status} size="sm" lang={lang}/>
                 </Pressable>
               ))}
             </View>
@@ -227,10 +230,10 @@ const WadaTab: React.FC<{ theme: any; nav: any; lang: any }> = ({ theme, nav, la
 
 const SearchScreen: React.FC<NavProps & { initialTab: SearchTab }> = ({ theme, nav, lang, initialTab }) => {
   const [tab, setTab] = useState<SearchTab>(initialTab);
-  const title = tab === 'meds' ? STRINGS[lang].meds.title : 'Dopinglisten';
+  const title = tab === 'meds' ? STRINGS[lang].meds.title : STRINGS[lang].wada.tab_label;
   return (
     <Screen theme={theme} header={<AppBar theme={theme} title={title}/>}>
-      <SearchTabsBar theme={theme} tab={tab} setTab={setTab}/>
+      <SearchTabsBar theme={theme} tab={tab} setTab={setTab} lang={lang}/>
       {tab === 'meds' ? <MedsTab theme={theme} nav={nav} lang={lang}/> : <WadaTab theme={theme} nav={nav} lang={lang}/>}
     </Screen>
   );
@@ -244,7 +247,7 @@ export const WadaDetail: React.FC<NavProps> = ({ theme, nav, lang, state }) => {
   const sc = statusColors(theme, w.status);
 
   const shareSubstance = async () => {
-    const text = `${w.name} (${w.cat}) — ${statusLabel(w.status)}. ${w.note}`;
+    const text = `${w.name} (${w.cat}) — ${statusLabel(w.status, lang)}. ${w.note}`;
     if (Platform.OS === 'web' && typeof navigator !== 'undefined' && (navigator as any).share) {
       try { await (navigator as any).share({ title: w.name, text }); } catch { /* user cancelled */ }
     } else if (typeof navigator !== 'undefined' && navigator.clipboard) {
@@ -255,10 +258,10 @@ export const WadaDetail: React.FC<NavProps> = ({ theme, nav, lang, state }) => {
   return (
     <Screen theme={theme} header={<AppBar theme={theme} onBack={() => nav('wada-search')} right={<Pressable onPress={shareSubstance} style={{ width: 44, height: 44, alignItems: 'center', justifyContent: 'center', marginRight: -8 }}><IconShare size={22} color={theme.ink}/></Pressable>}/>}>
       <View style={{ paddingHorizontal: 20, paddingBottom: 10 }}>
-        <MonoCaps theme={theme} style={{ marginBottom: 10 }}>Wada Prohibited List 2026</MonoCaps>
+        <MonoCaps theme={theme} style={{ marginBottom: 10 }}>{t.header_label}</MonoCaps>
         <Text style={{ fontFamily: theme.displayFont, fontSize: 36, color: theme.ink, letterSpacing: -1, lineHeight: 40 }}>{w.name}</Text>
         <View style={{ marginTop: 16 }}>
-          <StatusBadge theme={theme} status={w.status}/>
+          <StatusBadge theme={theme} status={w.status} lang={lang}/>
         </View>
 
         <View style={{ marginTop: 32, backgroundColor: sc.bg, borderRadius: 18, padding: 20 }}>
@@ -267,19 +270,19 @@ export const WadaDetail: React.FC<NavProps> = ({ theme, nav, lang, state }) => {
           <Text style={{ fontSize: 15, color: sc.fg, marginTop: 16, lineHeight: 22, fontWeight: '500' }}>{w.note}</Text>
         </View>
 
-        <Section theme={theme} label="Ressurser" style={{ paddingHorizontal: 0, paddingTop: 32 }}>
+        <Section theme={theme} label={t.resources} style={{ paddingHorizontal: 0, paddingTop: 32 }}>
           <View style={{ backgroundColor: theme.surface, borderWidth: 1.5, borderColor: theme.line, borderRadius: 18, overflow: 'hidden' }}>
             <ListRow
               theme={theme}
               icon={<IconExternal size={20} color={theme.ink2}/>}
-              title="Les WADA-dokumentasjon"
-              sub="wada-ama.org · Prohibited List 2026"
+              title={t.read_wada}
+              sub={t.read_wada_sub}
               onPress={() => Linking.openURL('https://www.wada-ama.org/en/prohibited-list')}
             />
             <ListRow
               theme={theme}
               icon={<IconExternal size={20} color={theme.ink2}/>}
-              title="Sjekk i Global DRO"
+              title={STRINGS[lang].meds.check_global_dro}
               sub={`Globaldro.com · ${w.name}`}
               onPress={() => Linking.openURL(`https://www.globaldro.com/Search?country=NOR&substance=${encodeURIComponent(w.name)}`)}
             />

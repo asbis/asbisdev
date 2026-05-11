@@ -31,25 +31,25 @@ export const RiskIntro: React.FC<NavProps> = ({ theme, nav, lang, state, setStat
             )}
           </View>
           <View style={{ flex: 1 }}>
-            <MonoCaps theme={theme}>Valgt produkt</MonoCaps>
-            <Text style={{ fontSize: 17, color: theme.ink, fontWeight: '700', marginTop: 6 }}>{product || 'Ingen produkt valgt'}</Text>
+            <MonoCaps theme={theme}>{t.product_label}</MonoCaps>
+            <Text style={{ fontSize: 17, color: theme.ink, fontWeight: '700', marginTop: 6 }}>{product || t.product_none}</Text>
             <Text style={{ fontSize: 14, color: theme.muted, marginTop: 6, lineHeight: 20 }}>
-              {product ? 'Dette produktet har høy risiko for forurensing.' : 'Skann strekkode eller skriv inn produktnavn.'}
+              {product ? t.product_high_risk : t.product_hint}
             </Text>
           </View>
         </View>
 
         <View style={{ marginTop: 16, gap: 10 }}>
           <Button theme={theme} variant={product ? 'secondary' : 'primary'} icon={<IconBarcode size={20}/>} onPress={startScan}>
-            {product ? 'Skann nytt produkt' : t.intro_scan}
+            {product ? t.scan_new : t.intro_scan}
           </Button>
-          {product && <Button theme={theme} variant="ghost" onPress={() => setProduct(null)}>Nullstill</Button>}
+          {product && <Button theme={theme} variant="ghost" onPress={() => setProduct(null)}>{t.reset}</Button>}
         </View>
 
-        <Section theme={theme} label="Vi vurderer" style={{ paddingHorizontal: 0, paddingTop: 40 }}>
+        <Section theme={theme} label={t.we_assess} style={{ paddingHorizontal: 0, paddingTop: 40 }}>
 ...
           <View style={{ backgroundColor: theme.surface, borderWidth: 1.5, borderColor: theme.line, borderRadius: 20, overflow: 'hidden' }}>
-            {['Opprinnelse og kjøpsland', 'Sertifisering og testprogrammer', 'Ingrediensliste og merking', 'Markedsføring og produsent'].map((it, i) => (
+            {[t.assess_origin, t.assess_cert, t.assess_ingredients, t.assess_marketing].map((it, i) => (
               <View key={i} style={{ flexDirection: 'row', alignItems: 'center', gap: 14, padding: 18, borderBottomWidth: i < 3 ? 1 : 0, borderColor: theme.line2 }}>
                 <View style={{ width: 26, height: 26, borderRadius: 13, backgroundColor: theme.line2, alignItems: 'center', justifyContent: 'center' }}>
                   <Text style={{ fontFamily: theme.monoFont, fontSize: 12, color: theme.ink2, fontWeight: '700' }}>{i + 1}</Text>
@@ -159,13 +159,13 @@ export const RiskResult: React.FC<NavProps> = ({ theme, nav, lang, state }) => {
   return (
     <Screen theme={theme} header={<AppBar theme={theme} onBack={() => nav('home')} right={<Pressable style={{ width: 44, height: 44, alignItems: 'center', justifyContent: 'center', marginRight: -8 }}><IconDownload size={22} color={theme.muted}/></Pressable>}/>}>
       <View style={{ paddingHorizontal: 20 }}>
-        <MonoCaps theme={theme} style={{ textAlign: 'center', marginBottom: 8 }}>Vurdering fullført</MonoCaps>
-        <RiskDisplay theme={theme} level={level} title={titles[0]} sub={titles[1]}/>
+        <MonoCaps theme={theme} style={{ textAlign: 'center', marginBottom: 8 }}>{t.assessment_done}</MonoCaps>
+        <RiskDisplay theme={theme} level={level} title={titles[0]} sub={titles[1]} lang={lang}/>
 
         {flags.length > 0 && (
           <View style={{ marginTop: 32 }}>
             <MonoCaps theme={theme} style={{ marginBottom: 12, paddingHorizontal: 4 }}>
-              {zone === 'high' ? 'Varselpunkter' : 'Merknader'}
+              {zone === 'high' ? t.warnings : t.notes}
             </MonoCaps>
             <View style={{ backgroundColor: theme.surface, borderWidth: 1.5, borderColor: theme.line, borderRadius: 18, overflow: 'hidden' }}>
               {flags.map((f, i) => (

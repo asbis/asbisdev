@@ -25,6 +25,17 @@ function formatDate(iso: string): string {
   return `${d}.${m}.${y}`;
 }
 
+function catLabel(cat: string, lang: 'nb' | 'en'): string {
+  const m = STRINGS[lang].messages;
+  switch (cat) {
+    case 'Hastevarsel': return m.cat_urgent;
+    case 'Regelendring': return m.cat_rule;
+    case 'Påminnelse': return m.cat_reminder;
+    case 'Nyhet': return m.cat_news;
+    default: return cat;
+  }
+}
+
 const MOCK_ALERTS: Alert[] = [
   { id: 'a1', cat: 'Hastevarsel', title: 'Kosttilskudd Pure Mass XL trukket fra markedet', preview: 'Prøver viser stanozolol. Stopp bruk umiddelbart.', body: 'ADNO advarer mot Pure Mass XL fra musclezone.com etter at uavhengige laboratorieprøver påviste stanozolol i tre av fem partier. Utøvere som har brukt produktet bes kontakte ADNO snarest.', date: '2026-05-09', source: 'ADNO', url: 'https://www.antidoping.no' },
   { id: 'a2', cat: 'Regelendring', title: 'WADA 2026: nye grenseverdier for salbutamol', preview: 'Maks 600 µg per 8 timer (tidligere 800 µg).', body: 'WADA strammet inn grenseverdiene for salbutamol fra 1. januar 2026. Maks 600 mikrogram per 8 timer og 1600 mikrogram per døgn. Utøvere som bruker høyere doser må søke fritak.', date: '2026-05-02', source: 'WADA' },
@@ -61,18 +72,18 @@ export const Messages: React.FC<NavProps> = ({ theme, nav, lang }) => {
   const unreadCount = alerts.filter((a) => !readIds.includes(a.id)).length;
 
   return (
-    <Screen theme={theme} scroll={false} header={<AppBar theme={theme} title={t.title} subtitle={unreadCount > 0 ? `${unreadCount} uleste` : 'Alt lest'}/>}>
+    <Screen theme={theme} scroll={false} header={<AppBar theme={theme} title={t.title} subtitle={unreadCount > 0 ? `${unreadCount} ${t.unread_suffix}` : t.all_read}/>}>
       <ScrollView contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 24 }}>
         {loading && (
           <View style={{ padding: 40, alignItems: 'center' }}>
             <ActivityIndicator size="small" color={theme.muted}/>
-            <Text style={{ marginTop: 10, fontSize: 13, color: theme.muted }}>Henter varsler…</Text>
+            <Text style={{ marginTop: 10, fontSize: 13, color: theme.muted }}>{t.loading}</Text>
           </View>
         )}
         {error && (
           <View style={{ padding: 14, marginBottom: 14, backgroundColor: theme.badBg, borderRadius: 12, flexDirection: 'row', gap: 10 }}>
             <IconAlert size={18} color={theme.bad}/>
-            <Text style={{ flex: 1, fontSize: 13, color: theme.bad, lineHeight: 19 }}>Kunne ikke hente varsler: {error}</Text>
+            <Text style={{ flex: 1, fontSize: 13, color: theme.bad, lineHeight: 19 }}>{t.fetch_error(error)}</Text>
           </View>
         )}
         {!loading && alerts.length > 0 && (
@@ -87,7 +98,7 @@ export const Messages: React.FC<NavProps> = ({ theme, nav, lang }) => {
                   <View style={{ width: 8, height: 8, borderRadius: 4, marginTop: 8, backgroundColor: unread ? (m.cat === 'Hastevarsel' ? theme.bad : theme.accent) : 'transparent' }}/>
                   <View style={{ flex: 1 }}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                      <Text style={{ fontFamily: theme.monoFont, fontSize: 10, color: m.cat === 'Hastevarsel' ? theme.bad : theme.muted, letterSpacing: 0.8 }}>{m.cat.toUpperCase()} · {m.source.toUpperCase()}</Text>
+                      <Text style={{ fontFamily: theme.monoFont, fontSize: 10, color: m.cat === 'Hastevarsel' ? theme.bad : theme.muted, letterSpacing: 0.8 }}>{catLabel(m.cat, lang).toUpperCase()} · {m.source.toUpperCase()}</Text>
                       <Text style={{ fontSize: 11, color: theme.muted }}>{formatDate(m.date)}</Text>
                     </View>
                     <Text style={{ fontSize: 15, color: theme.ink, fontWeight: unread ? '700' : '500', marginTop: 4 }}>{m.title}</Text>
@@ -99,19 +110,20 @@ export const Messages: React.FC<NavProps> = ({ theme, nav, lang }) => {
           </View>
         )}
         <Text style={{ fontFamily: theme.monoFont, fontSize: 10, color: theme.muted, letterSpacing: 0.8, textAlign: 'center', marginTop: 22 }}>
-          OPPDATERES FRA ADNO + WADA
+          {t.updated_from}
         </Text>
       </ScrollView>
     </Screen>
   );
 };
 
-export const MessageDetail: React.FC<NavProps> = ({ theme, nav, state }) => {
+export const MessageDetail: React.FC<NavProps> = ({ theme, nav, state, lang }) => {
+  const tm = STRINGS[lang].messages;
   const m: Alert | undefined = state.alert;
   if (!m) {
     return (
       <Screen theme={theme} scroll={false} header={<AppBar theme={theme} onBack={() => nav('messages')}/>}>
-        <Text style={{ padding: 30, textAlign: 'center', color: theme.muted }}>Fant ikke meldingen.</Text>
+        <Text style={{ padding: 30, textAlign: 'center', color: theme.muted }}>{tm.not_found}</Text>
       </Screen>
     );
   }
@@ -119,14 +131,14 @@ export const MessageDetail: React.FC<NavProps> = ({ theme, nav, state }) => {
     <Screen theme={theme} scroll={false} header={<AppBar theme={theme} onBack={() => nav('messages')}/>}>
       <ScrollView contentContainerStyle={{ paddingHorizontal: 24, paddingBottom: 30 }}>
         <Text style={{ fontFamily: theme.monoFont, fontSize: 11, color: m.cat === 'Hastevarsel' ? theme.bad : theme.muted, letterSpacing: 0.8 }}>
-          {m.cat.toUpperCase()} · {formatDate(m.date)} · {m.source.toUpperCase()}
+          {catLabel(m.cat, lang).toUpperCase()} · {formatDate(m.date)} · {m.source.toUpperCase()}
         </Text>
         <Text style={{ fontFamily: theme.displayFont, fontSize: 30, color: theme.ink, lineHeight: 36, letterSpacing: -0.5, marginTop: 8, marginBottom: 16 }}>{m.title}</Text>
         <Text style={{ fontSize: 15, color: theme.ink2, lineHeight: 24 }}>{m.body}</Text>
         {m.url && (
           <View style={{ marginTop: 22 }}>
             <Button theme={theme} variant="secondary" icon={<IconExternal size={18}/>} onPress={() => Linking.openURL(m.url!)}>
-              Les originalkilde
+              {tm.read_source}
             </Button>
           </View>
         )}
@@ -207,7 +219,7 @@ export const Asthma: React.FC<NavProps> = ({ theme, nav, lang }) => {
               {allowed ? t.allowed_sub : t.needs_tue_sub}
             </Text>
             <View style={{ marginTop: 14, padding: 10, backgroundColor: 'rgba(0,0,0,0.04)', borderRadius: 10, flexDirection: 'row', justifyContent: 'space-between' }}>
-              <Text style={{ fontFamily: theme.monoFont, fontSize: 12, color: allowed ? theme.ok : theme.warn }}>Daglig dose</Text>
+              <Text style={{ fontFamily: theme.monoFont, fontSize: 12, color: allowed ? theme.ok : theme.warn }}>{t.daily_dose}</Text>
               <Text style={{ fontFamily: theme.monoFont, fontSize: 12, color: allowed ? theme.ok : theme.warn }}>{total} µg / {med.limit24h} µg</Text>
             </View>
             {!allowed && (
@@ -222,19 +234,18 @@ export const Asthma: React.FC<NavProps> = ({ theme, nav, lang }) => {
   );
 };
 
-const TUE_RESOURCES = [
-  { label: 'Søknadsskjema TUE (norsk)', url: 'https://www.antidoping.no/medisinsk-fritak' },
-  { label: 'WADA TUE Application Form (engelsk)', url: 'https://www.wada-ama.org/sites/default/files/2024-01/2024_tue_application_form.pdf' },
-  { label: 'Internasjonale standarder for fritak (ISTUE)', url: 'https://www.wada-ama.org/sites/default/files/2024-12/2025_ISTUE.pdf' },
-];
-
 export const Tue: React.FC<NavProps> = ({ theme, nav, lang }) => {
   const t = STRINGS[lang].tue;
+  const TUE_RESOURCES = [
+    { label: t.res_no, url: 'https://www.antidoping.no/medisinsk-fritak' },
+    { label: t.res_wada, url: 'https://www.wada-ama.org/sites/default/files/2024-01/2024_tue_application_form.pdf' },
+    { label: t.res_istue, url: 'https://www.wada-ama.org/sites/default/files/2024-12/2025_ISTUE.pdf' },
+  ];
   const sections = [
-    { title: 'Hvem trenger fritak?', body: 'Utøvere som må bruke en substans eller metode som står på dopinglisten av medisinske grunner.' },
-    { title: 'Hvordan søker jeg?', body: 'Fyll ut søknadsskjema sammen med legen din. Send til ADNO senest 30 dager før konkurranse.' },
-    { title: 'Skjemaer og veiledning', body: 'Offisielle skjemaer fra Antidoping Norge og WADA.', attach: true },
-    { title: 'Frister', body: 'Nasjonalt nivå: 30 dager før. Internasjonalt: kontakt ditt særforbund.' },
+    { title: t.sec1_title, body: t.sec1_body },
+    { title: t.sec2_title, body: t.sec2_body },
+    { title: t.sec3_title, body: t.sec3_body, attach: true },
+    { title: t.sec4_title, body: t.sec4_body },
   ];
   return (
     <Screen theme={theme} scroll={false} header={<AppBar theme={theme} onBack={() => nav('home')} title={t.title}/>}>
@@ -243,7 +254,7 @@ export const Tue: React.FC<NavProps> = ({ theme, nav, lang }) => {
         <View style={{ gap: 10 }}>
           {sections.map((s, i) => (
             <View key={i} style={{ backgroundColor: theme.surface, borderWidth: 1, borderColor: theme.line, borderRadius: 16, padding: 18 }}>
-              <Text style={{ fontFamily: theme.monoFont, fontSize: 11, color: theme.muted, letterSpacing: 0.8 }}>DEL {i + 1}</Text>
+              <Text style={{ fontFamily: theme.monoFont, fontSize: 11, color: theme.muted, letterSpacing: 0.8 }}>{t.part} {i + 1}</Text>
               <Text style={{ fontFamily: theme.displayFont, fontSize: 22, color: theme.ink, letterSpacing: -0.3, marginTop: 6, lineHeight: 26 }}>{s.title}</Text>
               <Text style={{ fontSize: 14, color: theme.ink2, marginTop: 10, lineHeight: 20 }}>{s.body}</Text>
               {s.attach && (
@@ -310,15 +321,9 @@ export const Report: React.FC<NavProps> = ({ theme, nav, lang }) => {
 
 type ChatMsg = { role: 'user' | 'assistant'; content: string };
 
-const SUGGESTED_QUESTIONS = [
-  'Kan jeg ta Paracet før konkurranse?',
-  'Hvor mye Ventoline kan jeg bruke per døgn?',
-  'Trenger jeg fritak for Ritalin?',
-  'Hvordan vurderer jeg risiko ved kosttilskudd?',
-];
-
 export const Contact: React.FC<NavProps> = ({ theme, nav, lang }) => {
   const ct = (STRINGS[lang] as any).chat || (STRINGS.nb as any).chat;
+  const SUGGESTED_QUESTIONS = [ct.q_paracet, ct.q_ventoline, ct.q_ritalin, ct.q_supplement];
   const [messages, setMessages] = useState<ChatMsg[]>(() =>
     storage.get<ChatMsg[]>('chat-history', []),
   );
@@ -334,11 +339,11 @@ export const Contact: React.FC<NavProps> = ({ theme, nav, lang }) => {
 
   const mockReply = (q: string): string => {
     const lower = q.toLowerCase();
-    if (lower.includes('paracet')) return 'Paracet (paracetamol) står ikke på WADAs prohibited list og kan trygt brukes både i og utenfor konkurranse. Følg anbefalt dose på pakningen.';
-    if (lower.includes('ventoline') || lower.includes('salbutamol')) return 'Salbutamol (Ventoline) er tillatt i inhalert form opptil 600 µg per 8 timer og 1600 µg per døgn (WADA 2026). Doser over dette krever medisinsk fritak.';
-    if (lower.includes('ritalin') || lower.includes('metylfenidat')) return 'Metylfenidat (Ritalin) er forbudt i konkurranse (S6 Stimulerende midler). Du må ha innvilget medisinsk fritak før konkurranse.';
-    if (lower.includes('kosttilskudd')) return 'Bruk Risikosjekk-funksjonen i appen, og sjekk om produktet er Informed Sport-sertifisert. Om mulig velg apotekkjøp i Norge fra leverandører med batch-testing.';
-    return 'Takk for spørsmålet. Generelt råd: sjekk legemidler i Felleskatalogen + dopinglisten, og kontakt ADNOs medisinske rådgiver direkte ved tvil. Ansvar for hva som inntas ligger alltid hos utøveren.';
+    if (lower.includes('paracet')) return ct.reply_paracet;
+    if (lower.includes('ventoline') || lower.includes('salbutamol')) return ct.reply_ventoline;
+    if (lower.includes('ritalin') || lower.includes('metylfenidat') || lower.includes('methylphenidate')) return ct.reply_ritalin;
+    if (lower.includes('kosttilskudd') || lower.includes('supplement')) return ct.reply_supplement;
+    return ct.reply_default;
   };
 
   const send = (text: string) => {
@@ -466,7 +471,7 @@ const Bubble: React.FC<{ theme: Theme; role: 'user' | 'assistant'; content: stri
   return (
     <View style={{ alignSelf: isUser ? 'flex-end' : 'flex-start', maxWidth: '88%' }}>
       {!isUser && (
-        <Text style={{ fontFamily: theme.monoFont, fontSize: 10, color: theme.muted, letterSpacing: 0.8, marginBottom: 4, marginLeft: 4 }}>ADNO RÅDGIVER</Text>
+        <Text style={{ fontFamily: theme.monoFont, fontSize: 10, color: theme.muted, letterSpacing: 0.8, marginBottom: 4, marginLeft: 4 }}>ADNO ADVISOR</Text>
       )}
       <View style={{
         backgroundColor: isUser ? theme.ink : theme.surface,
@@ -501,8 +506,8 @@ export const Settings: React.FC<NavProps> = ({ theme, nav, lang, setLang, dark, 
       setPushPerm(status);
       if (status === 'granted') {
         showNotification({
-          title: 'Push-varsler aktivert',
-          body: 'Du får varsel ved hastevarsel og regelendringer fra ADNO.',
+          title: t.push_enabled_title,
+          body: t.push_enabled_body,
           tag: 'adno-permission-granted',
         });
       }
@@ -511,12 +516,12 @@ export const Settings: React.FC<NavProps> = ({ theme, nav, lang, setLang, dark, 
 
   const sendTestNotification = () => {
     const ok = showNotification({
-      title: 'Antidoping Norge · Hastevarsel',
-      body: 'Pure Mass XL fra musclezone.com testet positivt for stanozolol. Slutt å bruke umiddelbart.',
+      title: t.test_title,
+      body: t.test_body,
       tag: 'adno-test',
     });
     if (!ok) {
-      RNAlert.alert('Push-varsler', 'Aktiver push-varsler først, og gi nettleseren tillatelse.');
+      RNAlert.alert(t.push_alert_title, t.push_alert_body);
     }
   };
 
@@ -540,7 +545,7 @@ export const Settings: React.FC<NavProps> = ({ theme, nav, lang, setLang, dark, 
       a.click();
       URL.revokeObjectURL(url);
     } else {
-      RNAlert.alert('Mine data', JSON.stringify(data, null, 2));
+      RNAlert.alert(t.my_data, JSON.stringify(data, null, 2));
     }
   };
 
@@ -552,13 +557,13 @@ export const Settings: React.FC<NavProps> = ({ theme, nav, lang, setLang, dark, 
       if (Platform.OS === 'web' && typeof window !== 'undefined') window.location.reload();
     };
     if (Platform.OS === 'web') {
-      if (typeof window !== 'undefined' && window.confirm('Er du sikker på at du vil logge ut? All lagret data slettes.')) {
+      if (typeof window !== 'undefined' && window.confirm(t.signout_confirm)) {
         doSignOut();
       }
     } else {
-      RNAlert.alert('Logg ut', 'Er du sikker? All lagret data slettes.', [
-        { text: 'Avbryt', style: 'cancel' },
-        { text: 'Logg ut', style: 'destructive', onPress: doSignOut },
+      RNAlert.alert(t.signout_confirm_title, t.signout_confirm_short, [
+        { text: STRINGS[lang].common.cancel, style: 'cancel' },
+        { text: t.signout, style: 'destructive', onPress: doSignOut },
       ]);
     }
   };
@@ -645,7 +650,7 @@ export const Settings: React.FC<NavProps> = ({ theme, nav, lang, setLang, dark, 
           <Button theme={theme} variant="secondary" onPress={signOut}>{t.signout}</Button>
         </View>
         <Text style={{ fontFamily: theme.monoFont, fontSize: 10, color: theme.muted, letterSpacing: 0.8, textAlign: 'center', marginTop: 16 }}>
-          ANTIDOPING NORGE · {t.version.toUpperCase()}
+          {t.org_footer} · {t.version.toUpperCase()}
         </Text>
       </ScrollView>
     </Screen>
@@ -654,14 +659,14 @@ export const Settings: React.FC<NavProps> = ({ theme, nav, lang, setLang, dark, 
 
 type Course = { ix: string; title: string; sub: string; url: string; done: boolean; progress?: number };
 
-const COURSES: Course[] = [
-  { ix: '01', title: 'Grunnkurs Ren Utøver', sub: '6 moduler · 45 min', url: 'https://www.renutover.no/grunnkurs', done: false },
-  { ix: '02', title: 'Kosttilskudd og risiko', sub: '3 moduler · 20 min', url: 'https://www.renutover.no/kosttilskudd', done: false },
-  { ix: '03', title: 'Whereabouts', sub: '4 moduler · 30 min', url: 'https://www.renutover.no/whereabouts', done: false },
-  { ix: '04', title: 'Medisinsk fritak', sub: '2 moduler · 15 min', url: 'https://www.renutover.no/fritak', done: false },
-];
-
-export const Learn: React.FC<NavProps> = ({ theme, nav }) => {
+export const Learn: React.FC<NavProps> = ({ theme, nav, lang }) => {
+  const tl = STRINGS[lang].learn;
+  const COURSES: Course[] = [
+    { ix: '01', title: tl.c01_title, sub: tl.c01_sub, url: 'https://www.renutover.no/grunnkurs', done: false },
+    { ix: '02', title: tl.c02_title, sub: tl.c02_sub, url: 'https://www.renutover.no/kosttilskudd', done: false },
+    { ix: '03', title: tl.c03_title, sub: tl.c03_sub, url: 'https://www.renutover.no/whereabouts', done: false },
+    { ix: '04', title: tl.c04_title, sub: tl.c04_sub, url: 'https://www.renutover.no/fritak', done: false },
+  ];
   const [completed, setCompleted] = useState<Record<string, number>>(() => storage.get('completed-courses', {} as Record<string, number>));
 
   const openCourse = (c: Course) => {
@@ -677,9 +682,9 @@ export const Learn: React.FC<NavProps> = ({ theme, nav }) => {
   };
 
   return (
-    <Screen theme={theme} scroll={false} header={<AppBar theme={theme} title="Ren Utøver"/>}>
+    <Screen theme={theme} scroll={false} header={<AppBar theme={theme} title={tl.title}/>}>
       <ScrollView contentContainerStyle={{ paddingHorizontal: 20, paddingBottom: 30 }}>
-        <LargeTitle theme={theme} sub="Offisiell e-læring fra Antidoping Norge. Ca. 110 minutter totalt.">Ren Utøver</LargeTitle>
+        <LargeTitle theme={theme} sub={tl.sub}>{tl.title}</LargeTitle>
         <View style={{ gap: 10 }}>
           {COURSES.map((c) => {
             const progress = completed[c.ix] ?? 0;
@@ -715,7 +720,7 @@ export const Learn: React.FC<NavProps> = ({ theme, nav }) => {
           })}
         </View>
         <Text style={{ fontFamily: theme.monoFont, fontSize: 10, color: theme.muted, letterSpacing: 0.8, textAlign: 'center', marginTop: 24 }}>
-          KILDE · ANTIDOPING NORGE / RENUTOVER.NO
+          {tl.source}
         </Text>
       </ScrollView>
     </Screen>
