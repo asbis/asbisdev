@@ -1,0 +1,42 @@
+Hei Christian! 👋
+
+Jeg er i gang med Dr.Dropin-oppdraget, men før jeg signerer
+databehandleravtalen deres vil jeg gjerne avklare et par ting med
+deg, så jeg sender riktig versjon videre til Nora.
+
+Kort kontekst: vi skal bygge en MVP der ansatte sender inn
+egenmeldinger, med integrasjon mot NAV. Det innebærer sensitive
+helseopplysninger (sykefravær, fødselsnummer), så DPA-en er ikke helt
+triviell.
+
+Tre ting jeg lurer på:
+
+1) Avtalepart / signatur
+Dr.Dropins databehandleravtale legger opp til at den signeres direkte
+mellom mitt AS og Dr.Dropin. Siden oppdraget går via Folq
+(Oppdragsavtalen som tillegg til Samarbeidsavtalen) — skal denne
+DPA-en egentlig inngås direkte av meg, eller skal den håndteres
+gjennom Folqs rammeverk / Folqs standard databehandleravtale? Hvem
+bør stå som databehandler her?
+
+2) Forsikring
+Jeg vil bekrefte at jeg har formueansvarsdekningen via
+Folq/Storebrand aktiv (3 MNOK). Og spesielt: dekker den ansvar
+knyttet til databehandling/GDPR, eller er det unntatt? Avtalen har i
+dag en ubegrenset skadesløsholdelse som også omfatter eventuelle
+GDPR-gebyrer — det vil jeg ikke stå i uforsikret.
+
+3) Ansvar etter overlevering
+Dette er en avgrenset MVP. Etter at jeg har levert og de har
+akseptert, har jeg verken tilgang eller mulighet til å endre noe —
+Dr.Dropin overtar drift og videre ansvar. Har Folq en standard måte
+å få dette tydelig avgrenset på i avtaleverket?
+
+Jeg har laget et lite forslag til justeringer (balansert, ikke
+vanskelig) som jeg planlegger å sende Nora — men vil gjerne ha din
+input først så vi spiller på lag og det blir ryddig mot
+oppdragsgiver.
+
+Har du 10 min på en prat, eller holder det å ta det her? 🙏
+
+Takk!

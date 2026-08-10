@@ -6,18 +6,15 @@ const BASE = process.env.DOFFIN_API_BASE ?? "https://api.doffin.no/public";
 const REPO_ROOT = "/Users/asbis/code/asbisdev";
 
 const TARGETS = [
-  { id: "2026-107028", slug: "antidoping-app" },
-  { id: "2026-105919", slug: "trondheim-mikromobilitet" },
-  { id: "2026-105336", slug: "rusinfo-selvhjelpsapp" },
-  { id: "2026-106312", slug: "eksportfinansiering-nettsider" },
-  { id: "2026-107183", slug: "atb-mikromobilitet" },
-  { id: "2026-105486", slug: "raelingen-bti-stafettlogg" },
-  { id: "2026-105747", slug: "narvik-iam" },
-  { id: "2026-106257", slug: "udir-barnehage-hjem" },
-  { id: "2026-105950", slug: "vetinst-nettsider" },
-  { id: "2026-105710", slug: "asker-nettsider" },
-  { id: "2026-106061", slug: "domstol-tolkebestilling" },
-  { id: "2026-106738", slug: "nordre-follo-parkering" },
+  { id: "2026-111353", slug: "met-geoweb-frontend" },
+  { id: "2026-110594", slug: "landbruksdirektoratet-ikt-utvikling" },
+  { id: "2026-110023", slug: "hkdir-nettsteder" },
+  { id: "2026-111211", slug: "dfo-integrasjonsdesign" },
+  { id: "2026-110556", slug: "forsvarsbygg-integrasjoner" },
+  { id: "2025-112709", slug: "sandnes-dps-radgivning" },
+  { id: "2025-112445", slug: "brreg-dps-systemutvikling" },
+  { id: "2025-112444", slug: "brreg-dps-brukskvalitet-design" },
+  { id: "2025-103853", slug: "mattilsynet-dps-systemutvikling" },
 ];
 
 async function fetchXml(id: string): Promise<string> {

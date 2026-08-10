@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">
+  <ext:UBLExtensions>
+    <ext:UBLExtension>
+      <ext:ExtensionContent>
+        <efext:EformsExtension>
+          <efbc:TransmissionDate>2026-06-24+00:00</efbc:TransmissionDate>
+          <efbc:TransmissionTime>13:01:22+00:00</efbc:TransmissionTime>
+          <efac:NoticeSubType>
+            <cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+          </efac:NoticeSubType>
+          <efac:Organizations>
+            <efac:Organization>
+              <efac:Company>
+                <cac:PartyIdentification>
+                  <cbc:ID schemeName="organization">ORG-0001</cbc:ID>
+                </cac:PartyIdentification>
+                <cac:PartyName>
+                  <cbc:Name languageID="NOR">Direktoratet for forvaltning og økonomistyring (DFØ)</cbc:Name>
+                </cac:PartyName>
+                <cac:PartyName>
+                  <cbc:Name languageID="ENG">Direktoratet for forvaltning og økonomistyring (DFØ)</cbc:Name>
+                </cac:PartyName>
+                <cac:PostalAddress>
+                  <cbc:StreetName>Postboks 7154</cbc:StreetName>
+                  <cbc:CityName>Oslo</cbc:CityName>
+                  <cbc:PostalZone>0130</cbc:PostalZone>
+                  <cbc:CountrySubentityCode listName="nuts">NO081</cbc:CountrySubentityCode>
+                  <cac:Country>
+                    <cbc:IdentificationCode listName="country">NOR</cbc:IdentificationCode>
+                  </cac:Country>
+                </cac:PostalAddress>
+                <cac:PartyLegalEntity>
+                  <cbc:CompanyID schemeID="002">986252932</cbc:CompanyID>
+                </cac:PartyLegalEntity>
+                <cac:Contact>
+                  <cbc:Name>Kristina Korvanen Hildonen</cbc:Name>
+                  <cbc:Telephone>40007997</cbc:Telephone>
+                  <cbc:ElectronicMail>kristinakorvanen.hildonen@dfo.no</cbc:ElectronicMail>
+                </cac:Contact>
+              </efac:Company>
+            </efac:Organization>
+            <efac:Organization>
+              <efac:Company>
+                <cac:PartyIdentification>
+                  <cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+                </cac:PartyIdentification>
+                <cac:PartyName>
+                  <cbc:Name languageID="NOR">Oslo tingrett</cbc:Name>
+                </cac:PartyName>
+                <cac:PartyName>
+                  <cbc:Name languageID="ENG">Oslo tingrett</cbc:Name>
+                </cac:PartyName>
+                <cac:PostalAddress>
+                  <cbc:CityName>Oslo</cbc:CityName>
+                  <cbc:PostalZone>0125</cbc:PostalZone>
+                  <cbc:CountrySubentityCode listName="nuts">NO081</cbc:CountrySubentityCode>
+                  <cac:Country>
+                    <cbc:IdentificationCode listName="country">NOR</cbc:IdentificationCode>
+                  </cac:Country>
+                </cac:PostalAddress>
+                <cac:PartyLegalEntity>
+                  <cbc:CompanyID schemeID="002">926 725 939</cbc:CompanyID>
+                </cac:PartyLegalEntity>
+                <cac:Contact>
+                  <cbc:Telephone>+47 22035200</cbc:Telephone>
+                  <cbc:ElectronicMail>oslo.tingrett@domstol.no</cbc:ElectronicMail>
+                </cac:Contact>
+              </efac:Company>
+            </efac:Organization>
+          </efac:Organizations>
+        </efext:EformsExtension>
+      </ext:ExtensionContent>
+    </ext:UBLExtension>
+  </ext:UBLExtensions>
+  <cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+  <cbc:CustomizationID>eforms-sdk-1.13#extended#urn:fdc:anskaffelser.no:2023:eforms:eu</cbc:CustomizationID>
+  <cbc:ID schemeName="notice-id">44abe316-c561-4101-a464-7ebf27b3a2e0</cbc:ID>
+  <cbc:ContractFolderID>97800409-fa23-46d4-a1df-9c68116b5492</cbc:ContractFolderID>
+  <cbc:IssueDate>2026-06-24+00:00</cbc:IssueDate>
+  <cbc:IssueTime>12:45:30+00:00</cbc:IssueTime>
+  <cbc:VersionID>01</cbc:VersionID>
+  <cbc:RequestedPublicationDate>2026-06-25Z</cbc:RequestedPublicationDate>
+  <cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+  <cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+  <cbc:NoticeLanguageCode>NOR</cbc:NoticeLanguageCode>
+  <cac:AdditionalNoticeLanguage>
+    <cbc:ID>ENG</cbc:ID>
+  </cac:AdditionalNoticeLanguage>
+  <cac:ContractingParty>
+    <cbc:BuyerProfileURI>https://eu.eu-supply.com/ctm/company/companyinformation/index/336234</cbc:BuyerProfileURI>
+    <cac:ContractingPartyType>
+      <cbc:PartyTypeCode listName="buyer-legal-type">pub-undert</cbc:PartyTypeCode>
+    </cac:ContractingPartyType>
+    <cac:ContractingActivity>
+      <cbc:ActivityTypeCode listName="authority-activity">gen-pub</cbc:ActivityTypeCode>
+    </cac:ContractingActivity>
+    <cac:Party>
+      <cac:PartyIdentification>
+        <cbc:ID schemeName="organization">ORG-0001</cbc:ID>
+      </cac:PartyIdentification>
+    </cac:Party>
+  </cac:ContractingParty>
+  <cac:TenderingTerms>
+    <cac:TendererQualificationRequest>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-sub-espd</cbc:TendererRequirementTypeCode>
+      </cac:SpecificTendererRequirement>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+      </cac:SpecificTendererRequirement>
+    </cac:TendererQualificationRequest>
+  </cac:TenderingTerms>
+  <cac:TenderingProcess>
+    <cbc:ProcedureCode listName="procurement-procedure-type">open</cbc:ProcedureCode>
+    <cac:ProcessJustification>
+      <cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+    </cac:ProcessJustification>
+  </cac:TenderingProcess>
+  <cac:ProcurementProject>
+    <cbc:ID>26/541</cbc:ID>
+    <cbc:Name languageID="NOR">Anskaffelse av konsulentbistand til design av integrasjonsløsning</cbc:Name>
+    <cbc:Name languageID="ENG">Consultancy services for the design of an integration system.</cbc:Name>
+    <cbc:Description languageID="NOR">De viktigste punktene DFØ ønsker å oppnå på lang sikt er: 
+- Sammenhengende tjenester og best mulig kundeopplevelse 
+- Etablere et standardisert integrasjonslag som sikrer sømløs informasjonsflyt mellom kundenes fagsystemer og DFØs regnskapsløsning 
+- Etablere en robust og skalerbar arkitektur som forenkler fremtidig forvaltning og vedlikehold av integrasjonsløsningene 
+
+Målet med integrasjonslaget er å sikre en standardisert, sikker og skalerbar informasjonsflyt. Vi skal nå i gang med en dedikert designfase for å legge de arkitektoniske og tekniske rammene før selve utviklingen og implementeringen starter. Til å bidra inn i dette arbeidet søker vi erfarne konsulenter med spisskompetanse innen integrasjonsarkitektur. 
+
+Oppgavene organiseres og prioriteres fortløpende innenfor utviklingsløpet. Arbeidet koordineres med DFØs utviklingsmiljø og følger etablerte arbeidsprosesser (herunder sprintbasert metodikk).</cbc:Description>
+    <cbc:Description languageID="ENG">The most important points DFØ would like to achieve in the long term are: 
+- Connected services and the best possible customer experience. 
+- Establish a standardised integration layer that ensures seamless information flow between the customers ́ trade systems and DFØ ́s accounting system. 
+- Establish a robust and scaleable architecture that simplifies future management and maintenance of the integration systems. 
+
+The objective of the integration layer is to ensure a standardised, secure and scaleable information flow. We will now start a dedicated design phase to lay the architectonic and technical frameworks before the actual development and implementation starts. To contribute to this work, we seek experienced consultants with expertise within integration architecture. 
+
+The assignments are organised and prioritised continuously within the development period. The work coordinates with DFØ ́s development environment and follows established work processes (including sprint based methodology).</cbc:Description>
+    <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+    <cac:RequestedTenderTotal>
+      <cbc:EstimatedOverallContractAmount currencyID="NOK">6500000</cbc:EstimatedOverallContractAmount>
+    </cac:RequestedTenderTotal>
+    <cac:MainCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">72246000</cbc:ItemClassificationCode>
+    </cac:MainCommodityClassification>
+    <cac:AdditionalCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">72224100</cbc:ItemClassificationCode>
+    </cac:AdditionalCommodityClassification>
+    <cac:AdditionalCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">72227000</cbc:ItemClassificationCode>
+    </cac:AdditionalCommodityClassification>
+    <cac:AdditionalCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">72266000</cbc:ItemClassificationCode>
+    </cac:AdditionalCommodityClassification>
+    <cac:AdditionalCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">72330000</cbc:ItemClassificationCode>
+    </cac:AdditionalCommodityClassification>
+    <cac:RealizedLocation>
+      <cac:Address>
+        <cbc:StreetName>Brattørkaia 15B</cbc:StreetName>
+        <cbc:CityName>Trondheim</cbc:CityName>
+        <cbc:PostalZone>7010</cbc:PostalZone>
+        <cbc:CountrySubentityCode listName="nuts">NO060</cbc:CountrySubentityCode>
+        <cac:Country>
+          <cbc:IdentificationCode listName="country">NOR</cbc:IdentificationCode>
+        </cac:Country>
+      </cac:Address>
+    </cac:RealizedLocation>
+  </cac:ProcurementProject>
+  <cac:ProcurementProjectLot>
+    <cbc:ID schemeName="Lot">LOT-0000</cbc:ID>
+    <cac:TenderingTerms>
+      <cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+      <cbc:LatestSecurityClearanceDate>2026-09-01Z</cbc:LatestSecurityClearanceDate>
+      <cac:CallForTendersDocumentReference>
+        <cbc:ID>Anskaffelsesdokumenter</cbc:ID>
+        <cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+        <cac:Attachment>
+          <cac:ExternalReference>
+            <cbc:URI>https://eu.eu-supply.com/app/rfq/rwlentrance_s.asp?PID=457809&amp;TID=200418372&amp;B=</cbc:URI>
+          </cac:ExternalReference>
+        </cac:Attachment>
+      </cac:CallForTendersDocumentReference>
+      <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-sub-espd</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="nda">true</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:AwardingTerms>
+        <cac:AwardingCriterion>
+          <cac:SubordinateAwardingCriterion>
+            <ext:UBLExtensions>
+              <ext:UBLExtension>
+                <ext:ExtensionContent>
+                  <efext:EformsExtension>
+                    <efac:AwardCriterionParameter>
+                      <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                      <efbc:ParameterNumeric>60</efbc:ParameterNumeric>
+                    </efac:AwardCriterionParameter>
+                  </efext:EformsExtension>
+                </ext:ExtensionContent>
+              </ext:UBLExtension>
+            </ext:UBLExtensions>
+            <cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+            <cbc:Name languageID="NOR">Kvalitet</cbc:Name>
+            <cbc:Name languageID="ENG">Quality</cbc:Name>
+            <cbc:Description languageID="NOR">• CV og beskrivelse av konsulentenes erfaring og 
+kompetanse 
+• Tilgjengelighet i perioden (forutsettes 
+tilgjengelighet i Trondheim). 
+• Tilbyders forståelse av oppdraget</cbc:Description>
+            <cbc:Description languageID="ENG">• CV and description of the consultants ́ experience and 
+Competence 
+• Availability in the period (expected to be 
+accessibility in Trondheim). 
+• The tenderer's understanding of the assignment.</cbc:Description>
+          </cac:SubordinateAwardingCriterion>
+          <cac:SubordinateAwardingCriterion>
+            <ext:UBLExtensions>
+              <ext:UBLExtension>
+                <ext:ExtensionContent>
+                  <efext:EformsExtension>
+                    <efac:AwardCriterionParameter>
+                      <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                      <efbc:ParameterNumeric>40</efbc:ParameterNumeric>
+                    </efac:AwardCriterionParameter>
+                  </efext:EformsExtension>
+                </ext:ExtensionContent>
+              </ext:UBLExtension>
+            </ext:UBLExtensions>
+            <cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+            <cbc:Name languageID="NOR">Pris</cbc:Name>
+            <cbc:Name languageID="ENG">Price</cbc:Name>
+            <cbc:Description languageID="NOR">• Konsulentenes timepris</cbc:Description>
+            <cbc:Description languageID="ENG">• The consultants ́ hourly rate</cbc:Description>
+          </cac:SubordinateAwardingCriterion>
+        </cac:AwardingCriterion>
+      </cac:AwardingTerms>
+      <cac:TenderRecipientParty>
+        <cbc:EndpointID>https://eu.eu-supply.com/app/rfq/rwlentrance_s.asp?PID=457809&amp;TID=200418372&amp;B=</cbc:EndpointID>
+      </cac:TenderRecipientParty>
+      <cac:TenderValidityPeriod>
+        <cbc:DurationMeasure unitCode="MONTH">2</cbc:DurationMeasure>
+      </cac:TenderValidityPeriod>
+      <cac:AppealTerms>
+        <cac:PresentationPeriod>
+          <cbc:Description languageID="NOR">Karensperioden er 10 dager regnet fra meddelelse om valg av leverandør.</cbc:Description>
+          <cbc:Description languageID="ENG">The waiting period is 10 days calculated from notification of contract award.</cbc:Description>
+        </cac:PresentationPeriod>
+        <cac:AppealInformationParty>
+          <cac:PartyIdentification>
+            <cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+          </cac:PartyIdentification>
+        </cac:AppealInformationParty>
+        <cac:AppealReceiverParty>
+          <cac:PartyIdentification>
+            <cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+          </cac:PartyIdentification>
+        </cac:AppealReceiverParty>
+      </cac:AppealTerms>
+      <cac:Language>
+        <cbc:ID>NOR</cbc:ID>
+      </cac:Language>
+      <cac:Language>
+        <cbc:ID>ENG</cbc:ID>
+      </cac:Language>
+      <cac:PostAwardProcess>
+        <cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+        <cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+      </cac:PostAwardProcess>
+      <cac:SecurityClearanceTerm>
+        <cbc:Code listName="required">true</cbc:Code>
+        <cbc:Description languageID="NOR">Samtlige konsulenter må inneha politiattest.</cbc:Description>
+        <cbc:Description languageID="ENG">All consultants must have a police certificate.</cbc:Description>
+      </cac:SecurityClearanceTerm>
+    </cac:TenderingTerms>
+    <cac:TenderingProcess>
+      <cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+      <cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+      <cac:TenderSubmissionDeadlinePeriod>
+        <cbc:EndDate>2026-08-17+00:00</cbc:EndDate>
+        <cbc:EndTime>10:00:00+00:00</cbc:EndTime>
+      </cac:TenderSubmissionDeadlinePeriod>
+      <cac:AdditionalInformationRequestPeriod>
+        <cbc:EndDate>2026-08-12+00:00</cbc:EndDate>
+        <cbc:EndTime>10:00:00+00:00</cbc:EndTime>
+      </cac:AdditionalInformationRequestPeriod>
+      <cac:AuctionTerms>
+        <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+      </cac:AuctionTerms>
+      <cac:ContractingSystem>
+        <cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+      </cac:ContractingSystem>
+      <cac:ContractingSystem>
+        <cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+      </cac:ContractingSystem>
+    </cac:TenderingProcess>
+    <cac:ProcurementProject>
+      <cbc:ID>26/541</cbc:ID>
+      <cbc:Name languageID="NOR">Anskaffelse av konsulentbistand til design av integrasjonsløsning</cbc:Name>
+      <cbc:Name languageID="ENG">Consultancy services for the design of an integration system.</cbc:Name>
+      <cbc:Description languageID="NOR">De viktigste punktene DFØ ønsker å oppnå på lang sikt er: 
+- Sammenhengende tjenester og best mulig kundeopplevelse 
+- Etablere et standardisert integrasjonslag som sikrer sømløs informasjonsflyt mellom kundenes fagsystemer og DFØs regnskapsløsning 
+- Etablere en robust og skalerbar arkitektur som forenkler fremtidig forvaltning og vedlikehold av integrasjonsløsningene 
+
+Målet med integrasjonslaget er å sikre en standardisert, sikker og skalerbar informasjonsflyt. Vi skal nå i gang med en dedikert designfase for å legge de arkitektoniske og tekniske rammene før selve utviklingen og implementeringen starter. Til å bidra inn i dette arbeidet søker vi erfarne konsulenter med spisskompetanse innen integrasjonsarkitektur. 
+
+Oppgavene organiseres og prioriteres fortløpende innenfor utviklingsløpet. Arbeidet koordineres med DFØs utviklingsmiljø og følger etablerte arbeidsprosesser (herunder sprintbasert metodikk).</cbc:Description>
+      <cbc:Description languageID="ENG">The most important points DFØ would like to achieve in the long term are: 
+- Connected services and the best possible customer experience. 
+- Establish a standardised integration layer that ensures seamless information flow between the customers ́ trade systems and DFØ ́s accounting system. 
+- Establish a robust and scaleable architecture that simplifies future management and maintenance of the integration systems. 
+
+The objective of the integration layer is to ensure a standardised, secure and scaleable information flow. We will now start a dedicated design phase to lay the architectonic and technical frameworks before the actual development and implementation starts. To contribute to this work, we seek experienced consultants with expertise within integration architecture. 
+
+The assignments are organised and prioritised continuously within the development period. The work coordinates with DFØ ́s development environment and follows established work processes (including sprint based methodology).</cbc:Description>
+      <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+      <cac:RequestedTenderTotal>
+        <cbc:EstimatedOverallContractAmount currencyID="NOK">6500000</cbc:EstimatedOverallContractAmount>
+      </cac:RequestedTenderTotal>
+      <cac:MainCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">72246000</cbc:ItemClassificationCode>
+      </cac:MainCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">72224100</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">72227000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">72266000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">72330000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:RealizedLocation>
+        <cac:Address>
+          <cbc:StreetName>Brattørkaia 15B</cbc:StreetName>
+          <cbc:CityName>Trondheim</cbc:CityName>
+          <cbc:PostalZone>7010</cbc:PostalZone>
+          <cbc:CountrySubentityCode listName="nuts">NO060</cbc:CountrySubentityCode>
+          <cac:Country>
+            <cbc:IdentificationCode listName="country">NOR</cbc:IdentificationCode>
+          </cac:Country>
+        </cac:Address>
+      </cac:RealizedLocation>
+      <cac:PlannedPeriod>
+        <cbc:StartDate>2026-09-01Z</cbc:StartDate>
+        <cbc:EndDate>2027-01-31Z</cbc:EndDate>
+      </cac:PlannedPeriod>
+      <cac:ContractExtension>
+        <cbc:OptionsDescription languageID="NOR">DFØ ønsker en opsjon på å forlenge bistanden fra 01.02.2027 til 31.12.2027. Omfanget av bistanden i opsjonsperioden avtales nærmere innenfor oppdragets rammer. Frist for å utløse opsjonen settes til 31.12.2026.</cbc:OptionsDescription>
+        <cbc:OptionsDescription languageID="ENG">DFØ would like an option to extend assistance from 01.02.2027 to 31.12.2027. The extent of assistance in the option period is agreed upon within the assignment ́s limits. The deadline for triggering the option is set to 31.12.2026.</cbc:OptionsDescription>
+      </cac:ContractExtension>
+    </cac:ProcurementProject>
+  </cac:ProcurementProjectLot>
+</ContractNotice>
