@@ -30,10 +30,11 @@ const QUERIES = [
   "kontaktsenter",
 ];
 
+// NB: ~half of all notices carry no status field at all (award/result and
+// advisory notices in particular). Passing a status filter drops those
+// silently, so the default run sends none and filters locally instead.
 const ACTIVE_ONLY = process.argv.includes("--active");
-const STATUSES = ACTIVE_ONLY
-  ? ["ACTIVE"]
-  : ["ACTIVE", "EXPIRED", "AWARDED", "CANCELLED"];
+const STATUSES = ACTIVE_ONLY ? ["ACTIVE"] : undefined;
 
 const seen = new Map<string, Tender>();
 
@@ -86,8 +87,13 @@ const hits = [...seen.values()]
   );
 
 const live = hits.filter(({ t }) => t.status === "ACTIVE");
+const awarded = hits.filter(({ t }) =>
+  t.status === "AWARDED" ||
+  t.type === "ANNOUNCEMENT_OF_CONCLUSION_OF_CONTRACT",
+);
 console.log(
-  `\nPool: ${seen.size} unike · Relevante: ${hits.length} (${live.length} aktive)\n`,
+  `\nPool: ${seen.size} unike · Relevante: ${hits.length}` +
+    ` (${live.length} aktive, ${awarded.length} tildelt)\n`,
 );
 
 for (const { t, score } of hits.slice(0, 60)) {
