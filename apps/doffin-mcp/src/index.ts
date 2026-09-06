@@ -6,7 +6,12 @@ import {
   ListToolsRequestSchema,
 } from "@modelcontextprotocol/sdk/types.js";
 import { z } from "zod";
-import { searchDoffin, scoreTender, type ScoreProfile } from "./doffin.js";
+import {
+  searchDoffin,
+  scoreTender,
+  type ScoreProfile,
+  type SearchParams,
+} from "./doffin.js";
 
 const PROFILE: ScoreProfile = {
   keywords: [
@@ -36,10 +41,27 @@ const server = new Server(
 const SearchSchema = z.object({
   query: z.string().optional(),
   cpv: z.array(z.string()).optional(),
-  location: z.string().optional(),
+  location: z.union([z.string(), z.array(z.string())]).optional(),
   limit: z.number().optional(),
   minScore: z.number().optional(),
 });
+
+type SearchInput = z.infer<typeof SearchSchema>;
+
+/** The tool surface uses short names; the Doffin API uses its own. Translate. */
+function toSearchParams(input: SearchInput): SearchParams {
+  const location =
+    typeof input.location === "string" ? [input.location] : input.location;
+  return {
+    searchString: input.query,
+    cpvCode: input.cpv,
+    location,
+    status: ["ACTIVE"],
+    type: ["COMPETITION"],
+    numHitsPerPage: input.limit ?? 25,
+    sortBy: "PUBLICATION_DATE_DESC",
+  };
+}
 
 server.setRequestHandler(ListToolsRequestSchema, async () => ({
   tools: [
@@ -83,8 +105,8 @@ server.setRequestHandler(CallToolRequestSchema, async (req) => {
 
   if (name === "search_tenders") {
     const input = SearchSchema.parse(args ?? {});
-    const tenders = await searchDoffin(input);
-    const scored = tenders
+    const { hits } = await searchDoffin(toSearchParams(input));
+    const scored = hits
       .map((t) => ({ ...t, score: scoreTender(t, PROFILE) }))
       .filter((t) => t.score >= (input.minScore ?? 0))
       .sort((a, b) => b.score - a.score);
@@ -94,12 +116,10 @@ server.setRequestHandler(CallToolRequestSchema, async (req) => {
   }
 
   if (name === "recommended_tenders") {
-    const tenders = await searchDoffin({
-      cpv: PROFILE.cpvCodes,
-      location: PROFILE.preferredLocations[0],
-      limit: 50,
-    });
-    const scored = tenders
+    const { hits } = await searchDoffin(
+      toSearchParams({ cpv: PROFILE.cpvCodes, limit: 50 }),
+    );
+    const scored = hits
       .map((t) => ({ ...t, score: scoreTender(t, PROFILE) }))
       .sort((a, b) => b.score - a.score)
       .slice(0, 20);

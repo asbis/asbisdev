@@ -38,7 +38,25 @@ oppdrag/        Plain markdown working directory for tenders & applications.
 Only `apps/web` is deployed. The Vercel project's Root Directory setting must
 point to `apps/web`. The MCP server and `oppdrag/` stay local.
 
-## Current state (handoff, last touched 2026-04-22)
+## Finding new tenders
+
+`pnpm oppdrag:nye` (needs `apps/doffin-mcp/.env` with the subscription key)
+sweeps Doffin on CPV codes plus free-text, drops everything already assessed,
+scores the rest and writes `oppdrag/nye-oppdrag.md`. "Already assessed" is
+derived at runtime from the folder names under `oppdrag/aktive|innsendt|
+ikke-aktuelle|langskudd` and from the doffin IDs in `shortlist.md` and
+`nye-oppdrag.md` — so no skip list needs maintaining, and a tender only ever
+surfaces once. Defaults to the last 60 days; override with
+`--since=YYYY-MM-DD --min-score=N --limit=N --out=path`.
+
+Results split into solo deliverables (under 15M, no framework agreement) and
+frameworks/DPS, since those are different sales processes. ★ marks Rogaland.
+
+Note: the whole toolchain needs direct network access to `api.doffin.no`. It
+does not work from a sandboxed session where egress is restricted — run it
+locally.
+
+## Current state (handoff, last touched 2026-09-06)
 
 **Doffin integration is live and verified.** `apps/doffin-mcp` hits
 `https://api.doffin.no/public/v2/search` with `Ocp-Apim-Subscription-Key` auth
@@ -56,6 +74,21 @@ tenders. Only Public API matters for finding work to bid on.
 
 **The real shortlist of tenders lives in `oppdrag/shortlist.md`** — Tier 1
 (solo-deliverable jobs), Tier 2 (DPS frameworks to qualify for), Tier 3 (skip).
+
+**Fixed 2026-09-06:** the MCP server in `src/index.ts` never worked. It passed
+tool-level argument names (`query`, `cpv`, `limit`) straight to `searchDoffin`,
+which expects `searchString`/`cpvCode`/`numHitsPerPage`, so every filter was
+silently dropped; and it called `.map()` on the search result object instead of
+`.hits`, so both tools threw. Now translated through `toSearchParams()`, which
+also pins `status=ACTIVE` and `type=COMPETITION`. `recommended_tenders` no
+longer hard-filters on Rogaland — remote work counts, and the score already
+gives Rogaland a bonus.
+
+**Stale as of 2026-09-06:** `oppdrag/shortlist.md` is from 2026-04-22 and most
+of its Tier 1 deadlines have passed. `oppdrag/aktive/2026-112455-22juli-digital-partner`
+had a 26.08.2026 deadline and should move to `innsendt/` or `ikke-aktuelle/`.
+The DPS entries (Mattilsynet, Brønnøysund, Sandnes, Nkom, DFØ) have no hard
+deadline and remain live.
 
 **Next concrete steps when resuming:**
 1. Add `get_tender_details(id)` tool in `apps/doffin-mcp` hitting

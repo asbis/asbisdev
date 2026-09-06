@@ -1,5 +1,9 @@
 # Doffin-shortlist — generert 2026-04-22
 
+> **Status 2026-09-06:** utdatert. Fristene i Tier 1 er stort sett gått ut.
+> Kjør `pnpm oppdrag:nye` for et ferskt sveip. DPS-ene i Tier 2 er fortsatt
+> åpne — de har ingen hard frist.
+
 Kilde: `apps/doffin-mcp/src/browse.ts` mot `api.doffin.no/public/v2/search`,
 CPV 72200000/72260000/72262000/72212000/72230000/48000000, status=ACTIVE.
 188 unike aktive anbud i poolen, 92 med relevans-score ≥ 10.

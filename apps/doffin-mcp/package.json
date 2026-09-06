@@ -9,7 +9,8 @@
   "scripts": {
     "build": "tsc",
     "start": "tsx src/index.ts",
-    "dev": "tsx watch src/index.ts"
+    "dev": "tsx watch src/index.ts",
+    "nye": "tsx --env-file=.env src/nye.ts"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.0",

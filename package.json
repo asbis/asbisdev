@@ -6,7 +6,8 @@
     "dev": "pnpm --filter @asbisdev/web dev",
     "build": "pnpm --filter @asbisdev/web build",
     "lint": "pnpm -r lint",
-    "mcp:doffin": "pnpm --filter @asbisdev/doffin-mcp start"
+    "mcp:doffin": "pnpm --filter @asbisdev/doffin-mcp start",
+    "oppdrag:nye": "pnpm --filter @asbisdev/doffin-mcp nye"
   },
   "packageManager": "pnpm@9.0.0",
   "devDependencies": {
