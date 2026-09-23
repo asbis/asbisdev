@@ -6,7 +6,9 @@
     "dev": "pnpm --filter @asbisdev/web dev",
     "build": "pnpm --filter @asbisdev/web build",
     "lint": "pnpm -r lint",
-    "mcp:doffin": "pnpm --filter @asbisdev/doffin-mcp start"
+    "mcp:doffin": "pnpm --filter @asbisdev/doffin-mcp start",
+    "dev:console": "pnpm --filter @asbisdev/console dev",
+    "build:console": "pnpm --filter @asbisdev/console build"
   },
   "packageManager": "pnpm@9.0.0",
   "devDependencies": {
