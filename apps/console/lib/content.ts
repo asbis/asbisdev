@@ -53,11 +53,6 @@ export const HERO = {
   },
   ctaPrimary: { no: "Book en prat", en: "Book a call" },
   ctaWork: { no: "Se hva jeg har levert", en: "See what I've shipped" },
-  ctaPlay: { no: "Se det kjøre", en: "Watch it run" },
-  fine: {
-    no: "Referanser: Equinor, Kolumbus, Easee, Altibox, NLR. Tallene under er oppgitt av kundene eller hentet fra egne produkter. Basert i Stavanger, jobber i hele Norge.",
-    en: "References: Equinor, Kolumbus, Easee, Altibox, NLR. The numbers below come from the clients or from my own products. Based in Stavanger, working across Norway.",
-  },
   stats: [
     { value: "8 år", valueEn: "8 yrs", label: { no: "med systemer i produksjon", en: "shipping production systems" } },
     { value: "142 000", valueEn: "142,000", label: { no: "brukere i måneden på Kolumbus-appen", en: "monthly users on the Kolumbus app" } },
