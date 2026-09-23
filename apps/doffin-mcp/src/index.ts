@@ -6,7 +6,12 @@ import {
   ListToolsRequestSchema,
 } from "@modelcontextprotocol/sdk/types.js";
 import { z } from "zod";
-import { searchDoffin, scoreTender, type ScoreProfile } from "./doffin.js";
+import {
+  searchDoffin,
+  scoreTender,
+  type ScoreProfile,
+  type SearchParams,
+} from "./doffin.js";
 
 const PROFILE: ScoreProfile = {
   keywords: [
@@ -58,7 +63,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
           },
           location: {
             type: "string",
-            description: "NUTS code, e.g. NO0A for Rogaland",
+            description: "NUTS code, e.g. NO043 or NO0A3 for Rogaland",
           },
           limit: { type: "number", default: 25 },
           minScore: {
@@ -83,8 +88,15 @@ server.setRequestHandler(CallToolRequestSchema, async (req) => {
 
   if (name === "search_tenders") {
     const input = SearchSchema.parse(args ?? {});
-    const tenders = await searchDoffin(input);
-    const scored = tenders
+    const params: SearchParams = {
+      searchString: input.query,
+      cpvCode: input.cpv,
+      location: input.location ? [input.location] : undefined,
+      status: ["ACTIVE"],
+      numHitsPerPage: input.limit ?? 25,
+    };
+    const { hits } = await searchDoffin(params);
+    const scored = hits
       .map((t) => ({ ...t, score: scoreTender(t, PROFILE) }))
       .filter((t) => t.score >= (input.minScore ?? 0))
       .sort((a, b) => b.score - a.score);
@@ -94,12 +106,13 @@ server.setRequestHandler(CallToolRequestSchema, async (req) => {
   }
 
   if (name === "recommended_tenders") {
-    const tenders = await searchDoffin({
-      cpv: PROFILE.cpvCodes,
-      location: PROFILE.preferredLocations[0],
-      limit: 50,
+    const { hits } = await searchDoffin({
+      cpvCode: PROFILE.cpvCodes,
+      location: PROFILE.preferredLocations,
+      status: ["ACTIVE"],
+      numHitsPerPage: 50,
     });
-    const scored = tenders
+    const scored = hits
       .map((t) => ({ ...t, score: scoreTender(t, PROFILE) }))
       .sort((a, b) => b.score - a.score)
       .slice(0, 20);

@@ -11,6 +11,8 @@ This is a pnpm workspace. Don't look for Next.js at the root — it lives in `ap
 ```
 apps/
   web/          Next.js portfolio site (deploys to Vercel, root = apps/web)
+  console/      Next.js landing page for Console Consulting (consoleconsulting.no,
+                Vercel root = apps/console). Dithered three.js scenes, see below.
   doffin-mcp/   MCP server exposing Doffin tender search to Claude Code
 packages/
   templates/    Shared: CV data, cases, tone guide, application boilerplate.
@@ -23,6 +25,7 @@ oppdrag/        Plain markdown working directory for tenders & applications.
 
 - `pnpm dev` — run the web app
 - `pnpm build` — build the web app
+- `pnpm dev:console` / `pnpm build:console` — run / build the Console Consulting site (port 3001)
 - `pnpm mcp:doffin` — run the Doffin MCP server (stdio)
 
 ## When drafting applications in `oppdrag/`
@@ -37,6 +40,21 @@ oppdrag/        Plain markdown working directory for tenders & applications.
 
 Only `apps/web` is deployed. The Vercel project's Root Directory setting must
 point to `apps/web`. The MCP server and `oppdrag/` stay local.
+
+## Console Consulting site (`apps/console`)
+
+Inspired by brainfunctioncollapse.com/laya: every scene is rendered in grayscale with
+three.js, then Bayer-dithered to two tones on the GPU (`lib/stage/stage.ts`). Scenes live in
+`lib/stage/scenes/` (rig = hero, router = integrations, transit = Kolumbus app, stack =
+platform), each with an autopilot and a "you play" mode; `components/game.tsx` runs the loop,
+HUD and telemetry panel. All copy (NO/EN) is in `lib/content.ts`. In dev, `window.__sim_<id>`
+exposes `{ sim, stage, labels }` for stepping a scene by hand (`stage.raw = true` skips the
+dither pass).
+
+Known issue: `next dev` on a `.next` that holds `next build` output (or after changing
+`turbopack.root`) spawned hundreds of postcss workers on 2026-09-07. `pnpm dev` goes through
+`scripts/dev-guard.sh`, which clears build output first and kills runaway process groups;
+`turbopackFileSystemCacheForDev` is off. Stop dev before running `next build` in the same app.
 
 ## Current state (handoff, last touched 2026-04-22)
 
