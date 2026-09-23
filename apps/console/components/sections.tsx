@@ -58,22 +58,16 @@ export function Hero({ lang }: { lang: Lang }) {
         <div className="lg:grid lg:grid-cols-12 lg:gap-10">
           <div className="lg:col-span-8">
             <h1 className="display max-w-[12ch]">{HERO.headline[lang]}</h1>
-            <div className="mt-8 grid gap-8 md:mt-12 md:grid-cols-12 md:gap-10 lg:grid-cols-8">
-              <div className="md:col-span-7 lg:col-span-5">
-                <p className="lead max-w-[46ch]">{HERO.lead[lang]}</p>
-                <div className="mt-7 flex flex-wrap gap-3">
-                  <a href={mailto(lang)} className="btn btn-solid">
-                    {HERO.ctaPrimary[lang]}
-                  </a>
-                  <a href="#leveranser" className="btn btn-line">
-                    {HERO.ctaWork[lang]}
-                  </a>
-                  <a href="#integrasjon" className="btn btn-line">
-                    {HERO.ctaPlay[lang]}
-                  </a>
-                </div>
+            <div className="mt-8 md:mt-12">
+              <p className="lead max-w-[46ch]">{HERO.lead[lang]}</p>
+              <div className="mt-7 flex flex-wrap gap-3">
+                <a href={mailto(lang)} className="btn btn-solid">
+                  {HERO.ctaPrimary[lang]}
+                </a>
+                <a href="#leveranser" className="btn btn-line">
+                  {HERO.ctaWork[lang]}
+                </a>
               </div>
-              <p className="fine self-end md:col-span-5 md:col-start-8 lg:col-span-3 lg:col-start-6">{HERO.fine[lang]}</p>
             </div>
           </div>
           {/* The person you'd hire, on wide screens: dithered in ink straight onto the amber. */}
